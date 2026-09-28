@@ -1,0 +1,7 @@
+{
+    "name": "Pasjans.Editor",
+    "rootNamespace": "Pasjans.Editor",
+    "references": ["Pasjans.Runtime"],
+    "includePlatforms": ["Editor"],
+    "autoReferenced": true
+}

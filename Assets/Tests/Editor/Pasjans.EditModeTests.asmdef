@@ -1,0 +1,8 @@
+{
+    "name": "Pasjans.EditModeTests",
+    "rootNamespace": "Pasjans.Tests",
+    "references": ["Pasjans.Runtime"],
+    "includePlatforms": ["Editor"],
+    "optionalUnityReferences": ["TestAssemblies"],
+    "autoReferenced": false
+}

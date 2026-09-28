@@ -1,0 +1,6 @@
+{
+  "name": "Pasjans.Runtime",
+  "rootNamespace": "Pasjans",
+  "references": ["Unity.ugui", "Unity.InputSystem"],
+  "autoReferenced": true
+}

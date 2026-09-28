@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Pasjans — original application icon</title>
+  <desc>Two ivory playing cards, a red diamond and a black spade, on green felt.</desc>
+  <rect width="512" height="512" fill="#184d40"/>
+  <rect x="22" y="22" width="468" height="468" rx="66" fill="#205b4b" stroke="#547861" stroke-width="3"/>
+  <g transform="rotate(-12 197 241)">
+    <rect x="84" y="87" width="244" height="332" rx="21" fill="#102f29" opacity=".3"/>
+    <rect x="75" y="75" width="244" height="332" rx="21" fill="#f6edcf" stroke="#dacda5" stroke-width="3"/>
+    <path d="M165 145 L215 212 L165 279 L115 212 Z" fill="#bc3544"/>
+    <path d="M106 99 L118 115 L106 131 L94 115 Z M289 352 L301 368 L289 384 L277 368 Z" fill="#bc3544"/>
+  </g>
+  <g transform="rotate(10 332 293)">
+    <rect x="232" y="145" width="214" height="316" rx="20" fill="#102f29" opacity=".32"/>
+    <rect x="225" y="135" width="214" height="316" rx="20" fill="#fffcf2" stroke="#dedbc9" stroke-width="3"/>
+    <g transform="translate(332 281)">
+      <path d="M0 -68 C25 -37 68 -13 68 18 C68 56 18 65 0 33 C-18 65 -68 56 -68 18 C-68 -13 -25 -37 0 -68 Z M-8 38 C-10 57 -18 77 -32 82 L32 82 C18 77 10 57 8 38 Z" fill="#1e2b30"/>
+    </g>
+    <g transform="translate(253 169) scale(.18)">
+      <path d="M0 -68 C25 -37 68 -13 68 18 C68 56 18 65 0 33 C-18 65 -68 56 -68 18 C-68 -13 -25 -37 0 -68 Z M-8 38 C-10 57 -18 77 -32 82 L32 82 C18 77 10 57 8 38 Z" fill="#1e2b30"/>
+    </g>
+    <g transform="translate(411 416) scale(-.18)">
+      <path d="M0 -68 C25 -37 68 -13 68 18 C68 56 18 65 0 33 C-18 65 -68 56 -68 18 C-68 -13 -25 -37 0 -68 Z M-8 38 C-10 57 -18 77 -32 82 L32 82 C18 77 10 57 8 38 Z" fill="#1e2b30"/>
+    </g>
+  </g>
+</svg>
