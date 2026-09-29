@@ -1,7 +1,7 @@
 {
     "name": "Pasjans.Editor",
     "rootNamespace": "Pasjans.Editor",
-    "references": ["Pasjans.Runtime"],
+    "references": ["Pasjans.Runtime", "Unity.ugui", "Unity.InputSystem"],
     "includePlatforms": ["Editor"],
     "autoReferenced": true
 }

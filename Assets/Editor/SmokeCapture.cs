@@ -1,9 +1,15 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Linq;
+using Pasjans.Core;
+using Pasjans.UI;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Pasjans.Editor
 {
@@ -19,6 +25,19 @@ namespace Pasjans.Editor
         const string Prefix = "Pasjans.SmokeCapture.";
         const BindingFlags InstanceFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
         static EditorWindow gameView;
+        static string beforeModeChange;
+
+        public static void RunModes()
+        {
+            Run();
+            SessionState.SetBool(Prefix + "Modes", true);
+        }
+
+        public static void RunGrandpa()
+        {
+            Run();
+            SessionState.SetBool(Prefix + "Grandpa", true);
+        }
 
         static SmokeCapture()
         {
@@ -51,7 +70,9 @@ namespace Pasjans.Editor
                 string output = Path.GetFullPath(Path.Combine("Logs", "Screenshots", DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff")));
                 Directory.CreateDirectory(output);
                 SessionState.SetString(Prefix + "Output", output);
-                SessionState.SetFloat(Prefix + "Deadline", (float)EditorApplication.timeSinceStartup + 120f);
+                SessionState.SetBool(Prefix + "Modes", false);
+                SessionState.SetBool(Prefix + "Grandpa", false);
+                SessionState.SetFloat(Prefix + "Deadline", (float)EditorApplication.timeSinceStartup + 180f);
                 SessionState.SetInt(Prefix + "Stage", 1);
                 EditorSceneManager.OpenScene("Assets/Scenes/SampleScene.unity", OpenSceneMode.Single);
                 SetGameViewSize(1280, 800);
@@ -75,6 +96,8 @@ namespace Pasjans.Editor
                 EditorApplication.QueuePlayerLoopUpdate();
                 GetGameView().Repaint();
                 if (!EditorApplication.isPlaying || EditorApplication.isPaused) return;
+                if (SessionState.GetBool(Prefix + "Grandpa", false)) { UpdateGrandpa(stage); return; }
+                if (SessionState.GetBool(Prefix + "Modes", false)) { UpdateModes(stage); return; }
 
                 switch (stage)
                 {
@@ -149,6 +172,205 @@ namespace Pasjans.Editor
             SessionState.SetFloat(Prefix + "StartTime", (float)EditorApplication.timeSinceStartup);
         }
 
+        // Scenariusz sprawdza oba komunikaty Dziadka i cztery kolumny rankingu.
+        static void UpdateGrandpa(int stage)
+        {
+            var app = FindApp() as PasjansApp;
+            if (app == null) return;
+            switch (stage)
+            {
+                case 1:
+                    SetGameViewSize(1280, 800);
+                    LoadGrandpaState(app, true, 148);
+                    SetStage(2);
+                    break;
+                case 2:
+                    if (!Ready(1280, 800)) return;
+                    VerifyGrandpaBanner(app, true);
+                    Capture("grandpa-win.png", 3);
+                    break;
+                case 3:
+                    if (!CaptureComplete("grandpa-win.png", 1280, 800)) return;
+                    LoadGrandpaState(app, false, 54);
+                    SetStage(4);
+                    break;
+                case 4:
+                    if (!Ready(1280, 800)) return;
+                    VerifyGrandpaBanner(app, false);
+                    Capture("grandpa-loss.png", 5);
+                    break;
+                case 5:
+                    if (!CaptureComplete("grandpa-loss.png", 1280, 800)) return;
+                    PopulateSampleRanking();
+                    app.SendMessage("ShowRanking", SendMessageOptions.RequireReceiver);
+                    SetGameViewSize(720, 1280);
+                    SetStage(6);
+                    break;
+                case 6:
+                    if (!Ready(720, 1280)) return;
+                    var cells = Field<Text[,]>(app, "rankingCells");
+                    Check(cells[0, 3].text == "Wygrana wg. Dziadka", "Brak czwartej kolumny rankingu.");
+                    for (int row = 1; row <= 5; row++) Check(cells[row, 3].text == "Tak", "Wyniki Tak muszą być pierwsze.");
+                    for (int row = 6; row <= 10; row++) Check(cells[row, 3].text == "Nie", "Wyniki Nie muszą być niżej.");
+                    Capture("ranking-grandpa.png", 7);
+                    break;
+                case 7:
+                    if (!CaptureComplete("ranking-grandpa.png", 720, 1280)) return;
+                    Finish(true, "Zweryfikowano zielony i czerwony komunikat oraz priorytet Tak w rankingu.");
+                    break;
+            }
+        }
+
+        static void LoadGrandpaState(PasjansApp app, bool win, int moves)
+        {
+            var state = SampleRankingState(moves, win);
+            Check(app.Game.TryLoad(state, out string error), error);
+            app.SendMessage("Layout", SendMessageOptions.RequireReceiver);
+            app.SendMessage("Refresh", SendMessageOptions.RequireReceiver);
+        }
+
+        static void VerifyGrandpaBanner(PasjansApp app, bool win)
+        {
+            var banner = Field<Image>(app, "grandpaBanner");
+            var label = Field<Text>(app, "grandpaBannerText");
+            Check(banner.gameObject.activeSelf, "Komunikat Dziadka jest ukryty.");
+            Check(label.text == (win ? "Wg. Dziadka wygrałeś" : "Wg. Dziadka przegrałeś"), "Niepoprawny tekst komunikatu.");
+            Check(win ? banner.color.g > banner.color.r : banner.color.r > banner.color.g, "Niepoprawny kolor komunikatu.");
+        }
+
+        // Scenariusz sprawdza przyciski i układ na odizolowanym zapisie testowym.
+        static void UpdateModes(int stage)
+        {
+            var app = FindApp() as PasjansApp;
+            if (app == null) return;
+            switch (stage)
+            {
+                case 1:
+                    SetGameViewSize(1280, 800);
+                    app.Game.SelectDeckCount(1);
+                    app.SendMessage("ForceNewGame");
+                    app.SendMessage("Draw");
+                    SetStage(2);
+                    break;
+                case 2:
+                    if (!Ready(1280, 800)) return;
+                    VerifyBoard(app, 5, 4);
+                    Capture("one-deck-landscape.png", 3);
+                    break;
+                case 3:
+                    if (!CaptureComplete("one-deck-landscape.png", 1280, 800)) return;
+                    app.SendMessage("ToggleMenu");
+                    var row = Field<RectTransform>(app, "modeItem");
+                    Check(row.GetComponent<Button>() == null, "Wiersz trybów nie może być przyciskiem.");
+                    var pointer = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left };
+                    ExecuteEvents.Execute(row.gameObject, pointer, ExecuteEvents.pointerClickHandler);
+                    Check(!Field<RectTransform>(app, "modePopup").gameObject.activeSelf, "Kliknięcie w Windows nie otwiera podmenu.");
+                    Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, row.TransformPoint(row.rect.center));
+                    Mouse.current?.WarpCursorPosition(screenPoint);
+                    ExecuteEvents.Execute(row.gameObject, pointer, ExecuteEvents.pointerEnterHandler);
+                    Check(Field<RectTransform>(app, "modePopup").gameObject.activeSelf, "Najechanie musi otworzyć podmenu.");
+                    SetStage(4);
+                    break;
+                case 4:
+                    if (!Ready(1280, 800)) return;
+                    Check(Field<RectTransform>(app, "modePopup").gameObject.activeSelf, "Podmenu znika pod kursorem.");
+                    Capture("modes-windows.png", 5);
+                    break;
+                case 5:
+                    if (!CaptureComplete("modes-windows.png", 1280, 800)) return;
+                    beforeModeChange = JsonUtility.ToJson(app.Game.State);
+                    Field<Button>(app, "twoDeckButton").onClick.Invoke();
+                    Check(app.Game.SelectedDeckCount == 2, "Brak zmiany wyboru.");
+                    CheckSelectionOnly(app);
+                    app.SendMessage("AskNewGame");
+                    Field<Button>(app, "modalCancel").onClick.Invoke();
+                    CheckSelectionOnly(app);
+                    app.SendMessage("AskNewGame");
+                    Field<Button>(app, "modalAccept").onClick.Invoke();
+                    Check(app.Game.State.DeckCount == 2 && app.Game.MoveCount == 0, "Potwierdzenie musi rozdać dwie talie.");
+                    app.SendMessage("Draw");
+                    SetStage(6);
+                    break;
+                case 6:
+                    if (!Ready(1280, 800)) return;
+                    VerifyBoard(app, 10, 8);
+                    var hidden = app.GetComponentsInChildren<CardView>().Where(c => !c.Card.faceUp).ToArray();
+                    Check(hidden.Select(c => c.Card.deckIndex).Distinct().Count() == 2, "Brak dwóch talii na planszy.");
+                    Check(hidden.All(c => c.GetComponent<Image>().sprite == app.Art.BackFor(c.Card.deckIndex)), "Niepoprawny rewers.");
+                    Capture("two-decks-landscape.png", 7);
+                    break;
+                case 7:
+                    if (!CaptureComplete("two-decks-landscape.png", 1280, 800)) return;
+                    app.SimulateTouchMenu = true;
+                    SetGameViewSize(720, 1280);
+                    SetStage(8);
+                    break;
+                case 8:
+                    if (!Ready(720, 1280)) return;
+                    VerifyBoard(app, 10, 8);
+                    Capture("two-decks-portrait.png", 9);
+                    break;
+                case 9:
+                    if (!CaptureComplete("two-decks-portrait.png", 720, 1280)) return;
+                    app.SendMessage("ToggleMenu");
+                    var touchRow = Field<RectTransform>(app, "modeItem");
+                    var touch = new PointerEventData(EventSystem.current) { button = PointerEventData.InputButton.Left };
+                    ExecuteEvents.Execute(touchRow.gameObject, touch, ExecuteEvents.pointerEnterHandler);
+                    Check(!Field<RectTransform>(app, "modePopup").gameObject.activeSelf, "Dotykowe menu czeka na dotknięcie.");
+                    ExecuteEvents.Execute(touchRow.gameObject, touch, ExecuteEvents.pointerClickHandler);
+                    Check(Field<RectTransform>(app, "modePopup").gameObject.activeSelf, "Dotknięcie musi otworzyć podmenu.");
+                    SetStage(10);
+                    break;
+                case 10:
+                    if (!Ready(720, 1280)) return;
+                    Capture("modes-android-portrait.png", 11);
+                    break;
+                case 11:
+                    if (!CaptureComplete("modes-android-portrait.png", 720, 1280)) return;
+                    Field<Button>(app, "oneDeckButton").onClick.Invoke();
+                    Check(app.Game.State.DeckCount == 2 && app.Game.SelectedDeckCount == 1, "Wybór nie może zmieniać rozdania.");
+                    app.SendMessage("AskNewGame");
+                    Field<Button>(app, "modalAccept").onClick.Invoke();
+                    SetStage(12);
+                    break;
+                case 12:
+                    if (!Ready(720, 1280)) return;
+                    VerifyBoard(app, 5, 4);
+                    Capture("one-deck-portrait.png", 13);
+                    break;
+                case 13:
+                    if (!CaptureComplete("one-deck-portrait.png", 720, 1280)) return;
+                    Finish(true, "Zweryfikowano podmenu, wybór, anulowanie, dwa rewersy oraz oba układy planszy.");
+                    break;
+            }
+        }
+
+        static T Field<T>(PasjansApp app, string name) => (T)typeof(PasjansApp).GetField(name, InstanceFlags).GetValue(app);
+        static void Check(bool condition, string message) { if (!condition) throw new InvalidOperationException(message); }
+
+        static void CheckSelectionOnly(PasjansApp app)
+        {
+            var state = app.Game.ExportState();
+            state.selectedDeckCount = 1;
+            Check(JsonUtility.ToJson(state) == beforeModeChange, "Wybór lub anulowanie zmieniło bieżące rozdanie.");
+        }
+
+        static void VerifyBoard(PasjansApp app, int columns, int foundations)
+        {
+            var targets = app.GetComponentsInChildren<PileTarget>();
+            Check(targets.Count(t => t.Pile.kind == PileKind.Tableau) == columns, "Nieprawidłowa liczba kolumn.");
+            Check(targets.Count(t => t.Pile.kind == PileKind.Foundation) == foundations, "Nieprawidłowa liczba baz.");
+            var views = app.GetComponentsInChildren<CardView>();
+            Check(views.Select(v => v.Card.id).Distinct().Count() == views.Length, "Powielony widok karty.");
+            Check(views.Count(v => v.Pile.kind == PileKind.Waste) == Math.Min(3, app.Game.State.waste.Count), "Nieprawidłowa liczba odkrytych kart.");
+            var corners = new Vector3[4];
+            foreach (var view in views)
+            {
+                view.Rect.GetWorldCorners(corners);
+                Check(corners.All(p => p.x >= 0 && p.x <= Screen.width + 1 && p.y >= 0 && p.y <= Screen.height + 1), "Karta wychodzi poza ekran.");
+            }
+        }
+
         static void PopulateSampleRanking()
         {
             string[] args = Environment.GetCommandLineArgs();
@@ -156,10 +378,27 @@ namespace Pasjans.Editor
             var store = new Pasjans.Persistence.RankingStore(args[index + 1]);
             for (int i = 0; i < 10; i++)
             {
-                var state = new Pasjans.Core.GameState { moveCount = 72 + i * 9, finalMoves = 72 + i * 9, completedUtcTicks = DateTime.UtcNow.AddHours(-i).Ticks };
-                for (int s = 0; s < 4; s++) for (int r = 1; r <= 13; r++) state.stock.Add(new Pasjans.Core.CardData((Pasjans.Core.Suit)s, r));
+                bool win = i % 2 == 0;
+                var state = SampleRankingState(72 + i * 9, win);
+                state.completedUtcTicks = DateTime.UtcNow.AddHours(-i).Ticks;
                 if (!store.TryRecord(state, out string error)) throw new IOException(error);
             }
+        }
+
+        static Pasjans.Core.GameState SampleRankingState(int moves, bool win)
+        {
+            var state = new Pasjans.Core.GameState
+            {
+                moveCount = moves, finalMoves = moves, completedUtcTicks = DateTime.UtcNow.Ticks,
+                drawCount = win ? 1 : 3, stockRecycleCount = win ? 2 : 0,
+                grandpaOutcome = win ? Pasjans.Core.GameState.GrandpaWin : Pasjans.Core.GameState.GrandpaLoss
+            };
+            for (int s = 0; s < 4; s++) for (int r = 1; r <= 13; r++)
+            {
+                var card = new Pasjans.Core.CardData((Pasjans.Core.Suit)s, r, win);
+                if (win) state.waste.Add(card); else state.stock.Add(card);
+            }
+            return state;
         }
 
         static bool Ready(int width, int height)

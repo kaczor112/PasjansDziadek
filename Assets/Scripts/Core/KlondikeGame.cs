@@ -15,12 +15,16 @@ namespace Pasjans.Core
         public GameState State { get; private set; }
         public int MoveCount { get { return State.moveCount; } }
         public bool HasResult { get { return State.completedUtcTicks > 0; } }
+        public bool HasRankableResult { get { return HasResult && State.grandpaOutcome != GameState.GrandpaPending; } }
+        public bool IsGrandpaWin { get { return State.grandpaOutcome == GameState.GrandpaWin; } }
+        public bool IsGrandpaLoss { get { return State.grandpaOutcome == GameState.GrandpaLoss; } }
+        public int SelectedDeckCount => State.selectedDeckCount;
 
         public bool IsWon
         {
             get
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < State.foundations.Length; i++)
                 {
                     if (State.foundations[i].cards.Count != 13)
                         return false;
@@ -29,22 +33,39 @@ namespace Pasjans.Core
             }
         }
 
-        public KlondikeGame(int drawCount = 3, int? seed = null)
+        public KlondikeGame(int drawCount = 3, int? seed = null, int deckCount = 1)
         {
-            NewGame(drawCount, seed);
+            NewGame(drawCount, seed, deckCount);
         }
 
-        public void NewGame(int drawCount = 3, int? seed = null)
+        public bool SelectDeckCount(int deckCount)
+        {
+            if (deckCount < 1 || deckCount > 2)
+                throw new ArgumentOutOfRangeException(nameof(deckCount));
+            if (State.selectedDeckCount == deckCount) return false;
+            State.selectedDeckCount = deckCount;
+            return true;
+        }
+
+        public void NewGame(int drawCount = 3, int? seed = null, int? deckCount = null)
         {
             if (drawCount < 1 || drawCount > 3)
                 throw new ArgumentOutOfRangeException(nameof(drawCount), "Draw count must be between 1 and 3.");
 
-            var next = new GameState { drawCount = drawCount };
-            for (int suit = 0; suit < 4; suit++)
+            int decks = deckCount ?? State?.selectedDeckCount ?? 1;
+            if (decks < 1 || decks > 2)
+                throw new ArgumentOutOfRangeException(nameof(deckCount));
+            var next = new GameState
             {
-                for (int rank = 1; rank <= 13; rank++)
-                    next.stock.Add(new CardData((Suit)suit, rank));
-            }
+                drawCount = drawCount,
+                stockRecycleCount = drawCount == 3 ? 0 : drawCount == 2 ? 1 : 2,
+                deckCount = decks, selectedDeckCount = decks,
+                foundations = GameState.CreatePiles(4 * decks), tableau = GameState.CreatePiles(5 * decks)
+            };
+            for (int deck = 0; deck < decks; deck++)
+                for (int suit = 0; suit < 4; suit++)
+                    for (int rank = 1; rank <= 13; rank++)
+                        next.stock.Add(new CardData((Suit)suit, rank, false, deck));
 
             // Stałe ziarno powtarza rozdanie w testach, a losowe tworzy nowe rozdanie.
             var random = new Random(seed ?? Guid.NewGuid().GetHashCode());
@@ -56,9 +77,9 @@ namespace Pasjans.Core
                 next.stock[j] = swap;
             }
 
-            for (int row = 0; row < 7; row++)
+            for (int row = 0; row < next.tableau.Length; row++)
             {
-                for (int column = row; column < 7; column++)
+                for (int column = row; column < next.tableau.Length; column++)
                 {
                     CardData card = RemoveTop(next.stock);
                     card.faceUp = row == column;
@@ -76,7 +97,17 @@ namespace Pasjans.Core
                 return false;
 
             State = CloneState(state);
+            // Starszy zapis zachowuje siedem kolumn do rozpoczęcia nowej gry.
+            State.deckCount = State.DeckCount;
+            if (State.selectedDeckCount == 0) State.selectedDeckCount = 1;
+            if (State.schemaVersion < 3)
+            {
+                State.stockRecycleCount = State.drawCount == 3 ? 0 : State.drawCount == 2 ? 1 : 2;
+                // Dla starych ukończonych gier nie da się odtworzyć liczby wcześniejszych przełożeń.
+                if (HasResult) State.grandpaOutcome = GameState.GrandpaLoss;
+            }
             if (string.IsNullOrEmpty(State.gameId)) State.gameId = Guid.NewGuid().ToString("N");
+            EvaluateGrandpaOutcome();
             return true;
         }
 
@@ -112,6 +143,7 @@ namespace Pasjans.Core
                     card.faceUp = false;
                     State.stock.Add(card);
                 }
+                State.stockRecycleCount++;
                 if (State.drawCount > 1)
                     State.drawCount--;
             }
@@ -121,6 +153,7 @@ namespace Pasjans.Core
             }
 
             CountMove();
+            EvaluateGrandpaOutcome();
             return true;
         }
 
@@ -159,7 +192,7 @@ namespace Pasjans.Core
             if (destination.kind == PileKind.Tableau)
             {
                 if (target.Count == 0)
-                    return true; // Pusty fundament przyjmuje dowolną kartę.
+                    return true; // Zachowana zasada: pusta kolumna przyjmuje dowolną kartę.
 
                 CardData top = target[target.Count - 1];
                 return top.faceUp && CanStackOnTableau(card, top);
@@ -191,11 +224,20 @@ namespace Pasjans.Core
                 from[from.Count - 1].faceUp = true;
 
             CountMove();
+            EvaluateGrandpaOutcome();
+            return true;
+        }
+
+        /// <summary>Zamyka oczekujący wynik jako „Nie” przed porzuceniem rozdania.</summary>
+        public bool FinalizeGrandpaLoss()
+        {
+            if (!HasResult || State.grandpaOutcome != GameState.GrandpaPending) return false;
+            State.grandpaOutcome = GameState.GrandpaLoss;
             return true;
         }
 
         /// <summary>
-        /// Sprawdza strukturę, identyfikatory, wszystkie 52 karty, ich strony i zasady stosów.
+        /// Sprawdza pełne talie, unikalność kart, ich strony i zasady stosów.
         /// Niekompletne lub uszkodzone zapisy są odrzucane bez naprawiania danych.
         /// </summary>
         public static bool ValidateState(GameState state, out string error)
@@ -203,10 +245,24 @@ namespace Pasjans.Core
             error = null;
             if (state == null)
                 return Fail("Game state is missing.", out error);
-            if (state.schemaVersion != GameState.CurrentSchemaVersion)
+            if (state.schemaVersion < 1 || state.schemaVersion > GameState.CurrentSchemaVersion)
                 return Fail("Unsupported game state version.", out error);
+            if (state.DeckCount < 1 || state.DeckCount > 2 ||
+                (state.schemaVersion == 1 && (state.deckCount < 0 || state.deckCount > 1)) ||
+                state.selectedDeckCount < (state.schemaVersion == 1 ? 0 : 1) || state.selectedDeckCount > 2)
+                return Fail("Invalid deck count.", out error);
             if (state.drawCount < 1 || state.drawCount > 3)
                 return Fail("Invalid stock draw count.", out error);
+            if (state.stockRecycleCount < 0 || state.grandpaOutcome < GameState.GrandpaPending ||
+                state.grandpaOutcome > GameState.GrandpaLoss)
+                return Fail("Invalid Grandpa result.", out error);
+            if (state.schemaVersion >= 3)
+            {
+                int expectedDraw = state.stockRecycleCount == 0 ? 3 : state.stockRecycleCount == 1 ? 2 : 1;
+                if (state.drawCount != expectedDraw ||
+                    (state.stockRecycleCount >= 3 && state.grandpaOutcome != GameState.GrandpaLoss))
+                    return Fail("Invalid stock pass.", out error);
+            }
             if (state.moveCount < 0)
                 return Fail("Invalid move count.", out error);
             if (!string.IsNullOrEmpty(state.gameId) && !Guid.TryParseExact(state.gameId, "N", out _))
@@ -215,14 +271,19 @@ namespace Pasjans.Core
                 state.finalMoves < 0 || (state.completedUtcTicks > 0 &&
                 (string.IsNullOrEmpty(state.gameId) || state.finalMoves < 1 || state.finalMoves != state.moveCount)))
                 return Fail("Invalid completed result.", out error);
-            if (state.foundations == null || state.foundations.Length != 4 ||
-                state.tableau == null || state.tableau.Length != 7)
+            if (state.grandpaOutcome == GameState.GrandpaWin &&
+                (state.completedUtcTicks <= 0 || state.stockRecycleCount != 2 || state.stock == null || state.stock.Count != 0))
+                return Fail("Invalid Grandpa win.", out error);
+            int cardCount = 52 * state.DeckCount;
+            int columnCount = state.schemaVersion == 1 ? 7 : 5 * state.DeckCount;
+            if (state.foundations == null || state.foundations.Length != 4 * state.DeckCount ||
+                state.tableau == null || state.tableau.Length != columnCount)
                 return Fail("Incorrect number of piles.", out error);
 
-            var seen = new bool[52];
+            var seen = new bool[cardCount];
             int total = 0;
-            if (!ValidateCards(state.stock, 52, seen, ref total, out error) ||
-                !ValidateCards(state.waste, 52, seen, ref total, out error))
+            if (!ValidateCards(state.stock, cardCount, seen, ref total, out error) ||
+                !ValidateCards(state.waste, cardCount, seen, ref total, out error))
                 return false;
 
             for (int i = 0; i < state.stock.Count; i++)
@@ -236,7 +297,7 @@ namespace Pasjans.Core
                     return Fail("Waste contains a face-down card.", out error);
             }
 
-            for (int pile = 0; pile < 4; pile++)
+            for (int pile = 0; pile < state.foundations.Length; pile++)
             {
                 PileData foundation = state.foundations[pile];
                 if (foundation == null)
@@ -252,12 +313,12 @@ namespace Pasjans.Core
                 }
             }
 
-            for (int pile = 0; pile < 7; pile++)
+            for (int pile = 0; pile < state.tableau.Length; pile++)
             {
                 PileData tableau = state.tableau[pile];
                 if (tableau == null)
                     return Fail("Tableau pile is missing.", out error);
-                if (!ValidateCards(tableau.cards, 19, seen, ref total, out error))
+                if (!ValidateCards(tableau.cards, 12 + columnCount, seen, ref total, out error))
                     return false;
 
                 bool reachedFaceUp = false;
@@ -287,7 +348,7 @@ namespace Pasjans.Core
                     return Fail("Tableau top card must be face-up.", out error);
             }
 
-            return total == 52 || Fail("Game state must contain exactly 52 cards.", out error);
+            return total == cardCount || Fail("Game state must contain every card from each deck.", out error);
         }
 
         private static bool ValidateCards(List<CardData> cards, int maximumCount, bool[] seen,
@@ -302,7 +363,9 @@ namespace Pasjans.Core
                 CardData card = cards[i];
                 if (card == null || card.rank < 1 || card.rank > 13 || (int)card.suit < 0 || (int)card.suit > 3)
                     return Fail("Invalid card data.", out error);
-                int expectedId = (int)card.suit * 13 + card.rank - 1;
+                if (card.deckIndex < 0 || card.deckIndex >= seen.Length / 52)
+                    return Fail("Invalid card deck.", out error);
+                int expectedId = card.deckIndex * 52 + (int)card.suit * 13 + card.rank - 1;
                 if (card.id != expectedId || seen[expectedId])
                     return Fail("Invalid or duplicate card identity.", out error);
 
@@ -332,9 +395,9 @@ namespace Pasjans.Core
                 case PileKind.Waste:
                     return pile.index == 0 ? State.waste : null;
                 case PileKind.Foundation:
-                    return pile.index >= 0 && pile.index < 4 ? State.foundations[pile.index].cards : null;
+                    return pile.index >= 0 && pile.index < State.foundations.Length ? State.foundations[pile.index].cards : null;
                 case PileKind.Tableau:
-                    return pile.index >= 0 && pile.index < 7 ? State.tableau[pile.index].cards : null;
+                    return pile.index >= 0 && pile.index < State.tableau.Length ? State.tableau[pile.index].cards : null;
                 default:
                     return null;
             }
@@ -360,22 +423,37 @@ namespace Pasjans.Core
             State.completedUtcTicks = DateTime.UtcNow.Ticks;
         }
 
+        private void EvaluateGrandpaOutcome()
+        {
+            if (State.grandpaOutcome != GameState.GrandpaPending) return;
+            if (State.stockRecycleCount >= 3)
+                State.grandpaOutcome = GameState.GrandpaLoss;
+            else if (HasResult && State.stockRecycleCount == 2 && State.stock.Count == 0)
+                State.grandpaOutcome = GameState.GrandpaWin;
+        }
+
         private static GameState CloneState(GameState source)
         {
             var copy = new GameState
             {
                 schemaVersion = source.schemaVersion,
+                deckCount = source.DeckCount,
+                selectedDeckCount = source.selectedDeckCount,
                 drawCount = source.drawCount,
+                stockRecycleCount = source.stockRecycleCount,
+                grandpaOutcome = source.grandpaOutcome,
                 moveCount = source.moveCount,
                 gameId = source.gameId,
                 completedUtcTicks = source.completedUtcTicks,
                 finalMoves = source.finalMoves,
                 stock = CloneCards(source.stock),
-                waste = CloneCards(source.waste)
+                waste = CloneCards(source.waste),
+                foundations = GameState.CreatePiles(source.foundations.Length),
+                tableau = GameState.CreatePiles(source.tableau.Length)
             };
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < source.foundations.Length; i++)
                 copy.foundations[i].cards = CloneCards(source.foundations[i].cards);
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < source.tableau.Length; i++)
                 copy.tableau[i].cards = CloneCards(source.tableau[i].cards);
             return copy;
         }

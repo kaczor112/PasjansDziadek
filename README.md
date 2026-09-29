@@ -6,13 +6,16 @@ Gra jest przeznaczona do bezpłatnego udostępniania graczom. Nie zawiera reklam
 
 ## Zasady i obsługa
 
-- Klondike: 52 karty, 7 kolumn, naprzemienne czerwone i czarne karty malejąco. Na pustą kolumnę można położyć króla lub prawidłowy stos rozpoczynający się królem.
-- Cztery bazy buduje się od asa do króla w tym samym kolorze karcianym. Dozwolony jest powrót wierzchniej karty z bazy do kolumny.
+- Jedna talia (domyślnie): 52 karty i 5 kolumn. Dwie talie: 104 karty tasowane razem i 10 kolumn. Kolejne kolumny otrzymują 1, 2, 3 itd. kart, z odkrytą kartą na wierzchu. Pozostałe 37 lub 49 kart trafia do talii dobierania.
+- Karty układa się malejąco, naprzemiennie czerwone i czarne. Zachowana jest dotychczasowa zasada kodu: pusta kolumna przyjmuje dowolną odkrytą kartę lub poprawną sekwencję.
+- Cztery lub osiem baz buduje się od asa do króla w tym samym kolorze karcianym. Karty z obu talii można łączyć; kolor rewersu nie ogranicza ruchów. Dozwolony jest powrót wierzchniej karty z bazy do kolumny.
+- Pierwsza talia ma granatowy rewers, druga ciemnoczerwony. Każda karta ma własny identyfikator, także przy tej samej randze i kolorze.
 - Pierwsze przejście przez talię: po **3** karty. Drugie: po **2**. Trzecie i wszystkie kolejne: po **1**. Kliknięcie pustej talii przekłada odkryte karty na nowo. Liczba przejść jest nieograniczona.
 - Przenieś kartę lub odkryty stos przez przeciągnięcie albo dotknij karty, a następnie miejsca docelowego. Dwuklik / podwójne dotknięcie próbuje przenieść wierzchnią kartę na bazę. W odkrytych kartach zawsze widać do trzech ostatnich kart; ruch nadal dotyczy wyłącznie wierzchniej.
 - Akcje gry są w menu: Windows używa przycisku **Plik** w stylu klasycznego menu programu, a Android przycisku **⋮** z rozwijaną listą.
-- **Nowa gra** wymaga potwierdzenia i tasuje pełną talię. Rozdanie nie jest gwarantowane jako wygrywalne, tak jak przy zwykłym losowym tasowaniu.
-- **Ranking** jest między „Nowa gra” a „O mnie”. Przechowuje 10 najlepszych wyników (mniej ruchów to lepiej), w kolumnach **Lp**, **Data z godziną**, **Ilość ruchów**. Przy remisie wcześniejszy wynik ma pierwszeństwo. Bez wpisów wyświetla „brak wpisów”; **X** wraca do gry.
+- Pod „Nowa gra” znajduje się **Tryby gry →**. Na Windows najechanie otwiera boczne podmenu; sam wiersz nie jest klikalny. Na Androidzie podmenu otwiera dotknięcie. Zaznaczenie przy „Jedna talia” lub „Dwie talie” wskazuje wybór dla następnego rozdania.
+- Zmiana trybu jest zapamiętywana, ale nie rusza kart ani licznika. **Nowa gra** wymaga potwierdzenia i dopiero wtedy tasuje wybraną liczbę pełnych talii. Anulowanie zachowuje bieżące rozdanie. Rozdanie nie jest gwarantowane jako wygrywalne.
+- **Ranking** przechowuje 10 najlepszych wyników w kolumnach **Lp**, **Data z godziną**, **Ilość ruchów** i **Wygrana wg. Dziadka**. Wszystkie wpisy „Tak” są wyżej od wpisów „Nie”, nawet gdy mają więcej ruchów. W każdej grupie mniej ruchów oznacza lepszą pozycję, a przy remisie wcześniejszy wynik ma pierwszeństwo. Starsze wpisy bez nowej informacji są wyświetlane jako „Nie”. Bez wpisów wyświetla „brak wpisów”; **X** wraca do gry.
 - **O mnie** wyświetla tekst „Autorem gry jest Paweł Kaczmarczyk”; okno zamyka **X**.
 - **Zakończ** zamyka aplikację. W edytorze Unity kończy tryb Play.
 - Escape / systemowy przycisk Wstecz zamyka okno, usuwa zaznaczenie albo kończy grę. Android obsługuje pion, poziom i obszar bezpieczny ekranu.
@@ -20,9 +23,11 @@ Gra jest przeznaczona do bezpłatnego udostępniania graczom. Nie zawiera reklam
 
 ## Zapis
 
-Licznik rozpoczyna od zera i zlicza tylko poprawne przeniesienia, dobierania i przewinięcia talii. Odsłonięcie **ostatniej zakrytej karty w siedmiu kolumnach** kończy liczenie — także wtedy, gdy w talii pozostały karty. Ten końcowy ruch wchodzi do wyniku. Dalsze układanie jest możliwe, ale nie zmienia wyniku. Ranking zapisuje datę i godzinę ukończenia; wznowienie tego samego rozdania nie powiela wpisu.
+Licznik rozpoczyna od zera i zlicza tylko poprawne przeniesienia, dobierania i przewinięcia talii. Odsłonięcie **ostatniej zakrytej karty we wszystkich kolumnach** kończy liczenie — także wtedy, gdy w talii pozostały karty. Ten końcowy ruch wchodzi do wyniku. Dalsze układanie jest możliwe, ale nie zmienia wyniku. Ranking pozostaje wspólną tabelą 10 wyników dla obu trybów. Zapisuje datę i godzinę ukończenia; wznowienie tego samego rozdania nie powiela wpisu.
 
-Gra automatycznie zapisuje każdy udany ruch, dobieranie, przełożenie talii i nowe rozdanie. Ponawia niezakończony zapis przy utracie fokusu, pauzie i wyjściu. Wczytanie odtwarza kolejność wszystkich kart, odkrycia, licznik ruchów oraz bieżące dobieranie 3/2/1.
+„Wygrana wg. Dziadka” otrzymuje wartość **Tak**, gdy wszystkie karty w kolumnach są odkryte, a talia dobierania zostanie opróżniona podczas pierwszego przejścia po jednej karcie. Dozwolone przejścia to kolejno 3, 2 i 1 karta. Rozpoczęcie następnego przejścia po jednej karcie ustawia nieodwracalne **Nie** i pokazuje czerwony komunikat „Wg. Dziadka przegrałeś”. Spełnienie obu warunków przed tym przełożeniem pokazuje zielony komunikat „Wg. Dziadka wygrałeś”. Jeśli stół odkryto wcześniej, wynik czeka na koniec pierwszego przejścia po jednej karcie; zamknięcie gry zachowuje tę możliwość. Rozpoczęcie nowej gry przed rozstrzygnięciem zapisuje dotychczasowy standardowy wynik jako „Nie”.
+
+Gra automatycznie zapisuje każdy udany ruch, dobieranie, przełożenie talii, nowe rozdanie oraz wybór trybu następnej gry. Ponawia niezakończony zapis przy utracie fokusu, pauzie i wyjściu. Wczytanie odtwarza kolejność wszystkich kart, ich talie i rewersy, odkrycia, licznik ruchów oraz bieżące dobieranie 3/2/1. Starszy zapis z siedmioma kolumnami można dokończyć; nowe rozdanie używa już 5 lub 10 kolumn.
 
 Pliki znajdują się w `Application.persistentDataPath`. Na Windows standardowo `%USERPROFILE%\AppData\LocalLow\PawelKaczmarczyk\Pasjans Dziadka`, a na Androidzie w katalogu danych aplikacji `pl.pawelkaczmarczyk.pasjans`.
 
@@ -31,7 +36,7 @@ Pliki znajdują się w `Application.persistentDataPath`. Na Windows standardowo 
 - `klondike-save.tmp` — plik roboczy przed atomowym zastąpieniem.
 - `ranking.json`, `ranking.backup.json` — ranking oraz jego poprzednia poprawna wersja; niezależne od bieżącego rozdania.
 
-Zapis ma numer wersji, sumę kontrolną i pełną walidację 52 kart. Brak plików oznacza nowe rozdanie; przy uszkodzeniu głównego pliku gra próbuje kopii. Jeśli oba są uszkodzone, uruchamia świeżą grę. Nowszy, nierozpoznawany format jest zachowywany. Błędy zapisu nie przerywają rozgrywki; gra informuje o problemie, a przy wyjściu ostrzega o ryzyku utraty ostatnich ruchów. Usunięcie danych aplikacji lub jej odinstalowanie może usunąć zapis.
+Zapis ma numer wersji, sumę kontrolną i pełną walidację 52 lub 104 kart. Brak plików oznacza nowe rozdanie; przy uszkodzeniu głównego pliku gra próbuje kopii. Jeśli oba są uszkodzone, uruchamia świeżą grę. Nowszy, nierozpoznawany format jest zachowywany. Błędy zapisu nie przerywają rozgrywki; gra informuje o problemie, a przy wyjściu ostrzega o ryzyku utraty ostatnich ruchów. Usunięcie danych aplikacji lub jej odinstalowanie może usunąć zapis.
 
 ## Budowanie i testy
 
@@ -47,4 +52,4 @@ Testy reguł i zapisu są w **Window → General → Test Runner → EditMode**.
 - `Assets/Scripts/Persistence` — zapis JSON i bezpieczne odzyskiwanie;
 - `Assets/Scripts/UI` — obsługa myszy i dotyku, układ, własne grafiki proceduralne.
 
-Współdzielone tekstury powstają tylko przy uruchomieniu. Widoki 52 kart są ponownie wykorzystywane; nie powstają nowe obiekty przy ruchach. Układ jest przeliczany po ruchu lub zmianie ekranu, a limit 30 klatek/s ogranicza obciążenie. Brak fizyki, animacji ciągłych i logiki przeszukującej planszę w każdej klatce.
+Współdzielone tekstury powstają tylko przy uruchomieniu. Pula 104 widoków kart jest ponownie wykorzystywana; nie powstają nowe obiekty przy ruchach, a niepotrzebne widoki są wyłączone. Układ jest przeliczany po ruchu lub zmianie ekranu, a limit 30 klatek/s ogranicza obciążenie. Brak fizyki, animacji ciągłych i logiki przeszukującej planszę w każdej klatce.

@@ -14,12 +14,13 @@ namespace Pasjans.Persistence
         public string gameId;
         public long completedUtcTicks;
         public int moves;
+        public bool grandpaWin;
     }
 
     [Serializable]
     public sealed class RankingData
     {
-        public int version = 1;
+        public int version = 2;
         public List<RankingEntry> entries = new List<RankingEntry>();
     }
 
@@ -68,13 +69,19 @@ namespace Pasjans.Persistence
                 string temp = null;
                 try
                 {
-                    if (state == null || state.completedUtcTicks <= 0 || !KlondikeGame.ValidateState(state, out _))
+                    if (state == null || state.completedUtcTicks <= 0 ||
+                        state.grandpaOutcome == GameState.GrandpaPending || !KlondikeGame.ValidateState(state, out _))
                     { error = "Brak poprawnego ukończonego wyniku."; return false; }
                     var result = LoadCandidates(out Candidate primary, out _);
                     if (!result.CanSave) { error = result.Message; return false; }
                     foreach (var entry in result.Data.entries)
                         if (entry.gameId == state.gameId) return true;
-                    result.Data.entries.Add(new RankingEntry { gameId = state.gameId, completedUtcTicks = state.completedUtcTicks, moves = state.finalMoves });
+                    result.Data.version = 2;
+                    result.Data.entries.Add(new RankingEntry
+                    {
+                        gameId = state.gameId, completedUtcTicks = state.completedUtcTicks,
+                        moves = state.finalMoves, grandpaWin = state.grandpaOutcome == GameState.GrandpaWin
+                    });
                     result.Data.entries.Sort(Compare);
                     if (result.Data.entries.Count > 10) result.Data.entries.RemoveRange(10, result.Data.entries.Count - 10);
                     // Wynik poza pierwszą dziesiątką nie wymaga zapisu poprawnego pliku.
@@ -138,8 +145,9 @@ namespace Pasjans.Persistence
                 if (envelope == null || envelope.formatVersion != 1 || string.IsNullOrEmpty(envelope.payload) || !string.Equals(envelope.sha256, Hash(envelope.payload), StringComparison.Ordinal))
                     return new Candidate { condition = Condition.Invalid };
                 var data = JsonUtility.FromJson<RankingData>(envelope.payload);
-                if (data != null && data.version > 1) return new Candidate { condition = Condition.Protected };
-                if (data == null || data.version != 1 || data.entries == null || data.entries.Count > 10) return new Candidate { condition = Condition.Invalid };
+                if (data != null && data.version > 2) return new Candidate { condition = Condition.Protected };
+                if (data == null || data.version < 1 || data.version > 2 || data.entries == null || data.entries.Count > 10)
+                    return new Candidate { condition = Condition.Invalid };
                 var ids = new HashSet<string>();
                 foreach (var entry in data.entries)
                     if (entry == null || !Guid.TryParseExact(entry.gameId, "N", out _) || !ids.Add(entry.gameId) || entry.moves < 1 || entry.completedUtcTicks <= 0 || entry.completedUtcTicks > DateTime.MaxValue.Ticks)
@@ -152,6 +160,7 @@ namespace Pasjans.Persistence
 
         static int Compare(RankingEntry a, RankingEntry b)
         {
+            if (a.grandpaWin != b.grandpaWin) return a.grandpaWin ? -1 : 1;
             int score = a.moves.CompareTo(b.moves);
             if (score != 0) return score;
             int date = a.completedUtcTicks.CompareTo(b.completedUtcTicks);

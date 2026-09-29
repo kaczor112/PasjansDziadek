@@ -10,6 +10,7 @@ namespace Pasjans.UI
         readonly List<UnityEngine.Object> owned = new List<UnityEngine.Object>();
         public Sprite Card { get; }
         public Sprite Back { get; }
+        public Sprite RedBack { get; }
         public Sprite Panel { get; }
         public Sprite[] Suits { get; }
         public Texture2D Felt { get; }
@@ -18,15 +19,8 @@ namespace Pasjans.UI
         {
             Card = Rounded("Ivory card", 96, 136, 9, new Color32(255, 252, 242, 255), new Color32(209, 213, 204, 255));
             Panel = Rounded("Rounded panel", 48, 48, 10, Color.white, Color.white);
-            Back = MakeSprite("Woven navy reverse", 96, 136, (x, y) =>
-            {
-                float edge = RoundedDistance(x, y, 96, 136, 9);
-                if (edge > 0) return Color.clear;
-                if (edge > -3) return new Color32(227, 216, 177, 255);
-                if (x < 8 || x > 87 || y < 8 || y > 127) return new Color32(23, 43, 60, 255);
-                bool line = (x + y) % 16 < 2 || (x - y + 160) % 16 < 2;
-                return line ? new Color32(74, 107, 124, 255) : new Color32(30, 61, 81, 255);
-            }, new Vector4(10, 10, 10, 10));
+            Back = MakeBack("Granatowy rewers", new Color32(23, 33, 62, 255), new Color32(28, 43, 83, 255), new Color32(68, 86, 128, 255));
+            RedBack = MakeBack("Ciemnoczerwony rewers", new Color32(66, 19, 28, 255), new Color32(94, 25, 37, 255), new Color32(145, 62, 74, 255));
             Suits = new Sprite[4];
             for (int suit = 0; suit < 4; suit++)
             {
@@ -53,6 +47,21 @@ namespace Pasjans.UI
             Felt.Apply(false, true);
             owned.Add(Felt);
         }
+
+        // Wspólny wzór pozwala rozróżnić talie samym kolorem rewersu.
+        Sprite MakeBack(string name, Color edgeColor, Color fill, Color pattern)
+        {
+            return MakeSprite(name, 96, 136, (x, y) =>
+            {
+                float edge = RoundedDistance(x, y, 96, 136, 9);
+                if (edge > 0) return Color.clear;
+                if (edge > -3) return new Color32(227, 216, 177, 255);
+                if (x < 8 || x > 87 || y < 8 || y > 127) return edgeColor;
+                return (x + y) % 16 < 2 || (x - y + 160) % 16 < 2 ? pattern : fill;
+            }, new Vector4(10, 10, 10, 10));
+        }
+
+        public Sprite BackFor(int deckIndex) => deckIndex == 1 ? RedBack : Back;
 
         Sprite Rounded(string name, int w, int h, int radius, Color fill, Color border)
         {

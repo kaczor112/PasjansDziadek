@@ -15,10 +15,10 @@ namespace Pasjans.Tests
         public void NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp(int drawCount)
         {
             var game = new KlondikeGame(drawCount, 2718);
-            Assert.That(game.State.stock.Count, Is.EqualTo(24));
+            Assert.That(game.State.stock.Count, Is.EqualTo(37));
             Assert.That(game.State.waste, Is.Empty);
             Assert.That(game.State.foundations.All(pile => pile.cards.Count == 0), Is.True);
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var cards = game.State.tableau[i].cards;
                 Assert.That(cards.Count, Is.EqualTo(i + 1));
@@ -45,10 +45,10 @@ namespace Pasjans.Tests
         {
             var game = new KlondikeGame(1, 83);
             int[] originalStock = game.State.stock.Select(card => card.id).ToArray();
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < originalStock.Length; i++)
             {
                 Assert.That(game.TryDraw(), Is.True);
-                Assert.That(game.State.waste.Last().id, Is.EqualTo(originalStock[23 - i]));
+                Assert.That(game.State.waste.Last().id, Is.EqualTo(originalStock[originalStock.Length - 1 - i]));
                 Assert.That(game.State.waste.Last().faceUp, Is.True);
             }
             Assert.That(game.State.stock, Is.Empty);
@@ -66,11 +66,11 @@ namespace Pasjans.Tests
         {
             var game = new KlondikeGame(3, 7);
             Assert.That(game.TryDraw(), Is.True);
-            Assert.That(game.State.stock.Count, Is.EqualTo(21));
+            Assert.That(game.State.stock.Count, Is.EqualTo(34));
             Assert.That(game.State.waste.Count, Is.EqualTo(3));
             for (int i = 0; i < 4; i++)
                 Assert.That(game.CanMove(Waste, 0, Foundation(i)), Is.False);
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 5; i++)
                 Assert.That(game.CanMove(Waste, 1, Tableau(i)), Is.False);
             AssertValid(game);
         }
@@ -133,14 +133,14 @@ namespace Pasjans.Tests
         }
 
         [Test]
-        public void OnlyKingOrKingLedSequenceCanFillEmptyTableau()
+        public void EmptyTableauKeepsExistingRuleAllowingAnyVisibleSequence()
         {
             GameState state = EmptyState();
             state.waste.Add(Card(Suit.Hearts, 12));
             state.tableau[0].cards.AddRange(new[] {Card(Suit.Spades, 13), Card(Suit.Diamonds, 12)});
             var game = LoadComplete(state);
-            Assert.That(game.CanMove(Waste, 0, Tableau(1)), Is.False);
-            Assert.That(game.CanMove(Tableau(0), 1, Tableau(1)), Is.False);
+            Assert.That(game.CanMove(Waste, 0, Tableau(1)), Is.True);
+            Assert.That(game.CanMove(Tableau(0), 1, Tableau(1)), Is.True);
             Assert.That(game.TryMove(Tableau(0), 0, Tableau(1)), Is.True);
             Assert.That(game.State.tableau[1].cards.Select(card => card.rank), Is.EqualTo(new[] {13, 12}));
             AssertValid(game);
@@ -278,23 +278,26 @@ namespace Pasjans.Tests
             AssertValid(game);
         }
 
-        [TestCase(1, 150)]
-        [TestCase(3, 151)]
-        public void MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants(int drawCount, int seed)
+        [TestCase(1, 150, 1)]
+        [TestCase(3, 151, 1)]
+        [TestCase(3, 152, 2)]
+        public void MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants(int drawCount, int seed, int decks)
         {
             var random = new System.Random(seed);
-            var game = new KlondikeGame(drawCount, seed);
+            var game = new KlondikeGame(drawCount, seed, decks);
+            int columns = game.State.tableau.Length;
+            int piles = columns + game.State.foundations.Length;
             for (int step = 0; step < 300; step++)
             {
                 var choices = new List<System.Action>();
-                for (int sourceIndex = -1; sourceIndex < 11; sourceIndex++)
+                for (int sourceIndex = -1; sourceIndex < piles; sourceIndex++)
                 {
-                    PileRef source = sourceIndex < 0 ? Waste : sourceIndex < 7 ? Tableau(sourceIndex) : Foundation(sourceIndex - 7);
+                    PileRef source = sourceIndex < 0 ? Waste : sourceIndex < columns ? Tableau(sourceIndex) : Foundation(sourceIndex - columns);
                     for (int cardIndex = 0; cardIndex < game.GetPile(source).Count; cardIndex++)
                     {
-                        for (int destinationIndex = 0; destinationIndex < 11; destinationIndex++)
+                        for (int destinationIndex = 0; destinationIndex < piles; destinationIndex++)
                         {
-                            PileRef destination = destinationIndex < 7 ? Tableau(destinationIndex) : Foundation(destinationIndex - 7);
+                            PileRef destination = destinationIndex < columns ? Tableau(destinationIndex) : Foundation(destinationIndex - columns);
                             if (!game.CanMove(source, cardIndex, destination)) continue;
                             int selectedIndex = cardIndex;
                             choices.Add(() => Assert.That(game.TryMove(source, selectedIndex, destination), Is.True));
@@ -314,7 +317,7 @@ namespace Pasjans.Tests
                 stock = new List<CardData>(),
                 waste = new List<CardData>(),
                 foundations = Enumerable.Range(0, 4).Select(_ => new PileData {cards = new List<CardData>()}).ToArray(),
-                tableau = Enumerable.Range(0, 7).Select(_ => new PileData {cards = new List<CardData>()}).ToArray()
+                tableau = Enumerable.Range(0, 5).Select(_ => new PileData {cards = new List<CardData>()}).ToArray()
             };
         }
 
@@ -343,8 +346,8 @@ namespace Pasjans.Tests
         {
             Assert.That(KlondikeGame.ValidateState(game.State, out string error), Is.True, error);
             int[] ids = AllIds(game.State);
-            Assert.That(ids.Length, Is.EqualTo(52));
-            Assert.That(ids.Distinct().Count(), Is.EqualTo(52));
+            Assert.That(ids.Length, Is.EqualTo(52 * game.State.DeckCount));
+            Assert.That(ids.Distinct().Count(), Is.EqualTo(ids.Length));
         }
     }
 }

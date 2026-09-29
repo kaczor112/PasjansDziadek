@@ -42,7 +42,7 @@ namespace Pasjans.UI
         public void Bind(CardData card, PileRef pile, int index, float width, float height, bool selected)
         {
             Card = card; Pile = pile; Index = index;
-            surface.sprite = card.faceUp ? app.Art.Card : app.Art.Back;
+            surface.sprite = card.faceUp ? app.Art.Card : app.Art.BackFor(card.deckIndex);
             selection.gameObject.SetActive(selected);
             PasjansApp.Place(selection.rectTransform, -3, -3, width + 6, height + 6);
             // Zaznaczenie jest pod kartą, więc kolorowa obwódka pozostaje widoczna.

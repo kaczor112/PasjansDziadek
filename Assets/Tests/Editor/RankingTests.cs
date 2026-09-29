@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using NUnit.Framework;
 using Pasjans.Core;
 using Pasjans.Persistence;
@@ -35,6 +37,7 @@ namespace Pasjans.Tests
             Assert.That(game.HasResult, Is.True);
             Assert.That(game.MoveCount, Is.EqualTo(42));
             Assert.That(game.State.finalMoves, Is.EqualTo(42));
+            Assert.That(game.State.grandpaOutcome, Is.EqualTo(GameState.GrandpaPending));
             long date = game.State.completedUtcTicks;
             Assert.That(game.State.stock.Count, Is.EqualTo(50));
             Assert.That(game.TryDraw(), Is.True);
@@ -45,6 +48,42 @@ namespace Pasjans.Tests
             copy.TryDraw();
             Assert.That(copy.MoveCount, Is.EqualTo(42));
             Assert.That(copy.State.gameId, Is.EqualTo(game.State.gameId));
+        }
+
+        [Test] public void GrandpaWinRequiresFirstSingleCardPassToEndWithoutAnotherRecycle()
+        {
+            var game = NearFinish();
+            Assert.That(game.TryMove(new PileRef(PileKind.Tableau, 1), 1, new PileRef(PileKind.Foundation, 0)), Is.True);
+            int frozen = game.MoveCount;
+            while (game.State.stock.Count > 0) Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.State.grandpaOutcome, Is.EqualTo(GameState.GrandpaPending));
+            Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.State.stockRecycleCount, Is.EqualTo(1));
+            while (game.State.stock.Count > 0) Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.State.grandpaOutcome, Is.EqualTo(GameState.GrandpaPending));
+            Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.State.stockRecycleCount, Is.EqualTo(2));
+            while (game.State.stock.Count > 0) Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.IsGrandpaWin, Is.True);
+            Assert.That(game.IsGrandpaLoss, Is.False);
+            Assert.That(game.MoveCount, Is.EqualTo(frozen));
+            Assert.That(store.TryRecord(game.State, out string error), Is.True, error);
+            Assert.That(store.Load().Data.entries.Single().grandpaWin, Is.True);
+        }
+
+        [Test] public void FourthStockPassMakesGrandpaLossButKeepsStandardScore()
+        {
+            var game = NearFinish(1, 2);
+            while (game.State.stock.Count > 0) Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.HasResult, Is.False);
+            Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.State.stockRecycleCount, Is.EqualTo(3));
+            Assert.That(game.IsGrandpaLoss, Is.True);
+            Assert.That(game.TryMove(new PileRef(PileKind.Tableau, 1), 1, new PileRef(PileKind.Foundation, 0)), Is.True);
+            Assert.That(game.HasResult, Is.True);
+            Assert.That(game.State.finalMoves, Is.EqualTo(game.MoveCount));
+            Assert.That(store.TryRecord(game.State, out string error), Is.True, error);
+            Assert.That(store.Load().Data.entries.Single().grandpaWin, Is.False);
         }
 
         [Test] public void InvalidMovesAndMenusDoNotCreateResultOrCount()
@@ -79,6 +118,42 @@ namespace Pasjans.Tests
             Assert.That(store.TryRecord(newer, out _), Is.True);
             Assert.That(store.TryRecord(older, out _), Is.True);
             Assert.That(store.Load().Data.entries[0].gameId, Is.EqualTo(older.gameId));
+        }
+
+        [Test] public void GrandpaWinRanksBeforeLowerScoringStandardResult()
+        {
+            var standard = Finished(8);
+            var grandpa = Finished(180, true);
+            Assert.That(store.TryRecord(standard, out _), Is.True);
+            Assert.That(store.TryRecord(grandpa, out _), Is.True);
+            var entries = store.Load().Data.entries;
+            Assert.That(entries.Select(e => e.gameId), Is.EqualTo(new[] { grandpa.gameId, standard.gameId }));
+            Assert.That(entries.Select(e => e.grandpaWin), Is.EqualTo(new[] { true, false }));
+        }
+
+        [Test] public void PreviousRankingLoadsAsNoAndMigratesWhenNewScoreIsSaved()
+        {
+            Directory.CreateDirectory(directory);
+            var legacy = new RankingData { version = 1 };
+            var old = Finished(12);
+            legacy.entries.Add(new RankingEntry { gameId = old.gameId, completedUtcTicks = old.completedUtcTicks, moves = old.finalMoves });
+            string payload = JsonUtility.ToJson(legacy).Replace(",\"grandpaWin\":false", "");
+            string hash;
+            using (var sha = SHA256.Create())
+            {
+                var builder = new StringBuilder();
+                foreach (byte value in sha.ComputeHash(new UTF8Encoding(false).GetBytes(payload))) builder.Append(value.ToString("x2"));
+                hash = builder.ToString();
+            }
+            File.WriteAllText(Path.Combine(directory, RankingStore.PrimaryFileName), JsonUtility.ToJson(new GameSaveEnvelope
+            {
+                formatVersion = 1, savedUtcTicks = DateTime.UtcNow.Ticks, payload = payload, sha256 = hash
+            }));
+            Assert.That(store.Load().Data.entries.Single().grandpaWin, Is.False);
+            Assert.That(store.TryRecord(Finished(200, true), out string error), Is.True, error);
+            var migrated = store.Load().Data;
+            Assert.That(migrated.version, Is.EqualTo(2));
+            Assert.That(migrated.entries.Select(e => e.grandpaWin), Is.EqualTo(new[] { true, false }));
         }
 
         [Test] public void CorruptPrimaryRecoversBackupAndBothCorruptAreEmpty()
@@ -122,9 +197,9 @@ namespace Pasjans.Tests
             Assert.That(game.State.drawCount, Is.EqualTo(3));
         }
 
-        static KlondikeGame NearFinish()
+        static KlondikeGame NearFinish(int drawCount = 3, int recycleCount = 0)
         {
-            var state = new GameState { moveCount = 41 };
+            var state = new GameState { moveCount = 41, drawCount = drawCount, stockRecycleCount = recycleCount };
             state.tableau[1].cards.Add(new CardData(Suit.Hearts, 9));
             state.tableau[1].cards.Add(new CardData(Suit.Spades, 1, true));
             for (int s = 0; s < 4; s++) for (int r = 1; r <= 13; r++)
@@ -134,10 +209,19 @@ namespace Pasjans.Tests
             return game;
         }
 
-        static GameState Finished(int score)
+        static GameState Finished(int score, bool grandpaWin = false)
         {
-            var state = new GameState { moveCount = score, finalMoves = score, completedUtcTicks = DateTime.UtcNow.Ticks };
-            for (int s = 0; s < 4; s++) for (int r = 1; r <= 13; r++) state.stock.Add(new CardData((Suit)s, r));
+            var state = new GameState
+            {
+                moveCount = score, finalMoves = score, completedUtcTicks = DateTime.UtcNow.Ticks,
+                grandpaOutcome = grandpaWin ? GameState.GrandpaWin : GameState.GrandpaLoss,
+                drawCount = grandpaWin ? 1 : 3, stockRecycleCount = grandpaWin ? 2 : 0
+            };
+            for (int s = 0; s < 4; s++) for (int r = 1; r <= 13; r++)
+            {
+                var card = new CardData((Suit)s, r, grandpaWin);
+                if (grandpaWin) state.foundations[s].cards.Add(card); else state.stock.Add(card);
+            }
             return state;
         }
     }

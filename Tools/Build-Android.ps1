@@ -1,5 +1,6 @@
 param(
-    [string]$UnityPath = 'C:\Program Files\Unity\Hub\Editor\6000.3.25f1\Editor\Unity.exe'
+    [string]$UnityPath = 'C:\Program Files\Unity\Hub\Editor\6000.3.25f1\Editor\Unity.exe',
+    [switch]$PackageOnly
 )
 $ErrorActionPreference = 'Stop'
 $projectRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -54,26 +55,40 @@ try {
     $buildArguments = @('-batchmode', '-nographics', '-quit', '-projectPath', ('"' + $shortProject + '"'),
         '-buildTarget', 'Android', '-executeMethod', 'Pasjans.Editor.BuildGame.Android',
         '-logFile', ('"' + (Join-Path $shortProject 'TestResults\build-android.log') + '"'))
-    $process = Start-Process -FilePath $UnityPath -ArgumentList $buildArguments -PassThru -WindowStyle Hidden
-    $process.WaitForExit()
-    if ($process.ExitCode -ne 0) {
-        $unityLog = Join-Path $logDirectory 'build-android.log'
-        if (-not ([System.IO.File]::ReadAllText($unityLog).Contains('Unable to establish loopback connection'))) {
-            throw ('Budowanie nie powiodło się. Sprawdź ' + $unityLog)
+    if (-not $PackageOnly) {
+        $process = Start-Process -FilePath $UnityPath -ArgumentList $buildArguments -PassThru -WindowStyle Hidden
+        $process.WaitForExit()
+        if ($process.ExitCode -ne 0) {
+            $unityLog = Join-Path $logDirectory 'build-android.log'
+            if (-not ([System.IO.File]::ReadAllText($unityLog).Contains('Unable to establish loopback connection'))) {
+                throw ('Budowanie nie powiodło się. Sprawdź ' + $unityLog)
+            }
         }
+    }
+    if ($PackageOnly -or $process.ExitCode -ne 0) {
         # Niektóre wersje Unity zmieniają środowisko Javy. Jeśli natywny kod już powstał,
         # spakuj bezpośrednio wygenerowany projekt Gradle.
         $androidTools = Join-Path (Split-Path $UnityPath) 'Data\PlaybackEngines\AndroidPlayer'
         $java = Join-Path $androidTools 'OpenJDK\bin\java.exe'
         $gradle = Get-ChildItem (Join-Path $androidTools 'Tools\gradle\lib') -Filter 'gradle-launcher-*.jar' | Select-Object -First 1
         $gradleProject = Join-Path $projectRoot 'Library\Bee\Android\Prj\IL2CPP\Gradle'
+        if (-not (Test-Path -LiteralPath (Join-Path $gradleProject 'settings.gradle'))) {
+            throw 'Brak wygenerowanego projektu. Najpierw uruchom pełne budowanie bez -PackageOnly.'
+        }
+        # Świeży katalog wynikowy omija blokady starych plików roboczych w OneDrive.
+        $packageFolder = 'Temp/AndroidPackage-' + [Guid]::NewGuid().ToString('N')
+        $packageRoot = $buildDrive + '/' + $packageFolder
+        [System.IO.Directory]::CreateDirectory((Join-Path $projectRoot $packageFolder)) | Out-Null
+        $initPath = $packageRoot + '/outputs.gradle'
+        $initScript = "gradle.beforeProject { p -> p.layout.buildDirectory.set(new File('" + $packageRoot + "', p.name)) }"
+        [System.IO.File]::WriteAllText($initPath, $initScript, [System.Text.UTF8Encoding]::new($false))
         # AGP zapisuje polecenia z pełnymi ścieżkami cache. Tymczasowy dysk utrzymuje
         # ścieżki ASCII, nawet gdy nazwa konta Windows zawiera polskie znaki.
         Push-Location -LiteralPath $gradleProject
         try {
-            & $java '-Djdk.net.unixdomain.tmpdir=NUL' -classpath $gradle.FullName org.gradle.launcher.GradleMain '-p' ($buildDrive + '\Library\Bee\Android\Prj\IL2CPP\Gradle') '-g' ($buildDrive + '\Library\GradleCache') --no-daemon assembleRelease --stacktrace *> (Join-Path $logDirectory 'gradle-android.log')
+            & $java '-Djdk.net.unixdomain.tmpdir=NUL' -classpath $gradle.FullName org.gradle.launcher.GradleMain '-p' ($buildDrive + '\Library\Bee\Android\Prj\IL2CPP\Gradle') '-g' ($buildDrive + '\Library\GradleCache') --init-script $initPath --no-daemon assembleRelease --stacktrace *> (Join-Path $logDirectory 'gradle-android.log')
             if ($LASTEXITCODE -ne 0) { throw ('Pakowanie APK nie powiodło się. Sprawdź ' + (Join-Path $logDirectory 'gradle-android.log')) }
-            Copy-Item -LiteralPath (Join-Path $gradleProject 'launcher\build\outputs\apk\release\launcher-release.apk') -Destination (Join-Path $projectRoot 'Builds\Android\Pasjans.apk')
+            Copy-Item -LiteralPath ($packageRoot + '/launcher/outputs/apk/release/launcher-release.apk') -Destination (Join-Path $projectRoot 'Builds\Android\Pasjans.apk')
         } finally { Pop-Location }
     }
     Write-Output ('Gotowy APK: ' + (Join-Path $projectRoot 'Builds\Android\Pasjans.apk'))

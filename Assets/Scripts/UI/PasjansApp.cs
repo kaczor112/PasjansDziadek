@@ -19,20 +19,36 @@ namespace Pasjans.UI
         static readonly Color Gold = new Color32(224, 192, 119, 255);
         public GameArt Art { get; private set; }
         public KlondikeGame Game => game;
+        public bool UsesTouchMenu
+        {
+            get
+            {
+#if UNITY_EDITOR
+                if (SimulateTouchMenu) return true;
+#endif
+                return Application.isMobilePlatform;
+            }
+        }
+#if UNITY_EDITOR
+        // Pozwala sprawdzić dotykowe menu bez zmiany rzeczywistego zapisu gracza.
+        public bool SimulateTouchMenu { get; set; }
+#endif
         KlondikeGame game;
         GameSaveStore store;
         RankingStore rankingStore;
         Font font;
         CanvasScaler scaler;
         RectTransform root, board, modal, modalPanel;
-        Text title, subtitle, stockLabel, wasteLabel, foundationLabel, status, counter;
+        Text title, subtitle, stockLabel, wasteLabel, foundationLabel, grandpaBannerText, status, counter;
         Text modalTitle, modalText;
         Button menuButton, newButton, rankingButton, aboutButton, quitButton, modalClose, modalAccept, modalCancel;
-        RectTransform menuPopup;
+        RectTransform menuPopup, menuBackdrop, modeItem, modePopup;
+        Button oneDeckButton, twoDeckButton;
+        Image grandpaBanner;
         RectTransform rankingTable;
-        readonly Text[,] rankingCells = new Text[11, 3];
-        readonly CardView[] cards = new CardView[52];
-        readonly List<Target> targets = new List<Target>(13);
+        readonly Text[,] rankingCells = new Text[11, 4];
+        readonly CardView[] cards = new CardView[104];
+        readonly List<Target> targets = new List<Target>(20);
         readonly List<CardView> dragged = new List<CardView>(13);
         readonly List<Vector2> dragOrigins = new List<Vector2>(13);
         readonly List<RaycastResult> raycasts = new List<RaycastResult>(32);
@@ -112,13 +128,36 @@ namespace Pasjans.UI
             title = MakeText(root, "Title", "PASJANS", 37, TextAnchor.UpperLeft, Cream);
             title.fontStyle = FontStyle.Bold;
             subtitle = MakeText(root, "Subtitle", "Wersja od Dziadka", 19, TextAnchor.UpperLeft, Muted);
-            bool mobileMenu = Application.isMobilePlatform;
+            bool mobileMenu = UsesTouchMenu;
             menuButton = MakeButton(root, mobileMenu ? "⋮" : "Plik", ToggleMenu, true);
+            var menuShade = MakeImage(root, "Menu backdrop", null, Color.clear);
+            menuShade.raycastTarget = true;
+            menuBackdrop = menuShade.rectTransform;
+            Stretch(menuBackdrop);
+            menuShade.gameObject.AddComponent<Button>().onClick.AddListener(CloseMenu);
+            menuBackdrop.gameObject.SetActive(false);
             var menuImage = MakeImage(root, "Menu popup", Art.Panel, new Color32(245, 238, 214, 255));
             menuImage.type = Image.Type.Sliced;
             menuImage.raycastTarget = true;
             menuPopup = menuImage.rectTransform;
             newButton = MakeButton(menuPopup, "Nowa gra", () => { CloseMenu(); AskNewGame(); }, true);
+            // Wiersz trybów nie jest przyciskiem; Windows otwiera go po najechaniu.
+            var modeImage = MakeImage(menuPopup, "Tryby gry", Art.Panel, new Color32(44, 94, 78, 255));
+            modeImage.type = Image.Type.Sliced;
+            modeImage.raycastTarget = true;
+            modeItem = modeImage.rectTransform;
+            modeImage.gameObject.AddComponent<GameModeMenu>().App = this;
+            var modeLabel = MakeText(modeItem, "Label", "Tryby gry →", 24, TextAnchor.MiddleCenter, Cream);
+            modeLabel.fontStyle = FontStyle.Bold;
+            Stretch(modeLabel.rectTransform);
+            var subImage = MakeImage(modeItem, "Tryby gry submenu", Art.Panel, Cream);
+            subImage.type = Image.Type.Sliced;
+            subImage.raycastTarget = true;
+            modePopup = subImage.rectTransform;
+            oneDeckButton = MakeButton(modePopup, "Jedna talia", () => SelectGameMode(1));
+            twoDeckButton = MakeButton(modePopup, "Dwie talie", () => SelectGameMode(2));
+            UpdateModeLabels();
+            modePopup.gameObject.SetActive(false);
             rankingButton = MakeButton(menuPopup, "Ranking", () => { CloseMenu(); ShowRanking(); });
             aboutButton = MakeButton(menuPopup, "O mnie", () => { CloseMenu(); ShowAbout(); });
             quitButton = MakeButton(menuPopup, "Zakończ", () => { CloseMenu(); QuitGame(); });
@@ -126,12 +165,18 @@ namespace Pasjans.UI
             stockLabel = MakeText(root, "Stock label", "TALIA", 17, TextAnchor.MiddleLeft, Muted);
             wasteLabel = MakeText(root, "Waste label", "ODKRYTE", 17, TextAnchor.MiddleLeft, Muted);
             foundationLabel = MakeText(root, "Foundation label", "BAZY · AS → KRÓL", 17, TextAnchor.MiddleLeft, Muted);
+            grandpaBanner = MakeImage(root, "Wynik Dziadka", Art.Panel, Color.white);
+            grandpaBanner.type = Image.Type.Sliced;
+            grandpaBannerText = MakeText(grandpaBanner.transform, "Wynik Dziadka tekst", "", 18, TextAnchor.MiddleCenter, Cream);
+            grandpaBannerText.fontStyle = FontStyle.Bold;
+            Stretch(grandpaBannerText.rectTransform);
+            grandpaBanner.gameObject.SetActive(false);
             status = MakeText(root, "Status", "", 18, TextAnchor.MiddleLeft, Cream);
             counter = MakeText(root, "Counter", "", 17, TextAnchor.MiddleRight, Muted);
             AddTarget(new PileRef(PileKind.Stock), "↻");
             AddTarget(new PileRef(PileKind.Waste), "");
-            for (int i = 0; i < 4; i++) AddTarget(new PileRef(PileKind.Foundation, i), "A");
-            for (int i = 0; i < 7; i++) AddTarget(new PileRef(PileKind.Tableau, i), "K");
+            for (int i = 0; i < 8; i++) AddTarget(new PileRef(PileKind.Foundation, i), "A");
+            for (int i = 0; i < 10; i++) AddTarget(new PileRef(PileKind.Tableau, i), "");
             for (int i = 0; i < cards.Length; i++)
             {
                 var rect = RectObject("Card " + i, board);
@@ -176,10 +221,10 @@ namespace Pasjans.UI
             modalCancel = MakeButton(modalPanel, "Anuluj", CloseModal);
             rankingTable = RectObject("Ranking table", modalPanel);
             for (int row = 0; row <= 10; row++)
-                for (int col = 0; col < 3; col++)
+                for (int col = 0; col < 4; col++)
                 {
-                    rankingCells[row, col] = MakeText(rankingTable, "Cell " + row + "," + col, "", row == 0 ? 21 : 24,
-                        col == 2 ? TextAnchor.MiddleRight : TextAnchor.MiddleLeft, Ink);
+                    rankingCells[row, col] = MakeText(rankingTable, "Cell " + row + "," + col, "", row == 0 ? 18 : 22,
+                        col == 1 ? TextAnchor.MiddleLeft : TextAnchor.MiddleCenter, Ink);
                     if (row == 0) rankingCells[row, col].fontStyle = FontStyle.Bold;
                 }
             rankingTable.gameObject.SetActive(false);
@@ -189,6 +234,13 @@ namespace Pasjans.UI
         void Update()
         {
             if (!initialized) return;
+            if (menuOpen && modePopup.gameObject.activeSelf && !UsesTouchMenu && Mouse.current != null)
+            {
+                Vector2 point = Mouse.current.position.ReadValue();
+                if (!RectTransformUtility.RectangleContainsScreenPoint(modeItem, point) &&
+                    !RectTransformUtility.RectangleContainsScreenPoint(modePopup, point))
+                    modePopup.gameObject.SetActive(false);
+            }
             if (Screen.width != lastWidth || Screen.height != lastHeight || Screen.safeArea != lastSafeArea)
             {
                 CancelSelection();
@@ -218,7 +270,8 @@ namespace Pasjans.UI
             float w = root.rect.width, h = root.rect.height;
             margin = portrait ? 20 : 32;
             gap = portrait ? 10 : 18;
-            cardWidth = Mathf.Min(146, (w - margin * 2 - gap * 6) / 7);
+            int gridColumns = Mathf.Max(game.State.tableau.Length, game.State.foundations.Length + 3);
+            cardWidth = Mathf.Min(146, (w - margin * 2 - gap * (gridColumns - 1)) / gridColumns);
             bool compact = w < 1150;
             stockY = compact ? 226 : 153;
             // Dopasuj odstępy do najdłuższej kolumny, także po wykonaniu ruchu.
@@ -231,30 +284,48 @@ namespace Pasjans.UI
             }
             cardWidth = Mathf.Min(cardWidth, (h - stockY - (portrait ? 70 : 58) - 80) / (2.84f + longestFan));
             cardHeight = cardWidth * 1.42f;
-            margin = (w - cardWidth * 7 - gap * 6) / 2;
-            bool mobileMenu = Application.isMobilePlatform;
+            margin = (w - cardWidth * gridColumns - gap * (gridColumns - 1)) / 2;
+            bool mobileMenu = UsesTouchMenu;
+            menuButton.GetComponentInChildren<Text>().text = mobileMenu ? "⋮" : "Plik";
+            float menuMargin = portrait ? 20 : 32;
             float menuButtonWidth = mobileMenu ? 70 : 120;
-            float menuButtonX = mobileMenu ? w - margin - menuButtonWidth : margin;
-            Place(title.rectTransform, mobileMenu ? margin : margin + menuButtonWidth + 20, 21, 340, 48);
-            Place(subtitle.rectTransform, mobileMenu ? margin + 2 : margin + menuButtonWidth + 22, 67, 350, 28);
+            float menuButtonX = mobileMenu ? w - menuMargin - menuButtonWidth : menuMargin;
+            Place(title.rectTransform, mobileMenu ? menuMargin : menuMargin + menuButtonWidth + 20, 21, 340, 48);
+            Place(subtitle.rectTransform, mobileMenu ? menuMargin + 2 : menuMargin + menuButtonWidth + 22, 67, 350, 28);
             Place((RectTransform)menuButton.transform, menuButtonX, 21, menuButtonWidth, 57);
-            float popupWidth = mobileMenu ? 260 : 250;
-            float popupX = mobileMenu ? w - margin - popupWidth : margin;
-            Place(menuPopup, popupX, 86, popupWidth, 4 * 57 + 24);
+            float popupWidth = 270;
+            float popupX = mobileMenu ? w - menuMargin - popupWidth : menuMargin;
+            Place(menuPopup, popupX, 86, popupWidth, 5 * 57 + 24);
             Place((RectTransform)newButton.transform, 12, 12, popupWidth - 24, 57);
-            Place((RectTransform)rankingButton.transform, 12, 69, popupWidth - 24, 57);
-            Place((RectTransform)aboutButton.transform, 12, 126, popupWidth - 24, 57);
-            Place((RectTransform)quitButton.transform, 12, 183, popupWidth - 24, 57);
+            Place(modeItem, 12, 69, popupWidth - 24, 57);
+            // Podmenu rozwija się w stronę, po której jest wolne miejsce.
+            const float subWidth = 258;
+            bool openLeft = popupX + popupWidth + subWidth > w;
+            Place(modePopup, openLeft ? -subWidth : popupWidth - 24, 0, subWidth, 138);
+            Place((RectTransform)oneDeckButton.transform, 12, 12, subWidth - 24, 57);
+            Place((RectTransform)twoDeckButton.transform, 12, 69, subWidth - 24, 57);
+            Place((RectTransform)rankingButton.transform, 12, 126, popupWidth - 24, 57);
+            Place((RectTransform)aboutButton.transform, 12, 183, popupWidth - 24, 57);
+            Place((RectTransform)quitButton.transform, 12, 240, popupWidth - 24, 57);
             stockY = compact ? 226 : 153;
             tableauY = stockY + cardHeight + (portrait ? 70 : 58);
-            Place(stockLabel.rectTransform, X(0), stockY - 35, cardWidth * 1.1f, 28);
+            Place(stockLabel.rectTransform, X(0), stockY - 35, cardWidth + gap, 28);
+            stockLabel.fontSize = Mathf.Clamp(Mathf.RoundToInt(cardWidth * .17f), 11, 17);
             Place(wasteLabel.rectTransform, X(1), stockY - 35, cardWidth * 1.8f, 28);
-            Place(foundationLabel.rectTransform, X(3), stockY - 35, cardWidth * 4 + gap * 3, 28);
+            float foundationsWidth = cardWidth * game.State.foundations.Length + gap * (game.State.foundations.Length - 1);
+            Place(foundationLabel.rectTransform, X(3), stockY - 35, foundationsWidth, 28);
+            Place(grandpaBanner.rectTransform, X(3), stockY - 75, foundationsWidth, 32);
+            grandpaBannerText.fontSize = Mathf.Clamp(Mathf.RoundToInt(cardWidth * .18f), 12, 18);
             foreach (var target in targets)
             {
+                bool active = target.pile.kind == PileKind.Foundation ? target.pile.index < game.State.foundations.Length :
+                    target.pile.kind != PileKind.Tableau || target.pile.index < game.State.tableau.Length;
+                target.rect.gameObject.SetActive(active);
+                if (!active) continue;
                 int col = target.pile.kind == PileKind.Stock ? 0 : target.pile.kind == PileKind.Waste ? 1 : target.pile.kind == PileKind.Foundation ? 3 + target.pile.index : target.pile.index;
                 float y = target.pile.kind == PileKind.Tableau ? tableauY : stockY;
-                Place(target.rect, X(col), y, cardWidth, target.pile.kind == PileKind.Tableau ? Mathf.Max(cardHeight, h - y - 72) : cardHeight);
+                float x = target.pile.kind == PileKind.Tableau ? TableauX(col) : X(col);
+                Place(target.rect, x, y, cardWidth, target.pile.kind == PileKind.Tableau ? Mathf.Max(cardHeight, h - y - 72) : cardHeight);
                 // Rysowany jest obszar wielkości karty, ale cała kolumna pozostaje celem ruchu.
                 target.image.color = target.pile.kind == PileKind.Tableau ? new Color(0, .1f, .08f, .10f) : new Color(0, .1f, .08f, .24f);
                 Place(target.label.rectTransform, 0, 0, cardWidth, cardHeight);
@@ -273,13 +344,17 @@ namespace Pasjans.UI
             float tableWidth = mw - 60;
             for (int row = 0; row <= 10; row++)
             {
-                Place(rankingCells[row, 0].rectTransform, 0, row * 45, 54, 42);
-                Place(rankingCells[row, 1].rectTransform, 67, row * 45, tableWidth - 236, 42);
-                Place(rankingCells[row, 2].rectTransform, tableWidth - 163, row * 45, 163, 42);
+                float rowY = row == 0 ? 0 : 56 + (row - 1) * 44;
+                float rowHeight = row == 0 ? 54 : 42;
+                Place(rankingCells[row, 0].rectTransform, 0, rowY, 42, rowHeight);
+                Place(rankingCells[row, 1].rectTransform, 48, rowY, 202, rowHeight);
+                Place(rankingCells[row, 2].rectTransform, 256, rowY, 126, rowHeight);
+                Place(rankingCells[row, 3].rectTransform, 388, rowY, tableWidth - 388, rowHeight);
             }
         }
 
         float X(int col) => margin + col * (cardWidth + gap);
+        float TableauX(int col) => (root.rect.width - game.State.tableau.Length * cardWidth - (game.State.tableau.Length - 1) * gap) / 2 + col * (cardWidth + gap);
 
         void Refresh()
         {
@@ -290,12 +365,12 @@ namespace Pasjans.UI
             int visibleWaste = Mathf.Min(3, state.waste.Count);
             for (int i = state.waste.Count - visibleWaste; i < state.waste.Count; i++)
                 ShowCard(state.waste[i], new PileRef(PileKind.Waste), i, X(1) + (i - state.waste.Count + visibleWaste) * cardWidth * .27f, stockY);
-            for (int f = 0; f < 4; f++)
+            for (int f = 0; f < state.foundations.Length; f++)
             {
                 var pile = state.foundations[f].cards;
                 if (pile.Count > 0) ShowCard(pile[pile.Count - 1], new PileRef(PileKind.Foundation, f), pile.Count - 1, X(3 + f), stockY);
             }
-            for (int t = 0; t < 7; t++)
+            for (int t = 0; t < state.tableau.Length; t++)
             {
                 var pile = state.tableau[t].cards;
                 float required = 0;
@@ -305,12 +380,23 @@ namespace Pasjans.UI
                 float y = tableauY;
                 for (int i = 0; i < pile.Count; i++)
                 {
-                    ShowCard(pile[i], new PileRef(PileKind.Tableau, t), i, X(t), y);
+                    ShowCard(pile[i], new PileRef(PileKind.Tableau, t), i, TableauX(t), y);
                     y += (pile[i].faceUp ? cardWidth * .36f : cardWidth * .17f) * compression;
                 }
             }
             stockLabel.text = "TALIA · " + state.stock.Count;
             counter.text = "Dobieranie: " + state.drawCount + "   ·   " + (game.HasResult ? "Wynik: " : "Ruchy: ") + game.MoveCount;
+            grandpaBanner.gameObject.SetActive(game.IsGrandpaWin || game.IsGrandpaLoss);
+            if (game.IsGrandpaWin)
+            {
+                grandpaBanner.color = new Color32(34, 116, 72, 255);
+                grandpaBannerText.text = "Wg. Dziadka wygrałeś";
+            }
+            else if (game.IsGrandpaLoss)
+            {
+                grandpaBanner.color = new Color32(148, 38, 49, 255);
+                grandpaBannerText.text = "Wg. Dziadka przegrałeś";
+            }
             status.text = notice ?? "Przeciągnij kartę lub dotknij karty i miejsca docelowego.";
             modal.SetAsLastSibling();
             if (game.IsWon && !wonShown)
@@ -338,14 +424,14 @@ namespace Pasjans.UI
 
         public void CardClicked(CardView card, int clickCount)
         {
-            if (modal.gameObject.activeSelf || dragging) return;
+            if (modal.gameObject.activeSelf || menuOpen || dragging) return;
             if (card.Pile.kind == PileKind.Stock) { Draw(); return; }
             if (selected != null && selected != card && TryMoveSelected(card.Pile)) return;
             if (!CanSelect(card)) return;
             if (clickCount >= 2)
             {
                 selected = card;
-                for (int f = 0; f < 4; f++) if (TryMoveSelected(new PileRef(PileKind.Foundation, f))) return;
+                for (int f = 0; f < game.State.foundations.Length; f++) if (TryMoveSelected(new PileRef(PileKind.Foundation, f))) return;
             }
             selected = selected == card ? null : card;
             notice = selected == null ? null : "Wybierz kolumnę lub bazę dla zaznaczonej karty.";
@@ -354,7 +440,7 @@ namespace Pasjans.UI
 
         public void PileClicked(PileRef pile)
         {
-            if (modal.gameObject.activeSelf || dragging) return;
+            if (modal.gameObject.activeSelf || menuOpen || dragging) return;
             if (pile.kind == PileKind.Stock) { Draw(); return; }
             if (selected != null && !TryMoveSelected(pile)) { notice = "Ten ruch nie pasuje do zasad pasjansa."; Refresh(); }
         }
@@ -380,14 +466,17 @@ namespace Pasjans.UI
             notice = null;
             Persist();
             RecordResult();
-            if (game.HasResult && resultRecorded) notice = "Wynik: " + game.State.finalMoves + " ruchów. Możesz dokończyć układanie.";
+            if (game.HasResult && game.State.grandpaOutcome == GameState.GrandpaPending)
+                notice = "Wynik: " + game.State.finalMoves + " ruchów. Opróżnij talię w pierwszym przejściu po 1 karcie.";
+            else if (game.HasResult && resultRecorded)
+                notice = "Wynik: " + game.State.finalMoves + " ruchów. Możesz dokończyć układanie.";
             Layout();
             Refresh();
         }
 
         public bool BeginCardDrag(CardView card, PointerEventData e)
         {
-            if (modal.gameObject.activeSelf || dragging || !CanSelect(card)) return false;
+            if (modal.gameObject.activeSelf || menuOpen || dragging || !CanSelect(card)) return false;
             selected = card;
             Refresh();
             dragging = true;
@@ -439,24 +528,62 @@ namespace Pasjans.UI
             dragging = false; selected = null;
         }
 
-        void AskNewGame() => OpenModal("Nowa gra?", "Bieżące rozdanie zostanie zastąpione.\nRozdać ponownie potasowane karty?", StartNewGame, "Rozdaj karty");
+        void AskNewGame() => OpenModal("Nowa gra?", "Bieżące rozdanie zostanie zastąpione.\nRozdać karty w trybie: " + (game.SelectedDeckCount == 1 ? "Jedna talia" : "Dwie talie") + "?", StartNewGame, "Rozdaj karty");
 
         void ToggleMenu()
         {
             if (modal.gameObject.activeSelf) return;
+            CancelSelection();
+            Refresh();
             menuOpen = !menuOpen;
+            modePopup.gameObject.SetActive(false);
+            menuBackdrop.gameObject.SetActive(menuOpen);
+            menuBackdrop.SetAsLastSibling();
             menuPopup.gameObject.SetActive(menuOpen);
             menuPopup.SetAsLastSibling();
+        }
+
+        public void ShowGameModes()
+        {
+            if (!menuOpen) return;
+            modeItem.SetAsLastSibling();
+            modePopup.gameObject.SetActive(true);
+        }
+
+        public void ToggleGameModes()
+        {
+            if (modePopup.gameObject.activeSelf) modePopup.gameObject.SetActive(false);
+            else ShowGameModes();
+        }
+
+        void SelectGameMode(int decks)
+        {
+            if (game.SelectDeckCount(decks))
+            {
+                dirty = true;
+                Persist();
+            }
+            UpdateModeLabels();
+            CloseMenu();
+        }
+
+        void UpdateModeLabels()
+        {
+            oneDeckButton.GetComponentInChildren<Text>().text = (game.SelectedDeckCount == 1 ? "✓  " : "") + "Jedna talia";
+            twoDeckButton.GetComponentInChildren<Text>().text = (game.SelectedDeckCount == 2 ? "✓  " : "") + "Dwie talie";
         }
 
         void CloseMenu()
         {
             menuOpen = false;
+            if (modePopup != null) modePopup.gameObject.SetActive(false);
+            if (menuBackdrop != null) menuBackdrop.gameObject.SetActive(false);
             if (menuPopup != null) menuPopup.gameObject.SetActive(false);
         }
 
         void StartNewGame()
         {
+            if (game.FinalizeGrandpaLoss()) dirty = true;
             if (!RecordResult())
             {
                 OpenModal("Ranking niedostępny", "Nie udało się zachować wyniku. Spróbuj ponownie po zwolnieniu miejsca lub rozpocznij nowe rozdanie mimo to.", ForceNewGame, "Nowa gra mimo to");
@@ -468,6 +595,7 @@ namespace Pasjans.UI
         void ForceNewGame()
         {
             game.NewGame();
+            UpdateModeLabels();
             wonShown = false; resultRecorded = false;
             AfterMove();
         }
@@ -485,22 +613,24 @@ namespace Pasjans.UI
             rankingCells[0, 0].text = "Lp";
             rankingCells[0, 1].text = "Data z godziną";
             rankingCells[0, 2].text = "Ilość ruchów";
+            rankingCells[0, 3].text = "Wygrana wg. Dziadka";
             for (int i = 0; i < 10; i++)
             {
                 bool active = i < result.Data.entries.Count;
-                for (int col = 0; col < 3; col++) rankingCells[i + 1, col].gameObject.SetActive(active);
+                for (int col = 0; col < 4; col++) rankingCells[i + 1, col].gameObject.SetActive(active);
                 if (!active) continue;
                 var entry = result.Data.entries[i];
                 rankingCells[i + 1, 0].text = (i + 1).ToString();
                 rankingCells[i + 1, 1].text = new DateTime(entry.completedUtcTicks, DateTimeKind.Utc).ToLocalTime().ToString("dd.MM.yyyy HH:mm");
                 rankingCells[i + 1, 2].text = entry.moves.ToString();
+                rankingCells[i + 1, 3].text = entry.grandpaWin ? "Tak" : "Nie";
             }
             Layout();
         }
 
         bool RecordResult()
         {
-            if (!game.HasResult || resultRecorded) return true;
+            if (!game.HasRankableResult || resultRecorded) return true;
             resultRecorded = rankingStore.TryRecord(game.State, out string error);
             if (!resultRecorded) { notice = error; if (status != null) status.text = error; }
             return resultRecorded;
