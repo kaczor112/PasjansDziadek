@@ -50,25 +50,41 @@ namespace Pasjans.Tests
             Assert.That(copy.State.gameId, Is.EqualTo(game.State.gameId));
         }
 
-        [Test] public void GrandpaWinRequiresFirstSingleCardPassToEndWithoutAnotherRecycle()
+        [TestCase(3, 0)]
+        [TestCase(2, 1)]
+        [TestCase(1, 2)]
+        public void GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass(int drawCount, int recycleCount)
         {
-            var game = NearFinish();
+            var game = NearFinish(drawCount, recycleCount);
             Assert.That(game.TryMove(new PileRef(PileKind.Tableau, 1), 1, new PileRef(PileKind.Foundation, 0)), Is.True);
             int frozen = game.MoveCount;
             while (game.State.stock.Count > 0) Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.State.waste.Count, Is.GreaterThan(0));
+            Assert.That(game.IsGrandpaWin, Is.False);
             Assert.That(game.State.grandpaOutcome, Is.EqualTo(GameState.GrandpaPending));
-            Assert.That(game.TryDraw(), Is.True);
-            Assert.That(game.State.stockRecycleCount, Is.EqualTo(1));
-            while (game.State.stock.Count > 0) Assert.That(game.TryDraw(), Is.True);
-            Assert.That(game.State.grandpaOutcome, Is.EqualTo(GameState.GrandpaPending));
-            Assert.That(game.TryDraw(), Is.True);
-            Assert.That(game.State.stockRecycleCount, Is.EqualTo(2));
-            while (game.State.stock.Count > 0) Assert.That(game.TryDraw(), Is.True);
+            UseAllWasteCards(game);
             Assert.That(game.IsGrandpaWin, Is.True);
             Assert.That(game.IsGrandpaLoss, Is.False);
+            Assert.That(game.State.stockRecycleCount, Is.EqualTo(recycleCount));
             Assert.That(game.MoveCount, Is.EqualTo(frozen));
             Assert.That(store.TryRecord(game.State, out string error), Is.True, error);
             Assert.That(store.Load().Data.entries.Single().grandpaWin, Is.True);
+        }
+
+        [Test] public void VersionThreePrematureWinReturnsToPendingAfterLoad()
+        {
+            var game = NearFinish();
+            Assert.That(game.TryMove(new PileRef(PileKind.Tableau, 1), 1, new PileRef(PileKind.Foundation, 0)), Is.True);
+            while (game.State.stock.Count > 0) Assert.That(game.TryDraw(), Is.True);
+            var old = game.ExportState();
+            old.schemaVersion = 3;
+            old.grandpaOutcome = GameState.GrandpaWin;
+
+            var restored = new KlondikeGame();
+            Assert.That(restored.TryLoad(old, out string error), Is.True, error);
+            Assert.That(restored.State.schemaVersion, Is.EqualTo(GameState.CurrentSchemaVersion));
+            Assert.That(restored.State.grandpaOutcome, Is.EqualTo(GameState.GrandpaPending));
+            Assert.That(restored.IsGrandpaWin, Is.False);
         }
 
         [Test] public void FourthStockPassMakesGrandpaLossButKeepsStandardScore()
@@ -129,6 +145,15 @@ namespace Pasjans.Tests
             var entries = store.Load().Data.entries;
             Assert.That(entries.Select(e => e.gameId), Is.EqualTo(new[] { grandpa.gameId, standard.gameId }));
             Assert.That(entries.Select(e => e.grandpaWin), Is.EqualTo(new[] { true, false }));
+        }
+
+        [Test] public void ExistingRankingEntryIsCorrectedAfterOutcomeChanges()
+        {
+            var state = Finished(180, true);
+            Assert.That(store.TryRecord(state, out string error), Is.True, error);
+            state.grandpaOutcome = GameState.GrandpaLoss;
+            Assert.That(store.TryRecord(state, out error), Is.True, error);
+            Assert.That(store.Load().Data.entries.Single().grandpaWin, Is.False);
         }
 
         [Test] public void PreviousRankingLoadsAsNoAndMigratesWhenNewScoreIsSaved()
@@ -207,6 +232,28 @@ namespace Pasjans.Tests
             var game = new KlondikeGame();
             Assert.That(game.TryLoad(state, out string error), Is.True, error);
             return game;
+        }
+
+        static void UseAllWasteCards(KlondikeGame game)
+        {
+            int guard = 200;
+            while (game.State.waste.Count > 0 && guard-- > 0)
+            {
+                bool moved = false;
+                int wasteTop = game.State.waste.Count - 1;
+                for (int foundation = 0; foundation < game.State.foundations.Length && !moved; foundation++)
+                    moved = game.TryMove(new PileRef(PileKind.Waste), wasteTop, new PileRef(PileKind.Foundation, foundation));
+
+                // Karta ze stołu może uzupełnić brak w sekwencji stosu odkrytego.
+                for (int tableau = 0; tableau < game.State.tableau.Length && !moved; tableau++)
+                {
+                    int top = game.State.tableau[tableau].cards.Count - 1;
+                    for (int foundation = 0; top >= 0 && foundation < game.State.foundations.Length && !moved; foundation++)
+                        moved = game.TryMove(new PileRef(PileKind.Tableau, tableau), top, new PileRef(PileKind.Foundation, foundation));
+                }
+                Assert.That(moved, Is.True, "Nie można użyć następnej karty odkrytego stosu.");
+            }
+            Assert.That(game.State.waste, Is.Empty);
         }
 
         static GameState Finished(int score, bool grandpaWin = false)

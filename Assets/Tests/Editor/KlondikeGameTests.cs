@@ -14,7 +14,7 @@ namespace Pasjans.Tests
         [TestCase(3)]
         public void NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp(int drawCount)
         {
-            var game = new KlondikeGame(drawCount, 2718);
+            var game = new KlondikeGame(drawCount, 2718, 1);
             Assert.That(game.State.stock.Count, Is.EqualTo(37));
             Assert.That(game.State.waste, Is.Empty);
             Assert.That(game.State.foundations.All(pile => pile.cards.Count == 0), Is.True);
@@ -33,9 +33,9 @@ namespace Pasjans.Tests
         [Test]
         public void SeedReproducesDealAndAnotherSeedChangesDeal()
         {
-            var a = new KlondikeGame(1, 123);
-            var b = new KlondikeGame(1, 123);
-            var c = new KlondikeGame(1, 124);
+            var a = new KlondikeGame(1, 123, 1);
+            var b = new KlondikeGame(1, 123, 1);
+            var c = new KlondikeGame(1, 124, 1);
             Assert.That(AllIds(a.State), Is.EqualTo(AllIds(b.State)));
             Assert.That(AllIds(a.State), Is.Not.EqualTo(AllIds(c.State)));
         }
@@ -43,7 +43,7 @@ namespace Pasjans.Tests
         [Test]
         public void DrawOneAndRecyclePreserveOriginalStockOrder()
         {
-            var game = new KlondikeGame(1, 83);
+            var game = new KlondikeGame(1, 83, 1);
             int[] originalStock = game.State.stock.Select(card => card.id).ToArray();
             for (int i = 0; i < originalStock.Length; i++)
             {
@@ -64,7 +64,7 @@ namespace Pasjans.Tests
         [Test]
         public void DrawThreeLeavesOnlyFinalWasteCardAvailable()
         {
-            var game = new KlondikeGame(3, 7);
+            var game = new KlondikeGame(3, 7, 1);
             Assert.That(game.TryDraw(), Is.True);
             Assert.That(game.State.stock.Count, Is.EqualTo(34));
             Assert.That(game.State.waste.Count, Is.EqualTo(3));
@@ -209,7 +209,7 @@ namespace Pasjans.Tests
         [Test]
         public void IllegalMoveDoesNotChangeCardsOrMoveCount()
         {
-            var game = new KlondikeGame(1, 90);
+            var game = new KlondikeGame(1, 90, 1);
             int[] before = AllIds(game.State);
             Assert.That(game.TryMove(Tableau(0), 0, Tableau(0)), Is.False);
             Assert.That(game.TryMove(new PileRef(PileKind.Stock), 0, Tableau(0)), Is.False);
@@ -223,9 +223,9 @@ namespace Pasjans.Tests
         [Test]
         public void InvalidLoadedDeckIsRejectedWithoutReplacingCurrentGame()
         {
-            var game = new KlondikeGame(1, 123);
+            var game = new KlondikeGame(1, 123, 1);
             int[] before = AllIds(game.State);
-            GameState invalid = new KlondikeGame(1, 456).State;
+            GameState invalid = new KlondikeGame(1, 456, 1).State;
             invalid.stock[0] = invalid.stock[1];
             Assert.That(game.TryLoad(invalid, out string error), Is.False);
             Assert.That(error, Is.Not.Empty);
@@ -235,8 +235,8 @@ namespace Pasjans.Tests
         [Test]
         public void LoadedStateIsCopiedAndCallerCannotMutateGameThroughInput()
         {
-            var game = new KlondikeGame(1, 0);
-            GameState input = new KlondikeGame(3, 987).State;
+            var game = new KlondikeGame(1, 0, 1);
+            GameState input = new KlondikeGame(3, 987, 1).State;
             Assert.That(game.TryLoad(input, out string error), Is.True, error);
             int firstId = game.State.stock[0].id;
             input.stock[0].rank = 88;
@@ -250,16 +250,16 @@ namespace Pasjans.Tests
         public void ValidationRejectsMissingAndMalformedState()
         {
             Assert.That(KlondikeGame.ValidateState(null, out _), Is.False);
-            GameState state = new KlondikeGame(1, 10).State;
+            GameState state = new KlondikeGame(1, 10, 1).State;
             state.stock.RemoveAt(0);
             Assert.That(KlondikeGame.ValidateState(state, out _), Is.False);
-            state = new KlondikeGame(1, 10).State;
+            state = new KlondikeGame(1, 10, 1).State;
             state.stock[0].faceUp = true;
             Assert.That(KlondikeGame.ValidateState(state, out _), Is.False);
-            state = new KlondikeGame(1, 10).State;
+            state = new KlondikeGame(1, 10, 1).State;
             state.tableau[0].cards[0].faceUp = false;
             Assert.That(KlondikeGame.ValidateState(state, out _), Is.False);
-            state = new KlondikeGame(1, 10).State;
+            state = new KlondikeGame(1, 10, 1).State;
             state.drawCount = 4;
             Assert.That(KlondikeGame.ValidateState(state, out _), Is.False);
         }

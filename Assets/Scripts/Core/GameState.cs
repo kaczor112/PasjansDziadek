@@ -99,7 +99,8 @@ namespace Pasjans.Core
     [Serializable]
     public sealed class GameState
     {
-        public const int CurrentSchemaVersion = 3;
+        public const int CurrentSchemaVersion = 4;
+        public const int DefaultDeckCount = 2;
         public const int GrandpaPending = 0;
         public const int GrandpaWin = 1;
         public const int GrandpaLoss = 2;
@@ -107,13 +108,13 @@ namespace Pasjans.Core
         public int schemaVersion = CurrentSchemaVersion;
         public int deckCount = 1;
         // Wybór w menu dotyczy dopiero kolejnego rozdania.
-        public int selectedDeckCount = 1;
+        public int selectedDeckCount = DefaultDeckCount;
         public int DeckCount => schemaVersion == 1 ? 1 : deckCount;
         // Pierwsze przejście dobiera 3 karty, drugie 2, a kolejne po 1.
         public int drawCount = 3;
         // 0 oznacza przejście po 3, 1 po 2, 2 pierwsze po 1 karcie.
         public int stockRecycleCount;
-        // Wynik Dziadka pozostaje oczekujący do końca pierwszego przejścia po 1 karcie.
+        // Wynik Dziadka czeka na użycie talii i odkrytego stosu przed czwartym przejściem.
         public int grandpaOutcome;
         public int moveCount;
         public string gameId = Guid.NewGuid().ToString("N");

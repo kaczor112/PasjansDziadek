@@ -209,7 +209,7 @@ namespace Pasjans.Editor
                 case 6:
                     if (!Ready(720, 1280)) return;
                     var cells = Field<Text[,]>(app, "rankingCells");
-                    Check(cells[0, 3].text == "Wygrana wg. Dziadka", "Brak czwartej kolumny rankingu.");
+                    Check(cells[0, 3].text == "Wygrana wg Dziadka", "Brak czwartej kolumny rankingu.");
                     for (int row = 1; row <= 5; row++) Check(cells[row, 3].text == "Tak", "Wyniki Tak muszą być pierwsze.");
                     for (int row = 6; row <= 10; row++) Check(cells[row, 3].text == "Nie", "Wyniki Nie muszą być niżej.");
                     Capture("ranking-grandpa.png", 7);
@@ -234,7 +234,7 @@ namespace Pasjans.Editor
             var banner = Field<Image>(app, "grandpaBanner");
             var label = Field<Text>(app, "grandpaBannerText");
             Check(banner.gameObject.activeSelf, "Komunikat Dziadka jest ukryty.");
-            Check(label.text == (win ? "Wg. Dziadka wygrałeś" : "Wg. Dziadka przegrałeś"), "Niepoprawny tekst komunikatu.");
+            Check(label.text == (win ? "Wg Dziadka wygrałeś" : "Wg Dziadka przegrałeś"), "Niepoprawny tekst komunikatu.");
             Check(win ? banner.color.g > banner.color.r : banner.color.r > banner.color.g, "Niepoprawny kolor komunikatu.");
         }
 
@@ -247,6 +247,8 @@ namespace Pasjans.Editor
             {
                 case 1:
                     SetGameViewSize(1280, 800);
+                    Check(app.Game.State.DeckCount == 2 && app.Game.SelectedDeckCount == 2,
+                        "Nowa instalacja musi domyślnie uruchamiać tryb dwóch talii.");
                     app.Game.SelectDeckCount(1);
                     app.SendMessage("ForceNewGame");
                     app.SendMessage("Draw");
@@ -390,13 +392,14 @@ namespace Pasjans.Editor
             var state = new Pasjans.Core.GameState
             {
                 moveCount = moves, finalMoves = moves, completedUtcTicks = DateTime.UtcNow.Ticks,
-                drawCount = win ? 1 : 3, stockRecycleCount = win ? 2 : 0,
+                // Zielony przykład kończy się już podczas pierwszego przejścia po 3 karty.
+                drawCount = 3, stockRecycleCount = 0,
                 grandpaOutcome = win ? Pasjans.Core.GameState.GrandpaWin : Pasjans.Core.GameState.GrandpaLoss
             };
             for (int s = 0; s < 4; s++) for (int r = 1; r <= 13; r++)
             {
                 var card = new Pasjans.Core.CardData((Pasjans.Core.Suit)s, r, win);
-                if (win) state.waste.Add(card); else state.stock.Add(card);
+                if (win) state.foundations[s].cards.Add(card); else state.stock.Add(card);
             }
             return state;
         }

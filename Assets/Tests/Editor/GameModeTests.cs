@@ -42,9 +42,19 @@ namespace Pasjans.Tests
         }
 
         [Test]
+        public void DefaultGameUsesTwoDecks()
+        {
+            var game = new KlondikeGame(seed: 207);
+            Assert.That(game.State.DeckCount, Is.EqualTo(2));
+            Assert.That(game.SelectedDeckCount, Is.EqualTo(2));
+            Assert.That(game.State.tableau.Length, Is.EqualTo(10));
+            Assert.That(game.State.foundations.Length, Is.EqualTo(8));
+        }
+
+        [Test]
         public void SelectionOnlyChangesNextDealAndSurvivesRestart()
         {
-            var game = new KlondikeGame(seed: 34);
+            var game = new KlondikeGame(seed: 34, deckCount: 1);
             game.TryDraw();
             string before = JsonUtility.ToJson(game.ExportState());
             Assert.That(game.SelectDeckCount(2), Is.True);
@@ -115,7 +125,7 @@ namespace Pasjans.Tests
             Assert.That(game.TryLoad(store.Load().State, out string error), Is.True, error);
             Assert.That(game.State.stock.Count, Is.EqualTo(24));
             Assert.That(game.State.tableau.Length, Is.EqualTo(7));
-            Assert.That(game.SelectedDeckCount, Is.EqualTo(1));
+            Assert.That(game.SelectedDeckCount, Is.EqualTo(2));
             Assert.That(AllCards(game.State).All(c => c.deckIndex == 0), Is.True);
             game.SelectDeckCount(2);
             Assert.That(store.Save(game.State).Success, Is.True);

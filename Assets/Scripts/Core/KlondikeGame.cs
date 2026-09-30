@@ -33,7 +33,7 @@ namespace Pasjans.Core
             }
         }
 
-        public KlondikeGame(int drawCount = 3, int? seed = null, int deckCount = 1)
+        public KlondikeGame(int drawCount = 3, int? seed = null, int deckCount = GameState.DefaultDeckCount)
         {
             NewGame(drawCount, seed, deckCount);
         }
@@ -52,7 +52,7 @@ namespace Pasjans.Core
             if (drawCount < 1 || drawCount > 3)
                 throw new ArgumentOutOfRangeException(nameof(drawCount), "Draw count must be between 1 and 3.");
 
-            int decks = deckCount ?? State?.selectedDeckCount ?? 1;
+            int decks = deckCount ?? State?.selectedDeckCount ?? GameState.DefaultDeckCount;
             if (decks < 1 || decks > 2)
                 throw new ArgumentOutOfRangeException(nameof(deckCount));
             var next = new GameState
@@ -99,12 +99,19 @@ namespace Pasjans.Core
             State = CloneState(state);
             // Starszy zapis zachowuje siedem kolumn do rozpoczęcia nowej gry.
             State.deckCount = State.DeckCount;
-            if (State.selectedDeckCount == 0) State.selectedDeckCount = 1;
+            if (State.selectedDeckCount == 0) State.selectedDeckCount = GameState.DefaultDeckCount;
             if (State.schemaVersion < 3)
             {
                 State.stockRecycleCount = State.drawCount == 3 ? 0 : State.drawCount == 2 ? 1 : 2;
                 // Dla starych ukończonych gier nie da się odtworzyć liczby wcześniejszych przełożeń.
                 if (HasResult) State.grandpaOutcome = GameState.GrandpaLoss;
+            }
+            if (State.schemaVersion == 3)
+            {
+                // Wersja 3 mogła przyznać wygraną mimo kart na stosie odkrytym.
+                if (State.grandpaOutcome == GameState.GrandpaWin && State.waste.Count > 0)
+                    State.grandpaOutcome = State.stockRecycleCount >= 3 ? GameState.GrandpaLoss : GameState.GrandpaPending;
+                State.schemaVersion = GameState.CurrentSchemaVersion;
             }
             if (string.IsNullOrEmpty(State.gameId)) State.gameId = Guid.NewGuid().ToString("N");
             EvaluateGrandpaOutcome();
@@ -272,7 +279,8 @@ namespace Pasjans.Core
                 (string.IsNullOrEmpty(state.gameId) || state.finalMoves < 1 || state.finalMoves != state.moveCount)))
                 return Fail("Invalid completed result.", out error);
             if (state.grandpaOutcome == GameState.GrandpaWin &&
-                (state.completedUtcTicks <= 0 || state.stockRecycleCount != 2 || state.stock == null || state.stock.Count != 0))
+                (state.completedUtcTicks <= 0 || state.stockRecycleCount >= 3 || state.stock == null || state.stock.Count != 0 ||
+                 state.schemaVersion >= 4 && (state.waste == null || state.waste.Count != 0)))
                 return Fail("Invalid Grandpa win.", out error);
             int cardCount = 52 * state.DeckCount;
             int columnCount = state.schemaVersion == 1 ? 7 : 5 * state.DeckCount;
@@ -428,7 +436,7 @@ namespace Pasjans.Core
             if (State.grandpaOutcome != GameState.GrandpaPending) return;
             if (State.stockRecycleCount >= 3)
                 State.grandpaOutcome = GameState.GrandpaLoss;
-            else if (HasResult && State.stockRecycleCount == 2 && State.stock.Count == 0)
+            else if (HasResult && State.stockRecycleCount < 3 && State.stock.Count == 0 && State.waste.Count == 0)
                 State.grandpaOutcome = GameState.GrandpaWin;
         }
 

@@ -1,0 +1,1366 @@
+--------- beginning of system
+09-29 20:19:04.816  2634 15596 I ActivityManager: Force stopping pl.pawelkaczmarczyk.pasjans appid=10346 user=0: from pid 1174
+09-29 20:19:04.817  2634 15596 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.817  2634 15596 I AppsFilter: interaction: PackageSetting{1cfd990 com.android.microdroid.empty_payload/10219} -> PackageSetting{209233a pl.pawelkaczmarczyk.pasjans/10346} BLOCKED
+09-29 20:19:04.817  2634 15596 I AppsFilter: interaction: PackageSetting{81cf28e pl.pawelkaczmarczyk.domekapp/10238} -> PackageSetting{209233a pl.pawelkaczmarczyk.pasjans/10346} BLOCKED
+09-29 20:19:04.817  2634  2865 D ActivityTaskManager: isKeyguardLocked(0) => false
+--------- beginning of main
+09-29 20:19:04.819  3921  3921 D CarrierSvcBindHelper: onHandleForceStop: [pl.pawelkaczmarczyk.pasjans]
+09-29 20:19:04.820  3921  3921 D CarrierSvcBindHelper: No carrier app for: 0
+09-29 20:19:04.820  3921  3921 D CarrierSvcBindHelper: No carrier app for: 1
+09-29 20:19:04.823  5419  5419 D RegisteredNfcFServicesCache: Service unchanged, not updating
+09-29 20:19:04.823  3894  3986 D SecureElementService: getReaders() for com.android.nfcstm
+09-29 20:19:04.865  2634  5498 W ActivityTaskManager: callingPackage for (uid=2000, pid=1188) has no WPC
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 265464455; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 265452344; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 266124927; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 265451093; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 265456536; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 255940284; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 236283604; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 263959004; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 264304459; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 264301586; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 254631730; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 273509367; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 263259275; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 174042980; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 174042936; UID 10346; state: DISABLED
+09-29 20:19:04.865  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 181136395; UID 10346; state: DISABLED
+09-29 20:19:04.867  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 194480991; UID 10346; state: ENABLED
+09-29 20:19:04.867  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 197654537; UID 10346; state: ENABLED
+09-29 20:19:04.869  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 184838306; UID 10346; state: DISABLED
+09-29 20:19:04.869  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 185004937; UID 10346; state: DISABLED
+09-29 20:19:04.871  3955  3955 D TaskWatcherSvc: pkgName: com.asus.launcher taskId: 3326 game app:0
+09-29 20:19:04.871  3955  4248 I AppOpsStatusUpdateHandler: pkgName: com.asus.launcher, reason: TopResumedActivityChanged, displayedTime: -5566, isExternalDisplay: false, 1stLaunchInMem: false, windowingMode: 1, from: com.asus.launcher
+09-29 20:19:04.871  3955  4245 D GameModeHandler: handleAppFocus exit
+09-29 20:19:04.871  3955  4245 D GameGenieHandler: packageName: com.asus.launcher taskId: 3326 reason: TopResumedActivityChanged isFirstLaunchInMem: false windowingMode: 1 isDirectBoot: false mIsGameGenieWorking: false userId: 0 uid: 10048 pid: 2962
+09-29 20:19:04.871  3955  4245 D GameGenieHandler: intent action: android.intent.action.MAIN className: com.android.launcher3.uioverrides.QuickstepLauncher
+09-29 20:19:04.871  3955  4245 D GameGenieHandler: update mLastTriggerIntent: null
+09-29 20:19:04.871  3955  4245 V GameGenieHandler: Start setGamingType: isAutoStart = false, isGame = false, windowingMode = 1
+09-29 20:19:04.872  3955  4245 V GameGenieHandler: End setGamingType
+09-29 20:19:04.872  3955  4245 D LlmHandler: isRogDevice() ret = true
+09-29 20:19:04.872  3955  4245 V LlmHandler: Start set LLM: isAutoStart = false, isGame = false, isExternalDisplay = false
+09-29 20:19:04.872  3955  4245 V LlmHandler: End set LLM
+09-29 20:19:04.872  1515  1633 E ANDR-PERF-UTIL: change_node_val() 319: Failed to update node /proc/sys/walt/sched_per_task_boost with value 0 3
+09-29 20:19:04.873  1515  1633 E ANDR-PERF-OPTSHANDLER: sched_task_boost() 3956: can't boost task 0
+09-29 20:19:04.873  1515  1633 E ANDR-PERF-RESOURCEQS: AddAndApply() 167: Failed to apply optimization [3, 32]
+09-29 20:19:04.873  2634  5498 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.873  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 205907456; UID 10346; state: ENABLED
+09-29 20:19:04.873  2634  5498 D ActivityTrigger: ActivityTrigger activityPauseTrigger 
+09-29 20:19:04.874  1530  1530 I qspmHal : cpuProfName:pl.pawelkaczmarczyk.pasjans-cpu - cpu_prof_info.path:/data/vendor/gaming/pl.pawelkaczmarczyk.pasjans-cpu
+09-29 20:19:04.874  1530  1530 E qspmHal : CPU profile file NOT found !!
+09-29 20:19:04.874  1515  7123 E ANDR-PERF-LM: APE_FEATURE: GetApplicationProfile() 728: Client could not get cpu profile: 0
+09-29 20:19:04.874  3955  4248 D OpenedTimeAppInfoProvider: Update DB : number of affected records : 1
+09-29 20:19:04.874  3955  4599 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.sendBroadcast:1237 com.asus.hardwarestub.centralcontrol.a.s:16 com.asus.hardwarestub.centralcontrol.a.v:273 com.asus.hardwarestub.centralcontrol.FPSCentralControlService.k0:26 com.asus.hardwarestub.centralcontrol.FPSCentralControlService.F:0 
+09-29 20:19:04.875  6291  6291 D AsusWifiPerfService: Current focus uid is 10048 [com.asus.launcher] 
+--------- beginning of kernel
+09-29 20:19:04.876     0     0 E KERNEL  : [1092558.686928][ T4999] [BAT][CHG][ERR]bat_safety_read++
+09-29 20:19:04.876     0     0 I KERNEL  : [1092559.966825][    T1] init: processing action (sys.foregroundapp=*) from (/system/etc/init/init.asus.sys.rc:60)
+09-29 20:19:04.876 23969 23969 D FramerateWidget2: frameratre widget onReceive action: asus.intent.action.CUSTOM_REFRESH_RATE_CHANGED
+09-29 20:19:04.876 23969 23969 D FramerateWidget2: update UI
+09-29 20:19:04.877  3513  3513 V AsusFocusAppManager: Default display package: com.asus.launcher, bounds: Rect(0, 0 - 1080, 2400)
+09-29 20:19:04.878  2634  5498 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+09-29 20:19:04.878 23969 23969 D FramerateWidget2: frameratre widget onReceive action: asus.intent.action.CUSTOM_REFRESH_RATE_CHANGED
+09-29 20:19:04.878 23969 23969 D FramerateWidget2: update UI
+09-29 20:19:04.878  2634  2874 D ResourceManagerUtils: getPid: pid not found, processName=pl.pawelkaczmarczyk.pasjans
+09-29 20:19:04.879  3955  3955 D PwrSvrSvc: xProfile current package:com.asus.launcher act:com.android.launcher3.uioverrides.QuickstepLauncher sMode:0 pMode:9 game:0
+09-29 20:19:04.879  3955  3955 D PwrSvrSvc: current package: mPreTaskId:-1 taskId:3326
+09-29 20:19:04.879  2634  2865 D CompatibilityChangeReporter: Compat change id reported: 135634846; UID 10346; state: DISABLED
+09-29 20:19:04.880  3513  3513 V AsusFocusAppManager: Non-default display package: , bounds: Rect(0, 0 - 0, 0)
+09-29 20:19:04.880  2634  2865 D CompatibilityChangeReporter: Compat change id reported: 177438394; UID 10346; state: DISABLED
+09-29 20:19:04.880  3513  3513 V SysUiVideoGenieManager: Setting disabled
+09-29 20:19:04.880  2634  2865 D CompatibilityChangeReporter: Compat change id reported: 135772972; UID 10346; state: DISABLED
+09-29 20:19:04.880  2634  2865 D CompatibilityChangeReporter: Compat change id reported: 135754954; UID 10346; state: ENABLED
+09-29 20:19:04.880  2634  2877 D CompatibilityChangeReporter: Compat change id reported: 143937733; UID 10346; state: ENABLED
+09-29 20:19:04.881     0     0 W KERNEL  : [1092559.971604][  T993] [msm-dsi-info]: HOP: send hop Fixed fps(60) cmd(0, 4)
+09-29 20:19:04.883     0     0 E KERNEL  : [1092559.972726][  T993] [Display] value same, variable type 4, value 60
+09-29 20:19:04.887  1377  1377 D Zygote  : Forked child process 1194
+09-29 20:19:04.887  2634  2877 I ActivityManager: Start proc 1194:pl.pawelkaczmarczyk.pasjans/u0a346 for next-top-activity {pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity}
+09-29 20:19:04.888  2634  1195 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.sendBroadcast:1222 com.qualcomm.qti.Performance$SendGameLaunchBroadcast.run:247 java.lang.Thread.run:1012 <bottom of call stack> <bottom of call stack> 
+09-29 20:19:04.888  2962  2962 I LauncherLife: [onPause] called, QuickstepLauncher@51da3f4
+09-29 20:19:04.888  2962  2962 D MLKitServiceController: Not binding service.
+09-29 20:19:04.888  2962  2962 V LauncherLife: Time spent in onPause: 0 ms
+09-29 20:19:04.889  3955  4248 D AsusGAHandler: notifyGAInfo isFocused=false
+09-29 20:19:04.889  5564  9178 W SQLiteLog: (28) double-quoted string literal: "pl.pawelkaczmarczyk.pasjans"
+09-29 20:19:04.890  2634  3252 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.890  2634  3252 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.890  2634  3252 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.891  2634  2865 I ImeTracker: com.asus.launcher:6e9c6dbd: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_WHEN_INPUT_TARGET_INVISIBLE
+09-29 20:19:04.891  2634  2865 I ImeTracker: com.asus.launcher:6e9c6dbd: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-29 20:19:04.893  2634  2865 D OomAdjuster: App adj change from previous state to cached state : 23969 com.android.settings
+09-29 20:19:04.893  2962  1197 D OpenedAppInfo_Launcher: onChange: com.asus.launcher, previous: pl.pawelkaczmarczyk.pasjans
+09-29 20:19:04.893  2962  2962 D GamingRotationHelper: autoRotate:false inboxRotate:true
+09-29 20:19:04.893  1506 20096 I IRIS_LOG_SERV: irisConfigureSet(513, 1, 2308)
+09-29 20:19:04.893  2962  2962 W GamingRotationHelper: TODO: maybe need to sync with RotationHelper
+09-29 20:19:04.894  1506 20096 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:04.895  1506 20096 I SDM     : ToneMappingCore::set_default_vals():922 Initial enablement signals - bypass adaptive TM: 0, actual panel luma usage: 1, temporal filtering of dynamic meta data: 1, histTM enable: 1, static meta data usage: 1
+09-29 20:19:04.895  1506 20096 I SDM     : HdrAlgorithm::SetXMLParameters():288 Override enablement signals - bypass adaptive TM: 1, bypass sdr dimming: 0
+09-29 20:19:04.895  1194  1194 I marczyk.pasjans: Using CollectorTypeCC GC.
+09-29 20:19:04.896  2634  3007 D CompatibilityChangeReporter: Compat change id reported: 265195908; UID 10346; state: ENABLED
+09-29 20:19:04.897  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [disabled]: 8-265
+09-29 20:19:04.897  2634 15596 D CoreBackPreview: Window{73c8b9d u0 Splash Screen pl.pawelkaczmarczyk.pasjans}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@3b0d45b, mPriority=0, mIsAnimationCallback=false}
+09-29 20:19:04.897  6386   414 D NextAppTrainingJobService: insert data - Package:__na__, Previous1:com.asus.launcher, Previous2:pl.pawelkaczmarczyk.pasjans, Previous3:com.asus.launcher, Previous4:pl.pawelkaczmarczyk.pasjans, Timestamp:1790705944887, p1_ts_diff:0, p2_ts_diff:56091, p3_ts_diff:56122, p4_ts_diff:56251, p1_dur:0, p2_dur:56091, p3_dur:31, p4_dur:129, Hour:20, DayClass:18~00, Weekday:Tuesday, WeekClass:weekday, Timezone:Europe/Warsaw, UTC:2, Plugged:1, LastPlugged:526283, MobileRadioOn:1, LastMobileRadioOn:18596, WifiOn:1, LastWifiOn:1622229557, GpsOn:-1, LastGpsOn:3497207, SensorOn:1, LastSensorOn:3360754072, WifiScan:-1, LastWifiScan:1482021, WifiFullLock:-1, LastWifiFullLock:420761448, WifiRunning:0, LastWifiRunning:86400, WifiMultiCastOn:1, LastWifiMultiCastOn:74154, AudioOn:-1, LastAudioOn:17467, CameraOn:1, LastCameraOn:3328256053, VideoOn:1, LastVideoOn:3360688982, LowPowerModeOn:-1, LastLowPowerModeOn:1804368683, FlashlightOn:-1, LastFlashlightOn:510676568, ChargingOn:1, LastChargingOn:525346, PhoneInCall:-1, LastPhoneInCall:12974719, PhoneScanning:-1, LastPhoneScanning:174301899, BleScanning:1, LastBleScanning:1026657163, WifiHotspotOn:0, LastWifiHotspotOn:86400, LastLa:rrRuj87tEWfRPqw1xAWT0Q==, LastLo:u-ov8O-PW-zywbJTrz2Bog==, LastLac:29.131, sid:]���I>Y����, 
+09-29 20:19:04.898  1194  1194 E marczyk.pasjans: Not starting debugger since process cannot load the jdwp agent.
+09-29 20:19:04.897  2991  2991 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+09-29 20:19:04.899  6372  6453 I BtGatt.ScanManager: msg.what = 6
+09-29 20:19:04.899  6372  6453 D BtGatt.ScanManager: uid 10156 isForeground true scanMode 1
+09-29 20:19:04.899  2991  2991 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+09-29 20:19:04.900  3513  4106 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+09-29 20:19:04.902  2634  2866 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.902  2634  2866 D WindowManager: handleTransitionForKeyguardLw: false, false
+09-29 20:19:04.902  2634  2862 V WindowManager: Sent Transition #17480 createdAt=09-29 20:19:04.867 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=3893 displayId=0 isRunning=true baseIntent=Intent { flg=0x10000000 cmp=pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity } baseActivity=ComponentInfo{pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity} topActivity=ComponentInfo{pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity} origActivity=null realActivity=ComponentInfo{pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity} numActivities=1 lastActiveTime=3360761181 supportsMultiWindow=true resizeMode=2 isResizeable=true minWidth=400 minHeight=300 defaultMinSize=220 token=WCT{RemoteToken{1a4cb10 Task{78c92ae #3893 type=standard A=10346:pl.pawelkaczmarczyk.pasjans}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 105 - 0, 0) topActivityInfo=ActivityInfo{2bb000e com.unity3d.player.UnityPlayerActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+09-29 20:19:04.902  2634  2862 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+09-29 20:19:04.903  2634  2862 V WindowManager:     info={id=17480 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{1a4cb10 Task{78c92ae #3893 type=standard A=10346:pl.pawelkaczmarczyk.pasjans}}} m=OPEN f=NONE leash=Surface(name=Task=3893)/@0x7c960d sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0},{WCT{RemoteToken{d09d5cc Task{2066109 #3325 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=3325)/@0xe8e5fa0 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) d=0}]}
+09-29 20:19:04.904  2991   815 D AdvertisingIdClient: AdvertisingIdClient already created.
+09-29 20:19:04.904  2991   815 I AdvertisingIdClient: shouldSendLog 3359664642
+09-29 20:19:04.904  2991   815 I AdvertisingIdClient: GetInfoInternal elapse 1ms
+09-29 20:19:04.905  2634  3252 D CompatibilityInfo: mCompatibilityFlags - 0
+09-29 20:19:04.905  2634  3252 D CompatibilityInfo: applicationDensity - 420
+09-29 20:19:04.905  2634  3252 D CompatibilityInfo: applicationScale - 1.0
+09-29 20:19:04.906  2634  3252 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.906  2634  3252 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.906  2634  3252 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.906  2634  3252 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.907  1194  1194 D CompatibilityChangeReporter: Compat change id reported: 171979766; UID 10346; state: ENABLED
+09-29 20:19:04.907  1194  1194 D CompatibilityChangeReporter: Compat change id reported: 242716250; UID 10346; state: ENABLED
+09-29 20:19:04.907  2634  2862 D AlarmManagerServiceInjector: background restricted unblock alarm for 10346
+09-29 20:19:04.907  3955  4248 I AppOpsStatusUpdateHandler: pkgName: pl.pawelkaczmarczyk.pasjans, reason: TopResumedActivityChanged, displayedTime: -5566, isExternalDisplay: false, 1stLaunchInMem: true, windowingMode: 1, from: com.android.shell
+09-29 20:19:04.907  3955  4245 D GameModeHandler: handleAppFocus exit
+09-29 20:19:04.907  3955  3955 D TaskWatcherSvc: pkgName: pl.pawelkaczmarczyk.pasjans taskId: 3893 game app:0
+09-29 20:19:04.907  3955  4245 D GameGenieHandler: packageName: pl.pawelkaczmarczyk.pasjans taskId: 3893 reason: TopResumedActivityChanged isFirstLaunchInMem: true windowingMode: 1 isDirectBoot: false mIsGameGenieWorking: false userId: 0 uid: 10346 pid: 1194
+09-29 20:19:04.907  3955  4245 D GameGenieHandler: intent action: null className: com.unity3d.player.UnityPlayerActivity
+09-29 20:19:04.907  3955  4245 D GameGenieHandler: update mLastTriggerIntent: null
+09-29 20:19:04.907  3955  4245 V GameGenieHandler: Start setGamingType: isAutoStart = false, isGame = false, windowingMode = 1
+09-29 20:19:04.908  2634  2863 V GameManagerService: Game power mode ON (process state was changed to foreground)
+09-29 20:19:04.908  2634 13240 D CompatibilityChangeReporter: Compat change id reported: 170503758; UID 10346; state: ENABLED
+09-29 20:19:04.908  3955  4245 V GameGenieHandler: End setGamingType
+09-29 20:19:04.908  3955  4245 D LlmHandler: isRogDevice() ret = true
+09-29 20:19:04.908  3955  4245 V LlmHandler: Start set LLM: isAutoStart = false, isGame = false, isExternalDisplay = false
+09-29 20:19:04.908  3955  4245 V LlmHandler: End set LLM
+09-29 20:19:04.909  3955  3955 D PwrSvrSvc: xProfile current package:pl.pawelkaczmarczyk.pasjans act:com.unity3d.player.UnityPlayerActivity sMode:0 pMode:9 game:0
+09-29 20:19:04.909  3955  3955 D PwrSvrSvc: current package: mPreTaskId:-1 taskId:3893
+09-29 20:19:04.909  1194  1194 I marczyk.pasjans: Failed to add image file: Failed to find OatDexFile for DexFile /data/app/~~5oH54XNy8TxLy-tD9wZUgw==/pl.pawelkaczmarczyk.pasjans-No-wnrmtF64SSG0gxC-v2w==/base.apk (canonical path /data/app/~~5oH54XNy8TxLy-tD9wZUgw==/pl.pawelkaczmarczyk.pasjans-No-wnrmtF64SSG0gxC-v2w==/base.apk) in OatFile /data/app/~~cPwmBUza0n9vRH0VeH3L9Q==/pl.pawelkaczmarczyk.pasjans-UeuE1iFjAmW_UpoDuIS0lw==/oat/arm64/base.odex
+09-29 20:19:04.909  1194  1194 D nativeloader: Configuring clns-4 for other apk /data/app/~~cPwmBUza0n9vRH0VeH3L9Q==/pl.pawelkaczmarczyk.pasjans-UeuE1iFjAmW_UpoDuIS0lw==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~cPwmBUza0n9vRH0VeH3L9Q==/pl.pawelkaczmarczyk.pasjans-UeuE1iFjAmW_UpoDuIS0lw==/lib/arm64:/data/app/~~cPwmBUza0n9vRH0VeH3L9Q==/pl.pawelkaczmarczyk.pasjans-UeuE1iFjAmW_UpoDuIS0lw==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/pl.pawelkaczmarczyk.pasjans
+09-29 20:19:04.910  3955  4248 D OpenedTimeAppInfoProvider: Update DB : number of affected records : 1
+09-29 20:19:04.910  6291  6291 D AsusWifiPerfService: Current focus uid is 10346 [pl.pawelkaczmarczyk.pasjans] 
+09-29 20:19:04.911     0     0 W KERNEL  : [1092559.982403][    C1] [msm-dsi-info]: HOP: skip this TE IRQ ---- VSYNC
+09-29 20:19:04.911     0     0 I KERNEL  : [1092560.002247][    T1] init: processing action (sys.foregroundapp=*) from (/system/etc/init/init.asus.sys.rc:60)
+09-29 20:19:04.911  3513  3513 V AsusFocusAppManager: Default display package: pl.pawelkaczmarczyk.pasjans, bounds: Rect(0, 0 - 1080, 2400)
+09-29 20:19:04.911  3955  4248 D AsusGAHandler: notifyGAInfo isFocused=false
+09-29 20:19:04.911  3513  3513 V AsusFocusAppManager: Non-default display package: , bounds: Rect(0, 0 - 0, 0)
+09-29 20:19:04.911  3513  3513 V SysUiVideoGenieManager: Setting disabled
+09-29 20:19:04.911  1194  1194 I Perf    : Connecting to perf service.
+09-29 20:19:04.912  1194  1194 V GraphicsEnvironment: Currently set values for:
+09-29 20:19:04.913  1194  1194 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+09-29 20:19:04.913  1194  1194 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+09-29 20:19:04.913  1194  1194 V GraphicsEnvironment: ANGLE GameManagerService for pl.pawelkaczmarczyk.pasjans: false
+09-29 20:19:04.913  1194  1194 V GraphicsEnvironment: pl.pawelkaczmarczyk.pasjans is not listed in per-application setting
+09-29 20:19:04.913  1194  1194 V GraphicsEnvironment: Updatable production driver is not supported on the device.
+09-29 20:19:04.913  1194  1194 V Monotype: SetAppTypeFace- try to flip, app = pl.pawelkaczmarczyk.pasjans
+09-29 20:19:04.914  1194  1194 V Monotype:     Typeface getFontPathFlipFont - systemFont = default#default
+09-29 20:19:04.915  1194  1194 D CompatibilityChangeReporter: Compat change id reported: 247079863; UID 10346; state: ENABLED
+09-29 20:19:04.915  2634  5804 I InputDispatcher: Window '3972254 com.asus.launcher/com.android.launcher3.uioverrides.QuickstepLauncher (server)' spent 0.8ms processing input events on average(0/1). Monitor spent 0.0ms processing input events on average(0/0). Window input events down spent 0.0ms on average (0/0). Window input events up spent 0.0ms on average (0/0). Monitor input events down spent 0.0ms on average (0/0). Monitor input events up spent 0.0ms on average (0/0).
+09-29 20:19:04.916  2962  2962 I LauncherLife: [onWindowFocusChanged] called, hasFocus = false, QuickstepLauncher@51da3f4
+09-29 20:19:04.916  1506 25015 I IRIS_LOG_SERV: irisConfigureSet(513, 1, 2308)
+09-29 20:19:04.917  2962  2962 V LauncherLife: Time spent in onWindowFocusChanged: 1 ms
+09-29 20:19:04.918  3513  3513 D MinimalistNotificationController: handleValueChanged mLauncherStayWorkspaceSettingsState: false
+09-29 20:19:04.918  6386   414 D NextAppTrainingJobService: insert data - Package:__na__, Previous1:pl.pawelkaczmarczyk.pasjans, Previous2:com.asus.launcher, Previous3:pl.pawelkaczmarczyk.pasjans, Previous4:com.asus.launcher, Timestamp:1790705944911, p1_ts_diff:0, p2_ts_diff:24, p3_ts_diff:56115, p4_ts_diff:56146, p1_dur:0, p2_dur:24, p3_dur:56091, p4_dur:31, Hour:20, DayClass:18~00, Weekday:Tuesday, WeekClass:weekday, Timezone:Europe/Warsaw, UTC:2, Plugged:1, LastPlugged:526306, MobileRadioOn:1, LastMobileRadioOn:18619, WifiOn:1, LastWifiOn:1622229580, GpsOn:-1, LastGpsOn:3497230, SensorOn:1, LastSensorOn:3360754095, WifiScan:-1, LastWifiScan:1482044, WifiFullLock:-1, LastWifiFullLock:420761471, WifiRunning:0, LastWifiRunning:86400, WifiMultiCastOn:1, LastWifiMultiCastOn:74177, AudioOn:-1, LastAudioOn:17490, CameraOn:1, LastCameraOn:3328256076, VideoOn:1, LastVideoOn:3360689005, LowPowerModeOn:-1, LastLowPowerModeOn:1804368706, FlashlightOn:-1, LastFlashlightOn:510676591, ChargingOn:1, LastChargingOn:525369, PhoneInCall:-1, LastPhoneInCall:12974742, PhoneScanning:-1, LastPhoneScanning:174301922, BleScanning:1, LastBleScanning:1026657186, WifiHotspotOn:0, LastWifiHotspotOn:86400, LastLa:rrRuj87tEWfRPqw1xAWT0Q==, LastLo:u-ov8O-PW-zywbJTrz2Bog==, LastLac:29.131, sid:]���I>Y����, 
+09-29 20:19:04.935  2634  3256 I ActivityManager: Flag disabled. Ignoring finishAttachApplication from uid: 10346. pid: 1194
+09-29 20:19:04.937  1194  1194 V Monotype: SetAppTypeFace- try to flip, app = pl.pawelkaczmarczyk.pasjans
+09-29 20:19:04.937  1194  1194 V Monotype:     Typeface getFontPathFlipFont - systemFont = default#default
+09-29 20:19:04.943  2962  3619 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+09-29 20:19:04.944  1506 25015 I SDM     : ToneMappingCore::set_default_vals():922 Initial enablement signals - bypass adaptive TM: 0, actual panel luma usage: 1, temporal filtering of dynamic meta data: 1, histTM enable: 1, static meta data usage: 1
+09-29 20:19:04.944  1506 25015 I SDM     : HdrAlgorithm::SetXMLParameters():288 Override enablement signals - bypass adaptive TM: 1, bypass sdr dimming: 0
+09-29 20:19:04.952  1194  1194 I IL2CPP  : JNI_OnLoad
+09-29 20:19:04.952  1194  1194 V Unity   : Context Type: ActivityOrService
+09-29 20:19:04.954  1194  1194 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+09-29 20:19:04.954  1194  1194 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+09-29 20:19:04.957  1194  1194 D CompatibilityChangeReporter: Compat change id reported: 237531167; UID 10346; state: DISABLED
+09-29 20:19:04.958  2634 13240 W WindowManager: Failed looking up window session=Session{2f66904 1194:u0a10346} callers=com.android.server.wm.WindowManagerService.windowForClientLocked:6658 com.android.server.wm.Session.updateRequestedVisibleTypes:711 android.view.IWindowSession$Stub.onTransact:1049 
+09-29 20:19:04.960  1506  1228 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1228...
+09-29 20:19:04.962  2634  3256 D CoreBackPreview: Window{2a19122 u0 pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@ceb9d6e, mPriority=0, mIsAnimationCallback=false}
+09-29 20:19:04.963  3513  3513 D CentralSurfaces: Status bar WINDOW_STATE_HIDDEN
+09-29 20:19:04.965  3513  3513 D EdgeBackGestureHandler: SysUi flags: 268566528->268566530
+09-29 20:19:04.965  3513  3513 D NavigationBar: Navigation bar WINDOW_STATE_HIDDEN
+09-29 20:19:04.965  3513  3513 D EdgeBackGestureHandler: SysUi flags: 268566530->268435458
+09-29 20:19:04.966  1194  1292 D AChoreographer: Attaching thread to JVM for AChoreographer
+09-29 20:19:04.969   754   754 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.allocator@4.0::IAllocator/default in either framework or device VINTF manifest.
+09-29 20:19:04.970  1194  1194 I AdrenoUtils: <ReadGpuID:353>: Reading chip ID through GSL
+09-29 20:19:04.964  1194  1194 W marczyk.pasjans: type=1400 audit(0.0:1092706): avc:  denied  { read } for  name="libubwcp.so" dev="dm-10" ino=3549 scontext=u:r:untrusted_app:s0:c90,c257,c512,c768 tcontext=u:object_r:vendor_file:s0 tclass=file permissive=0 app=pl.pawelkaczmarczyk.pasjans
+09-29 20:19:04.970  1194  1194 W qdgralloc: Failed to load libubwcp.so
+09-29 20:19:04.971     0     0 I KERNEL  : [1092560.059370][  T698] servicemanager: Found android.hardware.graphics.allocator.IAllocator/default in device VINTF manifest.
+09-29 20:19:04.971     0     0 I KERNEL  : [1092560.060724][  T698] servicemanager: Found android.hardware.graphics.allocator.IAllocator/default in device VINTF manifest.
+09-29 20:19:04.978  2634  2862 I ActivityTaskManager: Displayed pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity for user 0: +110ms [aosp]
+09-29 20:19:04.978  2634  5492 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:04.978  3513  4106 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+09-29 20:19:04.978  3955  4245 D PowerSaverHandler: Skip notify the same pkg to PowerSaver
+09-29 20:19:04.978  3955  4245 D GameModeHandler: handleAppFocus exit
+09-29 20:19:04.978  3955  4245 D GameGenieHandler: packageName: pl.pawelkaczmarczyk.pasjans taskId: 3893 reason: report-launched isFirstLaunchInMem: false windowingMode: 1 isDirectBoot: false mIsGameGenieWorking: false userId: 0 uid: 10346 pid: 1194
+09-29 20:19:04.978  3955  4245 D GameGenieHandler: intent action: null className: com.unity3d.player.UnityPlayerActivity
+09-29 20:19:04.979  3955  4245 D GameGenieHandler: update mLastTriggerIntent: null
+09-29 20:19:04.979  3955  4245 V GameGenieHandler: Start setGamingType: isAutoStart = false, isGame = false, windowingMode = 1
+09-29 20:19:04.979  3955  4245 V GameGenieHandler: End setGamingType
+09-29 20:19:04.979  3955  4245 D LlmHandler: isRogDevice() ret = true
+09-29 20:19:04.979  3955  4245 V LlmHandler: Start set LLM: isAutoStart = false, isGame = false, isExternalDisplay = false
+09-29 20:19:04.979  3955  4245 V LlmHandler: End set LLM
+09-29 20:19:04.981  3955  4248 I AppOpsStatusUpdateHandler: pkgName: pl.pawelkaczmarczyk.pasjans, reason: report-launched, displayedTime: 1092593987, isExternalDisplay: false, 1stLaunchInMem: false, windowingMode: 1, from: com.android.shell
+09-29 20:19:04.982  3955  4248 D OpenedTimeAppInfoProvider: Update DB : number of affected records : 1
+09-29 20:19:04.982  1506  1228 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1228... Done and kStatusReady
+09-29 20:19:04.992  3513  4106 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+09-29 20:19:04.993  1506  1297 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1297...
+09-29 20:19:04.993  2634 13240 D CompatibilityChangeReporter: Compat change id reported: 214016041; UID 10346; state: ENABLED
+09-29 20:19:04.993  2634 13240 I ImeTracker: pl.pawelkaczmarczyk.pasjans:b9657799: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+09-29 20:19:04.993  2634 13240 I ImeTracker: pl.pawelkaczmarczyk.pasjans:b9657799: onCancelled at PHASE_SERVER_SHOULD_HIDE
+09-29 20:19:04.994  7262  7262 I SubtypeOperator: SubtypeOperator$1.onUnbindInput():43 
+09-29 20:19:04.994  7262  7262 I SubtypeOperator: SubtypeOperator$1.onBindInput():33 
+09-29 20:19:04.995  7262  7262 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2404 
+09-29 20:19:04.995  7262  7262 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1552 onStartInput(EditorInfo{EditorInfo{packageName=pl.pawelkaczmarczyk.pasjans, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+09-29 20:19:04.995  7262 32701 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatusInternal():119 repeatCheckTimes = 0, locked = false
+09-29 20:19:04.995  7262  7262 W LatinInputMethodServiceBase: LatinInputMethodServiceBase.updateInputViewCoverNavigation():362 Null input view, cannot update padding!
+09-29 20:19:04.995  7262 32712 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatusInternal():119 repeatCheckTimes = 1, locked = false
+09-29 20:19:04.995  2634 13240 W PackageConfigPersister: App-specific configuration not found for packageName: pl.pawelkaczmarczyk.pasjans and userId: 0
+09-29 20:19:04.997  1194  1225 I Unity   : MemoryManager: Using 'Dynamic Heap' Allocator.
+09-29 20:19:05.002  1506  1297 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1297... Done and kStatusReady
+09-29 20:19:05.003  1194  1225 I Unity   : SystemInfo CPU = ARM64 FP ASIMD AES, Cores = 8, Memory = 15304mb
+09-29 20:19:05.003  1194  1225 I Unity   : SystemInfo ARM big.LITTLE configuration: 6 big (mask: 0xfc), 2 little (mask: 0x3)
+09-29 20:19:05.003  1194  1225 I Unity   : ApplicationInfo 'pl.pawelkaczmarczyk.pasjans', Version '1.0', Min API Level '25', Target API Level '36'
+09-29 20:19:05.003  1194  1225 I Unity   : Built from '6000.3/staging' branch, Version '6000.3.25f1 (e1dba0a9aba4)', Build type 'Release', Scripting Backend 'il2cpp', CPU 'arm64-v8a', Stripping 'Enabled'
+09-29 20:19:05.003  1194  1225 I Unity   : Device Model 'asus ASUS_AI2401_C', OS 'Android OS 14 (API 34)'
+09-29 20:19:05.004  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:05.009  7025 30830 W MtpStorageManager: Id 75 doesn't exist
+09-29 20:19:05.009  7025 30830 W MtpServer: [MTP] got response 0x2009 in command MTP_OPERATION_GET_OBJECT_PROP_LIST (9805)
+09-29 20:19:05.009  3513  3513 D AsusNotificationManager: setImeWindowStatus mIsImeShowing: false
+09-29 20:19:05.009  3513  3513 D AnakinFodManager: setImeWindowStatus displayId=0 vis=0 isImeShowing=false
+09-29 20:19:05.009  3513  4106 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+09-29 20:19:05.009  3513  4494 V AnakinFodManager: checkTouchStatus: false, isImeShowing=false, isDisableFod=false, isAuthenticating=false, isDoze=false, isDozePulsing=false, isEarlyWakeUp=false, isKeyguardFingerprintRunning=false
+09-29 20:19:05.012  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:05.019  7025 30830 W MtpStorageManager: Id 75 doesn't exist
+09-29 20:19:05.019  7025 30830 W MtpServer: [MTP] got response 0x2009 in command MTP_OPERATION_GET_OBJECT_PROP_LIST (9805)
+09-29 20:19:05.019  6386  6386 D NextAppCoreTrainingJobService: onStratJob , job id = 2
+09-29 20:19:05.020  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:05.023  3513  4106 W qdgralloc: getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+09-29 20:19:05.025  7025 30830 W MtpStorageManager: Id 76 doesn't exist
+09-29 20:19:05.025  7025 30830 W MtpServer: [MTP] got response 0x2009 in command MTP_OPERATION_GET_OBJECT_PROP_LIST (9805)
+09-29 20:19:05.028  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:05.034  7025 30830 W MtpStorageManager: Id 76 doesn't exist
+09-29 20:19:05.034  7025 30830 W MtpServer: [MTP] got response 0x2009 in command MTP_OPERATION_GET_OBJECT_PROP_LIST (9805)
+09-29 20:19:05.041  1506  1317 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1317...
+09-29 20:19:05.062  1506  1317 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1317... Done and kStatusReady
+09-29 20:19:05.064     0     0 I KERNEL  : [1092560.154719][T21283] [ALS/PS]  frame_update 1374: update frame rate: 60
+09-29 20:19:05.064     0     0 E KERNEL  : [1092560.154928][T21283] [ALS/PS]  stk3a9x_set_algo_frame_rate 2196: stk3a9x_set_algo_frame_rate in, 60Hz
+09-29 20:19:05.064     0     0 I KERNEL  : [1092560.155081][T21283] [ALS/PS]  stk3a9x_set_algo_frame_rate 2240: frame_rate = 60, ALS_TD = 0x06
+09-29 20:19:05.066     0     0 E KERNEL  : [1092560.156055][T21283] [ALS/PS]  stk3a9x_set_algo_frame_rate 2299: frame_rate = 60, duty = 0x5, per_gpio_als_times:32
+09-29 20:19:05.068  1194  1225 I Unity   : Company Name: PawelKaczmarczyk
+09-29 20:19:05.068  1194  1225 I Unity   : Product Name: Pasjans Dziadka
+09-29 20:19:05.069  1194  1225 D libEGL  : loaded /vendor/lib64/egl/libEGL_adreno.so
+09-29 20:19:05.070  1194  1225 D libEGL  : loaded /vendor/lib64/egl/libGLESv1_CM_adreno.so
+09-29 20:19:05.072  1194  1225 D libEGL  : loaded /vendor/lib64/egl/libGLESv2_adreno.so
+09-29 20:19:05.074  1506  1347 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1347...
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: QUALCOMM build                   : 4d226dd68d, I4ccc4044d4
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Build Date                       : 10/19/23
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: OpenGL ES Shader Compiler Version: E031.42.23.06
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Local Branch                     : 
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Remote Branch                    : refs/tags/AU_LINUX_ANDROID_LA.VENDOR.14.3.0.11.00.00.973.408
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Remote Branch                    : NONE
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Reconstruct Branch               : NOTHING
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Build Config                     : S P 16.1.2 AArch64
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Driver Path                      : /vendor/lib64/egl/libGLESv2_adreno.so
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Driver Version                   : 0744.5
+09-29 20:19:05.082  1194  1225 I AdrenoGLES-0: Process Name                     : pl.pawelkaczmarczyk.pasjans
+09-29 20:19:05.083  1194  1225 I AdrenoGLES-0: PFP: 0x01520169, ME: 0x01520023
+09-29 20:19:05.084  1530  1530 I qspmHal : enter getGpuProf at: -295417348
+09-29 20:19:05.084  1530  1530 I qspmHal : PID 1194 from GFX matched.
+09-29 20:19:05.084  1530  1530 I qspmHal : gpuProfName:pl.pawelkaczmarczyk.pasjans-gpu - gpu prof_info.path:/data/vendor/gaming/pl.pawelkaczmarczyk.pasjans-gpu
+09-29 20:19:05.084  1530  1530 E qspmHal : GPU profile file NOT found !!
+09-29 20:19:05.087     0     0 I KERNEL  : [1092560.175372][  T698] servicemanager: Found vendor.qti.qspmhal.IQspmhal/default in device VINTF manifest.
+09-29 20:19:05.091  1194  1225 I SwappyWrapper: SwappyWrapperInit() succeeded. Build: Tue Sep 29 20:17:04 2026
+09-29 20:19:05.092  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:05.093  1506  1347 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1347... Done and kStatusReady
+09-29 20:19:05.094  1194  1360 I SwappyDisplayManager: Starting looper thread
+09-29 20:19:05.097  7025 30830 W MtpStorageManager: Id 77 doesn't exist
+09-29 20:19:05.097  7025 30830 W MtpServer: [MTP] got response 0x2009 in command MTP_OPERATION_GET_OBJECT_PROP_LIST (9805)
+09-29 20:19:05.097  1594 15203 V AudioFlinger: registerClient() client 0xb400006fcbc64fd0, pid 1194, uid 10346
+09-29 20:19:05.097  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.097  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.097  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.097  1594  3085 V AudioFlinger: thread 0xb400007188648920 type 0 TID 3085 waking up
+09-29 20:19:05.097  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.097  1594  3105 V AudioFlinger: thread 0xb400007188578920 type 0 TID 3105 waking up
+09-29 20:19:05.097  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.097  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.097  1594  3107 V AudioFlinger: thread 0xb4000071883df920 type 0 TID 3107 waking up
+09-29 20:19:05.098  1594  3085 V AudioFlinger: acquireWakeLock_l() AudioOut_D status 0
+09-29 20:19:05.098  1594  3085 D AudioFlinger: updateWakeLockUids_l AudioOut_D uids:
+09-29 20:19:05.098  1594  3085 V AudioFlinger: updateWakeLockUids_l() AudioOut_D status 0
+09-29 20:19:05.098  1194  1225 I AAudio  : AAudioStreamBuilder_openStream() called ----------------------------------------
+09-29 20:19:05.098  1594  3105 V AudioFlinger: acquireWakeLock_l() AudioOut_15 status 0
+09-29 20:19:05.098  1594  3105 D AudioFlinger: updateWakeLockUids_l AudioOut_15 uids:
+09-29 20:19:05.098  1194  1225 I AudioStreamBuilder: rate   =  24000, channels  = 2, channelMask = 0x80000003, format   = 5, sharing = SH, dir = OUTPUT
+09-29 20:19:05.098  1194  1225 I AudioStreamBuilder: device =      0, sessionId = 0, perfMode = 12, callback: ON with frames = 512
+09-29 20:19:05.098  1194  1225 I AudioStreamBuilder: usage  =      0, contentType = 0, inputPreset = 0, allowedCapturePolicy = 0
+09-29 20:19:05.098  1594  3085 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.098  1194  1225 I AudioStreamBuilder: privacy sensitive = false, opPackageName = (null), attributionTag = (null)
+09-29 20:19:05.098  1594  3085 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007188648920, event 0
+09-29 20:19:05.098  1194  1225 D AudioStreamBuilder: build() MMAP not used because sessionId specified.
+09-29 20:19:05.098  1194  1225 D marczyk.pasjans: PlayerBase::PlayerBase()
+09-29 20:19:05.098  1594  3132 V AudioFlinger: thread 0xb400007185411920 type 0 TID 3132 waking up
+09-29 20:19:05.098  1594  3105 V AudioFlinger: updateWakeLockUids_l() AudioOut_15 status 0
+09-29 20:19:05.098  1594  3107 V AudioFlinger: acquireWakeLock_l() AudioOut_1D status 0
+09-29 20:19:05.098  1594  3105 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.098  1594  3107 D AudioFlinger: updateWakeLockUids_l AudioOut_1D uids:
+09-29 20:19:05.098  1594  3105 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007188578920, event 0
+09-29 20:19:05.098  1594  3107 V AudioFlinger: updateWakeLockUids_l() AudioOut_1D status 0
+09-29 20:19:05.098  1594  3132 V AudioFlinger: acquireWakeLock_l() AudioOut_45 status 0
+09-29 20:19:05.098  1594  3132 D AudioFlinger: updateWakeLockUids_l AudioOut_45 uids:
+09-29 20:19:05.098  1594  3107 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.098  1594  3132 V AudioFlinger: updateWakeLockUids_l() AudioOut_45 status 0
+09-29 20:19:05.098  1594  3107 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb4000071883df920, event 0
+09-29 20:19:05.098  1594  3132 D AudioFlinger: ro.audio.silent is ignored since no output device is set
+09-29 20:19:05.098  1594  3132 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.098  1594  3132 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007185411920, event 0
+09-29 20:19:05.098  1594  3139 V AudioFlinger: thread 0xb40000718442e920 type 0 TID 3139 waking up
+09-29 20:19:05.098  1594  3127 V AudioFlinger: thread 0xb400007188207920 type 0 TID 3127 waking up
+09-29 20:19:05.098  1594  3139 V AudioFlinger: acquireWakeLock_l() AudioOut_4D status 0
+09-29 20:19:05.098  1594  3139 D AudioFlinger: updateWakeLockUids_l AudioOut_4D uids:
+09-29 20:19:05.098  1594  3139 V AudioFlinger: updateWakeLockUids_l() AudioOut_4D status 0
+09-29 20:19:05.098  1594  3127 V AudioFlinger: acquireWakeLock_l() AudioOut_3D status 0
+09-29 20:19:05.098  1594  3127 D AudioFlinger: updateWakeLockUids_l AudioOut_3D uids:
+09-29 20:19:05.098  1594  3139 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.098  1594  3139 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb40000718442e920, event 0
+09-29 20:19:05.098  1594  3127 V AudioFlinger: updateWakeLockUids_l() AudioOut_3D status 0
+09-29 20:19:05.098  1594  3127 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.098  1594  3127 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007188207920, event 0
+09-29 20:19:05.098  1594  3105 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188578920
+09-29 20:19:05.098  1594  3132 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007185411920
+09-29 20:19:05.098  1194  1225 D AudioStreamTrack: open(), request notificationFrames = 0, frameCount = 8192
+09-29 20:19:05.098  1594  3107 V AudioFlinger: processConfigEvents_l() DONE thread 0xb4000071883df920
+09-29 20:19:05.098  1594  3139 V AudioFlinger: processConfigEvents_l() DONE thread 0xb40000718442e920
+09-29 20:19:05.098  1594  3085 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188648920
+09-29 20:19:05.098  1594  3127 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188207920
+09-29 20:19:05.099  1594 15203 V APM_AudioPolicyManager: getOutputForAttrInt() attributes={ Content type: AUDIO_CONTENT_TYPE_MUSIC Usage: AUDIO_USAGE_MEDIA Source: AUDIO_SOURCE_DEFAULT Flags: 0x100 Tags:  } stream=AUDIO_STREAM_MUSIC session 132265 selectedDeviceId 0
+09-29 20:19:05.099  1594 15203 V APM_AudioPolicyManager: getOutputForAttrInt() device {AUDIO_DEVICE_OUT_BLUETOOTH_A2DP, @:SUPPRESSED}, sampling rate 24000, format 0x5, channel mask 0x3, flags 0x4 stream AUDIO_STREAM_MUSIC
+09-29 20:19:05.099  1438  7418 D AHAL: FM: fm_get_parameters: 231: enter
+09-29 20:19:05.099  1438  7418 D AHAL: FM: fm_get_parameters: 238: exit
+09-29 20:19:05.099  1594 15203 V APM_AudioPolicyManager: getOutputForDevices  flags 4 steam 3 sampling rate 24000 format 5 channels 3 usage 0
+09-29 20:19:05.099  1438  7418 D AHAL: AudioDevice: getting game mode (0)
+09-29 20:19:05.099  1594 15203 V APM_AudioPolicyManager: getOutputForDevices forced deep-buffer (no) flags (4)
+09-29 20:19:05.099  1594 15203 V APM_AudioPolicyManager: selectOutput new bestOutput 13 criteria 0 100 0 0 0 1 4 2 
+09-29 20:19:05.099  1594 15203 V APM_AudioPolicyManager: getOutputForAttrInt returns output 13 selectedDeviceId 14096
+09-29 20:19:05.099  1594 15203 V APM_AudioPolicyManager: getOutputForAttr() returns output 13 requestedPortId 0 selectedDeviceId 14096 for port ID 14109
+09-29 20:19:05.099  1594 15203 I UsecaseValidator: verifyAudioAttributes update usage: 1 to AUDIO_USAGE_GAME for output: 13 pid: 1194 package: pl.pawelkaczmarczyk.pasjans
+09-29 20:19:05.099  1594 15203 V AudioFlinger: createTrack() sessionId: 132265
+09-29 20:19:05.099  1594 15203 D AudioFlinger: AUDIO_OUTPUT_FLAG_FAST denied: sharedBuffer=0x0 frameCount=8192 mFrameCount=192 format=0x5 mFormat=0x5 isLinear=1 channelMask=0x3 sampleRate=24000 mSampleRate=48000 hasFastMixer=1 tid=1363 fastTrackAvailMask=0xfc
+09-29 20:19:05.099  1594 15203 D AudioFlinger: Client defaulted notificationFrames to 480 for frameCount 8192
+09-29 20:19:05.100  1438  7418 D AHAL: AudioStream: astream_out_get_parameters: 1029: enter
+09-29 20:19:05.100  1438  7418 D AHAL: AudioStream: astream_out_get_parameters: 1051: keys: is_direct_pcm_track
+09-29 20:19:05.100  1438  7418 D AHAL: AudioStream: astream_out_get_parameters: 1088: exit: returns - is_direct_pcm_track=false
+09-29 20:19:05.100  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:05.100  1594 15203 V AudioFlinger: acquiring 132265 from 1194, for -1
+09-29 20:19:05.100  1594 15203 V AudioFlinger:  added new entry for 132265
+09-29 20:19:05.100  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.100  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.100  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.100  1594  3085 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.100  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.100  1594  3085 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007188648920, event 0
+09-29 20:19:05.100  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.100  1594  3105 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.100  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.100  1594  3105 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007188578920, event 0
+09-29 20:19:05.100  1594  3132 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.100  1194  1225 D AudioStreamTrack: open() flags changed from 0x00000004 to 0x00000000
+09-29 20:19:05.100  1194  1225 D AudioStreamTrack: open() perfMode changed from 12 to 10
+09-29 20:19:05.100  1594  3132 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007185411920, event 0
+09-29 20:19:05.100  1194  1225 D AAudioStream: setState(s#1) from 0 to 2
+09-29 20:19:05.100  1594  3127 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.100  1594  3127 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007188207920, event 0
+09-29 20:19:05.100  1594  3139 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.100  1594  3139 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb40000718442e920, event 0
+09-29 20:19:05.101  1594  3132 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007185411920
+09-29 20:19:05.101  1594  3107 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.101  1594  3139 V AudioFlinger: processConfigEvents_l() DONE thread 0xb40000718442e920
+09-29 20:19:05.101  1594  3105 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188578920
+09-29 20:19:05.101  1194  1225 I AAudio  : AAudioStreamBuilder_openStream() returns 0 = AAUDIO_OK for s#1 ----------------
+09-29 20:19:05.101  1594  3127 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188207920
+09-29 20:19:05.101  1594  3107 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb4000071883df920, event 0
+09-29 20:19:05.101  1594  3085 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188648920
+09-29 20:19:05.101  1194  1225 D AAudio  : AAudioStream_requestStart(s#1) called --------------
+09-29 20:19:05.101  1194  1225 D AAudioStream: setState(s#1) from 2 to 3
+09-29 20:19:05.101  1594 15203 V AF::Track: start(7460): calling pid 1194 session 132265
+09-29 20:19:05.101  1594  3107 V AudioFlinger: processConfigEvents_l() DONE thread 0xb4000071883df920
+09-29 20:19:05.101  1594 15203 V AF::Track: start(7460): ? => ACTIVE on thread 13
+09-29 20:19:05.101  1594  1975 W AudioFlinger: The package name(android) provided does not correspond to the uid 1041
+09-29 20:19:05.101  1594  1975 V AudioFlinger: createEffect pid 1594, effectClient 0xb400006fdbc61ef0, priority 0, sessionId 132265, io 13, factory 0xb400006e8bc5b220
+09-29 20:19:05.101  1594  1975 V AudioFlinger: createEffect_l() thread 0xb400007188648920 effect Volume listener for Music on session 132265
+09-29 20:19:05.101  1594  1975 V AudioFlinger: createEffect_l() new effect chain for session 132265
+09-29 20:19:05.102  1594  1975 V AudioFlinger: addEffectChain_l() 0xb400006edbc54f10 on thread 0xb400007188648920 for session 132265
+09-29 20:19:05.102  1594  1975 V AudioFlinger: addEffectChain_l() creating new input buffer 0x7188890000 session 132265
+09-29 20:19:05.102  1594  1975 V AudioFlinger: addEffectChain_l() track->setMainBuffer track 0xb40000705bc613c0 buffer 0x7188890000
+09-29 20:19:05.102  1594  1975 V AudioFlinger: createEffect_l() got effect 0x0 on chain 0xb400006edbc54f10
+09-29 20:19:05.102  1438  4407 I EffectsFactory: EffectCreate() create_effect
+09-29 20:19:05.102  1594  1975 V AudioFlinger: sendConfigEvent_l() num events 1 event 7
+09-29 20:19:05.102  1594  3085 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.102  1594  1975 V AudioFlinger: acquiring 132265 from 1594, for 1594
+09-29 20:19:05.102  1594  1975 V AudioFlinger:  added new entry for 132265
+09-29 20:19:05.102  1594  3085 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188648920
+09-29 20:19:05.102  1594  1975 V AudioFlinger: updateSuspendedSessions_l() suspend adding effect 00000000
+09-29 20:19:05.102  1594  1975 I APM_AudioPolicyManager: startOutput portId 14109
+09-29 20:19:05.102  1594  1975 I APM_AudioPolicyManager: startOutput() output 13, stream 3, session 132265
+09-29 20:19:05.102  1594  1975 D APM_AudioPolicyManager: checkAndSetStreamState: oldStreamState(0) mStreamState(2)
+09-29 20:19:05.102  1594  1974 V AudioFlinger: setParameters(): io 0, keyvalue Stream_State=2, calling pid 1594 calling uid 1041
+09-29 20:19:05.102  1594  1974 V AudioFlinger: setParameters: filtered keyvalue Stream_State=2
+09-29 20:19:05.102  1438  4407 D AHAL: AudioDevice: SetParameters: 1594: enter: Stream_State=2
+09-29 20:19:05.102  1438  4407 D AHAL: AudioVoice: VoiceSetParameters: 127: Enter params: Stream_State=2
+09-29 20:19:05.102  1438  4407 D AHAL: AudioVoice: VoiceSetParameters: 412: Exit ret: 0
+09-29 20:19:05.102  1438  4407 D AHAL: hfp: hfp_set_parameters: 444: enter
+09-29 20:19:05.102  1438  4407 D AHAL: FM: fm_set_parameters: 261: Enter
+09-29 20:19:05.102  1438  4407 D AHAL: FM: fm_set_parameters: 319: exit
+09-29 20:19:05.102  1438  4407 D AHAL: AudioDevice: set_outdoor: 3109: set_outdoor: outdoor_mode_enabled =0 outdoor_stream_state=d ,  active_stream_state=2
+09-29 20:19:05.102  1438  4407 D AHAL: AudioDevice: SetParameters: 2436: exit: Stream_State=2
+09-29 20:19:05.102  1594  1975 V APM_AudioPolicyManager: setBeaconMute(1) mBeaconMuteRefCount=1 mBeaconPlayingRefCount=0
+09-29 20:19:05.103  1594  1975 V APM_AudioPolicyManager: selectOutputForMusicEffects activeOnly 1 output 13 flags 0x00000006
+09-29 20:19:05.103  1594  1975 V APM_AudioPolicyManager: selectOutputForMusicEffects selected output 13
+09-29 20:19:05.103  1594  1975 V APM_AudioPolicyManager: getNewOutputDevices selected devices {AUDIO_DEVICE_OUT_BLUETOOTH_A2DP, @:SUPPRESSED}
+09-29 20:19:05.103  1594  1975 V APM_AudioPolicyManager: setOutputDevices device {AUDIO_DEVICE_OUT_BLUETOOTH_A2DP, @:SUPPRESSED} delayMs 0
+09-29 20:19:05.103  1594  1975 V APM_AudioPolicyManager: setOutputDevices() prevDevice {AUDIO_DEVICE_OUT_BLUETOOTH_A2DP, @:SUPPRESSED}
+09-29 20:19:05.103  1594  1975 V APM_AudioPolicyManager: setOutputDevices: suppressing checkDeviceMuteStrategies
+09-29 20:19:05.103  1594  1975 V APM_AudioPolicyManager: setOutputDevices changing device to {AUDIO_DEVICE_OUT_BLUETOOTH_A2DP, @:SUPPRESSED}
+09-29 20:19:05.106  7025 30830 W MtpStorageManager: Id 77 doesn't exist
+09-29 20:19:05.106  7025 30830 W MtpServer: [MTP] got response 0x2009 in command MTP_OPERATION_GET_OBJECT_PROP_LIST (9805)
+09-29 20:19:05.106  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:05.107  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [enabled]: 8-265
+09-29 20:19:05.108  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:05.112  7025 30830 W MtpStorageManager: Id 78 doesn't exist
+09-29 20:19:05.112  7025 30830 W MtpServer: [MTP] got response 0x2009 in command MTP_OPERATION_GET_OBJECT_PROP_LIST (9805)
+09-29 20:19:05.116  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:05.121  1602  1602 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+09-29 20:19:05.122  7025 30830 W MtpStorageManager: Id 78 doesn't exist
+09-29 20:19:05.122  7025 30830 W MtpServer: [MTP] got response 0x2009 in command MTP_OPERATION_GET_OBJECT_PROP_LIST (9805)
+09-29 20:19:05.133  1594  1974 V AudioFlinger: sendConfigEvent_l() num events 1 event 3
+09-29 20:19:05.133  1594  3085 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.133  1438  7417 D AHAL: AudioStream: out_update_source_metadata_v7: 1180: track count is 0 for usecase(1: low-latency-playback)
+09-29 20:19:05.133  1438  7417 D AHAL: AudioDevice: CreateAudioPatch: 460: source: 2, sink: 1, source type: 13, sink type 128
+09-29 20:19:05.133  1438  7417 D AHAL: AudioDevice: CreateAudioPatch: 462: enter: num sources 1, num_sinks 1
+09-29 20:19:05.133  1438  7417 D AHAL: AudioDevice: CreateAudioPatch: 477: source role 1, source type 2
+09-29 20:19:05.133  1438  7417 I AHAL: AudioDevice: CreateAudioPatch: 555: output_selected 0
+09-29 20:19:05.133  1438  7417 D AHAL: AudioDevice: CreateAudioPatch: 588: Playback patch from mix handle 13 to device 80
+09-29 20:19:05.133  1438  7417 I AHAL: AudioDevice: OutGetStream: 1392: Found existing stream associated with iohandle 13
+09-29 20:19:05.133  1438  7417 D AHAL: AudioVoice: RouteStream: 540: Enter
+09-29 20:19:05.133  1438  7417 E AHAL: AudioVoice: GetMatchingTxDevices: 517: unsupported Device Id of 128
+09-29 20:19:05.133  1438  7417 E AHAL: AudioVoice: RouteStream: 555: Invalid Tx/Rx device
+09-29 20:19:05.133  1438  7417 D AHAL: AudioVoice: RouteStream: 656: Exit ret: 0
+09-29 20:19:05.133  1438  7417 I AHAL: AudioStream: RouteStream: 2501: enter: usecase(1: low-latency-playback) devices 0x80, num devices 1
+09-29 20:19:05.133  1438  7417 D AHAL: AudioStream: RouteStream: 2504: mAndroidOutDevices 128, mNoOfOutDevices 1
+09-29 20:19:05.133  1438  7417 D AHAL: AudioStream: RouteStream: 2533: noPalDevices: 1 , new_devices: 1
+09-29 20:19:05.133  1438  7417 D AHAL: AudioStream: RouteStream: 2658: exit 0
+09-29 20:19:05.133  1438  7417 D AHAL: AudioDevice: CreateAudioPatch: 645: Exit ret: 0
+09-29 20:19:05.133  1438  7417 I btaudio_offload_aidl: audio_stream_get_supported_latency_modes_api: session type is 2
+09-29 20:19:05.133  1594  3085 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188648920
+09-29 20:19:05.133  1594  1975 V APM_AudioPolicyManager: setOutputDevices() AF::createAudioPatch returned 0 patchHandle 34876 num_sources 1 num_sinks 1
+09-29 20:19:05.134  1594  1975 V APM_AudioPolicyManager: computeVolume limiting volume to -22.750000 musicVol -22.750000
+09-29 20:19:05.134  1594  1975 V APM_AudioPolicyManager: checkAndSetVolume cannot set volume group 4 volume when is not requested for comm
+09-29 20:19:05.134  1594  1975 V APM_AudioPolicyManager: computeVolume limiting volume to -22.750000 musicVol -22.750000
+09-29 20:19:05.134  1594  1975 V APM_AudioPolicyManager: computeVolume limiting volume to -22.750000 musicVol -22.750000
+09-29 20:19:05.134  1594  1975 V APM_AudioPolicyManager: computeVolume limiting volume to -22.750000 musicVol -22.750000
+09-29 20:19:05.134  1594 15203 V AudioFlinger: sendConfigEvent_l() num events 1 event 0
+09-29 20:19:05.134  1594 15203 V AudioFlinger: addTrack_l() starting track on chain 0xb400006edbc54f10 for session 132265
+09-29 20:19:05.134  1594 15203 D audioserver: FGS Logger Transaction failed
+09-29 20:19:05.134  1594 15203 D audioserver: -129
+09-29 20:19:05.134  1594 15203 V AudioFlinger: signal playback thread
+09-29 20:19:05.134  1194  1225 D AAudio  : AAudioStream_requestStart(s#1) returned 0 ---------
+09-29 20:19:05.135  1594  3085 V AudioFlinger: processConfigEvents_l() remaining events 1
+09-29 20:19:05.135  1594  3085 V AudioFlinger: PlaybackThread::ioConfigChanged, thread 0xb400007188648920, event 8
+09-29 20:19:05.135  1594  3085 V AudioFlinger: processConfigEvents_l() DONE thread 0xb400007188648920
+09-29 20:19:05.135  1594  3085 V AudioFlinger: track(7460) underrun, track state ACTIVE  framesReady(0) < framesDesired(484)
+09-29 20:19:05.135  1594  3085 D AudioFlinger: updateWakeLockUids_l AudioOut_D uids:10346 
+09-29 20:19:05.135  1594  3085 V AudioFlinger: updateWakeLockUids_l() AudioOut_D status 0
+09-29 20:19:05.136  1194  1295 D AudioStreamLegacy: onAudioDeviceUpdate(deviceId = 14096)
+09-29 20:19:05.136  1438  4407 D AHAL: AudioStream: out_update_source_metadata_v7: 1180: track count is 1 for usecase(1: low-latency-playback)
+09-29 20:19:05.136  1438  4407 D AHAL: AudioStream: out_update_source_metadata_v7: 1222: Source metadata usage:14 content_type:2
+09-29 20:19:05.136  1438  4407 D AHAL: AudioStream: SetAggregateSourceMetadata: 3978: Aggregated Source metadata usage:14 content_type:2
+09-29 20:19:05.136  1438  4407 I PAL: Bluetooth: setDeviceParameter: 2134: sending source metadata to BT API
+09-29 20:19:05.136  1438  4407 D btaudio_offload_aidl: update_metadata: session_type =2
+09-29 20:19:05.136  1438  4407 D btaudio_offload_aidl: update_metadata: session_type =2, source meta data
+09-29 20:19:05.136  1438  4407 D btaudio_offload_aidl: update_metadata: source meta data is session ready = 1
+09-29 20:19:05.136  1438  4407 I BTAudioSessionAidl: UpdateSourceMetadata - SessionType=A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH,1 track(s)
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:bluetooth_audio_port_impl.cc(126)] updateSourceMetadata: 1 track(s)
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:bluetooth_audio_port_impl.cc(136)] updateSourceMetadata: usage: 14
+09-29 20:19:05.136  6372  6493 D Avrcp_ext: AudioManager Player: AudioPlaybackConfiguration piid:120287 deviceId:14096 type:AAudio u/pid:10346/1194 state:started attr:AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_UNKNOWN source=DEFAULT flags=0x0 tags= bundle=null sessionId:132265 mutedState:none  FormatInfo{isSpatialized=false, channelMask=0x0, sampleRate=0}
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:a2dp_encoding.cc(177)] SourceMetadataChangedAIDL: 1 track(s) received
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:a2dp_encoding.cc(185)] SourceMetadataChanged, content_type=2, track_count: 1, usage: 14
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:btif_ahim.cc(240)] btif_ahim_update_src_metadata, track_count: 1, usage: 14
+09-29 20:19:05.136  6372 16405 W bt_btif : btif_report_a2dp_src_metadata_update: Update Metadata in APM
+09-29 20:19:05.136  6372 16405 W bt_btif : context_contention_src: Choosing Context by Priority
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:btif_apm.cc(384)] context_contention_src: tracks count: 1
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:btif_apm.cc(398)] context_contention_src: usage=14, content_type=2, gain=0
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:btif_apm.cc(164)] AudioContentToLeAudioContextInAPM: usage: 14
+09-29 20:19:05.136  6372 16405 I bt_stack: [INFO:btif_apm.cc(247)] getPriority: context type = 8
+09-29 20:19:05.137  6372  6439 I bt_stack: [INFO:btif_apm.cc(368)] metadata_update_apm_jni
+09-29 20:19:05.137  6372  6439 I BluetoothAPM_Jni: btapm_update_metadata_callback
+09-29 20:19:05.137  6372  6439 W ApmNativeInterface: Callback registered in JAVA layer
+09-29 20:19:05.137  6372  6439 W ApmNativeInterface: Context Type: 8
+09-29 20:19:05.137  6372  6439 W APM: StreamAudioService:: setMetadataContextType: 8
+09-29 20:19:05.137  6372  6439 D APM: ActiveDeviceManagerServiceLegacy: getActiveDevice(): device: 73:94:03:5D:7B:4C
+09-29 20:19:05.137  6372  6439 W APM: StreamAudioService:: Game context type received
+09-29 20:19:05.137  6372  6439 D APM: ActiveDeviceManagerServiceLegacy: getActiveProfile returning profile 1
+09-29 20:19:05.137  6372  6439 I APM: MediaAudio: enableGamingMode: for A2DP
+09-29 20:19:05.137  6372  6439 V A2dpService: setGamingMode
+09-29 20:19:05.137  1438  4407 D btaudio_offload_aidl: update_metadata: session_type exit
+09-29 20:19:05.137  6372  6372 D A2dpService: Enable Gaming Mode in A2DP!!
+09-29 20:19:05.137  6372  6372 V A2dpService: enableGamingModeinA2DP
+09-29 20:19:05.137  1594  3085 V AudioFlinger: anticipated start
+09-29 20:19:05.137  6372  6372 D A2dpService: getCodecStatus(73:94:03:5D:7B:4C)
+09-29 20:19:05.137  6372  6372 D BATService: getBATService(): service is NULL
+09-29 20:19:05.137  6372  6372 D A2dpService: CodecType is not AptX AD
+09-29 20:19:05.138  2991 29125 I NearbyDiscovery: (REDACTED) ActiveMediaSessionManager: Find a trigger event! %s
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: AutoPerfLock: 141: (Acquired) perf_lock_handle: 0x14ee95, count: 1
+09-29 20:19:05.138  1438  3923 I AHAL: AudioStream: Open: 3064: Enter: OutPrimary usecase(1: low-latency-playback)
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: Open: 3070: no_of_devices 1
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: Open: 3134: halInputFormat 3 halOutputFormat 3 palformat 23
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: Open: 3214: channels 2 samplerate 48000 format id 23, stream type 1  stream bitwidth 32
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: Open: 3215: msample_rate 0 mchannels 0 mNoOfOutDevices 1
+09-29 20:19:05.138  1438  3923 I PAL: API: pal_stream_open: 223: Enter, stream type:1
+09-29 20:19:05.138  1438  3923 I PAL: Device: setDeviceAttributes: 382: DeviceAttributes for Device Id 8 updated
+09-29 20:19:05.138  1438  3923 I PAL: Device: open: 462: Enter. deviceCount 0 for device id 8 (PAL_DEVICE_OUT_BLUETOOTH_A2DP)
+09-29 20:19:05.138  1438  3923 I PAL: SessionAlsaUtils: setDeviceMediaConfig: 1058: SLIM-DEV1-RX-7 rate ch fmt data_fmt 44100 1 2 7
+09-29 20:19:05.138  1438  3923 E audio_route: [ASUS_Audio] Path: bt-a2dp, length: 0
+09-29 20:19:05.138  1438  3923 E audio_route: Path: bt-a2dp, length: 0
+09-29 20:19:05.138  1438  3923 D audio_route: Apply path: bt-a2dp
+09-29 20:19:05.138  1438  3923 I PAL: Device: open: 497: Exit. deviceCount 1 for device id 8 (PAL_DEVICE_OUT_BLUETOOTH_A2DP), exit status: 0
+09-29 20:19:05.138  1438  3923 I PAL: ResourceManager: allocateFrontEndIds: 7146: allocateFrontEndIds: front end 117
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: populateStreamKV: 2909: stream type 1
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: getSelectorValues: 2731: Direction: 1
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: getSelectorValues: 2747: Instance: 1
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: findKVs: 2621: key: 0xa1000000 value: 0xa100000e
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: findKVs: 2621: key: 0xab000000 value: 0x1
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: populateDeviceKV: 3033: Enter device id:8
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: populateDeviceKV: 3061: Exit device id:8, status 0
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: populateDevicePPKV: 3174: Rx device id:8
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: getSelectorValues: 2807: stream type: 1
+09-29 20:19:05.138  1438  3923 I PAL: PayloadBuilder: findKVs: 2621: key: 0xac000000 value: 0xac000002
+09-29 20:19:05.138  1438  3923 D agm_server_wrapper: Aif id 33 already added to session list of 117
+09-29 20:19:05.138  1438  3923 I AGM: session: session_obj_set_sess_aif_metadata: 1772 Setting metadata for sess_id 117, aif id 33
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 79 *************************Metadata*************************
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 80 GKV size:1
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 83 key:0xac000000, value:0xac000002 
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 87 
+09-29 20:19:05.138  1438  3923 D AGM: metadata: CKV count:0
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 92 
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 94 Property ID:134217744
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 95 property count:1
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 98 Property Values: 
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 100 0x3 
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 102 
+09-29 20:19:05.138  1438  3923 D AGM: metadata: metadata_print: 103 ****************Metadata Done***************************
+09-29 20:19:05.138  1438  3923 D AGM: metadata: 
+09-29 20:19:05.138  1438  3923 I AGM: session: session_obj_set_sess_aif_metadata: 1777 Exit
+09-29 20:19:05.138  1438  3923 D agm_server_wrapper: Aif id 33 already added to session list of 117
+09-29 20:19:05.138  1438  3923 I AGM: API: agm_session_aif_connect: 625 connecting aifid:33 with session id=117
+09-29 20:19:05.138  1438  3923 I PAL: ResourceManager: GetConcurrencyInfo: 5578: stream type 1 Tx conc 0, Rx conc 0, concurrency allowed
+09-29 20:19:05.138  1438  3923 I PAL: ResourceManager: GetConcurrencyInfo: 5578: stream type 1 Tx conc 0, Rx conc 0, concurrency allowed
+09-29 20:19:05.138  1438  3923 I PAL: ResourceManager: GetConcurrencyInfo: 5578: stream type 1 Tx conc 0, Rx conc 0, concurrency allowed
+09-29 20:19:05.138  1438  3923 I PAL: API: pal_stream_open: 267: Exit. Value of stream_handle 0xb400007bfd0d3170K, status 0
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: GetBufferSize: 3004: type 1
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: Open: 3406: fragment_size_ 1536 fragments_ 2
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: Open: 3436: Exit ret: 0
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: ~AutoPerfLock: 151: (release) perf_lock_handle: 0x14ee95, count: 1
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: ~AutoPerfLock: 155: Releasing perf_lock_handle: 0x14ee95
+09-29 20:19:05.138  6372  6493 D Avrcp_ext: AudioManager Player in started state: pl.pawelkaczmarczyk.pasjans
+09-29 20:19:05.138  6372  6493 D Avrcp_ext: AudioManager Active Player: pl.pawelkaczmarczyk.pasjans
+09-29 20:19:05.138  6372  6493 D Avrcp_ext: AudioManager Player: AudioPlaybackConfiguration piid:39 deviceId:0 type:android.media.SoundPool u/pid:10083/3513 state:idle attr:AudioAttributes: usage=USAGE_ASSISTANCE_SONIFICATION content=CONTENT_TYPE_SONIFICATION flags=0x800 tags= bundle=null sessionId:0 mutedState:none  FormatInfo{isSpatialized=false, channelMask=0x0, sampleRate=0}
+09-29 20:19:05.138  6372  6493 D Avrcp_ext: AudioManager Player: AudioPlaybackConfiguration piid:120175 deviceId:0 type:android.media.SoundPool u/pid:10045/24580 state:idle attr:AudioAttributes: usage=USAGE_ASSISTANCE_SONIFICATION content=CONTENT_TYPE_SONIFICATION flags=0x800 tags= bundle=null sessionId:0 mutedState:none  FormatInfo{isSpatialized=false, channelMask=0x0, sampleRate=0}
+09-29 20:19:05.138  6372  6493 D Avrcp_ext: AudioManager isPlaying: true, mAudioPlaybackIsActive = false
+09-29 20:19:05.138  1438  3923 D AHAL: AudioStream: AutoPerfLock: 141: (Acquired) perf_lock_handle: 0x14ee96, count: 1
+09-29 20:19:05.138  6372  6493 D Avrcp_ext: AudioManager Player: AudioPlaybackConfiguration piid:120287 deviceId:14096 type:AAudio u/pid:10346/1194 state:started attr:AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_UNKNOWN source=DEFAULT flags=0x0 tags= bundle=null sessionId:132265 mutedState:none  FormatInfo{isSpatialized=false, channelMask=0x3, sampleRate=24000}
+09-29 20:19:05.138  1438  3923 I PAL: API: pal_stream_start: 338: Enter. Stream handle 0xb400007bfd0d3170K
+09-29 20:19:05.138  1438  3923 I btaudio_offload_aidl: audio_stream_start: session type: 2
+09-29 20:19:05.138  1438  3923 D btaudio_offload_aidl: audio_stream_start: state = AUDIO_STATE_STANDBY
+09-29 20:19:05.138  1438  3923 E btaudio_offload_aidl: audio_stream_start: issues Start stream to stack
+09-29 20:19:05.138  6372 16405 D bt_btif : btif_ahim_process_request: sending AIDL request to AV
+09-29 20:19:05.138  6372 16405 D bt_btif : btif_dispatch_sm_event: event: 50, len: 4
+09-29 20:19:05.138  6372 16405 D bt_btif : btif_dispatch_sm_event: event 50 sent
+09-29 20:19:05.138  6372  6439 D bt_btif : btif_ahim_update_pending_command: AIDL, profile: 1, cmd: 3
+09-29 20:19:05.138  1438  3923 D btaudio_offload_aidl: wait_for_stack_response
+09-29 20:19:05.138  1438  3923 W btaudio_offload_aidl: wait_for_stack_response: entering conditional wait: ack_recvd = 0
+09-29 20:19:05.139  2991 29125 I NearbyDiscovery: ConnectionSwitchManager: enableOnSightRunnable no need to enable onSight callback because not an outgoing call [CONTEXT service_id=265 ]
+09-29 20:19:05.139  2991 29125 I NearbyFastPair: (REDACTED) NearbyDeviceManager: setOnSightCallback to %s
+09-29 20:19:05.139  6372  6439 W bt_stack: [WARNING:a2dp_encoding.cc(2279)] is_qc_hal_enabled
+09-29 20:19:05.139  6372  6439 W bt_stack: [WARNING:a2dp_encoding.cc(2258)] get_hal_version
+09-29 20:19:05.139  6372  6439 D bt_btif : btif_ahim_update_pending_command: QC, cur_active_profile: 1
+09-29 20:19:05.139  6372  6439 E bt_stack: [ERROR:a2dp_encoding.cc(2693)] update_pending_command: BluetoothAudio HAL is not enabled
+09-29 20:19:05.139  6372  6439 W bt_btif : BTHF: btif_hf_check_if_sco_connected(): No SCO connection up
+09-29 20:19:05.139  6372  6439 I bt_btif_vendor: btif_ba_is_active: 0
+09-29 20:19:05.139  6372  6439 D bt_btif : btif_dispatch_sm_event: event: 32, len: 0
+09-29 20:19:05.139  6372  6439 D bt_btif : btif_dispatch_sm_event: event 32 sent
+09-29 20:19:05.139  6372  6439 D bt_btif : btif_ahim_ack_stream_started: AIDL, profile: 1, ack: 6
+09-29 20:19:05.139  6372  6439 I bt_stack: [INFO:a2dp_encoding.cc(677)] ack_stream_startedaidl: result=PENDING
+09-29 20:19:05.139  6372  6439 E bt_stack: [ERROR:a2dp_encoding.cc(220)] : AIDL Is this function called
+09-29 20:19:05.139  6372  6439 I bt_stack: [INFO:client_interface.cc(445)] StreamStarted: AIDL
+09-29 20:19:05.139  6372  6439 I bt_stack: [INFO:client_interface.cc(451)] StreamStarted: AIDL: PENDING ignored
+09-29 20:19:05.139  6372  6439 D bt_btif : btif_av_state_opened_handler: event: UNKNOWN_EVENT, flags: 0, peer_sep: 1, index: 0 reconfig_event: 0, codec_cfg_change: 0, reconfig_pending: 0, reconfig_a2dp: 0, is_retry_reconfig: 0
+09-29 20:19:05.139  2991 29125 I NearbyDiscovery: (REDACTED) [trigger-id=Plco64035ED3, feature-id=Sass] ConnectionSwitchManager: Received %s, try to switch
+09-29 20:19:05.139  6372  6439 W bt_btif : btif_av_state_opened_handler : unhandled event:UNKNOWN_EVENT
+09-29 20:19:05.139  6372  6439 I btif_av : isBATEnabled: 0
+09-29 20:19:05.139  6372  6439 D bt_btif : btif_av_state_opened_handler: event: BTIF_AV_START_STREAM_REQ_EVT, flags: 0, peer_sep: 1, index: 0 reconfig_event: 0, codec_cfg_change: 0, reconfig_pending: 0, reconfig_a2dp: 0, is_retry_reconfig: 0
+09-29 20:19:05.139  6372  6473 D bt_btif : bta_av_ssm_execute(): AV Sevent(0x41)=0x120b(AP_START) state=3(OPEN)
+09-29 20:19:05.139  6372  6473 W bt_btm  : BTM: Local device role : 0x00
+09-29 20:19:05.139  6372  6473 W bt_btm  : BTM: RemBdAddr: 73:94:03:5d:7b:4c
+09-29 20:19:05.139  6372  6473 W bt_btif : bta_dm_rm_cback:4, status:7
+09-29 20:19:05.139  6372  6493 D Avrcp_ext: AudioManager Player in started state: pl.pawelkaczmarczyk.pasjans
+09-29 20:19:05.139  6372  6493 D Avrcp_ext: AudioManager Active Player: pl.pawelkaczmarczyk.pasjans
+09-29 20:19:05.140  6372  6493 D Avrcp_ext: AudioManager Player: AudioPlaybackConfiguration piid:39 deviceId:0 type:android.media.SoundPool u/pid:10083/3513 state:idle attr:AudioAttributes: usage=USAGE_ASSISTANCE_SONIFICATION content=CONTENT_TYPE_SONIFICATION flags=0x800 tags= bundle=null sessionId:0 mutedState:none  FormatInfo{isSpatialized=false, channelMask=0x0, sampleRate=0}
+09-29 20:19:05.140  6372  6493 D Avrcp_ext: AudioManager Player: AudioPlaybackConfiguration piid:120175 deviceId:0 type:android.media.SoundPool u/pid:10045/24580 state:idle attr:AudioAttributes: usage=USAGE_ASSISTANCE_SONIFICATION content=CONTENT_TYPE_SONIFICATION flags=0x800 tags= bundle=null sessionId:0 mutedState:none  FormatInfo{isSpatialized=false, channelMask=0x0, sampleRate=0}
+09-29 20:19:05.140  6372  6493 D Avrcp_ext: AudioManager isPlaying: true, mAudioPlaybackIsActive = true
+09-29 20:19:05.140  6372  6493 V Avrcp_ext: AvrcpMessageHandler: received message=38
+09-29 20:19:05.140  6372  6493 D Avrcp_ext: MSG_UPDATE_CURRENT_MEDIA_STATE
+09-29 20:19:05.140  1439  1439 D vendor.qti.bluetooth@1.1-wake_lock: Acquire wakelock is acquired 
+09-29 20:19:05.140  6372  6493 V Avrcp_ext: updateCurrentMediaState: mMediaController: null
+09-29 20:19:05.140  6372  6493 W Avrcp_ext: isMusicActive: true getBluetoothPlayState: 2 A2dp State: 11 mAudioPlaybackIsActive: true
+09-29 20:19:05.140  6372  6493 W Avrcp_ext: updateCurrentMediaState: isPlaying = false
+09-29 20:19:05.140  6372  6493 I Avrcp_ext: device found at index 0
+09-29 20:19:05.140  6372  6493 V Avrcp_ext: updateCurrentMediaState: addr: [B@d612f62
+09-29 20:19:05.140  6372  6493 V Avrcp_ext: Media update: id -1➡-1? [MediaAttributes: none] : [MediaAttributes: none]
+09-29 20:19:05.140  6372  6493 D Avrcp_ext: isPackageNameValid: browsedPackage = isValid = false
+09-29 20:19:05.140  6372  6493 W Avrcp_ext: updateCurrentMediaState: isInactivePlayer = true
+09-29 20:19:05.140  6372  6493 V Avrcp_ext: updatePlaybackState, state: PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null} device: null
+09-29 20:19:05.140  1439  6468 I vendor.qti.bluetooth@1.1-ibs_handler: ProcessIbsCmd: Signal wack_cond_
+09-29 20:19:05.140  1439  1439 D vendor.qti.bluetooth@1.1-ibs_handler: DeviceWakeUp: Unblocked from waiting for FC, pthread_cond_timedwait ret = 0
+09-29 20:19:05.140  6372 16405 I APM: ApmConst:  getQtiLeAudioEnabled: false
+09-29 20:19:05.141  6372  6493 D BroadcastService: getBroadcastAddress
+09-29 20:19:05.141  6372  6493 D BroadcastService: isBroadcastActive: Broadcast is turned to off
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: Device: RT-B6 : old state: PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}
+09-29 20:19:05.141  2991   621 I NearbyDiscovery: ConnectionSwitchManager: already has bluetooth headset support related profile [CONTEXT service_id=265 ]
+09-29 20:19:05.141  6372  6493 D BroadcastService: getBroadcastAddress
+09-29 20:19:05.141  6372  6493 D BroadcastService: isBroadcastActive: Broadcast is turned to off
+09-29 20:19:05.141  2991   621 I NearbyDiscovery: [trigger-id=Plco64035ED3, feature-id=Sass] ConnectionSwitchManager: Sass will not be triggered because this seeker already has associated headsets [CONTEXT service_id=265 ]
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: Device: DESKTOP-0SMUHNJ : old state: PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: Device: no name: 
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: Device: no name: 
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: Device: no name: 
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: updatePlayerStateAndPosition, old=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}, state=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: old state = PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}, new state= PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 D HeadsetService: isScoOrCallActive(): Call Active:falseCall is Ringing:falseSCO is Active:false
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: updatePlayStatusForDevice: device: 73:94:03:5D:7B:4C
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: updatePlaybackState (0): old=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}(2), new=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}(2)
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: Exit updatePlayStatusForDevice
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 D HeadsetService: isScoOrCallActive(): Call Active:falseCall is Ringing:falseSCO is Active:false
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: updatePlayStatusForDevice: device: E4:1F:D5:DA:83:14
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: updatePlaybackState (1): old=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}(2), new=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}(2)
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: Exit updatePlayStatusForDevice
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 D HeadsetService: isScoOrCallActive(): Call Active:falseCall is Ringing:falseSCO is Active:false
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: updatePlayStatusForDevice: device: null
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: updatePlaybackState (1): old=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}(2), new=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}(2)
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: Exit updatePlayStatusForDevice
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 D HeadsetService: isScoOrCallActive(): Call Active:falseCall is Ringing:falseSCO is Active:false
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: updatePlayStatusForDevice: device: null
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: updatePlaybackState (1): old=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}(2), new=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}(2)
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: Exit updatePlayStatusForDevice
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 D HeadsetService: isScoOrCallActive(): Call Active:falseCall is Ringing:falseSCO is Active:false
+09-29 20:19:05.141  6372  6493 D HeadsetService:  isAudioOn: The number of audio connected devices 0
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: updatePlayStatusForDevice: device: null
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: updatePlaybackState (1): old=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360743613, actions=0, custom actions=[], active item id=-1, error=null}(2), new=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}(2)
+09-29 20:19:05.141  6372  6493 I Avrcp_ext: Exit updatePlayStatusForDevice
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: Enter sendPlayPosNotificationRsp
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: sendPlayPosNotificationRsp: Not registered or requesting.
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: Enter sendPlayPosNotificationRsp
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: sendPlayPosNotificationRsp: Not registered or requesting.
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: Enter sendPlayPosNotificationRsp
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: sendPlayPosNotificationRsp: Not registered or requesting.
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: Enter sendPlayPosNotificationRsp
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: sendPlayPosNotificationRsp: Not registered or requesting.
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: Enter sendPlayPosNotificationRsp
+09-29 20:19:05.141  6372  6493 D Avrcp_ext: sendPlayPosNotificationRsp: Not registered or requesting.
+09-29 20:19:05.141  6372  6493 V Avrcp_ext: Exit updatePlayerStateAndPosition
+09-29 20:19:05.141  6372  6493 D APM: ActiveDeviceManagerServiceLegacy: getActiveAbsoluteDevice(): device: 73:94:03:5D:7B:4C
+09-29 20:19:05.141  6372  6493 D APM: ActiveDeviceManagerServiceLegacy: isStableState(): true
+09-29 20:19:05.142  6372  6493 D Avrcp_ext: isAdmStable = true activeAbsAddr = 73:94:03:5D:7B:4C device = null
+09-29 20:19:05.142  6372  6493 V Avrcp_ext: Exit handleMessage
+09-29 20:19:05.163     0     0 E KERNEL  : [1092560.252926][T21283] [ALS/PS]  stk3a9x_get_fifo_data_polling 453: processing cur_frame_cnt:128(TE:4), frame_num = 8
+09-29 20:19:05.163     0     0 I KERNEL  : [1092560.253553][T21283] [ALS/PS]  stk3a9x_als_get_data_polling_internal 2535: als_cur_ci = 4, als_cur_pd = 4, gain_ratio = 1
+09-29 20:19:05.163     0     0 I KERNEL  : [1092560.253553][T21283]
+09-29 20:19:05.164     0     0 I KERNEL  : [1092560.254858][T21283] [ALS/PS]  stk3a9x_als_get_data_polling_internal 2682: Display PWM, avg_cnt: 9, FIFOData.Size: 96, fifo_avg_f: 210, fifo_avg_g: 73, fifo_avg_c: 0, fifo_avg_diff: 21, cal_diff = 7172588709940822474, BS: 196
+09-29 20:19:05.164     0     0 I KERNEL  : [1092560.254863][T21283] [ALS/PS]  stk3a9x_als_notify 1468: ALS data = 48, scale = 235, raw=208, 48,48,49,49,49,49,49,49,49,49,49,48,48,48,48,48,48,48,48,48,
+09-29 20:19:05.166  6372  6473 E bt_avp  : avdt_ad_tc_data_ind: type: x0, tcid: 0, ccb_idx: 0
+09-29 20:19:05.166  6372  6473 D bt_btif : bta_av_ssm_execute(): AV Sevent(0x41)=0x121c(STR_START_OK) state=3(OPEN)
+09-29 20:19:05.166  6372  6473 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.166  6372  6473 W bt_btif : bta_av_start_ok: Resetting/Removing packet type limit for non-aptX codec stream
+09-29 20:19:05.166  6372  6473 W bt_btm  : BTM: Local device role : 0x00
+09-29 20:19:05.166  6372  6473 W bt_btm  : BTM: RemBdAddr: 73:94:03:5d:7b:4c
+09-29 20:19:05.166  6372  6473 I bt_bta_av: bta_av_link_role_ok hndl:x41 role:0 conn_audio:x1 bits:1 features:x8e5b
+09-29 20:19:05.166  6372  6473 W bt_btif : bta_dm_rm_cback:4, status:0
+09-29 20:19:05.166  6372  6473 W bt_l2cap: L2CA_SetDesireRole() new:x0, disallow_switch:0
+09-29 20:19:05.166  6372  6473 W bt_btif : bta_dm_rm_cback:4, status:7
+09-29 20:19:05.166  6372  6473 W bt_btm  : BTM: Local device role : 0x00
+09-29 20:19:05.166  6372  6473 W bt_btm  : BTM: RemBdAddr: 73:94:03:5d:7b:4c
+09-29 20:19:05.166  6372  6439 D bt_btif : btif_av_state_opened_handler: event: BTA_AV_START_EVT, flags: 4, peer_sep: 1, index: 0 reconfig_event: 0, codec_cfg_change: 0, reconfig_pending: 0, reconfig_a2dp: 0, is_retry_reconfig: 0
+09-29 20:19:05.166  6372  6439 W bt_btif : BTHF: btif_hf_check_if_sco_connected(): No SCO connection up
+09-29 20:19:05.166  6372  6439 D bt_btif : btif_av_state_opened_handler: event: BTIF_SM_EXIT_EVT, flags: 4, peer_sep: 1, index: 0 reconfig_event: 0, codec_cfg_change: 0, reconfig_pending: 0, reconfig_a2dp: 0, is_retry_reconfig: 0
+09-29 20:19:05.166  6372  6439 D bt_btif : btif_av_state_started_handler: event: BTIF_SM_ENTER_EVT flags: 0  index = 0, reconfig_event: 0, codec_cfg_change: 0
+09-29 20:19:05.166  6372  6439 D bt_btif : btif_av_state_started_handler update media task on DUT initiated start for index =0
+09-29 20:19:05.166  6372  6439 D bt_btif : btif_ahim_get_pending_command: AIDL, profile: 1
+09-29 20:19:05.166  6372  6439 E bt_stack: [ERROR:a2dp_encoding.cc(720)] aidl: Is this function called
+09-29 20:19:05.166  6372  6439 E bt_stack: [ERROR:a2dp_encoding.cc(220)] : AIDL Is this function called
+09-29 20:19:05.166  6372  6439 W bt_btif : ## ON A2DP STARTED ##
+09-29 20:19:05.166  6372  6439 I btif_av : isBATEnabled: 0
+09-29 20:19:05.166  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.166  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.166  6372  6439 W bt_btif : BTHF: btif_hf_check_if_sco_connected(): No SCO connection up
+09-29 20:19:05.166  6372  6439 D bt_btif : btif_dispatch_sm_event: event: 38, len: 1
+09-29 20:19:05.166  6372  6439 D bt_btif : btif_dispatch_sm_event: event 38 sent
+09-29 20:19:05.166  6372  6439 I BluetoothA2dpServiceJni: bta2dp_audio_state_callback
+09-29 20:19:05.166  6372  6439 D A2dpNativeInterface: onAudioStateChanged: A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:73:94:03:5D:7B:4C, value1:STARTED}
+09-29 20:19:05.167  6372  6439 D A2dpService: messageFromNative: Going to acquire mVariableLock.
+09-29 20:19:05.167  6372  6439 D A2dpService: messageFromNative: Acquired mVariableLock
+09-29 20:19:05.167  6372  6439 D A2dpService: messageFromNative: Released mVariableLock
+09-29 20:19:05.167  6372  6439 D A2dpService: messageFromNative: Sending STACK_EVENT: A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:73:94:03:5D:7B:4C, value1:STARTED} to sm.
+09-29 20:19:05.167  6372  6439 I btif_av : isBATEnabled: 0
+09-29 20:19:05.167  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.167  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.167  6372  6439 D bt_btif : btif_av_state_started_handler Remote Start, Not updating current playing for index = 0
+09-29 20:19:05.167  6372  6439 I btif_av : isBATEnabled: 0
+09-29 20:19:05.167  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.167  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.167  6372  6500 D A2dpStateMachine: handleMessage: E msg.what=101
+09-29 20:19:05.167  6372  6500 D A2dpStateMachine: processMsg: Connected
+09-29 20:19:05.167  6372  6439 D bt_btif : btif_av_state_started_handler: event: BTIF_AV_OFFLOAD_START_REQ_EVT flags: 0  index = 0, reconfig_event: 0, codec_cfg_change: 0
+09-29 20:19:05.167  6372  6500 D A2dpStateMachine: Connected process message(73:94:03:5D:7B:4C): STACK_EVENT
+09-29 20:19:05.167  6372  6500 D A2dpStateMachine: Connected: stack event: A2dpStackEvent {type:EVENT_TYPE_AUDIO_STATE_CHANGED, device:73:94:03:5D:7B:4C, value1:STARTED}
+09-29 20:19:05.167  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.167  6372  6439 D a2dp_codec: getCodecConfigAndCapabilities: Recursive mutex lock acquired
+09-29 20:19:05.167  6372  6439 D a2dp_codec: getCodecConfigAndCapabilities: current_codec_config_ not null, getCodecConfig()
+09-29 20:19:05.167  6372  6439 D a2dp_codec: getCodecConfigAndCapabilities: Recursive mutex lock released
+09-29 20:19:05.167  6372  6439 W bt_btif : BT controller doesn't support scrambling
+09-29 20:19:05.167  6372  6500 I A2dpStateMachine: Connected: processAudioStateEvent: state: 2mIsPlaying: false
+09-29 20:19:05.167  6372  6500 I A2dpStateMachine: Connected: started playing: 73:94:03:5D:7B:4C
+09-29 20:19:05.167  6372  6439 W bt_btif : btif_av_state_started_handler:is_scrambling_enabled 0
+09-29 20:19:05.167  6372  6439 W bt_btif : btif_av_state_started_handler:is_44p1kFreq_supported 1
+09-29 20:19:05.167  6372  6500 D A2dpStateMachine: A2DP Playing state : device: 73:94:03:5D:7B:4C State:NOT_PLAYING->PLAYING
+09-29 20:19:05.167  6372  6493 V Avrcp_ext: AvrcpMessageHandler: received message=18
+09-29 20:19:05.167  6372  6493 V Avrcp_ext: MSG_SET_A2DP_AUDIO_STATE:10
+09-29 20:19:05.167  6372  6473 D bt_btif : bta_av_ssm_execute(): AV Sevent(0x41)=0x122b(API_OFFLOAD_START) state=3(OPEN)
+09-29 20:19:05.167  6372  6500 D APM: MediaAudio: onStreamStateChange: mGamingEnabled: true
+09-29 20:19:05.167  6372  6473 W bt_btif : bta_av_offload_req Restricting AVDTP MTU size to 663
+09-29 20:19:05.167  6372  6473 D a2dp_sbc: A2DP_ParseInfoSbc: is_capability: 1
+09-29 20:19:05.167  6372  6473 D a2dp_sbc: A2DP_ParseInfoSbc: losc: 6
+09-29 20:19:05.167  6372  6473 D a2dp_sbc: A2DP_ParseInfoSbc: media_type: 0, codec_type: 0
+09-29 20:19:05.167  6372  6500 I APM: ApmConst:  getQtiLeAudioEnabled: false
+09-29 20:19:05.167  6372  6500 D APM: MediaAudio: onStreamStateChange update to volume manager
+09-29 20:19:05.167  6372  6473 D a2dp_sbc: A2DP_ParseInfoSbc: p_ie->samp_freq: 32, p_ie->ch_mode: 1, p_ie->block_len: 16, p_ie->num_subbands: 4, p_ie->alloc_method: 1, p_ie->min_bitpool: 2, p_ie->max_bitpool: 53
+09-29 20:19:05.167  6372  6473 D a2dp_sbc: A2DP_ParseInfoSbc: is_capability: 0
+09-29 20:19:05.167  6372  6473 D a2dp_sbc: A2DP_ParseInfoSbc: losc: 6
+09-29 20:19:05.167  6372  6473 D a2dp_sbc: A2DP_ParseInfoSbc: media_type: 0, codec_type: 0
+09-29 20:19:05.167  6372  6473 D a2dp_sbc: A2DP_ParseInfoSbc: p_ie->samp_freq: 32, p_ie->ch_mode: 1, p_ie->block_len: 16, p_ie->num_subbands: 4, p_ie->alloc_method: 1, p_ie->min_bitpool: 2, p_ie->max_bitpool: 53
+09-29 20:19:05.167  6372  6473 D bt_btif : bta_av_vendor_offload_start: vsc flags:-vs_configs_exchanged:0 tx_started:0 tx_start_initiated:0tx_enc_update_initiated:0 tx_stop_initiated: 0
+09-29 20:19:05.167  6372  6493 V Avrcp_ext: event for device address 73:94:03:5D:7B:4C
+09-29 20:19:05.167  6372  6493 I Avrcp_ext: device found at index 0
+09-29 20:19:05.167  6372  6493 D BATService: getBATService(): service is NULL
+09-29 20:19:05.167  6372  6500 D APM: VolumeManager: updateStreamState, device: 73:94:03:5D:7B:4C type: 1 streamState: 10 isMusicActive: true
+09-29 20:19:05.167  6372  6500 D AcmService: Get group address for (73:94:03:5D:7B:4C)
+09-29 20:19:05.167  6372  6500 W BluetoothGroupService: getGroupService(): service is NULL
+09-29 20:19:05.167  6372  6500 D CsipSetCoordinatorService: getRemoteDeviceGroupId: device = 73:94:03:5D:7B:4C uuid = null, mPublicAddr = true
+09-29 20:19:05.167  6372  6500 D AcmService: Hash Map is not NULL
+09-29 20:19:05.167  6372  6500 D APM: VolumeManager: Restore volume for A2dp streaming
+09-29 20:19:05.167  6372  6500 I APM: VolumeManager: setMediaAbsoluteVolume: Updating new volume to AVRCP: 15
+09-29 20:19:05.167  6372  6500 V Avrcp_ext: Enter setAbsoluteVolume15
+09-29 20:19:05.167  6372  6500 D Avrcp_ext: pts_test = false volume = 15 local volume = -1
+09-29 20:19:05.167  6372  6500 V Avrcp_ext: Exit setAbsoluteVolume
+09-29 20:19:05.167  6372  6500 D CCService: onUnicastStateUpdate: 10
+09-29 20:19:05.167  6372  6493 V Avrcp_ext: updateCurrentMediaState: mMediaController: null
+09-29 20:19:05.167  6372  6493 W Avrcp_ext: isMusicActive: true getBluetoothPlayState: 2 A2dp State: 10 mAudioPlaybackIsActive: true
+09-29 20:19:05.167  6372  6493 W Avrcp_ext: updateCurrentMediaState: isPlaying = true
+09-29 20:19:05.167  6372  6493 I Avrcp_ext: device found at index 0
+09-29 20:19:05.167  6372  6493 V Avrcp_ext: Media update: id -1➡-1? [MediaAttributes: none] : [MediaAttributes: none]
+09-29 20:19:05.167  6372  6493 D Avrcp_ext: isPackageNameValid: browsedPackage = isValid = false
+09-29 20:19:05.167  6372  6493 W Avrcp_ext: updateCurrentMediaState: isInactivePlayer = true
+09-29 20:19:05.168  6372  6493 V Avrcp_ext: updatePlaybackState, state: PlaybackState {state=PLAYING(3), position=-1, buffered position=0, speed=1.0, updated=3360761471, actions=0, custom actions=[], active item id=-1, error=null} device: 73:94:03:5D:7B:4C
+09-29 20:19:05.168  6372  6439 D bt_btif : btif_av_state_started_handler: event: BTA_AV_OFFLOAD_START_RSP_EVT flags: 0  index = 0, reconfig_event: 0, codec_cfg_change: 0
+09-29 20:19:05.168  6372  6439 I btif_av : isBATEnabled: 0
+09-29 20:19:05.168  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.168  6372  6439 E bt_btif : bta_av_co_get_active_peer: active peer index: 0
+09-29 20:19:05.168  6372  6439 D bt_btif : btif_ahim_ack_stream_started: AIDL, profile: 1, ack: 0
+09-29 20:19:05.168  6372  6439 I bt_stack: [INFO:a2dp_encoding.cc(677)] ack_stream_startedaidl: result=SUCCESS_FINISHED
+09-29 20:19:05.168  6372  6439 E bt_stack: [ERROR:a2dp_encoding.cc(220)] : AIDL Is this function called
+09-29 20:19:05.168  6372  6439 I bt_stack: [INFO:client_interface.cc(445)] StreamStarted: AIDL
+09-29 20:19:05.168  6372  6372 D HeadsetService: Received BluetoothA2dp Play State changed
+09-29 20:19:05.168  1438  1459 I BTAudioProviderStub: streamStarted - SessionType=A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH, status=SUCCESS
+09-29 20:19:05.168  6372  6372 D HeadsetA2dpSync:  updateA2DPPlayingState device: 73:94:03:5D:7B:4C transition 11->10
+09-29 20:19:05.168  1438  1459 I BTAudioSessionAidl: ReportControlStatus - status=SUCCESS for SessionType=A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH, bluetooth_audio=0x0200 started
+09-29 20:19:05.168  1438  1459 I btaudio_offload_aidl: stack_resp_cb: status = 1
+09-29 20:19:05.168  6372  6372 I APM: ApmConst:  getQtiLeAudioEnabled: false
+09-29 20:19:05.168  6372  6372 I APM: ApmConst:  getAospLeaEnabled: true
+09-29 20:19:05.168  1438  1459 I btaudio_offload_aidl: stack_resp_cb: exit = 1
+09-29 20:19:05.168  1438  3923 D btaudio_offload_aidl: audio_stream_start: status = CTRL_ACK_SUCCESS
+09-29 20:19:05.168  1438  3923 I btaudio_offload_aidl: audio_stream_start: a2dp stream started successfully
+09-29 20:19:05.168  1438  3923 E PAL: Bluetooth: startPlayback: 1601: BT controller start return = 0
+09-29 20:19:05.168  1438  3923 I btaudio_offload_aidl: audio_stream_set_latency_mode_api: session type is 2
+09-29 20:19:05.168  6372  6372 D APM: ActiveDeviceManagerServiceLegacy: getActiveProfile returning profile 1
+09-29 20:19:05.168  6372 16405 I bt_stack: [INFO:a2dp_encoding.cc(215)] SetLatencyMode is_low_latency: 0
+09-29 20:19:05.168  6372  6372 D APM: ActiveDeviceManagerServiceLegacy: getActiveDevice(): device: 73:94:03:5D:7B:4C
+09-29 20:19:05.168  6372  6493 D BroadcastService: getBroadcastAddress
+09-29 20:19:05.168  6372 16405 I bt_stack: [INFO:btif_ahim.cc(232)] btif_ahim_set_latency_mode, is_low_latency: 0
+09-29 20:19:05.168  6372  6493 D BroadcastService: isBroadcastActive: Broadcast is turned to off
+09-29 20:19:05.168  6372 16405 W bt_btif : btif_apm_set_latency_mode: Set Latency Mode in APM
+09-29 20:19:05.168  6372  6372 D HeadsetA2dpSync:  MediaProfile: 1, current active media device: 73:94:03:5D:7B:4C
+09-29 20:19:05.169  6372  6372 D HeadsetService:  isInCall false
+09-29 20:19:05.168  1438  3923 I btaudio_offload_aidl: audio_get_codec_config: session_type = 2
+09-29 20:19:05.169  6372  6372 D HeadsetService:  isRinging false
+09-29 20:19:05.169  1438  3923 I btaudio_offload_aidl: audio_get_codec_config: state = AUDIO_STATE_STARTED
+09-29 20:19:05.169  1438  3923 I btaudio_offload_aidl: a2dp_codec_parser: codec_type = 1
+09-29 20:19:05.169  1438  3923 D btaudio_offload_aidl: a2dp_codec_parser: SBC: copied codec config: min_bitpool:2 max_bitpool:53
+09-29 20:19:05.169  1438  3923 I btaudio_offload_aidl: a2dp_codec_parser: SBC: bitrate:330000 i/p bitrate:330000
+09-29 20:19:05.169  1438  3923 I btaudio_offload_aidl: a2dp_codec_parser: SBC: done copying full codec config
+09-29 20:19:05.169  6372  6372 D HeadsetA2dpSync:  device: 73:94:03:5D:7B:4C state = 4
+09-29 20:19:05.169  1438  3923 D btaudio_offload_aidl: audio_is_scrambling_enabled: Scrambling is disabled
+09-29 20:19:05.169  1438  3923 I PAL: Bluetooth: startPlayback: 1634: isScramblingEnabled = 0
+09-29 20:19:05.169  1438  3923 I PAL: PayloadBuilder: getBtDeviceKV: 2435: Enter: codecFormat:0x1f000000, isabrEnabled:0, isHostless:0
+09-29 20:19:05.169  6372  6372 D BtOppService: action : android.bluetooth.a2dp.profile.action.PLAYING_STATE_CHANGED
+09-29 20:19:05.169  1438  3923 I PAL: PayloadBuilder: findKVs: 2621: key: 0xa2000000 value: 0xa2000003
+09-29 20:19:05.169  1438  3923 I PAL: PayloadBuilder: findKVs: 2621: key: 0xb4000000 value: 0xb4000002
+09-29 20:19:05.169  1438  3923 I PAL: PayloadBuilder: findKVs: 2621: key: 0xb5000000 value: 0xb5000001
+09-29 20:19:05.169  1438  3923 I PAL: PayloadBuilder: getBtDeviceKV: 2454: Exit, status 0
+09-29 20:19:05.169  6372  6372 D BtOppUtils: device: 73:94:03:5D:7B:4C newState: 10
+09-29 20:19:05.169  6372  6372 D BtOppUtils:  isA2DPPlaying :true
+09-29 20:19:05.169  1438  3923 I AGM: device: device_set_metadata: 707 Setting device metadata for SLIM-DEV1-RX-7
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 79 *************************Metadata*************************
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 80 GKV size:3
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 83 key:0xa2000000, value:0xa2000003 
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 83 key:0xb4000000, value:0xb4000002 
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 83 key:0xb5000000, value:0xb5000001 
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 87 
+09-29 20:19:05.169  1438  3923 D AGM: metadata: CKV count:0
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 92 
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 94 Property ID:134217744
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 95 property count:2
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 98 Property Values: 
+09-29 20:19:05.169  6372  6500 I A2dpStateMachine: state:AUDIO_STATE_STARTED
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 100 0x2 
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 100 0x5 
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 102 
+09-29 20:19:05.169  1438  3923 D AGM: metadata: metadata_print: 103 ****************Metadata Done***************************
+09-29 20:19:05.169  1438  3923 D AGM: metadata: 
+09-29 20:19:05.169  1438  3923 I PAL: Bluetooth: configureGraphModules: 434: choose BT codec format 1f000000
+09-29 20:19:05.169  6372  6500 D A2dpStateMachine: handleMessage: X
+09-29 20:19:05.169  6372  6439 I bt_stack: [INFO:btif_apm.cc(373)] set_latency_mode_apm_jni
+09-29 20:19:05.169  3836  3836 I aptxalsBTEventHandler: action: android.bluetooth.a2dp.profile.action.PLAYING_STATE_CHANGED
+09-29 20:19:05.169  3836  3836 I aptxalsBTEventHandler: received action: android.bluetooth.a2dp.profile.action.PLAYING_STATE_CHANGED for device: 73:94:03:5D:7B:4C state: STATE_PLAYING
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: Device: RT-B6 : old state: PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}
+09-29 20:19:05.169  6372  6439 I BluetoothAPM_Jni: btapm_set_latency_mode_callback
+09-29 20:19:05.169  6372  6439 D ApmNativeInterface: Callback registered in JAVA layer
+09-29 20:19:05.169  6372  6439 D ApmNativeInterface:  isLowLatency: false
+09-29 20:19:05.169  6372  6439 D APM: StreamAudioService:: setLatencyMode: false mCurrentContextType: 8
+09-29 20:19:05.169  6372  6439 D APM: ActiveDeviceManagerServiceLegacy: getActiveProfile returning profile 1
+09-29 20:19:05.169  6372  6439 D APM: ActiveDeviceManagerServiceLegacy: getActiveDevice(): device: 73:94:03:5D:7B:4C
+09-29 20:19:05.169  1438  3923 I PAL: Device: updateCustomPayload: 415: customPayloadSize = 16
+09-29 20:19:05.169  1438  3923 I PAL: Device: updateCustomPayload: 415: customPayloadSize = 40
+09-29 20:19:05.169  1438  3923 I PAL: Device: updateCustomPayload: 415: customPayloadSize = 64
+09-29 20:19:05.169  1438  3923 I PAL: Device: updateCustomPayload: 415: customPayloadSize = 112
+09-29 20:19:05.169  6372  6372 D HeadsetService: Received BluetoothA2dp Play State changed
+09-29 20:19:05.169  1438  3923 I PAL: Device: updateCustomPayload: 415: customPayloadSize = 144
+09-29 20:19:05.169  6372  6493 D BroadcastService: getBroadcastAddress
+09-29 20:19:05.169  6372  6493 D BroadcastService: isBroadcastActive: Broadcast is turned to off
+09-29 20:19:05.169  1438  3923 E PAL: SessionAlsaUtils: getModuleInstanceId: 1207: No matching MIID found for tag: 0xc0000022, error:-22
+09-29 20:19:05.169  6372  6372 D HeadsetA2dpSync:  updateA2DPPlayingState device: 73:94:03:5D:7B:4C transition 11->10
+09-29 20:19:05.169  1438  3923 I PAL: Bluetooth: configureRATModule: 333: Failed to get tag info c0000022, status = -22
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: Device: DESKTOP-0SMUHNJ : old state: PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: Device: no name: 
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: Device: no name: 
+09-29 20:19:05.169  6372  6372 I APM: ApmConst:  getQtiLeAudioEnabled: false
+09-29 20:19:05.169  1438  3923 I PAL: Device: updateCustomPayload: 415: customPayloadSize = 192
+09-29 20:19:05.169  1438  3923 I btaudio_offload_aidl: audio_sink_get_a2dp_latency_api: session type is 2
+09-29 20:19:05.169  1438  3923 I btaudio_offload_aidl: audio_get_a2dp_sink_latency: session_type is 2
+09-29 20:19:05.169  3836  3836 I aptxalsBTEventHandler: action: android.bluetooth.a2dp.profile.action.PLAYING_STATE_CHANGED
+09-29 20:19:05.169  6372  6372 I APM: ApmConst:  getAospLeaEnabled: true
+09-29 20:19:05.169  3836  3836 I aptxalsBTEventHandler: received action: android.bluetooth.a2dp.profile.action.PLAYING_STATE_CHANGED for device: 73:94:03:5D:7B:4C state: STATE_PLAYING
+09-29 20:19:05.169  6372  6372 D APM: ActiveDeviceManagerServiceLegacy: getActiveProfile returning profile 1
+09-29 20:19:05.169  6372  6372 D APM: ActiveDeviceManagerServiceLegacy: getActiveDevice(): device: 73:94:03:5D:7B:4C
+09-29 20:19:05.169  6372  6372 D HeadsetA2dpSync:  MediaProfile: 1, current active media device: 73:94:03:5D:7B:4C
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: Device: no name: 
+09-29 20:19:05.169  6372  6493 I Avrcp_ext: device found at index 0
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: old state: PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null} new state: PlaybackState {state=PLAYING(3), position=-1, buffered position=0, speed=1.0, updated=3360761471, actions=0, custom actions=[], active item id=-1, error=null} device: 73:94:03:5D:7B:4C index: 0
+09-29 20:19:05.169  6372  6493 I Avrcp_ext: updatePlayStatusForDevice: device: 73:94:03:5D:7B:4C
+09-29 20:19:05.169  6372  6544 I bt_stack: [INFO:a2dp_encoding.cc(164)] GetPresentationPositionAIDL: delay=0/10ms, data=0 byte(s), timestamp=0.0s
+09-29 20:19:05.169  6372  6372 D HeadsetService:  isInCall false
+09-29 20:19:05.169  6372  6372 D HeadsetService:  isRinging false
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: updatePlaybackState (0): old=PlaybackState {state=PAUSED(2), position=-1, buffered position=0, speed=0.0, updated=3360761443, actions=0, custom actions=[], active item id=-1, error=null}(2), new=PlaybackState {state=PLAYING(3), position=-1, buffered position=0, speed=1.0, updated=3360761471, actions=0, custom actions=[], active item id=-1, error=null}(1)
+09-29 20:19:05.169  6372  6372 D HeadsetA2dpSync:  device: 73:94:03:5D:7B:4C state = 4
+09-29 20:19:05.169  6372  6493 W Avrcp_ext: Sending PlayStatus CHANGED Rsp !!!
+09-29 20:19:05.169  6372  6544 I bt_stack: [INFO:bluetooth_audio_port_impl.cc(113)] getPresentationPosition: result=1, delay=0, data=0 byte(s), timestamp=TimeSpec{tvSec: 0, tvNSec: 0}
+09-29 20:19:05.169  6372  6493 D bt_btif : register_notification_rsp: isShoMcastEnabled: 1
+09-29 20:19:05.169  6372  6372 D BtOppService: action : android.bluetooth.a2dp.profile.action.PLAYING_STATE_CHANGED
+09-29 20:19:05.169  6372  6493 I Avrcp_ext: Exit updatePlayStatusForDevice
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: Exit updatePlaybackState
+09-29 20:19:05.169  1438  3923 I btaudio_offload_aidl: audio_get_a2dp_sink_latency: sink_latency: 0
+09-29 20:19:05.169  6372  6493 D APM: ActiveDeviceManagerServiceLegacy: getActiveAbsoluteDevice(): device: 73:94:03:5D:7B:4C
+09-29 20:19:05.169  6372  6493 D APM: ActiveDeviceManagerServiceLegacy: isStableState(): true
+09-29 20:19:05.169  6372  6372 D BtOppUtils: device: 73:94:03:5D:7B:4C newState: 10
+09-29 20:19:05.169  6372  6372 D BtOppUtils:  isA2DPPlaying :true
+09-29 20:19:05.169  1438  3923 I PAL: SessionAlsaUtils: setDeviceMediaConfig: 1058: SLIM-DEV1-RX-7 rate ch fmt data_fmt 44100 1 2 7
+09-29 20:19:05.169  6372  6493 D Avrcp_ext: isAdmStable = true activeAbsAddr = 73:94:03:5D:7B:4C device = 73:94:03:5D:7B:4C
+09-29 20:19:05.169  6372  6473 D bt_btif : LCB lcb=1 event=UL_MSG_EVT state=LCB_OPEN_ST
+09-29 20:19:05.169  6372  6493 D Avrcp_ext: Enter sendPlayPosNotificationRsp
+09-29 20:19:05.169  1438  3923 I PAL: ResourceManager: voteSleepMonitor: 2331: Voting done for nlpi use case, lpi votes 0, nlpi votes : 2
+09-29 20:19:05.169  6372  6493 D Avrcp_ext: sendPlayPosNotificationRsp: Not registered or requesting.
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: Exit handleMessage
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: AvrcpMessageHandler: received message=16
+09-29 20:19:05.169  6372  6493 V Avrcp_ext: MSG_SET_ABSOLUTE_VOLUME15
+09-29 20:19:05.170  6372  6493 V Avrcp_ext: Exit handleMessage
+09-29 20:19:05.170  1438  3923 D agm_client_wrapper: agm_session_open called with handle = a418dc30 , *handle = 0
+09-29 20:19:05.171     0     0 I KERNEL  : [1092560.261435][ T3923] btfm_slim_hw_init: PGD Enum Addr: mfr id:217 prod code:220 dev ind:01 ins:00
+09-29 20:19:05.171     0     0 I KERNEL  : [1092560.261442][ T3923] btfm_slim_hw_init: chipset soc version:40170200
+09-29 20:19:05.171     0     0 I KERNEL  : [1092560.261443][ T3923] btfm_slim_hw_init: chipset is Hamliton, overwriting EA
+09-29 20:19:05.171     0     0 I KERNEL  : [1092560.261445][ T3923] btfm_slim_hw_init: PGD Enum Addr: manu id:217 prod code:220 dev idx:01 instance:00
+09-29 20:19:05.171     0     0 I KERNEL  : [1092560.261446][ T3923] btfm_slim_hw_init: IFD Enum Addr: manu id:217 prod code:220 dev idx:00 instance:00
+09-29 20:19:05.171     0     0 I KERNEL  : [1092560.261448][ T3923] btfm_slim_get_logical_addr:
+09-29 20:19:05.177  1438  3923 D AGM: graph: graph_open: 564 entry
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 79 *************************Metadata*************************
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 80 GKV size:6
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 83 key:0xa1000000, value:0xa100000e 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 83 key:0xab000000, value:0x1 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 83 key:0xac000000, value:0xac000002 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 83 key:0xa2000000, value:0xa2000003 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 83 key:0xb4000000, value:0xb4000002 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 83 key:0xb5000000, value:0xb5000001 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 87 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: CKV count:1
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 90 key:0xa4000000, value:0xf 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 92 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 94 Property ID:134217744
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 95 property count:4
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 98 Property Values: 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 100 0x1 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 100 0x3 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 100 0x2 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 100 0x5 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 102 
+09-29 20:19:05.177  1438  3923 D AGM: metadata: metadata_print: 103 ****************Metadata Done***************************
+09-29 20:19:05.177  1438  3923 D AGM: metadata: 
+09-29 20:19:05.177  1438  3923 D AGM: graph: print_graph_alias: 2349 GKV Alias 371 | StreamRX_PCM_LL_Playback_DeviceRX_BT_Rx_Instance_Instance_1_DevicePP_Rx_Audio_MBDRC_BtProfile_A2DP_BtFormat_GENERIC
+09-29 20:19:05.177  1438  3923 D AGM: graph: graph_open: 644 miid 40bd mid 7001000 tag c0000002
+09-29 20:19:05.177  1438  3923 D AGM: graph: graph_open: 692 miid 4272 mid 7001029 tag c0000004
+09-29 20:19:05.177  1438  3923 D AGM: graph: graph_open: 644 miid 40c4 mid 7001019 tag c0000006
+09-29 20:19:05.177  1438  3923 D AGM: graph: graph_open: 644 miid 40bf mid 7001005 tag c000000e
+09-29 20:19:05.177  1438  3923 D AGM: graph: graph_open: 644 miid 40c0 mid 7001003 tag c0000010
+09-29 20:19:05.177  1438  3923 D AGM: graph: graph_open: 644 miid 4165 mid 7001032 tag c0000013
+09-29 20:19:05.177  1438  3923 I GPR:    : vendor/qcom/proprietary/args/gpr/core/src/gpr_drv.c:__gpr_cmd_register_v2:931 GPR Register: Source Port is 8209 heap_index: 0
+09-29 20:19:05.179     0     0 I KERNEL  : [1092560.268311][ T3923] btfm_slim_get_logical_addr:
+09-29 20:19:05.179     0     0 I KERNEL  : [1092560.268474][ T3923] btfm_slim_alloc_port: chipset soc version:40170200
+09-29 20:19:05.179     0     0 I KERNEL  : [1092560.268616][ T3923] btfm_slim_slave_hw_init: read (1) reg 0x2
+09-29 20:19:05.181  6372  6473 D bt_btif : LCB lcb=1 event=LL_MSG_EVT state=LCB_OPEN_ST
+09-29 20:19:05.181  6372  6473 D bt_btif : bta_av_rc_msg_cback handle: 1 opcode=0x0
+09-29 20:19:05.181  6372  6473 D bt_btif : bta_av_rc_msg_cback data_len: 9
+09-29 20:19:05.181  6372  6439 D bt_btif : btif_av_state_started_handler: event: BTA_AV_META_MSG_EVT flags: 0  index = 0, reconfig_event: 0, codec_cfg_change: 0
+09-29 20:19:05.181  6372  6439 D bt_btif : btif_rc_handler: event: BTA_AV_META_MSG_EVT
+09-29 20:19:05.181  6372  6439 W bt_device_profile: profile_feature_fetch:profile 1
+09-29 20:19:05.181  6372  6439 W bt_device_profile: profile_feature_fetch:AVRCP_COVERART_SUPPORT found 1
+09-29 20:19:05.181  6372  6439 D bt_btif : btif_rc_upstreams_evt: pdu: AVRC_PDU_REGISTER_NOTIFICATION handle: 0x1 ctype: 3 label: f event ID: 1 ver: 105
+09-29 20:19:05.181  6372  6439 V Avrcp_ext: registerNotificationRequestFromNative: eventId=1
+09-29 20:19:05.181  6372  6439 V Avrcp_ext: Exit registerNotificationRequestFromNative
+09-29 20:19:05.181  6372  6493 V Avrcp_ext: AvrcpMessageHandler: received message=4
+09-29 20:19:05.181  6372  6493 V Avrcp_ext: MSG_NATIVE_REQ_REGISTER_NOTIFICATION:event=1 param=16777216
+09-29 20:19:05.181  6372  6493 I Avrcp_ext: device found at index 0
+09-29 20:19:05.181  6372  6493 V Avrcp_ext: Enter processRegisterNotification
+09-29 20:19:05.181  6372  6493 V Avrcp_ext: processRegisterNotification: eventId1
+09-29 20:19:05.181  6372  6493 D bt_btif : register_notification_rsp: isShoMcastEnabled: 1
+09-29 20:19:05.181  6372  6493 D Avrcp_ext: Exit processRegisterNotification
+09-29 20:19:05.181  6372  6493 V Avrcp_ext: Exit handleMessage
+09-29 20:19:05.181  6372  6473 D bt_btif : LCB lcb=1 event=UL_MSG_EVT state=LCB_OPEN_ST
+09-29 20:19:05.184  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.184  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.184  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.184  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.184  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.184  1438  3923 D AGM: graph: graph_open: 724 graph_handle 0x147534c
+09-29 20:19:05.184  1438  3923 D AGM: graph: graph_open: 760 exit, ret 0
+09-29 20:19:05.184  1438  3923 D AGM: graph: graph_set_config: 1126 entry graph_handle 0x147534c
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for ./sbc_enc_module.so.1 with fopen:12us, read:0us, rpc_alloc:0us, mmap:0us
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for ./sbc_enc_module.so.1 with fopen:1us, read:0us, rpc_alloc:0us, mmap:0us
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for /vendor/lib64/rfs/dsp/adsp/./sbc_enc_module.so.1 with fopen:10us, read:0us, rpc_alloc:0us, mmap:0us
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for /vendor/lib64/rfs/dsp/./sbc_enc_module.so.1 with fopen:3us, read:0us, rpc_alloc:0us, mmap:0us
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for /vendor/lib/rfsa/adsp/adsp/./sbc_enc_module.so.1 with fopen:6us, read:0us, rpc_alloc:0us, mmap:0us
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for /vendor/lib/rfsa/adsp/./sbc_enc_module.so.1 with fopen:3us, read:0us, rpc_alloc:0us, mmap:0us
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for /vendor/lib/rfsa/dsp/adsp/./sbc_enc_module.so.1 with fopen:3us, read:0us, rpc_alloc:0us, mmap:0us
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for /vendor/lib/rfsa/dsp/./sbc_enc_module.so.1 with fopen:1us, read:0us, rpc_alloc:0us, mmap:0us
+09-29 20:19:05.185   444  1966 D audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:380: apps_std_fopen_fd: done for /vendor/dsp/adsp/./sbc_enc_module.so.1 with fopen:23us, read:11us, rpc_alloc:52us, mmap:494us
+09-29 20:19:05.185   444  1966 I audioadsprpcd: vendor/qcom/proprietary/adsprpc/src/apps_std_imp.c:1122: Successfully opened file /vendor/dsp/adsp/./sbc_enc_module.so.1
+09-29 20:19:05.188  1438  3923 D AGM: graph: graph_set_config: 1134 exit, graph handle 0x147534c, ret 0
+09-29 20:19:05.188  1438  3923 D agm_client_wrapper: agm_session_open Received handle = 0x79a418dc30 , *handle = b400007a5d0c5310
+09-29 20:19:05.188  1438  3923 D PLUGIN: pcm: agm_pcm_hw_params: 491 agm_pcm_hw_params: mode: 0
+09-29 20:19:05.188  1438  3923 I PAL: Session: updateCustomPayload: 609: customPayloadSize = 32
+09-29 20:19:05.188  1438  3923 D AGM: graph: graph_set_config: 1126 entry graph_handle 0x147534c
+09-29 20:19:05.188  1438  3923 D AGM: graph: graph_set_config: 1134 exit, graph handle 0x147534c, ret 0
+09-29 20:19:05.189  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.189  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.189  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.189  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.189  1438  3923 E ACDB    : vendor/qcom/proprietary/args/acdb/src/acdb_command.c:AcdbCmdGetProcSubgraphCalDataPersist:8247 Error[19]: No calibration found
+09-29 20:19:05.189  1438  3923 E audio_route: [ASUS_Audio] Path: PM_QOS_Vote, length: 1
+09-29 20:19:05.189  1438  3923 E audio_route: Path: PM_QOS_Vote, length: 1
+09-29 20:19:05.189  1438  3923 E audio_route:   id=0: ctl=PM_QOS Vote
+09-29 20:19:05.189  1438  3923 E audio_route:     id=0 value=1
+09-29 20:19:05.189  1438  3923 D audio_route: Apply path: PM_QOS_Vote
+09-29 20:19:05.189  1438  3923 D AGM: graph: graph_prepare: 822 entry graph_handle 0x147534c
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_pcm_shared_mem_ep: 1700 entry mod tag c0000002 miid 40bd mid 7001000
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_pcm_shared_mem_ep: 1776 exit, ret 0
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_hw_ep_media_config: 636 entry mod tag c0000004 miid 4272 mid 7001029
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_hw_ep_media_config: 666 rate 44100 bw 16 ch 1, data_fmt 7
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_hw_ep_media_config: 676 exit, ret 0
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_slimbus_ep: 557 entry mod tag c0000004 miid 4272 mid 7001029
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_slimbus_ep: 601 slimbus intf cfg dev id 0 ch 1
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_slimbus_ep: 620 exit, ret 0
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_output_media_format: 759 entry mod tag c000000e miid 40bf mid 7001005
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_output_media_format: 890 exit, ret 0
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_output_media_format: 759 entry mod tag c0000010 miid 40c0 mid 7001003
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_output_media_format: 890 exit, ret 0
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_spr: 1904 SPR module IID 4165
+09-29 20:19:05.189  1438  3923 D AGM: graph_module: configure_spr: 1927 HW EP module IID 4272
+09-29 20:19:05.189  1438  3923 D AGM: graph: configure_buffer_params: 200 Enter
+09-29 20:19:05.189  1438  3923 D AGM: graph: configure_buffer_params: 263 Playback sess buf_sz 1536 num_bufs 2
+09-29 20:19:05.189  1438  3923 E AGM: graph: configure_buffer_params: 296 Unsupported buffer mode : 0, Default to Blocking
+09-29 20:19:05.190  1438  3923 D AGM: graph: configure_buffer_params: 316 exit, ret 0
+09-29 20:19:05.193  1438  3923 D AGM: graph: graph_prepare: 900 exit, ret 0
+09-29 20:19:05.193  1438  3923 D AGM: session: session_start: 1098 configuring device early - for SLIMBUS/Connectivity Proxy EPs
+09-29 20:19:05.194  1438  3923 D AGM: graph: graph_start: 914 entry graph_handle 0x147534c
+09-29 20:19:05.195     0     0 I KERNEL  : [1092560.284133][ T3923] btfm_slim_dai_prepare: dai->name: btfm_bt_sco_a2dp_slim_rx, dai->id: 2, dai->rate: 44100 direction: 0
+09-29 20:19:05.195     0     0 I KERNEL  : [1092560.284144][ T3923] btfm_slim_write: Write to IFD
+09-29 20:19:05.195     0     0 I KERNEL  : [1092560.284210][ T3923] btfm_slim_enable_ch: port: 16, ch: 157
+09-29 20:19:05.195     0     0 I KERNEL  : [1092560.284212][ T3923] btfm_slim_enable_ch: chipset soc version:40170200
+09-29 20:19:05.195     0     0 I KERNEL  : [1092560.285081][ T3923] btfm_slim_enable_ch: btfm_num_ports_open: 1
+09-29 20:19:05.198  1438  3923 D AGM: graph: graph_start: 927 exit, ret 0
+09-29 20:19:05.198  1438  3923 I PAL: API: pal_stream_start: 388: Exit. status 0
+09-29 20:19:05.198  1438  3923 I AHAL: AudioStream: configurePalOutputStream: 3647: notify GEF client of device config
+09-29 20:19:05.198  1438  3923 D generic_effect_ar: gef_device_config_cb: stream type=6 sample_rate=48000 device=128
+09-29 20:19:05.199  1438  3923 D com.dirac.gef.native.audio_reach_handler: GEF callback received with event type: 1
+09-29 20:19:05.199  1438  3923 D com.dirac.gef.native.audio_reach_handler: ACDB device connected {Stream type: 6, Device: 128, Samplerate: 48000}
+09-29 20:19:05.199  1438  3923 D AHAL: AudioStream: ~AutoPerfLock: 151: (release) perf_lock_handle: 0x14ee96, count: 1
+09-29 20:19:05.199  1438  3923 D AHAL: AudioStream: ~AutoPerfLock: 155: Releasing perf_lock_handle: 0x14ee96
+09-29 20:19:05.204  2634  2862 V WindowManager: Finish Transition #17480: created at 09-29 20:19:04.867 collect-started=0.02ms request-sent=10.921ms started=12.915ms ready=34.777ms sent=35.426ms finished=337.127ms
+09-29 20:19:05.205  2634  2865 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:05.207  3939  7905 W DynamicDDSService: appName is not found in cache: com.asus.launcher
+09-29 20:19:05.208  6372  6453 I BtGatt.ScanManager: msg.what = 6
+09-29 20:19:05.208  6372  6453 D BtGatt.ScanManager: uid 10156 isForeground true scanMode 1
+09-29 20:19:05.209  1594  3085 V AF::Track: isReady(7460): consider track ready with 1920/1920, target was 1920)
+09-29 20:19:05.209  1438  4407 D AHAL: AudioStream: out_update_source_metadata_v7: 1180: track count is 1 for usecase(1: low-latency-playback)
+09-29 20:19:05.209  1438  4407 D AHAL: AudioStream: out_update_source_metadata_v7: 1222: Source metadata usage:14 content_type:2
+09-29 20:19:05.209  1438  4407 D AHAL: AudioStream: SetAggregateSourceMetadata: 3978: Aggregated Source metadata usage:14 content_type:2
+09-29 20:19:05.209  1438  4407 I PAL: Bluetooth: setDeviceParameter: 2134: sending source metadata to BT API
+09-29 20:19:05.209  1438  4407 D btaudio_offload_aidl: update_metadata: session_type =2
+09-29 20:19:05.209  1438  4407 D btaudio_offload_aidl: update_metadata: session_type =2, source meta data
+09-29 20:19:05.209  1438  4407 D btaudio_offload_aidl: update_metadata: source meta data is session ready = 1
+09-29 20:19:05.209  1438  4407 I BTAudioSessionAidl: UpdateSourceMetadata - SessionType=A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH,1 track(s)
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:bluetooth_audio_port_impl.cc(126)] updateSourceMetadata: 1 track(s)
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:bluetooth_audio_port_impl.cc(136)] updateSourceMetadata: usage: 14
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:a2dp_encoding.cc(177)] SourceMetadataChangedAIDL: 1 track(s) received
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:a2dp_encoding.cc(185)] SourceMetadataChanged, content_type=2, track_count: 1, usage: 14
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:btif_ahim.cc(240)] btif_ahim_update_src_metadata, track_count: 1, usage: 14
+09-29 20:19:05.209  6372  6539 W bt_btif : btif_report_a2dp_src_metadata_update: Update Metadata in APM
+09-29 20:19:05.209  6372  6539 W bt_btif : context_contention_src: Choosing Context by Priority
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:btif_apm.cc(384)] context_contention_src: tracks count: 1
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:btif_apm.cc(398)] context_contention_src: usage=14, content_type=2, gain=0
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:btif_apm.cc(164)] AudioContentToLeAudioContextInAPM: usage: 14
+09-29 20:19:05.209  6372  6539 I bt_stack: [INFO:btif_apm.cc(247)] getPriority: context type = 8
+09-29 20:19:05.209  1438  4407 D btaudio_offload_aidl: update_metadata: session_type exit
+09-29 20:19:05.209  6372  6439 I bt_stack: [INFO:btif_apm.cc(368)] metadata_update_apm_jni
+09-29 20:19:05.209  6372  6439 I BluetoothAPM_Jni: btapm_update_metadata_callback
+09-29 20:19:05.209  6372  6439 W ApmNativeInterface: Callback registered in JAVA layer
+09-29 20:19:05.209  6372  6439 W ApmNativeInterface: Context Type: 8
+09-29 20:19:05.209  6372  6439 W APM: StreamAudioService:: setMetadataContextType: 8
+09-29 20:19:05.210  6372  6439 D APM: ActiveDeviceManagerServiceLegacy: getActiveDevice(): device: 73:94:03:5D:7B:4C
+09-29 20:19:05.210  6372  6439 W APM: StreamAudioService:: Game context type received
+09-29 20:19:05.210  6372  6439 D APM: ActiveDeviceManagerServiceLegacy: getActiveProfile returning profile 1
+09-29 20:19:05.210  6372  6439 I APM: MediaAudio: enableGamingMode: for A2DP
+09-29 20:19:05.210  6372  6439 V A2dpService: setGamingMode
+09-29 20:19:05.210  1194  1363 D AAudioStream: setState(s#1) from 3 to 4
+09-29 20:19:05.210  6372  6372 D A2dpService: Enable Gaming Mode in A2DP!!
+09-29 20:19:05.210  6372  6372 V A2dpService: enableGamingModeinA2DP
+09-29 20:19:05.210  6372  6372 D A2dpService: getCodecStatus(73:94:03:5D:7B:4C)
+09-29 20:19:05.210  6372  6372 D BATService: getBATService(): service is NULL
+09-29 20:19:05.210  6372  6372 D A2dpService: CodecType is not AptX AD
+09-29 20:19:05.222  2634  5498 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:05.222  2634  5498 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:05.225  2962  2962 I LauncherLife: [onStop] called, QuickstepLauncher@51da3f4
+09-29 20:19:05.225  2962  2962 V Launcher: LauncherAppState unregisterBadge
+09-29 20:19:05.225  2962  2962 V LauncherLife: Time spent in onStop: 0 ms
+09-29 20:19:05.225  2962  3546 I ImeTracker: com.asus.launcher:dc981243: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT
+09-29 20:19:05.226  2962  3546 I ImeTracker: com.asus.launcher:dc981243: onFailed at PHASE_CLIENT_VIEW_SERVED
+09-29 20:19:05.235  2634  2866 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:05.236  2634  2866 D ActivityTaskManager: isKeyguardLocked(0) => false
+09-29 20:19:05.253  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:05.256  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [disabled]: 8-265
+09-29 20:19:05.266  2634 15596 I SensorService: [SensorN] createSensorEventConnection: uid=10346,pid=1194,pkg=unknown_package_pid_1194,opPkg=pl.pawelkaczmarczyk.pasjans
+09-29 20:19:05.268  2634 15596 I SensorService: [SensorN] createSensorEventConnection: uid=10346,pid=1194,pkg=android.view.OrientationEventListener,opPkg=pl.pawelkaczmarczyk.pasjans
+09-29 20:19:05.268  1450  1450 I sensors-hal: flush:192, [HIDL-IMPL] flush handle=11
+09-29 20:19:05.268  1450  1450 I sensors-hal: send_sync_sensor_request:463, wait for notification of response
+09-29 20:19:05.269  1450 30333 I sensors-hal: qsh_conn_resp_cb:747, resp_value = 0 for accel 
+09-29 20:19:05.269  1450  1450 E sensors-hal: flush:202, [SSC_HAL] flush, type=android.sensor.accelerometer, handle=11 completed
+09-29 20:19:05.269  2634 15596 I SensorService: [SensorN] EnableSensorE:type=1(icm4x6xx Accelerometer Non-wakeup),uid=10346,pid=1194,pkg=android.view.OrientationEventListener
+09-29 20:19:05.269  2634 15596 I SensorService: [SensorN] EnableSensorX:type=1(icm4x6xx Accelerometer Non-wakeup),uid=10346,pid=1194,pkg=android.view.OrientationEventListener
+09-29 20:19:05.269  3836  3836 I aptxalsCodecConfig: RefreshAudioProfile: no profile has been set, mCs4Settings: 0
+09-29 20:19:05.269  3836  3836 I aptxalsCodecConfig: RefreshAudioProfile: no profile has been set, mCs4Settings: 0
+09-29 20:19:05.272  2634  3256 D CompatibilityChangeReporter: Compat change id reported: 161145287; UID 10346; state: ENABLED
+09-29 20:19:05.273  1194  1225 V MediaRouter: Audio routes updated: AudioRoutesInfo{ type=SPEAKER, bluetoothName=RT-B6 }, a2dp=true
+09-29 20:19:05.273  1194  1225 V MediaRouter: Selecting route: RouteInfo{ name=RT-B6, description=Dźwięk Bluetooth, status=null, category=RouteCategory{ name=System types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO , presentationDisplay=null }
+09-29 20:19:05.273  1194  1225 I MediaRouter: Skip setBluetoothA2dpOn(): types=1, isPlaybackActive()=false, BT route=RouteInfo{ name=RT-B6, description=Dźwięk Bluetooth, status=null, category=RouteCategory{ name=System types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO , presentationDisplay=null }
+09-29 20:19:05.286  1506  1374 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1374...
+09-29 20:19:05.292  1194  1378 W Unity   : The referenced script (Unknown) on this Behaviour is missing!
+09-29 20:19:05.293  1194  1378 W Unity   : The referenced script on this Behaviour (Game Object 'Pasjans') is missing!
+09-29 20:19:05.304  1506  1374 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1374... Done and kStatusReady
+09-29 20:19:05.317  1602  1602 D Layer   : SF:SurfaceView[pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity](BLAST)#207191:setFrameRate(30.00 Hz)
+09-29 20:19:05.321  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:05.322  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [enabled]: 8-265
+09-29 20:19:05.342  3513  3950 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@130e12f
+09-29 20:19:05.342  2634  5498 D CoreBackPreview: Window{73c8b9d u0 Splash Screen pl.pawelkaczmarczyk.pasjans EXITING}: Setting back callback null
+09-29 20:19:05.343  2634  5498 W InputManager-JNI: Input channel object '73c8b9d Splash Screen pl.pawelkaczmarczyk.pasjans (client)' was disposed without first being removed with the input manager!
+09-29 20:19:05.344  3955  4245 D PowerSaverHandler: Skip notify the same pkg to PowerSaver
+09-29 20:19:05.344  3955  4248 I AppOpsStatusUpdateHandler: pkgName: pl.pawelkaczmarczyk.pasjans, reason: report-launched, displayedTime: 1092594355, isExternalDisplay: false, 1stLaunchInMem: false, windowingMode: 1, from: com.android.shell
+09-29 20:19:05.345  3955  4245 D GameModeHandler: handleAppFocus exit
+09-29 20:19:05.345  3955  4245 D GameGenieHandler: packageName: pl.pawelkaczmarczyk.pasjans taskId: 3893 reason: report-launched isFirstLaunchInMem: false windowingMode: 1 isDirectBoot: false mIsGameGenieWorking: false userId: 0 uid: 10346 pid: 1194
+09-29 20:19:05.345  3955  4245 D GameGenieHandler: intent action: null className: com.unity3d.player.UnityPlayerActivity
+09-29 20:19:05.345  3955  4245 D GameGenieHandler: update mLastTriggerIntent: null
+09-29 20:19:05.345  3955  4245 V GameGenieHandler: Start setGamingType: isAutoStart = false, isGame = false, windowingMode = 1
+09-29 20:19:05.345  3955  4245 V GameGenieHandler: End setGamingType
+09-29 20:19:05.345  3955  4245 D LlmHandler: isRogDevice() ret = true
+09-29 20:19:05.345  3955  4245 V LlmHandler: Start set LLM: isAutoStart = false, isGame = false, isExternalDisplay = false
+09-29 20:19:05.345  3955  4245 V LlmHandler: End set LLM
+09-29 20:19:05.347  3955  4248 D OpenedTimeAppInfoProvider: Update DB : number of affected records : 1
+09-29 20:19:05.350  2962  1384 D OpenedAppInfo_Launcher: onChange: pl.pawelkaczmarczyk.pasjans, previous: com.asus.launcher
+09-29 20:19:05.350  2962  2962 D GamingRotationHelper: autoRotate:false inboxRotate:true
+09-29 20:19:05.351  2962  2962 W GamingRotationHelper: TODO: maybe need to sync with RotationHelper
+09-29 20:19:05.353  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:05.355  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [disabled]: 8-265
+09-29 20:19:05.368  2634  2865 I DisplayDeviceRepository: Display device changed: DisplayDeviceInfo{"Wbudowany ekran": uniqueId="local:4630946946314745219", 1080 x 2400, modeId 4, renderFrameRate 60.000004, defaultModeId 1, supportedModes [{id=1, width=1080, height=2400, fps=165.0, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}, {id=2, width=1080, height=2400, fps=144.00002, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}, {id=3, width=1080, height=2400, fps=120.00001, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}, {id=4, width=1080, height=2400, fps=60.000004, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}, {id=5, width=1080, height=2400, fps=90.0, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}], colorMode 0, supportedColorModes [0, 7, 9], hdrCapabilities HdrCapabilities{mSupportedHdrTypes=[2, 3, 4], mMaxLuminance=800.0, mMaxAverageLuminance=400.00024, mMinLuminance=5.0E-4}, allmSupported false, gameContentTypeSupported false, density 420, 391.885 x 388.28 dpi, appVsyncOff 1000000, presDeadline 16666666, cutout DisplayCutout{insets=Rect(0, 105 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(492, 9 - 588, 105), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2400 density={2.625} cutoutSpec={M540,57m-31,0a31,31 0,1 1,62 0a31,31 0,1 1,-62 0 @left} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}}}, touch INTERNAL, rotation 0, type INTERNAL, address {port=131, model=0x40446db63cc535}, deviceProductInfo DeviceProductInfo{name=, manufacturerPnpId=QCM, productId=1, modelYear=null, manufactureDate=ManufactureDate{week=27, year=2006}, connectionToSinkType=0}, state ON, committedState ON, frameRateOverride {uid=10346 frameRateHz=30.000002} , brightnessMinimum 0.0, brightnessMaximum 1.0, brightnessDefault 0.22440945, hdrSdrRatio NaN, roundedCorners RoundedCorners{[RoundedCorner{position=TopLeft, radius=88, center=Point(88, 88)}, RoundedCorner{position=TopRight, radius=88, center=Point(992, 88)}, RoundedCorner{position=BottomRight, radius=88, center=Point(992, 2312)}, RoundedCorner{position=BottomLeft, radius=88, center=Point(88, 2312)}]}, FLAG_ALLOWED_TO_BE_DEFAULT_DISPLAY, FLAG_ROTATES_WITH_CONTENT, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS, FLAG_TRUSTED, installOrientation 0, displayShape DisplayShape{ spec=1406003047 displayWidth=1080 displayHeight=2400 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}}
+09-29 20:19:05.385  1506  1386 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1386...
+09-29 20:19:05.400  2634  2634 W AccessibilityManagerService:  wait for adding window timeout: 13399
+09-29 20:19:05.406  1506  1386 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1386... Done and kStatusReady
+09-29 20:19:05.409  2634  2862 I ActivityTaskManager: Fully drawn pl.pawelkaczmarczyk.pasjans/com.unity3d.player.UnityPlayerActivity: +543ms
+09-29 20:19:05.410  3955  4599 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.sendBroadcast:1237 com.asus.hardwarestub.centralcontrol.a.s:16 com.asus.hardwarestub.centralcontrol.a.v:273 com.asus.hardwarestub.centralcontrol.FPSCentralControlService.k0:26 com.asus.hardwarestub.centralcontrol.FPSCentralControlService.F:0 
+09-29 20:19:05.412 23969 23969 D FramerateWidget2: frameratre widget onReceive action: asus.intent.action.CUSTOM_REFRESH_RATE_CHANGED
+09-29 20:19:05.412 23969 23969 D FramerateWidget2: update UI
+09-29 20:19:05.414 23969 23969 D FramerateWidget2: frameratre widget onReceive action: asus.intent.action.CUSTOM_REFRESH_RATE_CHANGED
+09-29 20:19:05.414 23969 23969 D FramerateWidget2: update UI
+09-29 20:19:05.418  1506  1387 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1387...
+09-29 20:19:05.430  1506  1387 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1387... Done and kStatusReady
+09-29 20:19:05.433  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:05.433  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [enabled]: 8-265
+09-29 20:19:05.532  1602  1602 D SurfaceFlinger: SurfaceFlinger::setDesiredActiveMode
+09-29 20:19:05.532  1602  1602 D Scheduler: setRenderRate 30.00 Hz (60.00 Hz)
+09-29 20:19:05.532  1602  1602 D SurfaceFlinger: Set fps: 30
+09-29 20:19:05.533  2634  2865 I DisplayDeviceRepository: Display device changed: DisplayDeviceInfo{"Wbudowany ekran": uniqueId="local:4630946946314745219", 1080 x 2400, modeId 4, renderFrameRate 30.000002, defaultModeId 1, supportedModes [{id=1, width=1080, height=2400, fps=165.0, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}, {id=2, width=1080, height=2400, fps=144.00002, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}, {id=3, width=1080, height=2400, fps=120.00001, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}, {id=4, width=1080, height=2400, fps=60.000004, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}, {id=5, width=1080, height=2400, fps=90.0, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}], colorMode 0, supportedColorModes [0, 7, 9], hdrCapabilities HdrCapabilities{mSupportedHdrTypes=[2, 3, 4], mMaxLuminance=800.0, mMaxAverageLuminance=400.00024, mMinLuminance=5.0E-4}, allmSupported false, gameContentTypeSupported false, density 420, 391.885 x 388.28 dpi, appVsyncOff 1000000, presDeadline 16666666, cutout DisplayCutout{insets=Rect(0, 105 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(492, 9 - 588, 105), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2400 physicalDisplayWidth=1080 physicalDisplayHeight=2400 density={2.625} cutoutSpec={M540,57m-31,0a31,31 0,1 1,62 0a31,31 0,1 1,-62 0 @left} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}}}, touch INTERNAL, rotation 0, type INTERNAL, address {port=131, model=0x40446db63cc535}, deviceProductInfo DeviceProductInfo{name=, manufacturerPnpId=QCM, productId=1, modelYear=null, manufactureDate=ManufactureDate{week=27, year=2006}, connectionToSinkType=0}, state ON, committedState ON, frameRateOverride {uid=10346 frameRateHz=30.000002} , brightnessMinimum 0.0, brightnessMaximum 1.0, brightnessDefault 0.22440945, hdrSdrRatio NaN, roundedCorners RoundedCorners{[RoundedCorner{position=TopLeft, radius=88, center=Point(88, 88)}, RoundedCorner{position=TopRight, radius=88, center=Point(992, 88)}, RoundedCorner{position=BottomRight, radius=88, center=Point(992, 2312)}, RoundedCorner{position=BottomLeft, radius=88, center=Point(88, 2312)}]}, FLAG_ALLOWED_TO_BE_DEFAULT_DISPLAY, FLAG_ROTATES_WITH_CONTENT, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS, FLAG_TRUSTED, installOrientation 0, displayShape DisplayShape{ spec=1406003047 displayWidth=1080 displayHeight=2400 physicalPixelDisplaySizeRatio=1.0 rotation=0 offsetX=0 offsetY=0 scale=1.0}}
+09-29 20:19:05.537  2634  2865 D DisplayManagerService: Ignore redundant display event 0/2 to 10115/23623
+09-29 20:19:05.537  2634  2865 D DisplayManagerService: Ignore redundant display event 0/2 to 10177/23626
+09-29 20:19:05.538  2634  2865 D DisplayManagerService: Ignore redundant display event 0/2 to 10246/30306
+09-29 20:19:05.538  2634  3507 D WifiAntennaModeController: <Display Change> current display state: Display On
+09-29 20:19:05.539  2634  3499 D InadvertentTouchController: <MSG_DISPLAY_CHANGED> mInadvertentTouchEnable or mCompleteSetupWizard false. return
+09-29 20:19:05.541  6372  6453 I BtGatt.ScanManager: msg.what = 7
+09-29 20:19:05.542  3513  4224 D ScreenDecorations: onDisplayChanged mRotation:0|newRotation:0|mDisplayMode:{id=4, width=1080, height=2400, fps=60.000004, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}|newDisplayMode:{id=4, width=1080, height=2400, fps=60.000004, alternativeRefreshRates=[], supportedHdrTypes=[2, 3, 4]}
+09-29 20:19:05.542  3513  3513 V AnakinFodManager: onDisplayChanged: state = 2
+09-29 20:19:05.542  3513  4494 V AnakinFodManager: handleDisplayStateChanged: state=2 189577509
+09-29 20:19:05.543  3513  4494 V AnakinFodManager: checkTouchStatus: false, isImeShowing=false, isDisableFod=false, isAuthenticating=false, isDoze=false, isDozePulsing=false, isEarlyWakeUp=false, isKeyguardFingerprintRunning=false
+09-29 20:19:05.543     0     0 W KERNEL  : [1092560.634100][ T4494] [msm-dsi-info]: hbm mode is 0
+09-29 20:19:05.543     0     0 W KERNEL  : [1092560.634139][ T4494] [msm-dsi-info]: hbm mode is 0
+09-29 20:19:05.570  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:05.571  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [disabled]: 8-265
+09-29 20:19:05.604  1506  1390 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1390...
+09-29 20:19:05.621  1506  1390 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1390... Done and kStatusReady
+09-29 20:19:05.629  1594  3085 V AF::Track: updateTrackFrameInfo: latencyMs:209.170937 startUpMs:264.012916 localTime:1092594639887321 startTime:1092594146874405 localPosition:5496 startPosition:0
+09-29 20:19:05.635  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:05.636  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [enabled]: 8-265
+09-29 20:19:05.874  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:05.885  1515  1633 W ANDR-PERF-OPTSHANDLER: thermal_policy_detect_fps() 664: g_user_s=99, pol_c=0, avg_fps=18, detect_fps=10
+09-29 20:19:05.970  2634  2863 V WindowOrientationListener: [SensorN] Result: currentRotation=0, proposedRotation=-1, oldProposedRotation=-1, predictedRotation=-1, timeDeltaMS=59.609062, isAccelerating=false, isFlat=true, isSwinging=false, isOverhead=false, isTouched=false, timeUntilSettledMS=0.0, timeUntilAccelerationDelayExpiredMS=0.0, timeUntilFlatDelayExpiredMS=500.0, timeUntilSwingDelayExpiredMS=0.0, timeUntilTouchDelayExpiredMS=0.0, now=3360762.203060151, mTouchEndedTimestamp=3360704.915779005
+09-29 20:19:06.103  3955  6647 I AudioFocusListHandler: AudioFocusHandler update
+09-29 20:19:06.103  3955  6647 I AudioFocusHandler: list: io.supercent.weaponrpg
+09-29 20:19:06.103  3955  6647 I AudioFocusHandler: list: com.google.android.googlequicksearchbox
+09-29 20:19:06.103  3955  6647 I AudioFocusHandler: list: com.asus.camera
+09-29 20:19:06.103  3955  6647 I AudioFocusHandler: list: pl.pawelkaczmarczyk.pasjans
+09-29 20:19:06.104  3955  6647 D AudioFocusListHandler: Update DB : number of affected records : 1
+09-29 20:19:06.182  1439  6475 D vendor.qti.bluetooth@1.1-ibs_handler: SerialClockVote: vote for UART CLK OFF
+09-29 20:19:06.332  1439  6458 D vendor.qti.bluetooth@1.1-wake_lock: Release wakelock is released 
+09-29 20:19:06.875  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:06.897  2962   798 I FA      : Application backgrounded at: timestamp_millis: 1790705944896
+09-29 20:19:06.906  3513  4104 D MobileConnectionRepository(1): onDataActivity: direction=3
+09-29 20:19:06.906  3513  4104 D MobileStatusTracker(1): onDataActivity: direction=3
+09-29 20:19:06.906  3513  4104 D NetworkController.MobileSignalController(1): onMobileStatusChanged= updateTelephony=false mobileStatus=[activityIn=true,activityOut=true,dataSim=true,carrierNetworkChangeMode=false,dataState=2,serviceState=mVoiceRegState=0(IN_SERVICE), mDataRegState=0(IN_SERVICE),signalStrength=3,telephonyDisplayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}]
+09-29 20:19:06.906  3513  4104 D NetworkController.MobileSignalController(1): Change in state from: connected=true,enabled=true,level=3,inetCondition=1,iconGroup=IconGroup(LTE+),activityIn=false,activityOut=false,rssi=0,lastModified=09-29 20:19:04.403,dataSim=true,carrierId=-1networkName=Orange,networkNameData=Orange,dataConnected=true,roaming=false,isDefault=true,isEmergency=false,airplaneMode=false,carrierNetworkChangeMode=false,userSetup=true,dataState=2,defaultDataOff=false,showQuickSettingsRatIcon=true,voiceServiceState=0,isInService=true,networkTypeIconCache=networkTypeResIdCache={id=0, isOverridden=false}serviceState=serviceState={state=0,isEmergencyOnly=false,roaming=false,operatorNameAlphaShort=null},signalStrength=signalStrength={isGsm=true,level=3},displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:06.906  3513  4104 D NetworkController.MobileSignalController(1): 	to: connected=true,enabled=true,level=3,inetCondition=1,iconGroup=IconGroup(LTE+),activityIn=true,activityOut=true,rssi=0,lastModified=09-29 20:19:04.403,dataSim=true,carrierId=1659networkName=Orange,networkNameData=Orange,dataConnected=true,roaming=false,isDefault=true,isEmergency=false,airplaneMode=false,carrierNetworkChangeMode=false,userSetup=true,dataState=2,defaultDataOff=false,showQuickSettingsRatIcon=true,voiceServiceState=0,isInService=true,networkTypeIconCache=networkTypeResIdCache={id=2131232443, isOverridden=false}serviceState=serviceState={state=0,isEmergencyOnly=false,roaming=false,operatorNameAlphaShort=null},signalStrength=signalStrength={isGsm=true,level=3},displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:06.929  3513  3513 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+09-29 20:19:07.024     0     0 E KERNEL  : [1092562.111278][T19455] gsi soc:qcom,msm_gsi: gsi_stop_channel:3632 chan=1 busy try again
+09-29 20:19:07.024     0     0 E KERNEL  : [1092562.113340][T19455] gsi soc:qcom,msm_gsi: gsi_stop_channel:3632 chan=14 busy try again
+09-29 20:19:07.102  1594  3132 V AudioFlinger: releaseWakeLock_l() AudioOut_45
+09-29 20:19:07.102  1594  3132 V AudioFlinger: thread 0xb400007185411920 type 0 TID 3132 going to sleep
+09-29 20:19:07.102  1594  3139 V AudioFlinger: releaseWakeLock_l() AudioOut_4D
+09-29 20:19:07.102  1594  3139 V AudioFlinger: thread 0xb40000718442e920 type 0 TID 3139 going to sleep
+09-29 20:19:07.102  1594  3105 V AudioFlinger: releaseWakeLock_l() AudioOut_15
+09-29 20:19:07.102  1594  3105 V AudioFlinger: thread 0xb400007188578920 type 0 TID 3105 going to sleep
+09-29 20:19:07.102  1594  3127 V AudioFlinger: releaseWakeLock_l() AudioOut_3D
+09-29 20:19:07.102  1594  3127 V AudioFlinger: thread 0xb400007188207920 type 0 TID 3127 going to sleep
+09-29 20:19:07.362  1194  1225 I IL2CPP  : Locale pl-PL
+09-29 20:19:07.393  2634  3417 I SensorService: [SensorN] DisableSensorE:type=17(sns_smd  Wakeup),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.393  2634  3417 I SensorService: [SensorN] DisableSensorX:type=17(sns_smd  Wakeup),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.394  2634  3417 I SensorService: [SensorN] DisableSensorE:type=65537(aw8680x),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.394  2634  3417 I SensorService: [SensorN] DisableSensorX:type=65537(aw8680x),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.394  2634  3417 I SensorService: [SensorN] DisableSensorE:type=65542(FREE FALL Sensor Detector FreeFallSensor Wakeup),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.394  2634  3417 I SensorService: [SensorN] DisableSensorX:type=65542(FREE FALL Sensor Detector FreeFallSensor Wakeup),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.394  2634  3417 I SensorService: [SensorN] DisableSensorE:type=65543(ASUS MOTION Sensor Detector AsusMotionSensor Wakeup),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.394  2634  3417 I SensorService: [SensorN] DisableSensorX:type=65543(ASUS MOTION Sensor Detector AsusMotionSensor Wakeup),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.394  2634  3417 I SensorService: [SensorN] DisableSensorE:type=32(Dynamic Sensor Manager),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.394  2634  3417 I SensorService: [SensorN] DisableSensorX:type=32(Dynamic Sensor Manager),uid=10346,pid=1194,pkg=unknown_package_pid_1194
+09-29 20:19:07.400  1194  1225 I Unity   : Pasjans: rozpoczęto inicjalizację interfejsu.
+09-29 20:19:07.400  1194  1225 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+09-29 20:19:07.400  1194  1225 I Unity   : Pasjans.UI.PasjansApp:Awake()
+09-29 20:19:07.400  1194  1225 I Unity   : UnityEngine.GameObject:Internal_AddComponentWithType(Type)
+09-29 20:19:07.400  1194  1225 I Unity   : UnityEngine.GameObject:AddComponent()
+09-29 20:19:07.400  1194  1225 I Unity   : Pasjans.UI.PasjansBootstrap:EnsureApplicationStarted()
+09-29 20:19:07.400  1194  1225 I Unity   : 
+09-29 20:19:07.522  1194  1225 I Unity   : Pasjans: interfejs jest gotowy.
+09-29 20:19:07.522  1194  1225 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+09-29 20:19:07.522  1194  1225 I Unity   : Pasjans.UI.PasjansApp:InitializeApplication()
+09-29 20:19:07.522  1194  1225 I Unity   : Pasjans.UI.PasjansApp:Awake()
+09-29 20:19:07.522  1194  1225 I Unity   : UnityEngine.GameObject:Internal_AddComponentWithType(Type)
+09-29 20:19:07.522  1194  1225 I Unity   : UnityEngine.GameObject:AddComponent()
+09-29 20:19:07.522  1194  1225 I Unity   : Pasjans.UI.PasjansBootstrap:EnsureApplicationStarted()
+09-29 20:19:07.522  1194  1225 I Unity   : 
+09-29 20:19:07.522  1194  1225 I Unity   : Pasjans: moduł startowy utworzył interfejs.
+09-29 20:19:07.522  1194  1225 I Unity   : UnityEngine.DebugLogHandler:Internal_Log(LogType, LogOption, String, Object)
+09-29 20:19:07.522  1194  1225 I Unity   : 
+09-29 20:19:07.536  1425  1553 I minksocket: MinkIPC MESSAGE: ( 1425:1553 ) MinkIPC_QRTR_Service:351 minkipc = 0xb4000074cd7d6b10 sock = 18, client with node 1 port 71b5 went down
+09-29 20:19:07.536  1425  1561 I minksocket: MinkIPC MESSAGE: ( 1425:1561 ) MinkIPC_QRTR_Service:351 minkipc = 0xb4000074cd7d6c70 sock = 11, client with node 1 port 71b5 went down
+09-29 20:19:07.536  1425  1553 I minksocket: MinkIPC MESSAGE: ( 1425:1553 ) MinkIPC_QRTR_Service:351 minkipc = 0xb4000074cd7d6b10 sock = 18, client with node 1 port 71b6 went down
+09-29 20:19:07.536  1425  1561 I minksocket: MinkIPC MESSAGE: ( 1425:1561 ) MinkIPC_QRTR_Service:351 minkipc = 0xb4000074cd7d6c70 sock = 11, client with node 1 port 71b6 went down
+09-29 20:19:07.537  1425  1561 I minksocket: MinkIPC MESSAGE: ( 1425:1561 ) MinkIPC_QRTR_Service:351 minkipc = 0xb4000074cd7d6c70 sock = 11, client with node 1 port 71b7 went down
+09-29 20:19:07.537  1425  1553 I minksocket: MinkIPC MESSAGE: ( 1425:1553 ) MinkIPC_QRTR_Service:351 minkipc = 0xb4000074cd7d6b10 sock = 18, client with node 1 port 71b7 went down
+09-29 20:19:07.537  1425  1553 I minksocket: MinkIPC MESSAGE: ( 1425:1553 ) MinkIPC_QRTR_Service:351 minkipc = 0xb4000074cd7d6b10 sock = 18, client with node 1 port 71b8 went down
+09-29 20:19:07.537  1425  1561 I minksocket: MinkIPC MESSAGE: ( 1425:1561 ) MinkIPC_QRTR_Service:351 minkipc = 0xb4000074cd7d6c70 sock = 11, client with node 1 port 71b8 went down
+09-29 20:19:07.565  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:07.569  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [disabled]: 8-265
+09-29 20:19:07.580  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:07.588  1453  5828 I libusbconfigfs: event=1 on fd=6
+09-29 20:19:07.733 13000 13177 I ThermalEngine: ACTION: CPU - Setting CPU[7] to 1
+09-29 20:19:07.755 13000 13177 I ThermalEngine: ACTION: CPU - Setting CPU[7] to 0
+09-29 20:19:07.761  1506  1398 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1398...
+09-29 20:19:07.776  1506  1398 I SDM     : RCParserIntfImpl::GenerateRCMask: RC mask generation in thread 1398... Done and kStatusReady
+09-29 20:19:07.792  1506 25015 I SDM     : HWPeripheralDRM::SetPanelFeature: Set Panel feature property 7
+09-29 20:19:07.793  1506  1712 I SDM     : DRMPanelFeatureMgr::ApplyDirtyFeature: Commited panel feature [enabled]: 8-265
+09-29 20:19:07.875  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:07.908  3513  4104 D MobileStatusTracker(1): onDataActivity: direction=0
+09-29 20:19:07.909  3513  4104 D NetworkController.MobileSignalController(1): onMobileStatusChanged= updateTelephony=false mobileStatus=[activityIn=false,activityOut=false,dataSim=true,carrierNetworkChangeMode=false,dataState=2,serviceState=mVoiceRegState=0(IN_SERVICE), mDataRegState=0(IN_SERVICE),signalStrength=3,telephonyDisplayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}]
+09-29 20:19:07.909  3513  4104 D NetworkController.MobileSignalController(1): Change in state from: connected=true,enabled=true,level=3,inetCondition=1,iconGroup=IconGroup(LTE+),activityIn=true,activityOut=true,rssi=0,lastModified=09-29 20:19:06.906,dataSim=true,carrierId=-1networkName=Orange,networkNameData=Orange,dataConnected=true,roaming=false,isDefault=true,isEmergency=false,airplaneMode=false,carrierNetworkChangeMode=false,userSetup=true,dataState=2,defaultDataOff=false,showQuickSettingsRatIcon=true,voiceServiceState=0,isInService=true,networkTypeIconCache=networkTypeResIdCache={id=0, isOverridden=false}serviceState=serviceState={state=0,isEmergencyOnly=false,roaming=false,operatorNameAlphaShort=null},signalStrength=signalStrength={isGsm=true,level=3},displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:07.909  3513  4104 D NetworkController.MobileSignalController(1): 	to: connected=true,enabled=true,level=3,inetCondition=1,iconGroup=IconGroup(LTE+),activityIn=false,activityOut=false,rssi=0,lastModified=09-29 20:19:06.906,dataSim=true,carrierId=1659networkName=Orange,networkNameData=Orange,dataConnected=true,roaming=false,isDefault=true,isEmergency=false,airplaneMode=false,carrierNetworkChangeMode=false,userSetup=true,dataState=2,defaultDataOff=false,showQuickSettingsRatIcon=true,voiceServiceState=0,isInService=true,networkTypeIconCache=networkTypeResIdCache={id=2131232443, isOverridden=false}serviceState=serviceState={state=0,isEmergencyOnly=false,roaming=false,operatorNameAlphaShort=null},signalStrength=signalStrength={isGsm=true,level=3},displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:07.910  3513  4104 D MobileConnectionRepository(1): onDataActivity: direction=0
+09-29 20:19:07.911  3513  3513 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+09-29 20:19:08.116  1594  3107 V AudioFlinger: releaseWakeLock_l() AudioOut_1D
+09-29 20:19:08.116  1594  3107 V AudioFlinger: thread 0xb4000071883df920 type 0 TID 3107 going to sleep
+09-29 20:19:08.576     0     0 E KERNEL  : [1092563.666545][T21274] [ALS/PS]  stk3a9x_get_fifo_data_polling 453: processing cur_frame_cnt:256(TE:8), frame_num = 6
+09-29 20:19:08.577     0     0 I KERNEL  : [1092563.667645][T21274] [ALS/PS]  stk3a9x_als_get_data_polling_internal 2535: als_cur_ci = 4, als_cur_pd = 4, gain_ratio = 1
+09-29 20:19:08.577     0     0 I KERNEL  : [1092563.667645][T21274]
+09-29 20:19:08.580     0     0 I KERNEL  : [1092563.670116][T21274] [ALS/PS]  stk3a9x_als_get_data_polling_internal 2682: Display PWM, avg_cnt: 21, FIFOData.Size: 224, fifo_avg_f: 215, fifo_avg_g: 76, fifo_avg_c: 0, fifo_avg_diff: 21, cal_diff = -5287212845702839862, BS: 196
+09-29 20:19:08.580     0     0 I KERNEL  : [1092563.670137][T21274] [ALS/PS]  stk3a9x_als_notify 1468: ALS data = 48, scale = 235, raw=205, 48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,47,47,48,
+09-29 20:19:08.624  3805  3805 D WM-DelayedWorkTracker: Scheduling work 1866e53a-01cf-4037-b123-f11fd159684e
+09-29 20:19:08.625  3805  3805 D WM-GreedyScheduler: Starting work for 1866e53a-01cf-4037-b123-f11fd159684e
+09-29 20:19:08.626  3805  5179 D WM-Processor: qe8: processing WorkGenerationalId(workSpecId=1866e53a-01cf-4037-b123-f11fd159684e, generation=0)
+09-29 20:19:08.627  3805  3805 D WM-WorkerWrapper: Starting work for com.burockgames.timeclocker.service.worker.GameCheckingWorker
+09-29 20:19:08.678  3805  5179 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=1866e53a-01cf-4037-b123-f11fd159684e, tags={ com.burockgames.timeclocker.service.worker.GameCheckingWorker,game-checking-worker } ]
+09-29 20:19:08.679  3805  5179 I WM-WorkerWrapper: Setting status to enqueued for 121f5c47-51d9-458a-824d-a7e43f025b4a
+09-29 20:19:08.679  3805  3805 D WM-Processor: qe8 1866e53a-01cf-4037-b123-f11fd159684e executed; reschedule = false
+09-29 20:19:08.680  3805  5179 D WM-GreedyScheduler: Cancelling work ID 1866e53a-01cf-4037-b123-f11fd159684e
+09-29 20:19:08.682  3805  5179 D WM-SystemJobScheduler: Scheduling work ID 121f5c47-51d9-458a-824d-a7e43f025b4aJob ID 1217506
+09-29 20:19:08.753     0     0 E KERNEL  : [1092563.843183][T29130] gsi soc:qcom,msm_gsi: gsi_stop_channel:3632 chan=1 busy try again
+09-29 20:19:08.755     0     0 E KERNEL  : [1092563.844903][T29130] gsi soc:qcom,msm_gsi: gsi_stop_channel:3632 chan=14 busy try again
+09-29 20:19:08.875  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:09.093  3513  4104 D MobileConnectionRepository(1): onSignalStrengthsChanged: signalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=-77 rsrp=-111 rsrq=-19 rssnr=5 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte}
+09-29 20:19:09.094  3513  4104 D MobileStatusTracker(1): onSignalStrengthsChanged signalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=-77 rsrp=-111 rsrq=-19 rssnr=5 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte} level=3
+09-29 20:19:09.094  3513  4104 D NetworkController.MobileSignalController(1): onMobileStatusChanged= updateTelephony=true mobileStatus=[activityIn=false,activityOut=false,dataSim=true,carrierNetworkChangeMode=false,dataState=2,serviceState=mVoiceRegState=0(IN_SERVICE), mDataRegState=0(IN_SERVICE),signalStrength=3,telephonyDisplayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}]
+09-29 20:19:09.094  3513  4104 D NetworkController.MobileSignalController(1): updateTelephonySignalStrength: hasService=true ss=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=-77 rsrp=-111 rsrq=-19 rssnr=5 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte} displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:09.095  3921  4194 D PhoneInterfaceManager: isDataEnabled: true, subId=1
+09-29 20:19:09.095  3513  4104 D NetworkController.MobileSignalController(1): Change in state from: connected=true,enabled=true,level=3,inetCondition=1,iconGroup=IconGroup(LTE+),activityIn=false,activityOut=false,rssi=0,lastModified=09-29 20:19:07.909,dataSim=true,carrierId=-1networkName=Orange,networkNameData=Orange,dataConnected=true,roaming=false,isDefault=true,isEmergency=false,airplaneMode=false,carrierNetworkChangeMode=false,userSetup=true,dataState=2,defaultDataOff=false,showQuickSettingsRatIcon=true,voiceServiceState=0,isInService=true,networkTypeIconCache=networkTypeResIdCache={id=0, isOverridden=false}serviceState=serviceState={state=0,isEmergencyOnly=false,roaming=false,operatorNameAlphaShort=null},signalStrength=signalStrength={isGsm=true,level=3},displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:09.095  3513  4104 D NetworkController.MobileSignalController(1): 	to: connected=true,enabled=true,level=3,inetCondition=1,iconGroup=IconGroup(LTE+),activityIn=false,activityOut=false,rssi=0,lastModified=09-29 20:19:07.909,dataSim=true,carrierId=1659networkName=Orange,networkNameData=Orange,dataConnected=true,roaming=false,isDefault=true,isEmergency=false,airplaneMode=false,carrierNetworkChangeMode=false,userSetup=true,dataState=2,defaultDataOff=false,showQuickSettingsRatIcon=true,voiceServiceState=0,isInService=true,networkTypeIconCache=networkTypeResIdCache={id=2131232443, isOverridden=false}serviceState=serviceState={state=0,isEmergencyOnly=false,roaming=false,operatorNameAlphaShort=null},signalStrength=signalStrength={isGsm=true,level=3},displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:09.096  3513  3513 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+09-29 20:19:09.649  1439  1439 D vendor.qti.bluetooth@1.1-wake_lock: Acquire wakelock is acquired 
+09-29 20:19:09.650  1439  6468 I vendor.qti.bluetooth@1.1-ibs_handler: ProcessIbsCmd: Signal wack_cond_
+09-29 20:19:09.650  1439  1439 D vendor.qti.bluetooth@1.1-ibs_handler: DeviceWakeUp: Unblocked from waiting for FC, pthread_cond_timedwait ret = 0
+09-29 20:19:09.651  6372  6473 W bt_btm  : btm_send_hci_scan_enable ble_set_extended_scan_enable: 0
+09-29 20:19:09.651  6372  6473 W bt_btm  : btm_send_hci_scan_enable ble_set_extended_scan_enable: 1
+09-29 20:19:09.651  6372  6473 I bt_stack: [INFO:btm_ble_bgconn.cc(433)] Already connection initiated (or) No Pending connections(or) Resources of lcb are exhausted
+09-29 20:19:09.875  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:10.654  1439  6475 D vendor.qti.bluetooth@1.1-ibs_handler: SerialClockVote: vote for UART CLK OFF
+09-29 20:19:10.777 13000 13166 I ThermalEngine: virtual-sensor-skin Reading 34107.
+09-29 20:19:10.804  1439  6458 D vendor.qti.bluetooth@1.1-wake_lock: Release wakelock is released 
+09-29 20:19:10.876  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:10.886  1515  1633 W ANDR-PERF-OPTSHANDLER: thermal_policy_detect_fps() 664: g_user_s=99, pol_c=0, avg_fps=18, detect_fps=29
+09-29 20:19:10.970  2634  2863 V WindowOrientationListener: [SensorN] Result: currentRotation=0, proposedRotation=-1, oldProposedRotation=-1, predictedRotation=-1, timeDeltaMS=59.60953, isAccelerating=false, isFlat=true, isSwinging=false, isOverhead=false, isTouched=false, timeUntilSettledMS=0.0, timeUntilAccelerationDelayExpiredMS=0.0, timeUntilFlatDelayExpiredMS=500.0, timeUntilSwingDelayExpiredMS=0.0, timeUntilTouchDelayExpiredMS=0.0, now=3360767.210251535, mTouchEndedTimestamp=3360704.915779005
+09-29 20:19:11.876  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:11.975     0     0 E KERNEL  : [1092567.066541][T29130] [ALS/PS]  stk3a9x_get_fifo_data_polling 453: processing cur_frame_cnt:256(TE:8), frame_num = 3
+09-29 20:19:11.979     0     0 I KERNEL  : [1092567.067554][T29130] [ALS/PS]  stk3a9x_als_get_data_polling_internal 2535: als_cur_ci = 4, als_cur_pd = 4, gain_ratio = 1
+09-29 20:19:11.979     0     0 I KERNEL  : [1092567.067554][T29130]
+09-29 20:19:11.979     0     0 I KERNEL  : [1092567.069699][T29130] [ALS/PS]  stk3a9x_als_get_data_polling_internal 2682: Display PWM, avg_cnt: 21, FIFOData.Size: 224, fifo_avg_f: 210, fifo_avg_g: 76, fifo_avg_c: 0, fifo_avg_diff: 21, cal_diff = -2413372574940528182, BS: 196
+09-29 20:19:11.979     0     0 I KERNEL  : [1092567.069708][T29130] [ALS/PS]  stk3a9x_als_notify 1468: ALS data = 49, scale = 235, raw=209, 48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,49,49,49,
+09-29 20:19:12.805  2991 32766 I AOSP-MdnsDiscoveryManag: (REDACTED) %s
+09-29 20:19:12.805  2991 32766 I AOSP-MdnsDiscoveryManag: (REDACTED) %s
+09-29 20:19:12.806  2991 32764 I AOSP-MdnsDiscoveryManag: (REDACTED) %s
+09-29 20:19:12.806  2991 32764 I AOSP-MdnsDiscoveryManag: (REDACTED) %s
+09-29 20:19:12.806  2991  5039 I AOSP-MdnsDiscoveryManag: (REDACTED) %s
+09-29 20:19:12.876  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:13.404  3513  4104 D MobileStatusTracker(1): onSignalStrengthsChanged signalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=-83 rsrp=-112 rsrq=-18 rssnr=3 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte} level=3
+09-29 20:19:13.404  3513  4104 D NetworkController.MobileSignalController(1): onMobileStatusChanged= updateTelephony=true mobileStatus=[activityIn=false,activityOut=false,dataSim=true,carrierNetworkChangeMode=false,dataState=2,serviceState=mVoiceRegState=0(IN_SERVICE), mDataRegState=0(IN_SERVICE),signalStrength=3,telephonyDisplayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}]
+09-29 20:19:13.404  3513  4104 D NetworkController.MobileSignalController(1): updateTelephonySignalStrength: hasService=true ss=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=-83 rsrp=-112 rsrq=-18 rssnr=3 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte} displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:13.405  3921  4194 D PhoneInterfaceManager: isDataEnabled: true, subId=1
+09-29 20:19:13.405  3513  4104 D NetworkController.MobileSignalController(1): Change in state from: connected=true,enabled=true,level=3,inetCondition=1,iconGroup=IconGroup(LTE+),activityIn=false,activityOut=false,rssi=0,lastModified=09-29 20:19:09.095,dataSim=true,carrierId=-1networkName=Orange,networkNameData=Orange,dataConnected=true,roaming=false,isDefault=true,isEmergency=false,airplaneMode=false,carrierNetworkChangeMode=false,userSetup=true,dataState=2,defaultDataOff=false,showQuickSettingsRatIcon=true,voiceServiceState=0,isInService=true,networkTypeIconCache=networkTypeResIdCache={id=0, isOverridden=false}serviceState=serviceState={state=0,isEmergencyOnly=false,roaming=false,operatorNameAlphaShort=null},signalStrength=signalStrength={isGsm=true,level=3},displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:13.405  3513  4104 D NetworkController.MobileSignalController(1): 	to: connected=true,enabled=true,level=3,inetCondition=1,iconGroup=IconGroup(LTE+),activityIn=false,activityOut=false,rssi=0,lastModified=09-29 20:19:09.095,dataSim=true,carrierId=1659networkName=Orange,networkNameData=Orange,dataConnected=true,roaming=false,isDefault=true,isEmergency=false,airplaneMode=false,carrierNetworkChangeMode=false,userSetup=true,dataState=2,defaultDataOff=false,showQuickSettingsRatIcon=true,voiceServiceState=0,isInService=true,networkTypeIconCache=networkTypeResIdCache={id=2131232443, isOverridden=false}serviceState=serviceState={state=0,isEmergencyOnly=false,roaming=false,operatorNameAlphaShort=null},signalStrength=signalStrength={isGsm=true,level=3},displayInfo=TelephonyDisplayInfo {network=LTE, overrideNetwork=LTE_CA, isRoaming=false}
+09-29 20:19:13.407  3513  4104 D MobileConnectionRepository(1): onSignalStrengthsChanged: signalStrength=SignalStrength:{mCdma=CellSignalStrengthCdma: cdmaDbm=2147483647 cdmaEcio=2147483647 evdoDbm=2147483647 evdoEcio=2147483647 evdoSnr=2147483647 level=0,mGsm=CellSignalStrengthGsm: rssi=2147483647 ber=2147483647 mTa=2147483647 mLevel=0,mWcdma=CellSignalStrengthWcdma: ss=2147483647 ber=2147483647 rscp=2147483647 ecno=2147483647 level=0,mTdscdma=CellSignalStrengthTdscdma: rssi=2147483647 ber=2147483647 rscp=2147483647 level=0,mLte=CellSignalStrengthLte: rssi=-83 rsrp=-112 rsrq=-18 rssnr=3 cqiTableIndex=2147483647 cqi=2147483647 ta=2147483647 level=3 parametersUseForLevel=0,mNr=CellSignalStrengthNr:{ csiRsrp = 2147483647 csiRsrq = 2147483647 csiCqiTableIndex = 2147483647 csiCqiReport = [] ssRsrp = 2147483647 ssRsrq = 2147483647 ssSinr = 2147483647 level = 0 parametersUseForLevel = 0 timingAdvance = 2147483647 },primary=CellSignalStrengthLte}
+09-29 20:19:13.407  3513  3513 D StatusBarIconController: ignoring old pipeline callbacks, because the new mobile icons are enabled
+09-29 20:19:13.670  1450 30647 I sensors-hal: handle_sns_client_event:301, [SSC_HAL] GYRO, ts:3360769.882297 s X:-0.000067 Y:-0.000163 Z:-0.000043, elapsedRealtime: 3360769.973672, ts_diff: 0.091375, pb_ts: 64526865719745, offset = -4373939871
+09-29 20:19:13.680  3805  3805 D WM-DelayedWorkTracker: Scheduling work 121f5c47-51d9-458a-824d-a7e43f025b4a
+09-29 20:19:13.680  3805  3805 D WM-GreedyScheduler: Starting work for 121f5c47-51d9-458a-824d-a7e43f025b4a
+09-29 20:19:13.681  3805  4905 D WM-Processor: qe8: processing WorkGenerationalId(workSpecId=121f5c47-51d9-458a-824d-a7e43f025b4a, generation=0)
+09-29 20:19:13.683  3805  3805 D WM-WorkerWrapper: Starting work for com.burockgames.timeclocker.service.worker.GameCheckingWorker
+09-29 20:19:13.754  3805  4905 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=121f5c47-51d9-458a-824d-a7e43f025b4a, tags={ com.burockgames.timeclocker.service.worker.GameCheckingWorker,game-checking-worker } ]
+09-29 20:19:13.755  3805  4905 I WM-WorkerWrapper: Setting status to enqueued for 3cca3ba0-4b34-4778-bfff-839edad6ff68
+09-29 20:19:13.755  3805  3805 D WM-Processor: qe8 121f5c47-51d9-458a-824d-a7e43f025b4a executed; reschedule = false
+09-29 20:19:13.756  3805  4905 D WM-GreedyScheduler: Cancelling work ID 121f5c47-51d9-458a-824d-a7e43f025b4a
+09-29 20:19:13.757  3805  4905 D WM-SystemJobScheduler: Scheduling work ID 3cca3ba0-4b34-4778-bfff-839edad6ff68Job ID 1217507
+09-29 20:19:13.876  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:13.920  2991  2991 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.libs.gmscorelogger.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }
+09-29 20:19:13.969  1450 30333 I sensors-hal: handle_sns_client_event:271, [SSC_HAL] ACCEL, ts:3360770.250345 s X:-0.20 Y:0.37 Z:9.77, elapsedRealtime: 3360770.273012, ts_diff: 0.022667, pb_ts: 64526872786274, offset = -4373939871
+09-29 20:19:14.876  1515  7122 E ANDR-PERF-LM: APE_FEATURE: runAsyncPeriodic() 574: Improper Initialization or Engines disabled
+09-29 20:19:15.103  1401  1401 W libc    : Access denied finding property "vendor.display.enable_display_extensions"
+09-29 20:19:15.096  1401  1401 W screencap: type=1400 audit(0.0:1092707): avc:  denied  { read } for  name="u:object_r:vendor_display_prop:s0" dev="tmpfs" ino=437 scontext=u:r:shell:s0 tcontext=u:object_r:vendor_display_prop:s0 tclass=file permissive=0
+09-29 20:19:15.106  1401  1401 W BpBinder: Linking to death on android.gui.ISurfaceComposer but there are no threads (yet?) listening to incoming transactions. See ProcessState::startThreadPool and ProcessState::setThreadPoolMaxThreadCount. Generally you should setup the binder threadpool before other initialization steps.
+09-29 20:19:15.106  5162  6495 D CompatibilityChangeReporter: Compat change id reported: 183155436; UID 10214; state: ENABLED
+09-29 20:19:15.107  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 149924527; UID 2000; state: ENABLED
+09-29 20:19:15.107  2634  5498 D CompatibilityChangeReporter: Compat change id reported: 132649864; UID 2000; state: DISABLED
+09-29 20:19:15.108  5162  6495 W MediaProvider: isAppCloneUserPair for user 0: false
+09-29 20:19:15.112  1401  1401 W ProcessState: Extra binder thread started, but 0 threads requested. Do not use *startThreadPool when zero threads are requested.
+09-29 20:19:15.112  1602  1682 W ServiceManagerCppClient: Permission failure: android.permission.CAPTURE_BLACKOUT_CONTENT from uid=2000 pid=1401
+09-29 20:19:15.112  1602  1682 D PermissionCache: checking android.permission.CAPTURE_BLACKOUT_CONTENT for uid=2000 => denied (92 us)
+09-29 20:19:15.116     0     0 I KERNEL  : [1092570.206286][  T698] servicemanager: Found android.hardware.graphics.allocator.IAllocator/default in device VINTF manifest.
+09-29 20:19:15.123  2991  1130 I NetworkScheduler.Stats: (REDACTED) Task %s/%s started execution. cause:%s exec_start_elapsed_seconds: %s
+09-29 20:19:15.124  2991  1399 I NetworkScheduler.Stats: (REDACTED) Task %s/%s finished executing. cause:%s result: %s elapsed_millis: %s uptime_millis: %s exec_start_elapsed_seconds: %s
+09-29 20:19:15.130  1401  1409 I AdrenoUtils: <ReadGpuID:353>: Reading chip ID through GSL
+09-29 20:19:15.131  1401  1401 W qdgralloc: Failed to load libubwcp.so
+09-29 20:19:15.124  1401  1401 W screencap: type=1400 audit(0.0:1092708): avc:  denied  { read } for  name="libubwcp.so" dev="dm-10" ino=3549 scontext=u:r:shell:s0 tcontext=u:object_r:vendor_file:s0 tclass=file permissive=0
+09-29 20:19:15.131     0     0 I KERNEL  : [1092570.220969][  T698] servicemanager: Found android.hardware.graphics.allocator.IAllocator/default in device VINTF manifest.
+09-29 20:19:15.147  2991  4823 I NearbyFastPair: (REDACTED) TriangleSessionTracker: flush media count=%s, media duration=%ss, call count=%s
+09-29 20:19:15.220 13000 13177 I ThermalEngine: ACTION: CPU - Setting CPU[7] to 1
+09-29 20:19:15.375     0     0 E KERNEL  : [1092570.466192][T21274] [ALS/PS]  stk3a9x_get_fifo_data_polling 453: processing cur_frame_cnt:256(TE:8), frame_num = 1
+09-29 20:19:15.379     0     0 I KERNEL  : [1092570.467033][T21274] [ALS/PS]  stk3a9x_als_get_data_polling_internal 2535: als_cur_ci = 4, als_cur_pd = 4, gain_ratio = 1
+09-29 20:19:15.379     0     0 I KERNEL  : [1092570.467033][T21274]
+09-29 20:19:15.379     0     0 I KERNEL  : [1092570.468811][T21274] [ALS/PS]  stk3a9x_als_get_data_polling_internal 2682: Display PWM, avg_cnt: 21, FIFOData.Size: 224, fifo_avg_f: 208, fifo_avg_g: 77, fifo_avg_c: 0, fifo_avg_diff: 21, cal_diff = 458, BS: 196
+09-29 20:19:15.379     0     0 I KERNEL  : [1092570.468829][T21274] [ALS/PS]  stk3a9x_als_notify 1468: ALS data = 48, scale = 235, raw=208, 48,48,48,48,48,48,48,49,49,49,49,49,49,49,49,49,49,49,49,48,
+09-29 20:19:15.465  2634  5498 I ActivityManager: Broadcasting: Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///... flg=0x400000 }
+09-29 20:19:15.465  2634  5498 I ActivityManager: Enqueued broadcast Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///... flg=0x400000 }: 0
+09-29 20:19:15.468  2634  2862 I ActivityManager: Broadcast completed: result=0
+09-29 20:19:15.469  5162  7342 I MediaProvider: Begin Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///... flg=0x1400010 cmp=com.google.android.providers.media.module/com.android.providers.media.MediaService }
+09-29 20:19:15.477  5162  7342 I MediaProvider: End Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///... flg=0x1400010 cmp=com.google.android.providers.media.module/com.android.providers.media.MediaService }
+09-29 20:19:15.491 13000 13177 I ThermalEngine: ACTION: CPU - Setting CPU[7] to 0
+09-29 20:19:15.598  5162  6329 I MediaProvider: Deleted 0 1 0 0 0 0 0 items on external_primary due to com.android.shell
+09-29 20:19:15.603  2634  2862 D AlarmManagerServiceInjector: background restricted unblock alarm for 10092
+09-29 20:19:15.643     0     0 I KERNEL  : [1092570.733492][  T579] logd: logdr: UID=2000 GID=2000 PID=1427 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns

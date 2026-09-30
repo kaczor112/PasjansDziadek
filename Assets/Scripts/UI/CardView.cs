@@ -20,6 +20,7 @@ namespace Pasjans.UI
         Image smallSuit;
         Image lowerSuit;
         readonly Image[] pips = new Image[10];
+        readonly CardTapCounter tapCounter = new CardTapCounter();
         bool dragging;
 
         public void Initialize(PasjansApp owner)
@@ -91,10 +92,41 @@ namespace Pasjans.UI
             return new Vector2(i % 2 == 0 ? .33f : .67f, .32f + (i / 2) * (.40f / Mathf.Max(1, pairs - 1)));
         }
 
-        public void OnPointerClick(PointerEventData e) { if (!dragging && e.button == PointerEventData.InputButton.Left) app.CardClicked(this, e.clickCount); }
-        public void OnBeginDrag(PointerEventData e) { dragging = e.button == PointerEventData.InputButton.Left && app.BeginCardDrag(this, e); }
+        public void OnPointerClick(PointerEventData e)
+        {
+            if (dragging || e.button != PointerEventData.InputButton.Left) return;
+            app.CardClicked(this, tapCounter.Register(Time.unscaledTime, e.clickCount));
+        }
+
+        public void OnBeginDrag(PointerEventData e)
+        {
+            dragging = e.button == PointerEventData.InputButton.Left && app.BeginCardDrag(this, e);
+            if (dragging) tapCounter.Reset();
+        }
         public void OnDrag(PointerEventData e) { if (dragging) app.DragCards(e); }
         public void OnEndDrag(PointerEventData e) { if (dragging) app.EndCardDrag(e); dragging = false; }
+    }
+
+    public sealed class CardTapCounter
+    {
+        const float DoubleTapSeconds = 0.4f;
+        float previousTapTime = float.NegativeInfinity;
+
+        public int Register(float tapTime, int reportedClickCount)
+        {
+            if (reportedClickCount >= 2)
+            {
+                Reset();
+                return reportedClickCount;
+            }
+
+            // Android zgłasza oba stuknięcia jako pojedyncze kliknięcia.
+            bool isDoubleTap = tapTime >= previousTapTime && tapTime - previousTapTime <= DoubleTapSeconds;
+            previousTapTime = isDoubleTap ? float.NegativeInfinity : tapTime;
+            return isDoubleTap ? 2 : 1;
+        }
+
+        public void Reset() => previousTapTime = float.NegativeInfinity;
     }
 
     public sealed class PileTarget : MonoBehaviour, IPointerClickHandler

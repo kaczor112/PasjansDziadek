@@ -74,18 +74,33 @@ namespace Pasjans.Persistence
                     { error = "Brak poprawnego ukończonego wyniku."; return false; }
                     var result = LoadCandidates(out Candidate primary, out _);
                     if (!result.CanSave) { error = result.Message; return false; }
+                    RankingEntry existing = null;
                     foreach (var entry in result.Data.entries)
-                        if (entry.gameId == state.gameId) return true;
+                        if (entry.gameId == state.gameId) { existing = entry; break; }
+                    bool wasExisting = existing != null;
+                    bool changed = result.Data.version != 2;
                     result.Data.version = 2;
-                    result.Data.entries.Add(new RankingEntry
+                    if (existing == null)
                     {
-                        gameId = state.gameId, completedUtcTicks = state.completedUtcTicks,
-                        moves = state.finalMoves, grandpaWin = state.grandpaOutcome == GameState.GrandpaWin
-                    });
+                        existing = new RankingEntry { gameId = state.gameId };
+                        result.Data.entries.Add(existing);
+                        changed = true;
+                    }
+                    bool grandpaWin = state.grandpaOutcome == GameState.GrandpaWin;
+                    if (existing.completedUtcTicks != state.completedUtcTicks || existing.moves != state.finalMoves || existing.grandpaWin != grandpaWin)
+                    {
+                        // Popraw wpis, jeśli starsza wersja błędnie przyznała wygraną.
+                        existing.completedUtcTicks = state.completedUtcTicks;
+                        existing.moves = state.finalMoves;
+                        existing.grandpaWin = grandpaWin;
+                        changed = true;
+                    }
+                    if (!changed) return true;
                     result.Data.entries.Sort(Compare);
                     if (result.Data.entries.Count > 10) result.Data.entries.RemoveRange(10, result.Data.entries.Count - 10);
                     // Wynik poza pierwszą dziesiątką nie wymaga zapisu poprawnego pliku.
-                    if (primary.condition == Condition.Valid && !result.Data.entries.Exists(e => e.gameId == state.gameId)) return true;
+                    if (!wasExisting && primary.condition == Condition.Valid &&
+                        !result.Data.entries.Exists(e => e.gameId == state.gameId)) return true;
                     string payload = JsonUtility.ToJson(result.Data);
                     string json = JsonUtility.ToJson(new GameSaveEnvelope { formatVersion = 1, payload = payload, sha256 = Hash(payload), savedUtcTicks = DateTime.UtcNow.Ticks });
                     string path = PathFor(PrimaryFileName);

@@ -55,11 +55,12 @@ namespace Pasjans.UI
         CardView selected;
         Vector2 dragStart;
         int dragPointerId;
+        int startupLayoutFrames = 3;
         int lastWidth, lastHeight;
         Rect lastSafeArea;
         float cardWidth, cardHeight, gap, margin, stockY, tableauY;
         bool initialized, dirty, dragging, wonShown, rankingOpen, resultRecorded, menuOpen;
-        string notice;
+        string notice, startupError;
         Action modalAction;
 
         sealed class Target
@@ -71,6 +72,21 @@ namespace Pasjans.UI
         }
 
         void Awake()
+        {
+            Debug.Log("Pasjans: rozpoczęto inicjalizację interfejsu.");
+            try
+            {
+                InitializeApplication();
+            }
+            catch (Exception exception)
+            {
+                // Zamiast czarnego ekranu pokaż czytelny błąd startu.
+                startupError = "Nie udało się uruchomić gry.\nKod błędu: START-01";
+                Debug.LogException(exception);
+            }
+        }
+
+        void InitializeApplication()
         {
             Application.targetFrameRate = 30;
             QualitySettings.vSyncCount = 0;
@@ -107,6 +123,7 @@ namespace Pasjans.UI
             Refresh();
             if (dirty) Persist();
             RecordResult();
+            Debug.Log("Pasjans: interfejs jest gotowy.");
         }
 
         void BuildInterface()
@@ -241,8 +258,10 @@ namespace Pasjans.UI
                     !RectTransformUtility.RectangleContainsScreenPoint(modePopup, point))
                     modePopup.gameObject.SetActive(false);
             }
-            if (Screen.width != lastWidth || Screen.height != lastHeight || Screen.safeArea != lastSafeArea)
+            // Android może podać końcowy rozmiar powierzchni dopiero po pierwszej klatce.
+            if (startupLayoutFrames > 0 || Screen.width != lastWidth || Screen.height != lastHeight || Screen.safeArea != lastSafeArea)
             {
+                if (startupLayoutFrames > 0) startupLayoutFrames--;
                 CancelSelection();
                 Layout();
                 Refresh();
@@ -258,11 +277,18 @@ namespace Pasjans.UI
 
         void Layout()
         {
+            // Poczekaj, aż Android poda prawidłowy rozmiar powierzchni.
+            if (Screen.width <= 0 || Screen.height <= 0)
+            {
+                startupLayoutFrames = Mathf.Max(startupLayoutFrames, 1);
+                return;
+            }
             lastWidth = Screen.width; lastHeight = Screen.height; lastSafeArea = Screen.safeArea;
             bool portrait = Screen.height > Screen.width;
             float virtualWidth = portrait ? 800 : Mathf.Max(1100, Screen.width / (float)Mathf.Max(Screen.height, 1) * 800);
             scaler.scaleFactor = Screen.width / virtualWidth;
             var safe = Screen.safeArea;
+            if (safe.width <= 0 || safe.height <= 0) safe = new Rect(0, 0, Screen.width, Screen.height);
             root.anchorMin = new Vector2(safe.xMin / Screen.width, safe.yMin / Screen.height);
             root.anchorMax = new Vector2(safe.xMax / Screen.width, safe.yMax / Screen.height);
             root.offsetMin = root.offsetMax = Vector2.zero;
@@ -390,12 +416,12 @@ namespace Pasjans.UI
             if (game.IsGrandpaWin)
             {
                 grandpaBanner.color = new Color32(34, 116, 72, 255);
-                grandpaBannerText.text = "Wg. Dziadka wygrałeś";
+                grandpaBannerText.text = "Wg Dziadka wygrałeś";
             }
             else if (game.IsGrandpaLoss)
             {
                 grandpaBanner.color = new Color32(148, 38, 49, 255);
-                grandpaBannerText.text = "Wg. Dziadka przegrałeś";
+                grandpaBannerText.text = "Wg Dziadka przegrałeś";
             }
             status.text = notice ?? "Przeciągnij kartę lub dotknij karty i miejsca docelowego.";
             modal.SetAsLastSibling();
@@ -467,7 +493,7 @@ namespace Pasjans.UI
             Persist();
             RecordResult();
             if (game.HasResult && game.State.grandpaOutcome == GameState.GrandpaPending)
-                notice = "Wynik: " + game.State.finalMoves + " ruchów. Opróżnij talię w pierwszym przejściu po 1 karcie.";
+                notice = "Wynik: " + game.State.finalMoves + " ruchów. Opróżnij talię przed czwartym przejściem.";
             else if (game.HasResult && resultRecorded)
                 notice = "Wynik: " + game.State.finalMoves + " ruchów. Możesz dokończyć układanie.";
             Layout();
@@ -613,7 +639,7 @@ namespace Pasjans.UI
             rankingCells[0, 0].text = "Lp";
             rankingCells[0, 1].text = "Data z godziną";
             rankingCells[0, 2].text = "Ilość ruchów";
-            rankingCells[0, 3].text = "Wygrana wg. Dziadka";
+            rankingCells[0, 3].text = "Wygrana wg Dziadka";
             for (int i = 0; i < 10; i++)
             {
                 bool active = i < result.Data.entries.Count;
@@ -691,6 +717,21 @@ namespace Pasjans.UI
         }
         void OnApplicationQuit() { if (initialized) { Persist(); RecordResult(); } }
         void OnDestroy() { Art?.Dispose(); }
+
+        void OnGUI()
+        {
+            if (string.IsNullOrEmpty(startupError)) return;
+            GUI.color = new Color32(24, 77, 64, 255);
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
+            GUI.color = Color.white;
+            var style = new GUIStyle(GUI.skin.label)
+            {
+                alignment = TextAnchor.MiddleCenter,
+                fontSize = Mathf.Clamp(Screen.width / 24, 24, 52),
+                wordWrap = true
+            };
+            GUI.Label(new Rect(Screen.width * .1f, Screen.height * .2f, Screen.width * .8f, Screen.height * .6f), startupError, style);
+        }
 
         public Text MakeText(Transform parent, string name, string text, int size, TextAnchor anchor, Color color)
         {

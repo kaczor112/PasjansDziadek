@@ -6,7 +6,7 @@ Gra jest przeznaczona do bezpłatnego udostępniania graczom. Nie zawiera reklam
 
 ## Zasady i obsługa
 
-- Jedna talia (domyślnie): 52 karty i 5 kolumn. Dwie talie: 104 karty tasowane razem i 10 kolumn. Kolejne kolumny otrzymują 1, 2, 3 itd. kart, z odkrytą kartą na wierzchu. Pozostałe 37 lub 49 kart trafia do talii dobierania.
+- Jedna talia: 52 karty i 5 kolumn. Dwie talie (domyślnie): 104 karty tasowane razem i 10 kolumn. Kolejne kolumny otrzymują 1, 2, 3 itd. kart, z odkrytą kartą na wierzchu. Pozostałe 37 lub 49 kart trafia do talii dobierania.
 - Karty układa się malejąco, naprzemiennie czerwone i czarne. Zachowana jest dotychczasowa zasada kodu: pusta kolumna przyjmuje dowolną odkrytą kartę lub poprawną sekwencję.
 - Cztery lub osiem baz buduje się od asa do króla w tym samym kolorze karcianym. Karty z obu talii można łączyć; kolor rewersu nie ogranicza ruchów. Dozwolony jest powrót wierzchniej karty z bazy do kolumny.
 - Pierwsza talia ma granatowy rewers, druga ciemnoczerwony. Każda karta ma własny identyfikator, także przy tej samej randze i kolorze.
@@ -15,7 +15,7 @@ Gra jest przeznaczona do bezpłatnego udostępniania graczom. Nie zawiera reklam
 - Akcje gry są w menu: Windows używa przycisku **Plik** w stylu klasycznego menu programu, a Android przycisku **⋮** z rozwijaną listą.
 - Pod „Nowa gra” znajduje się **Tryby gry →**. Na Windows najechanie otwiera boczne podmenu; sam wiersz nie jest klikalny. Na Androidzie podmenu otwiera dotknięcie. Zaznaczenie przy „Jedna talia” lub „Dwie talie” wskazuje wybór dla następnego rozdania.
 - Zmiana trybu jest zapamiętywana, ale nie rusza kart ani licznika. **Nowa gra** wymaga potwierdzenia i dopiero wtedy tasuje wybraną liczbę pełnych talii. Anulowanie zachowuje bieżące rozdanie. Rozdanie nie jest gwarantowane jako wygrywalne.
-- **Ranking** przechowuje 10 najlepszych wyników w kolumnach **Lp**, **Data z godziną**, **Ilość ruchów** i **Wygrana wg. Dziadka**. Wszystkie wpisy „Tak” są wyżej od wpisów „Nie”, nawet gdy mają więcej ruchów. W każdej grupie mniej ruchów oznacza lepszą pozycję, a przy remisie wcześniejszy wynik ma pierwszeństwo. Starsze wpisy bez nowej informacji są wyświetlane jako „Nie”. Bez wpisów wyświetla „brak wpisów”; **X** wraca do gry.
+- **Ranking** przechowuje 10 najlepszych wyników w kolumnach **Lp**, **Data z godziną**, **Ilość ruchów** i **Wygrana wg Dziadka**. Wszystkie wpisy „Tak” są wyżej od wpisów „Nie”, nawet gdy mają więcej ruchów. W każdej grupie mniej ruchów oznacza lepszą pozycję, a przy remisie wcześniejszy wynik ma pierwszeństwo. Starsze wpisy bez nowej informacji są wyświetlane jako „Nie”. Bez wpisów wyświetla „brak wpisów”; **X** wraca do gry.
 - **O mnie** wyświetla tekst „Autorem gry jest Paweł Kaczmarczyk”; okno zamyka **X**.
 - **Zakończ** zamyka aplikację. W edytorze Unity kończy tryb Play.
 - Escape / systemowy przycisk Wstecz zamyka okno, usuwa zaznaczenie albo kończy grę. Android obsługuje pion, poziom i obszar bezpieczny ekranu.
@@ -25,7 +25,7 @@ Gra jest przeznaczona do bezpłatnego udostępniania graczom. Nie zawiera reklam
 
 Licznik rozpoczyna od zera i zlicza tylko poprawne przeniesienia, dobierania i przewinięcia talii. Odsłonięcie **ostatniej zakrytej karty we wszystkich kolumnach** kończy liczenie — także wtedy, gdy w talii pozostały karty. Ten końcowy ruch wchodzi do wyniku. Dalsze układanie jest możliwe, ale nie zmienia wyniku. Ranking pozostaje wspólną tabelą 10 wyników dla obu trybów. Zapisuje datę i godzinę ukończenia; wznowienie tego samego rozdania nie powiela wpisu.
 
-„Wygrana wg. Dziadka” otrzymuje wartość **Tak**, gdy wszystkie karty w kolumnach są odkryte, a talia dobierania zostanie opróżniona podczas pierwszego przejścia po jednej karcie. Dozwolone przejścia to kolejno 3, 2 i 1 karta. Rozpoczęcie następnego przejścia po jednej karcie ustawia nieodwracalne **Nie** i pokazuje czerwony komunikat „Wg. Dziadka przegrałeś”. Spełnienie obu warunków przed tym przełożeniem pokazuje zielony komunikat „Wg. Dziadka wygrałeś”. Jeśli stół odkryto wcześniej, wynik czeka na koniec pierwszego przejścia po jednej karcie; zamknięcie gry zachowuje tę możliwość. Rozpoczęcie nowej gry przed rozstrzygnięciem zapisuje dotychczasowy standardowy wynik jako „Nie”.
+„Wygrana wg Dziadka” otrzymuje wartość **Tak**, gdy wszystkie karty w kolumnach są odkryte, a wszystkie karty z talii zakrytej i stosu odkrytego zostaną użyte podczas przejścia po 3, 2 albo 1 karcie. Rozpoczęcie następnego przejścia po jednej karcie ustawia nieodwracalne **Nie** i pokazuje czerwony komunikat „Wg Dziadka przegrałeś”. Spełnienie wszystkich warunków wcześniej pokazuje zielony komunikat „Wg Dziadka wygrałeś”. Jeśli stół odkryto wcześniej, wynik czeka na użycie pozostałych kart; zamknięcie gry zachowuje tę możliwość. Rozpoczęcie nowej gry przed rozstrzygnięciem zapisuje dotychczasowy standardowy wynik jako „Nie”.
 
 Gra automatycznie zapisuje każdy udany ruch, dobieranie, przełożenie talii, nowe rozdanie oraz wybór trybu następnej gry. Ponawia niezakończony zapis przy utracie fokusu, pauzie i wyjściu. Wczytanie odtwarza kolejność wszystkich kart, ich talie i rewersy, odkrycia, licznik ruchów oraz bieżące dobieranie 3/2/1. Starszy zapis z siedmioma kolumnami można dokończyć; nowe rozdanie używa już 5 lub 10 kolumn.
 
