@@ -296,6 +296,7 @@ namespace Pasjans.Editor
                 case 6:
                     if (!Ready(1280, 800)) return;
                     VerifyBoard(app, 10, 8);
+                    Check(!Field<Button>(app, "rotateButton").gameObject.activeSelf, "Przycisk obrotu nie może być widoczny w Windows.");
                     var hidden = app.GetComponentsInChildren<CardView>().Where(c => !c.Card.faceUp).ToArray();
                     Check(hidden.Select(c => c.Card.deckIndex).Distinct().Count() == 2, "Brak dwóch talii na planszy.");
                     Check(hidden.All(c => c.GetComponent<Image>().sprite == app.Art.BackFor(c.Card.deckIndex)), "Niepoprawny rewers.");
@@ -310,6 +311,11 @@ namespace Pasjans.Editor
                 case 8:
                     if (!Ready(720, 1280)) return;
                     VerifyBoard(app, 10, 8);
+                    var rotate = Field<Button>(app, "rotateButton");
+                    Check(rotate.gameObject.activeSelf, "Brak przycisku obrotu w układzie Androida.");
+                    var rotateRect = (RectTransform)rotate.transform;
+                    Check(Mathf.Abs(rotateRect.rect.width - rotateRect.rect.height) < .1f, "Przycisk obrotu musi być kwadratowy.");
+                    Check(rotate.GetComponentsInChildren<Image>().Any(image => image.sprite == app.Art.RotateScreen), "Brak graficznej ikony obrotu.");
                     Capture("two-decks-portrait.png", 9);
                     break;
                 case 9:
@@ -342,7 +348,7 @@ namespace Pasjans.Editor
                     break;
                 case 13:
                     if (!CaptureComplete("one-deck-portrait.png", 720, 1280)) return;
-                    Finish(true, "Zweryfikowano podmenu, wybór, anulowanie, dwa rewersy oraz oba układy planszy.");
+                    Finish(true, "Zweryfikowano podmenu, przycisk obrotu, wybór, anulowanie, dwa rewersy oraz oba układy planszy.");
                     break;
             }
         }

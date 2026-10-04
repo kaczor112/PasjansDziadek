@@ -12,8 +12,8 @@ namespace Pasjans.UI
 {
     public sealed class PasjansApp : MonoBehaviour
     {
-        public static readonly Color Ink = new Color32(30, 43, 48, 255);
-        public static readonly Color Red = new Color32(184, 43, 55, 255);
+        public static readonly Color Ink = new Color32(10, 17, 20, 255);
+        public static readonly Color Red = new Color32(205, 22, 40, 255);
         static readonly Color Cream = new Color32(245, 238, 214, 255);
         static readonly Color Muted = new Color32(161, 190, 174, 255);
         static readonly Color Gold = new Color32(224, 192, 119, 255);
@@ -29,6 +29,16 @@ namespace Pasjans.UI
                 return Application.isMobilePlatform;
             }
         }
+        bool ShowsRotationButton
+        {
+            get
+            {
+#if UNITY_EDITOR
+                if (SimulateTouchMenu) return true;
+#endif
+                return Application.platform == RuntimePlatform.Android;
+            }
+        }
 #if UNITY_EDITOR
         // Pozwala sprawdzić dotykowe menu bez zmiany rzeczywistego zapisu gracza.
         public bool SimulateTouchMenu { get; set; }
@@ -41,7 +51,7 @@ namespace Pasjans.UI
         RectTransform root, board, modal, modalPanel;
         Text title, subtitle, stockLabel, wasteLabel, foundationLabel, grandpaBannerText, status, counter;
         Text modalTitle, modalText;
-        Button menuButton, newButton, rankingButton, aboutButton, quitButton, modalClose, modalAccept, modalCancel;
+        Button menuButton, rotateButton, newButton, rankingButton, aboutButton, quitButton, modalClose, modalAccept, modalCancel;
         RectTransform menuPopup, menuBackdrop, modeItem, modePopup;
         Button oneDeckButton, twoDeckButton;
         Image grandpaBanner;
@@ -147,6 +157,7 @@ namespace Pasjans.UI
             subtitle = MakeText(root, "Subtitle", "Wersja od Dziadka", 19, TextAnchor.UpperLeft, Muted);
             bool mobileMenu = UsesTouchMenu;
             menuButton = MakeButton(root, mobileMenu ? "⋮" : "Plik", ToggleMenu, true);
+            rotateButton = MakeIconButton(root, "Obróć ekran", Art.RotateScreen, RotateScreen);
             var menuShade = MakeImage(root, "Menu backdrop", null, Color.clear);
             menuShade.raycastTarget = true;
             menuBackdrop = menuShade.rectTransform;
@@ -316,9 +327,12 @@ namespace Pasjans.UI
             float menuMargin = portrait ? 20 : 32;
             float menuButtonWidth = mobileMenu ? 70 : 120;
             float menuButtonX = mobileMenu ? w - menuMargin - menuButtonWidth : menuMargin;
+            const float rotateButtonSize = 57;
+            rotateButton.gameObject.SetActive(ShowsRotationButton);
             Place(title.rectTransform, mobileMenu ? menuMargin : menuMargin + menuButtonWidth + 20, 21, 340, 48);
             Place(subtitle.rectTransform, mobileMenu ? menuMargin + 2 : menuMargin + menuButtonWidth + 22, 67, 350, 28);
             Place((RectTransform)menuButton.transform, menuButtonX, 21, menuButtonWidth, 57);
+            Place((RectTransform)rotateButton.transform, menuButtonX - rotateButtonSize - 12, 21, rotateButtonSize, rotateButtonSize);
             float popupWidth = 270;
             float popupX = mobileMenu ? w - menuMargin - popupWidth : menuMargin;
             Place(menuPopup, popupX, 86, popupWidth, 5 * 57 + 24);
@@ -701,6 +715,29 @@ namespace Pasjans.UI
             else OpenModal("Nie udało się zapisać", "Ostatnie ruchy mogą zostać utracone. Zwolnij miejsce i spróbuj ponownie lub zakończ mimo to.", ExitApplication, "Zakończ mimo to");
         }
 
+        void RotateScreen()
+        {
+            ScreenOrientation target = NextForcedOrientation(Screen.orientation, Screen.height > Screen.width);
+            Screen.orientation = target;
+            startupLayoutFrames = 3;
+            notice = target == ScreenOrientation.Portrait || target == ScreenOrientation.PortraitUpsideDown
+                ? "Wymuszono pionową orientację ekranu."
+                : "Wymuszono poziomą orientację ekranu.";
+            Refresh();
+        }
+
+        public static ScreenOrientation NextForcedOrientation(ScreenOrientation current, bool portrait)
+        {
+            switch (current)
+            {
+                case ScreenOrientation.Portrait: return ScreenOrientation.LandscapeLeft;
+                case ScreenOrientation.LandscapeLeft: return ScreenOrientation.PortraitUpsideDown;
+                case ScreenOrientation.PortraitUpsideDown: return ScreenOrientation.LandscapeRight;
+                case ScreenOrientation.LandscapeRight: return ScreenOrientation.Portrait;
+                default: return portrait ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
+            }
+        }
+
         static void ExitApplication()
         {
 #if UNITY_EDITOR
@@ -767,6 +804,26 @@ namespace Pasjans.UI
             Stretch(label.rectTransform);
             label.rectTransform.offsetMin = new Vector2(5, 2);
             label.rectTransform.offsetMax = new Vector2(-5, -2);
+            return button;
+        }
+
+        Button MakeIconButton(Transform parent, string name, Sprite icon, Action action)
+        {
+            var image = MakeImage(parent, name, Art.Panel, Gold);
+            image.type = Image.Type.Sliced; image.raycastTarget = true;
+            var button = image.gameObject.AddComponent<Button>();
+            button.targetGraphic = image;
+            var colors = button.colors;
+            colors.highlightedColor = new Color(.89f, .95f, .9f);
+            colors.pressedColor = new Color(.68f, .78f, .70f);
+            button.colors = colors;
+            button.navigation = new Navigation { mode = Navigation.Mode.None };
+            button.onClick.AddListener(() => action());
+            var symbol = MakeImage(image.transform, "Ikona", icon, Ink);
+            symbol.preserveAspect = true;
+            Stretch(symbol.rectTransform);
+            symbol.rectTransform.offsetMin = new Vector2(10, 10);
+            symbol.rectTransform.offsetMax = new Vector2(-10, -10);
             return button;
         }
 

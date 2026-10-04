@@ -12,6 +12,7 @@ namespace Pasjans.UI
         public Sprite Back { get; }
         public Sprite RedBack { get; }
         public Sprite Panel { get; }
+        public Sprite RotateScreen { get; }
         public Sprite[] Suits { get; }
         public Texture2D Felt { get; }
 
@@ -19,6 +20,7 @@ namespace Pasjans.UI
         {
             Card = Rounded("Ivory card", 96, 136, 9, new Color32(255, 252, 242, 255), new Color32(209, 213, 204, 255));
             Panel = Rounded("Rounded panel", 48, 48, 10, Color.white, Color.white);
+            RotateScreen = MakeSprite("Obróć ekran", 64, 64, RotateScreenPixel, Vector4.zero);
             Back = MakeBack("Granatowy rewers", new Color32(23, 33, 62, 255), new Color32(28, 43, 83, 255), new Color32(68, 86, 128, 255));
             RedBack = MakeBack("Ciemnoczerwony rewers", new Color32(66, 19, 28, 255), new Color32(94, 25, 37, 255), new Color32(145, 62, 74, 255));
             Suits = new Sprite[4];
@@ -101,6 +103,20 @@ namespace Pasjans.UI
         }
 
         static bool Circle(float x, float y, float r) => x * x + y * y <= r * r;
+
+        static Color RotateScreenPixel(int x, int y)
+        {
+            // Ramka telefonu i strzałka są jedną lekką ikoną generowaną w pamięci.
+            float frame = RoundedDistance(x - 22, y - 13, 21, 38, 4);
+            bool screen = frame <= 0 && frame >= -3.2f;
+            float dx = x + .5f - 32, dy = y + .5f - 32;
+            float radius = Mathf.Sqrt(dx * dx + dy * dy);
+            float angle = Mathf.Atan2(dy, dx) * Mathf.Rad2Deg;
+            if (angle < 0) angle += 360;
+            bool arc = Mathf.Abs(radius - 26) <= 2.4f && angle >= 42 && angle <= 310;
+            bool arrow = x >= 47 && x <= 59 && y >= 42 && y <= 54 && x - 47 >= Mathf.Abs(y - 48) * .8f;
+            return screen || arc || arrow ? Color.white : Color.clear;
+        }
 
         Sprite MakeSprite(string name, int w, int h, Func<int, int, Color> pixel, Vector4 border)
         {

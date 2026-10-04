@@ -36,6 +36,8 @@ namespace Pasjans.UI
             lowerRank = app.MakeText(transform, "Lower rank", "", 27, TextAnchor.LowerRight, PasjansApp.Ink);
             lowerSuit = app.MakeImage(transform, "Lower suit", null, Color.white);
             court = app.MakeText(transform, "Court", "", 52, TextAnchor.MiddleCenter, PasjansApp.Ink);
+            // Grubsze oznaczenia pozostają czytelne na małym ekranie telefonu.
+            rank.fontStyle = lowerRank.fontStyle = court.fontStyle = FontStyle.Bold;
             for (int i = 0; i < pips.Length; i++) pips[i] = app.MakeImage(transform, "Pip " + i, null, Color.white);
             foreach (var graphic in GetComponentsInChildren<Graphic>()) if (graphic != surface) graphic.raycastTarget = false;
         }
@@ -54,12 +56,12 @@ namespace Pasjans.UI
             rank.text = lowerRank.text = value;
             rank.color = lowerRank.color = court.color = color;
             float scale = width / 120f;
-            rank.fontSize = Mathf.RoundToInt(36 * scale);
-            lowerRank.fontSize = Mathf.RoundToInt(27 * scale);
-            PasjansApp.Place(rank.rectTransform, 8 * scale, 1 * scale, 53 * scale, 44 * scale);
-            PasjansApp.Place(smallSuit.rectTransform, width - 34 * scale, 9 * scale, 25 * scale, 25 * scale);
-            PasjansApp.Place(lowerRank.rectTransform, width - 46 * scale, height - 38 * scale, 37 * scale, 32 * scale);
-            PasjansApp.Place(lowerSuit.rectTransform, 10 * scale, height - 29 * scale, 19 * scale, 19 * scale);
+            rank.fontSize = Mathf.RoundToInt(43 * scale);
+            lowerRank.fontSize = Mathf.RoundToInt(32 * scale);
+            PasjansApp.Place(rank.rectTransform, 7 * scale, 0, 60 * scale, 51 * scale);
+            PasjansApp.Place(smallSuit.rectTransform, width - 39 * scale, 7 * scale, 31 * scale, 31 * scale);
+            PasjansApp.Place(lowerRank.rectTransform, width - 52 * scale, height - 44 * scale, 43 * scale, 38 * scale);
+            PasjansApp.Place(lowerSuit.rectTransform, 9 * scale, height - 35 * scale, 25 * scale, 25 * scale);
             smallSuit.sprite = lowerSuit.sprite = app.Art.Suits[(int)card.suit];
             smallSuit.color = lowerSuit.color = color;
             rank.gameObject.SetActive(card.faceUp);
@@ -68,8 +70,8 @@ namespace Pasjans.UI
             lowerSuit.gameObject.SetActive(card.faceUp);
             court.gameObject.SetActive(card.faceUp && card.rank > 10);
             court.text = card.rank == 11 ? "J" : card.rank == 12 ? "Q" : "K";
-            court.fontSize = Mathf.RoundToInt(52 * scale);
-            PasjansApp.Place(court.rectTransform, width * .15f, height * .27f, width * .7f, height * .45f);
+            court.fontSize = Mathf.RoundToInt(61 * scale);
+            PasjansApp.Place(court.rectTransform, width * .12f, height * .24f, width * .76f, height * .5f);
             for (int i = 0; i < 10; i++)
             {
                 bool visible = card.faceUp && card.rank <= 10 && i < card.rank;
@@ -78,7 +80,7 @@ namespace Pasjans.UI
                 pips[i].sprite = app.Art.Suits[(int)card.suit];
                 pips[i].color = color;
                 Vector2 pos = PipPosition(card.rank, i);
-                float size = (card.rank == 1 ? 47 : 21) * scale;
+                float size = (card.rank == 1 ? 55 : 25) * scale;
                 PasjansApp.Place(pips[i].rectTransform, width * pos.x - size / 2, height * pos.y - size / 2, size, size);
             }
         }

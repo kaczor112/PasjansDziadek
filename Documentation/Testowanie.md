@@ -24,6 +24,10 @@ Ostateczna poprawka startu Androida 29.09.2026: usunięto z zapisanej sceny wadl
 
 Obsługa podwójnego stuknięcia na Androidzie 29.09.2026: karta rozpoznaje dwa osobne dotknięcia wykonane w czasie do 0,4 sekundy i przekazuje je do tej samej obsługi baz co dwuklik Windows. Przeciągnięcie zeruje rozpoczęty gest. APK ma `versionCode 7`. **75/75 testów zakończonych powodzeniem**; testy obejmują szybkie i zbyt wolne stuknięcia oraz zerowanie po przeciągnięciu. Raport: `TestResults/editmode-android-double-tap.xml`.
 
+Poprawa czytelności kart 03.10.2026: powiększono i pogrubiono wartości kart, symbole kolorów oraz figury, a czerwień i czerń otrzymały większy kontrast. APK ma `versionCode 8`. **75/75 testów zakończonych powodzeniem**. Scenariusz graficzny sprawdził oba tryby oraz układy pionowy i poziomy. Raporty: `TestResults/editmode-card-readability.xml` i `TestResults/smoke-card-readability.log`; zrzuty: `Logs/Screenshots/20261003-084624-381`.
+
+Ręczny obrót Androida 04.10.2026: obok menu z trzema kropkami dodano kwadratowy przycisk z generowaną ikoną obracanego ekranu. Każde naciśnięcie wymusza kolejną orientację o 90°, niezależnie od systemowej blokady obrotu; przycisk pozostaje ukryty w Windows. APK ma `versionCode 9`. **81/81 testów zakończonych powodzeniem**. Raporty: `TestResults/editmode-screen-rotation.xml` i `TestResults/smoke-screen-rotation.log`; zrzuty: `Logs/Screenshots/20261003-222601-211`.
+
 Scenariusz `Pasjans.Editor.SmokeCapture.RunModes` sprawdził układy 1280×800 i 720×1280, menu otwierane kursorem i symulowanym dotknięciem, wybór obu trybów, anulowanie nowej gry, dwa rewersy i widoczność kart w granicach ekranu. Raport: `TestResults/smoke-modes.log`; zrzuty: `Logs/Screenshots/20260928-183705-524`. Scenariusz używa izolowanego zapisu w `Temp/SmokeSavesModes`. Nie zmienia danych gracza. Wcześniejsze sprawdzenie okien autora i rankingu: `Logs/Screenshots/20260928-101701-976`.
 
 Uruchomienie bez interfejsu (PowerShell, z katalogu projektu; zamknij wcześniej edytor tego projektu):
