@@ -53,7 +53,8 @@ namespace Pasjans.Editor
             var icon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/AppIcon.png");
             if (icon != null)
                 PlayerSettings.SetIcons(NamedBuildTarget.Unknown, new[] { icon }, IconKind.Any);
-            PlayerSettings.SplashScreen.show = target == BuildTarget.Android;
+            // Unity 6 pozwala wyłączyć ekran startowy także w bezpłatnej licencji Personal.
+            PlayerSettings.SplashScreen.show = false;
             AssetDatabase.SaveAssets();
             BuildTargetGroup group = BuildPipeline.GetBuildTargetGroup(target);
             if (!BuildPipeline.IsBuildTargetSupported(group, target))

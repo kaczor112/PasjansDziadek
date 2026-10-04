@@ -12,6 +12,10 @@ namespace Pasjans.UI
 {
     public sealed class PasjansApp : MonoBehaviour
     {
+        // Schemat: vYYYY.MM.DD_CC_vKK_HASH. Data oznacza dzień zmiany, CC liczbę
+        // wypchniętych commitów, a KK kolejną zmianę kodu (od 01 po zmianie CC).
+        // HASH jest skrótem ostatniego wypchniętego commita wskazanym dla wydania.
+        public const string DisplayVersion = "v2026.10.04_05_v01_7652287";
         public static readonly Color Ink = new Color32(10, 17, 20, 255);
         public static readonly Color Red = new Color32(205, 22, 40, 255);
         static readonly Color Cream = new Color32(245, 238, 214, 255);
@@ -49,7 +53,7 @@ namespace Pasjans.UI
         Font font;
         CanvasScaler scaler;
         RectTransform root, board, modal, modalPanel;
-        Text title, subtitle, stockLabel, wasteLabel, foundationLabel, grandpaBannerText, status, counter;
+        Text title, subtitle, stockLabel, wasteLabel, foundationLabel, grandpaBannerText, status, versionLabel;
         Text modalTitle, modalText;
         Button menuButton, rotateButton, newButton, rankingButton, aboutButton, quitButton, modalClose, modalAccept, modalCancel;
         RectTransform menuPopup, menuBackdrop, modeItem, modePopup;
@@ -187,6 +191,8 @@ namespace Pasjans.UI
             UpdateModeLabels();
             modePopup.gameObject.SetActive(false);
             rankingButton = MakeButton(menuPopup, "Ranking", () => { CloseMenu(); ShowRanking(); });
+            // Ranking nadal zapisuje wyniki, ale jego pozycja w menu jest czasowo ukryta.
+            rankingButton.gameObject.SetActive(false);
             aboutButton = MakeButton(menuPopup, "O mnie", () => { CloseMenu(); ShowAbout(); });
             quitButton = MakeButton(menuPopup, "Zakończ", () => { CloseMenu(); QuitGame(); });
             menuPopup.gameObject.SetActive(false);
@@ -200,7 +206,7 @@ namespace Pasjans.UI
             Stretch(grandpaBannerText.rectTransform);
             grandpaBanner.gameObject.SetActive(false);
             status = MakeText(root, "Status", "", 18, TextAnchor.MiddleLeft, Cream);
-            counter = MakeText(root, "Counter", "", 17, TextAnchor.MiddleRight, Muted);
+            versionLabel = MakeText(root, "Version", DisplayVersion, 17, TextAnchor.MiddleRight, Muted);
             AddTarget(new PileRef(PileKind.Stock), "↻");
             AddTarget(new PileRef(PileKind.Waste), "");
             for (int i = 0; i < 8; i++) AddTarget(new PileRef(PileKind.Foundation, i), "A");
@@ -335,7 +341,7 @@ namespace Pasjans.UI
             Place((RectTransform)rotateButton.transform, menuButtonX - rotateButtonSize - 12, 21, rotateButtonSize, rotateButtonSize);
             float popupWidth = 270;
             float popupX = mobileMenu ? w - menuMargin - popupWidth : menuMargin;
-            Place(menuPopup, popupX, 86, popupWidth, 5 * 57 + 24);
+            Place(menuPopup, popupX, 86, popupWidth, 4 * 57 + 24);
             Place((RectTransform)newButton.transform, 12, 12, popupWidth - 24, 57);
             Place(modeItem, 12, 69, popupWidth - 24, 57);
             // Podmenu rozwija się w stronę, po której jest wolne miejsce.
@@ -344,9 +350,8 @@ namespace Pasjans.UI
             Place(modePopup, openLeft ? -subWidth : popupWidth - 24, 0, subWidth, 138);
             Place((RectTransform)oneDeckButton.transform, 12, 12, subWidth - 24, 57);
             Place((RectTransform)twoDeckButton.transform, 12, 69, subWidth - 24, 57);
-            Place((RectTransform)rankingButton.transform, 12, 126, popupWidth - 24, 57);
-            Place((RectTransform)aboutButton.transform, 12, 183, popupWidth - 24, 57);
-            Place((RectTransform)quitButton.transform, 12, 240, popupWidth - 24, 57);
+            Place((RectTransform)aboutButton.transform, 12, 126, popupWidth - 24, 57);
+            Place((RectTransform)quitButton.transform, 12, 183, popupWidth - 24, 57);
             stockY = compact ? 226 : 153;
             tableauY = stockY + cardHeight + (portrait ? 70 : 58);
             Place(stockLabel.rectTransform, X(0), stockY - 35, cardWidth + gap, 28);
@@ -372,7 +377,7 @@ namespace Pasjans.UI
             }
             status.fontSize = portrait ? 21 : 18;
             Place(status.rectTransform, margin, h - 65, w - margin * 2 - (portrait ? 0 : 210), 31);
-            Place(counter.rectTransform, margin, h - (portrait ? 33 : 65), w - margin * 2, 28);
+            Place(versionLabel.rectTransform, margin, h - (portrait ? 33 : 65), w - margin * 2, 28);
             float mw = Mathf.Min(640, w - 44), mh = rankingOpen ? 650 : 350;
             Place(modalPanel, (w - mw) / 2, (h - mh) / 2, mw, mh);
             Place(modalTitle.rectTransform, 30, 28, mw - 116, 50);
@@ -425,7 +430,7 @@ namespace Pasjans.UI
                 }
             }
             stockLabel.text = "TALIA · " + state.stock.Count;
-            counter.text = "Dobieranie: " + state.drawCount + "   ·   " + (game.HasResult ? "Wynik: " : "Ruchy: ") + game.MoveCount;
+            versionLabel.text = DisplayVersion;
             grandpaBanner.gameObject.SetActive(game.IsGrandpaWin || game.IsGrandpaLoss);
             if (game.IsGrandpaWin)
             {
@@ -466,7 +471,17 @@ namespace Pasjans.UI
         {
             if (modal.gameObject.activeSelf || menuOpen || dragging) return;
             if (card.Pile.kind == PileKind.Stock) { Draw(); return; }
-            if (selected != null && selected != card && TryMoveSelected(card.Pile)) return;
+            if (selected != null && selected != card)
+            {
+                if (TryMoveSelected(card.Pile)) return;
+                // Między różnymi kolumnami sprawdź też kolejność cel → karta przenoszona.
+                if (CanSelect(card) && CanTryReverseTableauMove(selected.Pile, card.Pile) &&
+                    game.TryMove(card.Pile, card.Index, selected.Pile))
+                {
+                    AfterMove();
+                    return;
+                }
+            }
             if (!CanSelect(card)) return;
             if (clickCount >= 2)
             {
@@ -476,6 +491,11 @@ namespace Pasjans.UI
             selected = selected == card ? null : card;
             notice = selected == null ? null : "Wybierz kolumnę lub bazę dla zaznaczonej karty.";
             Refresh();
+        }
+
+        public static bool CanTryReverseTableauMove(PileRef first, PileRef second)
+        {
+            return first.kind == PileKind.Tableau && second.kind == PileKind.Tableau && first.index != second.index;
         }
 
         public void PileClicked(PileRef pile)

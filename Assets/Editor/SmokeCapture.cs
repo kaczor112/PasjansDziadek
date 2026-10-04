@@ -365,6 +365,8 @@ namespace Pasjans.Editor
 
         static void VerifyBoard(PasjansApp app, int columns, int foundations)
         {
+            Check(!Field<Button>(app, "rankingButton").gameObject.activeSelf, "Przycisk rankingu musi pozostać ukryty.");
+            Check(Field<Text>(app, "versionLabel").text == PasjansApp.DisplayVersion, "Brak prawidłowej wersji na dole ekranu.");
             var targets = app.GetComponentsInChildren<PileTarget>();
             Check(targets.Count(t => t.Pile.kind == PileKind.Tableau) == columns, "Nieprawidłowa liczba kolumn.");
             Check(targets.Count(t => t.Pile.kind == PileKind.Foundation) == foundations, "Nieprawidłowa liczba baz.");
