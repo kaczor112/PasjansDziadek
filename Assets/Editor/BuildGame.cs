@@ -15,6 +15,7 @@ namespace Pasjans.Editor
         public static void AllPlatforms()
         {
             Windows();
+            Web();
             Android();
         }
 
@@ -37,6 +38,17 @@ namespace Pasjans.Editor
             {
                 EditorUserBuildSettings.buildAppBundle = previousBundleSetting;
             }
+        }
+
+        [MenuItem("Pasjans/Zbuduj/WWW (WebGL)")]
+        public static void Web()
+        {
+            // Względne ścieżki w szablonie działają także w podkatalogu domeny.
+            PlayerSettings.WebGL.template = "PROJECT:Pasjans";
+            // Zwykły serwer statyczny nie wymaga nagłówków Content-Encoding.
+            PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
+            PlayerSettings.WebGL.closeOnQuit = false;
+            Build(BuildTarget.WebGL, "Builds/Web");
         }
 
 

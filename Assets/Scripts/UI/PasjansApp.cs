@@ -12,10 +12,10 @@ namespace Pasjans.UI
 {
     public sealed class PasjansApp : MonoBehaviour
     {
-        // Schemat: vYYYY.MM.DD_CC_vKK_HASH. Data oznacza dzień zmiany, CC liczbę
+        // Schemat: vYYYY.MM.DD_vCC.KK_HASH. Data oznacza dzień zmiany, CC liczbę
         // wypchniętych commitów, a KK kolejną zmianę kodu (od 01 po zmianie CC).
         // HASH jest skrótem ostatniego wypchniętego commita wskazanym dla wydania.
-        public const string DisplayVersion = "v2026.10.04_05_v01_7652287";
+        public const string DisplayVersion = "v2026.10.19_v06.05_2a372d7";
         public static readonly Color Ink = new Color32(10, 17, 20, 255);
         public static readonly Color Red = new Color32(205, 22, 40, 255);
         static readonly Color Cream = new Color32(245, 238, 214, 255);
@@ -49,31 +49,43 @@ namespace Pasjans.UI
 #endif
         KlondikeGame game;
         GameSaveStore store;
+        // Ranking wróci po dodaniu PASJANS_RANKING do Scripting Define Symbols.
+#if PASJANS_RANKING
         RankingStore rankingStore;
+#endif
         Font font;
         CanvasScaler scaler;
         RectTransform root, board, modal, modalPanel;
         Text title, subtitle, stockLabel, wasteLabel, foundationLabel, grandpaBannerText, status, versionLabel;
         Text modalTitle, modalText;
-        Button menuButton, rotateButton, newButton, rankingButton, aboutButton, quitButton, modalClose, modalAccept, modalCancel;
+        Button menuButton, rotateButton, newButton, aboutButton, quitButton, modalClose, modalAccept, modalCancel;
+#if PASJANS_RANKING
+        Button rankingButton;
+#endif
         RectTransform menuPopup, menuBackdrop, modeItem, modePopup;
         Button oneDeckButton, twoDeckButton;
         Image grandpaBanner;
+#if PASJANS_RANKING
         RectTransform rankingTable;
         readonly Text[,] rankingCells = new Text[11, 4];
+#endif
         readonly CardView[] cards = new CardView[104];
         readonly List<Target> targets = new List<Target>(20);
         readonly List<CardView> dragged = new List<CardView>(13);
         readonly List<Vector2> dragOrigins = new List<Vector2>(13);
-        readonly List<RaycastResult> raycasts = new List<RaycastResult>(32);
         CardView selected;
+        long actionSequence, selectedActionSequence = -1;
         Vector2 dragStart;
+        Camera dragCamera;
         int dragPointerId;
         int startupLayoutFrames = 3;
         int lastWidth, lastHeight;
         Rect lastSafeArea;
         float cardWidth, cardHeight, gap, margin, stockY, tableauY;
-        bool initialized, dirty, dragging, wonShown, rankingOpen, resultRecorded, menuOpen;
+        bool initialized, dirty, dragging, wonShown, menuOpen;
+#if PASJANS_RANKING
+        bool rankingOpen, resultRecorded;
+#endif
         string notice, startupError;
         Action modalAction;
 
@@ -120,7 +132,9 @@ namespace Pasjans.UI
                 if (arguments[i] == "--pasjans-save-dir") saveDirectory = arguments[i + 1];
 #endif
             store = new GameSaveStore(saveDirectory);
+#if PASJANS_RANKING
             rankingStore = new RankingStore(saveDirectory);
+#endif
             var loaded = store.Load();
             if (loaded.Success && game.TryLoad(loaded.State, out _))
                 notice = loaded.Status == SaveLoadStatus.RecoveredBackup ? "Przywrócono grę z kopii zapasowej." : "Wznowiono Twoją grę.";
@@ -136,7 +150,9 @@ namespace Pasjans.UI
             Layout();
             Refresh();
             if (dirty) Persist();
+#if PASJANS_RANKING
             RecordResult();
+#endif
             Debug.Log("Pasjans: interfejs jest gotowy.");
         }
 
@@ -190,9 +206,9 @@ namespace Pasjans.UI
             twoDeckButton = MakeButton(modePopup, "Dwie talie", () => SelectGameMode(2));
             UpdateModeLabels();
             modePopup.gameObject.SetActive(false);
+#if PASJANS_RANKING
             rankingButton = MakeButton(menuPopup, "Ranking", () => { CloseMenu(); ShowRanking(); });
-            // Ranking nadal zapisuje wyniki, ale jego pozycja w menu jest czasowo ukryta.
-            rankingButton.gameObject.SetActive(false);
+#endif
             aboutButton = MakeButton(menuPopup, "O mnie", () => { CloseMenu(); ShowAbout(); });
             quitButton = MakeButton(menuPopup, "Zakończ", () => { CloseMenu(); QuitGame(); });
             menuPopup.gameObject.SetActive(false);
@@ -253,6 +269,7 @@ namespace Pasjans.UI
             modalClose = MakeButton(modalPanel, "X", CloseModal);
             modalAccept = MakeButton(modalPanel, "Rozdaj karty", () => { var action = modalAction; CloseModal(); action?.Invoke(); }, true);
             modalCancel = MakeButton(modalPanel, "Anuluj", CloseModal);
+#if PASJANS_RANKING
             rankingTable = RectObject("Ranking table", modalPanel);
             for (int row = 0; row <= 10; row++)
                 for (int col = 0; col < 4; col++)
@@ -262,6 +279,7 @@ namespace Pasjans.UI
                     if (row == 0) rankingCells[row, col].fontStyle = FontStyle.Bold;
                 }
             rankingTable.gameObject.SetActive(false);
+#endif
             modal.gameObject.SetActive(false);
         }
 
@@ -341,7 +359,11 @@ namespace Pasjans.UI
             Place((RectTransform)rotateButton.transform, menuButtonX - rotateButtonSize - 12, 21, rotateButtonSize, rotateButtonSize);
             float popupWidth = 270;
             float popupX = mobileMenu ? w - menuMargin - popupWidth : menuMargin;
-            Place(menuPopup, popupX, 86, popupWidth, 4 * 57 + 24);
+            int menuRows = 4;
+#if PASJANS_RANKING
+            menuRows = 5;
+#endif
+            Place(menuPopup, popupX, 86, popupWidth, menuRows * 57 + 24);
             Place((RectTransform)newButton.transform, 12, 12, popupWidth - 24, 57);
             Place(modeItem, 12, 69, popupWidth - 24, 57);
             // Podmenu rozwija się w stronę, po której jest wolne miejsce.
@@ -350,8 +372,14 @@ namespace Pasjans.UI
             Place(modePopup, openLeft ? -subWidth : popupWidth - 24, 0, subWidth, 138);
             Place((RectTransform)oneDeckButton.transform, 12, 12, subWidth - 24, 57);
             Place((RectTransform)twoDeckButton.transform, 12, 69, subWidth - 24, 57);
+#if PASJANS_RANKING
+            Place((RectTransform)rankingButton.transform, 12, 126, popupWidth - 24, 57);
+            Place((RectTransform)aboutButton.transform, 12, 183, popupWidth - 24, 57);
+            Place((RectTransform)quitButton.transform, 12, 240, popupWidth - 24, 57);
+#else
             Place((RectTransform)aboutButton.transform, 12, 126, popupWidth - 24, 57);
             Place((RectTransform)quitButton.transform, 12, 183, popupWidth - 24, 57);
+#endif
             stockY = compact ? 226 : 153;
             tableauY = stockY + cardHeight + (portrait ? 70 : 58);
             Place(stockLabel.rectTransform, X(0), stockY - 35, cardWidth + gap, 28);
@@ -378,13 +406,17 @@ namespace Pasjans.UI
             status.fontSize = portrait ? 21 : 18;
             Place(status.rectTransform, margin, h - 65, w - margin * 2 - (portrait ? 0 : 210), 31);
             Place(versionLabel.rectTransform, margin, h - (portrait ? 33 : 65), w - margin * 2, 28);
-            float mw = Mathf.Min(640, w - 44), mh = rankingOpen ? 650 : 350;
+            float mw = Mathf.Min(640, w - 44), mh = 350;
+#if PASJANS_RANKING
+            if (rankingOpen) mh = 650;
+#endif
             Place(modalPanel, (w - mw) / 2, (h - mh) / 2, mw, mh);
             Place(modalTitle.rectTransform, 30, 28, mw - 116, 50);
             Place((RectTransform)modalClose.transform, mw - 77, 18, 58, 54);
             Place(modalText.rectTransform, 30, 93, mw - 60, 142);
             Place((RectTransform)modalAccept.transform, 30, mh - 86, (mw - 76) / 2, 57);
             Place((RectTransform)modalCancel.transform, mw / 2 + 8, mh - 86, (mw - 76) / 2, 57);
+#if PASJANS_RANKING
             Place(rankingTable, 30, 92, mw - 60, 506);
             float tableWidth = mw - 60;
             for (int row = 0; row <= 10; row++)
@@ -396,6 +428,7 @@ namespace Pasjans.UI
                 Place(rankingCells[row, 2].rectTransform, 256, rowY, 126, rowHeight);
                 Place(rankingCells[row, 3].rectTransform, 388, rowY, tableWidth - 388, rowHeight);
             }
+#endif
         }
 
         float X(int col) => margin + col * (cardWidth + gap);
@@ -474,9 +507,12 @@ namespace Pasjans.UI
             if (selected != null && selected != card)
             {
                 if (TryMoveSelected(card.Pile)) return;
-                // Między różnymi kolumnami sprawdź też kolejność cel → karta przenoszona.
-                if (CanSelect(card) && CanTryReverseTableauMove(selected.Pile, card.Pile) &&
-                    game.TryMove(card.Pile, card.Index, selected.Pile))
+                // Sprawdź też cel → karta, a przy stosie odkrytym wymagaj świeżego zaznaczenia.
+                if (CanSelect(card) &&
+                    ((CanTryReverseTableauMove(selected.Pile, card.Pile) &&
+                      game.TryMove(card.Pile, card.Index, selected.Pile)) ||
+                     TryReverseWasteMove(game, selected.Pile, selected.Index, card.Pile, card.Index,
+                         selectedActionSequence == actionSequence)))
                 {
                     AfterMove();
                     return;
@@ -485,10 +521,10 @@ namespace Pasjans.UI
             if (!CanSelect(card)) return;
             if (clickCount >= 2)
             {
-                selected = card;
+                SelectCard(card);
                 for (int f = 0; f < game.State.foundations.Length; f++) if (TryMoveSelected(new PileRef(PileKind.Foundation, f))) return;
             }
-            selected = selected == card ? null : card;
+            SelectCard(selected == card ? null : card);
             notice = selected == null ? null : "Wybierz kolumnę lub bazę dla zaznaczonej karty.";
             Refresh();
         }
@@ -496,6 +532,21 @@ namespace Pasjans.UI
         public static bool CanTryReverseTableauMove(PileRef first, PileRef second)
         {
             return first.kind == PileKind.Tableau && second.kind == PileKind.Tableau && first.index != second.index;
+        }
+
+        public static bool TryReverseWasteMove(KlondikeGame game, PileRef first, int firstIndex,
+            PileRef second, int secondIndex, bool freshSelection)
+        {
+            if (!freshSelection || first.kind != PileKind.Tableau || second.kind != PileKind.Waste ||
+                firstIndex < 0 || firstIndex != game.GetPile(first).Count - 1)
+                return false;
+            return game.TryMove(second, secondIndex, first);
+        }
+
+        void SelectCard(CardView card)
+        {
+            selected = card;
+            selectedActionSequence = card == null ? -1 : actionSequence;
         }
 
         public void PileClicked(PileRef pile)
@@ -521,15 +572,19 @@ namespace Pasjans.UI
 
         void AfterMove()
         {
+            // Osobny numer akcji działa również po zatrzymaniu licznika wyniku.
+            actionSequence++;
             CancelSelection();
             dirty = true;
             notice = null;
             Persist();
+#if PASJANS_RANKING
             RecordResult();
             if (game.HasResult && game.State.grandpaOutcome == GameState.GrandpaPending)
                 notice = "Wynik: " + game.State.finalMoves + " ruchów. Opróżnij talię przed czwartym przejściem.";
             else if (game.HasResult && resultRecorded)
                 notice = "Wynik: " + game.State.finalMoves + " ruchów. Możesz dokończyć układanie.";
+#endif
             Layout();
             Refresh();
         }
@@ -537,11 +592,14 @@ namespace Pasjans.UI
         public bool BeginCardDrag(CardView card, PointerEventData e)
         {
             if (modal.gameObject.activeSelf || menuOpen || dragging || !CanSelect(card)) return false;
-            selected = card;
+            dragCamera = e.pressEventCamera;
+            // Punkt naciśnięcia uwzględnia ruch wykonany przed przekroczeniem progu przeciągania.
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(board, e.pressPosition, dragCamera, out dragStart))
+                return false;
+            SelectCard(card);
             Refresh();
             dragging = true;
             dragPointerId = e.pointerId;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(board, e.position, null, out dragStart);
             var pile = game.GetPile(card.Pile);
             for (int i = card.Index; i < pile.Count; i++)
             {
@@ -551,29 +609,22 @@ namespace Pasjans.UI
                 view.transform.SetAsLastSibling();
                 view.GetComponent<Image>().raycastTarget = false;
             }
+            DragCards(e);
             return true;
         }
 
         public void DragCards(PointerEventData e)
         {
             if (!dragging || dragPointerId != e.pointerId) return;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(board, e.position, null, out Vector2 point);
+            if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(board, e.position, dragCamera, out Vector2 point)) return;
             for (int i = 0; i < dragged.Count; i++) dragged[i].Rect.anchoredPosition = dragOrigins[i] + point - dragStart;
         }
 
         public void EndCardDrag(PointerEventData e)
         {
             if (!dragging || dragPointerId != e.pointerId) return;
-            raycasts.Clear();
-            EventSystem.current.RaycastAll(e, raycasts);
-            PileRef? destination = null;
-            foreach (var hit in raycasts)
-            {
-                var card = hit.gameObject.GetComponentInParent<CardView>();
-                if (card != null) { destination = card.Pile; break; }
-                var target = hit.gameObject.GetComponentInParent<PileTarget>();
-                if (target != null) { destination = target.Pile; break; }
-            }
+            DragCards(e);
+            PileRef? destination = FindDropDestination(e.position);
             dragging = false;
             if (destination.HasValue && TryMoveSelected(destination.Value)) return;
             CancelSelection();
@@ -581,11 +632,44 @@ namespace Pasjans.UI
             Refresh();
         }
 
+        PileRef? FindDropDestination(Vector2 screenPosition)
+        {
+            if (!RectTransformUtility.RectangleContainsScreenPoint(board, screenPosition, dragCamera)) return null;
+            float paddingX = Mathf.Max(gap * .5f, Mathf.Min(18, cardWidth * .18f));
+            float paddingY = Mathf.Min(24, cardHeight * .18f);
+            float nearestDistance = float.PositiveInfinity;
+            PileRef? nearest = null;
+            foreach (var target in targets)
+            {
+                if (!target.rect.gameObject.activeInHierarchy ||
+                    (target.pile.kind != PileKind.Tableau && target.pile.kind != PileKind.Foundation)) continue;
+                if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(target.rect, screenPosition, dragCamera, out Vector2 point)) continue;
+                Rect area = target.rect.rect;
+                // Kolumna przyjmuje upuszczenie na całej wysokości, także między kartami.
+                Rect hitArea = Rect.MinMaxRect(area.xMin - paddingX,
+                    area.yMin - (target.pile.kind == PileKind.Foundation ? paddingY : 0),
+                    area.xMax + paddingX, area.yMax + paddingY);
+                if (!hitArea.Contains(point)) continue;
+                float distance = Mathf.Abs(point.x - area.center.x);
+                if (distance >= nearestDistance) continue;
+                nearestDistance = distance;
+                nearest = target.pile;
+            }
+            // Najpierw wybierz miejsce pod palcem, dopiero potem sprawdź legalność ruchu.
+            return nearest;
+        }
+
         void CancelSelection()
         {
-            foreach (var card in dragged) card.GetComponent<Image>().raycastTarget = true;
+            foreach (var card in dragged)
+            {
+                card.GetComponent<Image>().raycastTarget = true;
+                card.CancelDrag();
+            }
             dragged.Clear(); dragOrigins.Clear();
-            dragging = false; selected = null;
+            dragging = false;
+            dragCamera = null;
+            SelectCard(null);
         }
 
         void AskNewGame() => OpenModal("Nowa gra?", "Bieżące rozdanie zostanie zastąpione.\nRozdać karty w trybie: " + (game.SelectedDeckCount == 1 ? "Jedna talia" : "Dwie talie") + "?", StartNewGame, "Rozdaj karty");
@@ -644,11 +728,13 @@ namespace Pasjans.UI
         void StartNewGame()
         {
             if (game.FinalizeGrandpaLoss()) dirty = true;
+#if PASJANS_RANKING
             if (!RecordResult())
             {
                 OpenModal("Ranking niedostępny", "Nie udało się zachować wyniku. Spróbuj ponownie po zwolnieniu miejsca lub rozpocznij nowe rozdanie mimo to.", ForceNewGame, "Nowa gra mimo to");
                 return;
             }
+#endif
             ForceNewGame();
         }
 
@@ -656,12 +742,16 @@ namespace Pasjans.UI
         {
             game.NewGame();
             UpdateModeLabels();
-            wonShown = false; resultRecorded = false;
+            wonShown = false;
+#if PASJANS_RANKING
+            resultRecorded = false;
+#endif
             AfterMove();
         }
 
         void ShowAbout() => OpenModal("O mnie", "Autorem gry jest Paweł Kaczmarczyk", null, null);
 
+#if PASJANS_RANKING
         void ShowRanking()
         {
             RecordResult();
@@ -695,13 +785,16 @@ namespace Pasjans.UI
             if (!resultRecorded) { notice = error; if (status != null) status.text = error; }
             return resultRecorded;
         }
+#endif
 
         void OpenModal(string heading, string message, Action action, string acceptText)
         {
             CancelSelection();
             CloseMenu();
+#if PASJANS_RANKING
             rankingOpen = false;
             rankingTable.gameObject.SetActive(false);
+#endif
             modalText.gameObject.SetActive(true);
             // Nie odświeżaj tutaj, bo otwarcie okna zwycięstwa trwa w Refresh.
             modalTitle.text = heading; modalText.text = message; modalAction = action;
@@ -731,7 +824,11 @@ namespace Pasjans.UI
 
         void QuitGame()
         {
-            if (Persist() && RecordResult()) ExitApplication();
+            bool saved = Persist();
+#if PASJANS_RANKING
+            if (saved) saved = RecordResult();
+#endif
+            if (saved) ExitApplication();
             else OpenModal("Nie udało się zapisać", "Ostatnie ruchy mogą zostać utracone. Zwolnij miejsce i spróbuj ponownie lub zakończ mimo to.", ExitApplication, "Zakończ mimo to");
         }
 
@@ -767,12 +864,34 @@ namespace Pasjans.UI
 #endif
         }
 
-        void OnApplicationPause(bool paused) { if (initialized && paused) { CancelSelection(); Persist(); RecordResult(); Refresh(); } }
+        void OnApplicationPause(bool paused)
+        {
+            if (!initialized || !paused) return;
+            CancelSelection();
+            Persist();
+#if PASJANS_RANKING
+            RecordResult();
+#endif
+            Refresh();
+        }
         void OnApplicationFocus(bool focused)
         {
-            if (initialized && !focused) { CancelSelection(); Persist(); RecordResult(); Refresh(); }
+            if (!initialized || focused) return;
+            CancelSelection();
+            Persist();
+#if PASJANS_RANKING
+            RecordResult();
+#endif
+            Refresh();
         }
-        void OnApplicationQuit() { if (initialized) { Persist(); RecordResult(); } }
+        void OnApplicationQuit()
+        {
+            if (!initialized) return;
+            Persist();
+#if PASJANS_RANKING
+            RecordResult();
+#endif
+        }
         void OnDestroy() { Art?.Dispose(); }
 
         void OnGUI()

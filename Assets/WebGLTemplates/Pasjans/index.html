@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pasjans Dziadka</title>
+  <style>
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #124b3d; }
+    #unity-canvas { display: block; width: 100vw; height: 100vh; width: 100dvw; height: 100dvh; outline: none; }
+    #loading { position: fixed; inset: 0; display: grid; place-items: center; color: #f5eed6;
+      background: #124b3d; font: 700 1.2rem system-ui, sans-serif; text-align: center; }
+    #loading[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" tabindex="0"></canvas>
+  <div id="loading" role="status">Wczytywanie gry…</div>
+  <script src="Build/{{{ LOADER_FILENAME }}}"></script>
+  <script>
+    const canvas = document.getElementById("unity-canvas");
+    const loading = document.getElementById("loading");
+    createUnityInstance(canvas, {
+      dataUrl: "Build/{{{ DATA_FILENAME }}}",
+      frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_THREADS
+      workerUrl: "Build/{{{ WORKER_FILENAME }}}",
+#endif
+#if USE_WASM
+      codeUrl: "Build/{{{ CODE_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+      symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+#endif
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+      productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+      productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      // Utrwalaj pliki zapisu gry w IndexedDB po każdej zmianie.
+      autoSyncPersistentDataPath: true
+    }, progress => {
+      loading.textContent = "Wczytywanie gry… " + Math.round(progress * 100) + "%";
+    }).then(() => {
+      loading.hidden = true;
+      canvas.focus();
+    }).catch(error => {
+      loading.textContent = "Nie udało się uruchomić gry: " + error;
+    });
+  </script>
+</body>
+</html>

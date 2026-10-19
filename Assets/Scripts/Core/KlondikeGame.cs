@@ -24,12 +24,29 @@ namespace Pasjans.Core
         {
             get
             {
+                if (State.stock.Count != 0 || State.waste.Count != 0)
+                    return false;
+
+                int completedCards = 0;
                 for (int i = 0; i < State.foundations.Length; i++)
                 {
-                    if (State.foundations[i].cards.Count != 13)
+                    int count = State.foundations[i].cards.Count;
+                    if (count != 0 && count != 13)
                         return false;
+                    completedCards += count;
                 }
-                return true;
+
+                // Pełna kolumna król–as liczy się tak samo jak ukończony stos na asie.
+                for (int i = 0; i < State.tableau.Length; i++)
+                {
+                    var cards = State.tableau[i].cards;
+                    if (cards.Count == 0) continue;
+                    if (cards.Count != 13 || cards[0].rank != 13 ||
+                        !CanPickUp(new PileRef(PileKind.Tableau, i), 0))
+                        return false;
+                    completedCards += cards.Count;
+                }
+                return completedCards == 52 * State.DeckCount;
             }
         }
 

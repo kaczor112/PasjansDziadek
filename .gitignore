@@ -25,7 +25,7 @@
 
 # Recordings can get excessive in size
 /[Rr]ecordings/
-
+/Compliance/
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
@@ -105,3 +105,24 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Private signing material and local credentials. Public .cer/.crt/.pub files
+# and documentation remain eligible for version control; never store secrets there.
+*.keystore
+*.jks
+*.pfx
+*.p12
+*.key
+!public.key
+!*.public.key
+*.pkcs8
+*.ppk
+keystore.properties
+signing.local.*
+.env
+.env.*
+!.env.example
+!.env.template
+.secrets/
+/Signing/Private/
+/Signing/Secrets/

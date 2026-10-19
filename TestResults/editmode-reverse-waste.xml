@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="107" result="Passed" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:36Z" duration="1,2962339">
+  <test-suite type="TestSuite" id="1000" name="Pasjans Dziadka" fullname="Pasjans Dziadka" runstate="Runnable" testcasecount="107" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:36Z" duration="1.296234" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1133" name="Pasjans.EditModeTests.dll" fullname="C:/Users/Paweł/OneDrive/Aplikacje niekomercyjne/Unity Projekty/PasjansDziadek/Library/ScriptAssemblies/Pasjans.EditModeTests.dll" runstate="Runnable" testcasecount="107" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:36Z" duration="1.285612" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="16132" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1134" name="Pasjans" fullname="Pasjans" runstate="Runnable" testcasecount="107" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:36Z" duration="1.283700" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1135" name="Tests" fullname="Pasjans.Tests" runstate="Runnable" testcasecount="107" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:36Z" duration="1.281757" total="107" passed="107" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="CardTapCounterTests" fullname="Pasjans.Tests.CardTapCounterTests" classname="Pasjans.Tests.CardTapCounterTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.023391" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1004" name="DragResetPreventsAccidentalDoubleTap" fullname="Pasjans.Tests.CardTapCounterTests.DragResetPreventsAccidentalDoubleTap" methodname="DragResetPreventsAccidentalDoubleTap" classname="Pasjans.Tests.CardTapCounterTests" runstate="Runnable" seed="1843698134" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.010812" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="SlowClicksRemainSeparate" fullname="Pasjans.Tests.CardTapCounterTests.SlowClicksRemainSeparate" methodname="SlowClicksRemainSeparate" classname="Pasjans.Tests.CardTapCounterTests" runstate="Runnable" seed="1724529122" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000193" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="TwoAndroidSingleClicksBecomeDoubleTap" fullname="Pasjans.Tests.CardTapCounterTests.TwoAndroidSingleClicksBecomeDoubleTap" methodname="TwoAndroidSingleClicksBecomeDoubleTap" classname="Pasjans.Tests.CardTapCounterTests" runstate="Runnable" seed="258792301" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1005" name="GameModeTests" fullname="Pasjans.Tests.GameModeTests" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.148541" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1013" name="BothCopiesOfSuitCanCompleteSeparateFoundations" fullname="Pasjans.Tests.GameModeTests.BothCopiesOfSuitCanCompleteSeparateFoundations" methodname="BothCopiesOfSuitCanCompleteSeparateFoundations" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="588620749" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.006477" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="DefaultGameUsesTwoDecks" fullname="Pasjans.Tests.GameModeTests.DefaultGameUsesTwoDecks" methodname="DefaultGameUsesTwoDecks" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="739894938" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000715" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="DuplicateOrForeignCardCannotMasqueradeAsSecondDeck" fullname="Pasjans.Tests.GameModeTests.DuplicateOrForeignCardCannotMasqueradeAsSecondDeck" methodname="DuplicateOrForeignCardCannotMasqueradeAsSecondDeck" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="1563823218" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000887" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1016" name="InvalidModeIsRejectedWithoutChangingGame" fullname="Pasjans.Tests.GameModeTests.InvalidModeIsRejectedWithoutChangingGame" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.005554" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1014" name="InvalidModeIsRejectedWithoutChangingGame(0)" fullname="Pasjans.Tests.GameModeTests.InvalidModeIsRejectedWithoutChangingGame(0)" methodname="InvalidModeIsRejectedWithoutChangingGame" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="359484241" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.003575" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1015" name="InvalidModeIsRejectedWithoutChangingGame(3)" fullname="Pasjans.Tests.GameModeTests.InvalidModeIsRejectedWithoutChangingGame(3)" methodname="InvalidModeIsRejectedWithoutChangingGame" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="1795388364" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1012" name="LegacySevenColumnSaveResumesUntilNewGame" fullname="Pasjans.Tests.GameModeTests.LegacySevenColumnSaveResumesUntilNewGame" methodname="LegacySevenColumnSaveResumesUntilNewGame" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="405632655" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.042818" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1008" name="NewDealContainsFullShuffledDecksAndCorrectColumns" fullname="Pasjans.Tests.GameModeTests.NewDealContainsFullShuffledDecksAndCorrectColumns" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.008279" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1006" name="NewDealContainsFullShuffledDecksAndCorrectColumns(1,5,37)" fullname="Pasjans.Tests.GameModeTests.NewDealContainsFullShuffledDecksAndCorrectColumns(1,5,37)" methodname="NewDealContainsFullShuffledDecksAndCorrectColumns" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="258470271" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.005351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1007" name="NewDealContainsFullShuffledDecksAndCorrectColumns(2,10,49)" fullname="Pasjans.Tests.GameModeTests.NewDealContainsFullShuffledDecksAndCorrectColumns(2,10,49)" methodname="NewDealContainsFullShuffledDecksAndCorrectColumns" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="223995187" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.001944" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1010" name="SelectionOnlyChangesNextDealAndSurvivesRestart" fullname="Pasjans.Tests.GameModeTests.SelectionOnlyChangesNextDealAndSurvivesRestart" methodname="SelectionOnlyChangesNextDealAndSurvivesRestart" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="1723886756" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.016236" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="TenthColumnLastHiddenCardCompletesAndRecordsResultOnce" fullname="Pasjans.Tests.GameModeTests.TenthColumnLastHiddenCardCompletesAndRecordsResultOnce" methodname="TenthColumnLastHiddenCardCompletesAndRecordsResultOnce" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="836454449" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.020436" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="TwoDecksRoundTripPreservesIdentityBacksMovesAndDrawPhase" fullname="Pasjans.Tests.GameModeTests.TwoDecksRoundTripPreservesIdentityBacksMovesAndDrawPhase" methodname="TwoDecksRoundTripPreservesIdentityBacksMovesAndDrawPhase" classname="Pasjans.Tests.GameModeTests" runstate="Runnable" seed="818286659" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.040001" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1019" name="GameSaveStoreTests" fullname="Pasjans.Tests.GameSaveStoreTests" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.470806" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1032" name="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame" fullname="Pasjans.Tests.GameSaveStoreTests.CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.083245" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1028" name="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame(&quot;&quot;)" fullname="Pasjans.Tests.GameSaveStoreTests.CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame(&quot;&quot;)" methodname="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1351456370" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.019810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1029" name="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame(&quot;not json&quot;)" fullname="Pasjans.Tests.GameSaveStoreTests.CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame(&quot;not json&quot;)" methodname="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="189420012" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.022185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1030" name="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame(&quot;{}&quot;)" fullname="Pasjans.Tests.GameSaveStoreTests.CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame(&quot;{}&quot;)" methodname="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="438984472" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.017444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1031" name="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame(&quot;{\&quot;formatVersion\&quot;:1}&quot;)" fullname="Pasjans.Tests.GameSaveStoreTests.CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame(&quot;{\&quot;formatVersion\&quot;:1}&quot;)" methodname="CorruptSaveFailsSafelyAndCanBeReplacedByFreshGame" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1024400323" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.022513" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1040" name="FailedTemporaryWritePreservesBothExistingSnapshots" fullname="Pasjans.Tests.GameSaveStoreTests.FailedTemporaryWritePreservesBothExistingSnapshots" methodname="FailedTemporaryWritePreservesBothExistingSnapshots" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="297092477" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.037194" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="FutureEnvelopeVersionIsPreservedAndBlocksSaving" fullname="Pasjans.Tests.GameSaveStoreTests.FutureEnvelopeVersionIsPreservedAndBlocksSaving" methodname="FutureEnvelopeVersionIsPreservedAndBlocksSaving" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1595217664" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.011632" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="FuturePrimaryCanRecoverOldBackupWithoutOverwritingNewerData" fullname="Pasjans.Tests.GameSaveStoreTests.FuturePrimaryCanRecoverOldBackupWithoutOverwritingNewerData" methodname="FuturePrimaryCanRecoverOldBackupWithoutOverwritingNewerData" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1865320653" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.036582" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="FutureStateSchemaIsPreservedEvenWithValidEnvelope" fullname="Pasjans.Tests.GameSaveStoreTests.FutureStateSchemaIsPreservedEvenWithValidEnvelope" methodname="FutureStateSchemaIsPreservedEvenWithValidEnvelope" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="2108395015" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.015925" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="InterruptedTemporaryWriteDoesNotHideLastGoodSave" fullname="Pasjans.Tests.GameSaveStoreTests.InterruptedTemporaryWriteDoesNotHideLastGoodSave" methodname="InterruptedTemporaryWriteDoesNotHideLastGoodSave" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="193905783" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.031366" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="InvalidStateCannotReplaceAnExistingSave" fullname="Pasjans.Tests.GameSaveStoreTests.InvalidStateCannotReplaceAnExistingSave" methodname="InvalidStateCannotReplaceAnExistingSave" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="24979688" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.015634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="MatchingChecksumDoesNotPermitAnInvalidDeck" fullname="Pasjans.Tests.GameSaveStoreTests.MatchingChecksumDoesNotPermitAnInvalidDeck" methodname="MatchingChecksumDoesNotPermitAnInvalidDeck" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1550891060" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.010831" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="MissingPrimaryCanRecoverBackupAndContinueSaving" fullname="Pasjans.Tests.GameSaveStoreTests.MissingPrimaryCanRecoverBackupAndContinueSaving" methodname="MissingPrimaryCanRecoverBackupAndContinueSaving" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1495503953" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.043877" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="MissingSaveIsReportedWithoutCreatingAnyFiles" fullname="Pasjans.Tests.GameSaveStoreTests.MissingSaveIsReportedWithoutCreatingAnyFiles" methodname="MissingSaveIsReportedWithoutCreatingAnyFiles" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1114536104" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.001298" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="ModifiedPayloadWithoutMatchingChecksumIsRejected" fullname="Pasjans.Tests.GameSaveStoreTests.ModifiedPayloadWithoutMatchingChecksumIsRejected" methodname="ModifiedPayloadWithoutMatchingChecksumIsRejected" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1692305941" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.022556" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="OversizedAndInvalidUtf8FilesFailWithoutThrowing" fullname="Pasjans.Tests.GameSaveStoreTests.OversizedAndInvalidUtf8FilesFailWithoutThrowing" methodname="OversizedAndInvalidUtf8FilesFailWithoutThrowing" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="419545238" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.015146" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1024" name="SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase" fullname="Pasjans.Tests.GameSaveStoreTests.SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.047145" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1021" name="SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase(1)" fullname="Pasjans.Tests.GameSaveStoreTests.SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase(1)" methodname="SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="257798500" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.015275" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1022" name="SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase(2)" fullname="Pasjans.Tests.GameSaveStoreTests.SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase(2)" methodname="SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="291956036" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.015551" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1023" name="SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase(3)" fullname="Pasjans.Tests.GameSaveStoreTests.SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase(3)" methodname="SaveAndLoadRestoreEveryCardOrientationOrderMoveAndStockPhase" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1177377763" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.014960" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1027" name="SavingAfterRecoveryDoesNotReplaceHealthyBackupWithCorruptPrimary" fullname="Pasjans.Tests.GameSaveStoreTests.SavingAfterRecoveryDoesNotReplaceHealthyBackupWithCorruptPrimary" methodname="SavingAfterRecoveryDoesNotReplaceHealthyBackupWithCorruptPrimary" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1211607952" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.048677" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="SecondSaveKeepsPreviousPlayableSnapshotAsBackup" fullname="Pasjans.Tests.GameSaveStoreTests.SecondSaveKeepsPreviousPlayableSnapshotAsBackup" methodname="SecondSaveKeepsPreviousPlayableSnapshotAsBackup" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1473105130" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.034053" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="UnusableSaveDirectoryReturnsFailureInsteadOfThrowing" fullname="Pasjans.Tests.GameSaveStoreTests.UnusableSaveDirectoryReturnsFailureInsteadOfThrowing" methodname="UnusableSaveDirectoryReturnsFailureInsteadOfThrowing" classname="Pasjans.Tests.GameSaveStoreTests" runstate="Runnable" seed="1030597263" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.009072" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1043" name="KlondikeGameTests" fullname="Pasjans.Tests.KlondikeGameTests" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="34" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:36Z" duration="0.155618" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1081" name="CompletedFoundationsAndTableauRunsCanWinTogether" fullname="Pasjans.Tests.KlondikeGameTests.CompletedFoundationsAndTableauRunsCanWinTogether" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.003288" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1079" name="CompletedFoundationsAndTableauRunsCanWinTogether(1)" fullname="Pasjans.Tests.KlondikeGameTests.CompletedFoundationsAndTableauRunsCanWinTogether(1)" methodname="CompletedFoundationsAndTableauRunsCanWinTogether" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1831482974" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.001930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1080" name="CompletedFoundationsAndTableauRunsCanWinTogether(2)" fullname="Pasjans.Tests.KlondikeGameTests.CompletedFoundationsAndTableauRunsCanWinTogether(2)" methodname="CompletedFoundationsAndTableauRunsCanWinTogether" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="981170799" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1051" name="DefaultGameProgressesFromThreeToTwoToOneCardPerDraw" fullname="Pasjans.Tests.KlondikeGameTests.DefaultGameProgressesFromThreeToTwoToOneCardPerDraw" methodname="DefaultGameProgressesFromThreeToTwoToOneCardPerDraw" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1107094567" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.002953" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1049" name="DrawOneAndRecyclePreserveOriginalStockOrder" fullname="Pasjans.Tests.KlondikeGameTests.DrawOneAndRecyclePreserveOriginalStockOrder" methodname="DrawOneAndRecyclePreserveOriginalStockOrder" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="380145039" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.001709" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1052" name="DrawThreeDrawsLastPartialPacket" fullname="Pasjans.Tests.KlondikeGameTests.DrawThreeDrawsLastPartialPacket" methodname="DrawThreeDrawsLastPartialPacket" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1175015807" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.002100" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="DrawThreeLeavesOnlyFinalWasteCardAvailable" fullname="Pasjans.Tests.KlondikeGameTests.DrawThreeLeavesOnlyFinalWasteCardAvailable" methodname="DrawThreeLeavesOnlyFinalWasteCardAvailable" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1827596071" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000500" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="EmptyTableauKeepsExistingRuleAllowingAnyVisibleSequence" fullname="Pasjans.Tests.KlondikeGameTests.EmptyTableauKeepsExistingRuleAllowingAnyVisibleSequence" methodname="EmptyTableauKeepsExistingRuleAllowingAnyVisibleSequence" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1788955348" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000751" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="FoundationCannotTakeAGroupOrBuriedCard" fullname="Pasjans.Tests.KlondikeGameTests.FoundationCannotTakeAGroupOrBuriedCard" methodname="FoundationCannotTakeAGroupOrBuriedCard" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="2020026097" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000744" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="FoundationsStartWithAceAndContinueSameSuit" fullname="Pasjans.Tests.KlondikeGameTests.FoundationsStartWithAceAndContinueSameSuit" methodname="FoundationsStartWithAceAndContinueSameSuit" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1613761491" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000670" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="FoundationTopMayReturnToTableau" fullname="Pasjans.Tests.KlondikeGameTests.FoundationTopMayReturnToTableau" methodname="FoundationTopMayReturnToTableau" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1060953972" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000526" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1063" name="FourCompletedFoundationsAreAWinAndEmptyStockCannotDraw" fullname="Pasjans.Tests.KlondikeGameTests.FourCompletedFoundationsAreAWinAndEmptyStockCannotDraw" methodname="FourCompletedFoundationsAreAWinAndEmptyStockCannotDraw" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="62293875" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000695" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="IllegalMoveDoesNotChangeCardsOrMoveCount" fullname="Pasjans.Tests.KlondikeGameTests.IllegalMoveDoesNotChangeCardsOrMoveCount" methodname="IllegalMoveDoesNotChangeCardsOrMoveCount" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1029278190" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000705" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1060" name="InvalidLoadedDeckIsRejectedWithoutReplacingCurrentGame" fullname="Pasjans.Tests.KlondikeGameTests.InvalidLoadedDeckIsRejectedWithoutReplacingCurrentGame" methodname="InvalidLoadedDeckIsRejectedWithoutReplacingCurrentGame" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="571445947" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000619" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1066" name="KingToAceRunsAreAWinAndSurviveStateReload" fullname="Pasjans.Tests.KlondikeGameTests.KingToAceRunsAreAWinAndSurviveStateReload" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.002102" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1064" name="KingToAceRunsAreAWinAndSurviveStateReload(1)" fullname="Pasjans.Tests.KlondikeGameTests.KingToAceRunsAreAWinAndSurviveStateReload(1)" methodname="KingToAceRunsAreAWinAndSurviveStateReload" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1264321568" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1065" name="KingToAceRunsAreAWinAndSurviveStateReload(2)" fullname="Pasjans.Tests.KlondikeGameTests.KingToAceRunsAreAWinAndSurviveStateReload(2)" methodname="KingToAceRunsAreAWinAndSurviveStateReload" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1450675313" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000604" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1069" name="LastWasteAceCompletesTableauWin" fullname="Pasjans.Tests.KlondikeGameTests.LastWasteAceCompletesTableauWin" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.001492" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1067" name="LastWasteAceCompletesTableauWin(1)" fullname="Pasjans.Tests.KlondikeGameTests.LastWasteAceCompletesTableauWin(1)" methodname="LastWasteAceCompletesTableauWin" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="2079497404" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1068" name="LastWasteAceCompletesTableauWin(2)" fullname="Pasjans.Tests.KlondikeGameTests.LastWasteAceCompletesTableauWin(2)" methodname="LastWasteAceCompletesTableauWin" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="2121468748" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000314" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1061" name="LoadedStateIsCopiedAndCallerCannotMutateGameThroughInput" fullname="Pasjans.Tests.KlondikeGameTests.LoadedStateIsCopiedAndCallerCannotMutateGameThroughInput" methodname="LoadedStateIsCopiedAndCallerCannotMutateGameThroughInput" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1335587933" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:35Z" duration="0.000507" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1085" name="MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants" fullname="Pasjans.Tests.KlondikeGameTests.MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:36Z" duration="0.120013" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1082" name="MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants(1,150,1)" fullname="Pasjans.Tests.KlondikeGameTests.MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants(1,150,1)" methodname="MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="2077496285" result="Passed" start-time="2026-10-19 10:23:35Z" end-time="2026-10-19 10:23:36Z" duration="0.050485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1083" name="MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants(3,151,1)" fullname="Pasjans.Tests.KlondikeGameTests.MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants(3,151,1)" methodname="MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1785182756" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.022902" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1084" name="MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants(3,152,2)" fullname="Pasjans.Tests.KlondikeGameTests.MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants(3,152,2)" methodname="MixedLegalMovesAndRecyclingAlwaysPreserveDeckInvariants" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="379041597" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.045686" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1055" name="MovingAVisibleRunExposesPreviousHiddenCard" fullname="Pasjans.Tests.KlondikeGameTests.MovingAVisibleRunExposesPreviousHiddenCard" methodname="MovingAVisibleRunExposesPreviousHiddenCard" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1792922151" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000791" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1047" name="NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp" fullname="Pasjans.Tests.KlondikeGameTests.NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.006003" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1044" name="NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp(1)" fullname="Pasjans.Tests.KlondikeGameTests.NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp(1)" methodname="NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1023912378" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1045" name="NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp(2)" fullname="Pasjans.Tests.KlondikeGameTests.NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp(2)" methodname="NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="970135306" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000124" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1046" name="NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp(3)" fullname="Pasjans.Tests.KlondikeGameTests.NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp(3)" methodname="NewDealHasEveryCardExactlyOnceAndOnlyTableauTopsFaceUp" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="882636164" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1078" name="PartialFoundationsDoNotCompleteKingToTwoColumns" fullname="Pasjans.Tests.KlondikeGameTests.PartialFoundationsDoNotCompleteKingToTwoColumns" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000779" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1076" name="PartialFoundationsDoNotCompleteKingToTwoColumns(1)" fullname="Pasjans.Tests.KlondikeGameTests.PartialFoundationsDoNotCompleteKingToTwoColumns(1)" methodname="PartialFoundationsDoNotCompleteKingToTwoColumns" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1121896952" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1077" name="PartialFoundationsDoNotCompleteKingToTwoColumns(2)" fullname="Pasjans.Tests.KlondikeGameTests.PartialFoundationsDoNotCompleteKingToTwoColumns(2)" methodname="PartialFoundationsDoNotCompleteKingToTwoColumns" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="992360315" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000130" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1072" name="RemainingStockPreventsTableauWin" fullname="Pasjans.Tests.KlondikeGameTests.RemainingStockPreventsTableauWin" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000731" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1070" name="RemainingStockPreventsTableauWin(1)" fullname="Pasjans.Tests.KlondikeGameTests.RemainingStockPreventsTableauWin(1)" methodname="RemainingStockPreventsTableauWin" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1013639670" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1071" name="RemainingStockPreventsTableauWin(2)" fullname="Pasjans.Tests.KlondikeGameTests.RemainingStockPreventsTableauWin(2)" methodname="RemainingStockPreventsTableauWin" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="95464501" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1048" name="SeedReproducesDealAndAnotherSeedChangesDeal" fullname="Pasjans.Tests.KlondikeGameTests.SeedReproducesDealAndAnotherSeedChangesDeal" methodname="SeedReproducesDealAndAnotherSeedChangesDeal" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1694945034" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000378" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1075" name="SplitFaceUpRunIsNotAWinUntilJoined" fullname="Pasjans.Tests.KlondikeGameTests.SplitFaceUpRunIsNotAWinUntilJoined" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000725" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1073" name="SplitFaceUpRunIsNotAWinUntilJoined(1)" fullname="Pasjans.Tests.KlondikeGameTests.SplitFaceUpRunIsNotAWinUntilJoined(1)" methodname="SplitFaceUpRunIsNotAWinUntilJoined" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="899585586" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000344" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1074" name="SplitFaceUpRunIsNotAWinUntilJoined(2)" fullname="Pasjans.Tests.KlondikeGameTests.SplitFaceUpRunIsNotAWinUntilJoined(2)" methodname="SplitFaceUpRunIsNotAWinUntilJoined" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="1779201481" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1053" name="TableauRequiresDescendingRanksAndAlternatingColors" fullname="Pasjans.Tests.KlondikeGameTests.TableauRequiresDescendingRanksAndAlternatingColors" methodname="TableauRequiresDescendingRanksAndAlternatingColors" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="715597963" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000461" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1062" name="ValidationRejectsMissingAndMalformedState" fullname="Pasjans.Tests.KlondikeGameTests.ValidationRejectsMissingAndMalformedState" methodname="ValidationRejectsMissingAndMalformedState" classname="Pasjans.Tests.KlondikeGameTests" runstate="Runnable" seed="265452766" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000314" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1086" name="RankingTests" fullname="Pasjans.Tests.RankingTests" classname="Pasjans.Tests.RankingTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.471129" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1102" name="CorruptPrimaryRecoversBackupAndBothCorruptAreEmpty" fullname="Pasjans.Tests.RankingTests.CorruptPrimaryRecoversBackupAndBothCorruptAreEmpty" methodname="CorruptPrimaryRecoversBackupAndBothCorruptAreEmpty" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="427864840" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.044676" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1098" name="EqualScoresPreferEarlierCompletion" fullname="Pasjans.Tests.RankingTests.EqualScoresPreferEarlierCompletion" methodname="EqualScoresPreferEarlierCompletion" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="879217454" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.025398" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1100" name="ExistingRankingEntryIsCorrectedAfterOutcomeChanges" fullname="Pasjans.Tests.RankingTests.ExistingRankingEntryIsCorrectedAfterOutcomeChanges" methodname="ExistingRankingEntryIsCorrectedAfterOutcomeChanges" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="635264658" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.023944" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1094" name="FourthStockPassMakesGrandpaLossButKeepsStandardScore" fullname="Pasjans.Tests.RankingTests.FourthStockPassMakesGrandpaLossButKeepsStandardScore" methodname="FourthStockPassMakesGrandpaLossButKeepsStandardScore" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="182071954" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.012007" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1103" name="FutureVersionIsPreservedAndFailedWriteKeepsScores" fullname="Pasjans.Tests.RankingTests.FutureVersionIsPreservedAndFailedWriteKeepsScores" methodname="FutureVersionIsPreservedAndFailedWriteKeepsScores" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="1231487485" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.004081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1099" name="GrandpaWinRanksBeforeLowerScoringStandardResult" fullname="Pasjans.Tests.RankingTests.GrandpaWinRanksBeforeLowerScoringStandardResult" methodname="GrandpaWinRanksBeforeLowerScoringStandardResult" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="48686530" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.026503" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1092" name="GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass" fullname="Pasjans.Tests.RankingTests.GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass" classname="Pasjans.Tests.RankingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.040880" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1089" name="GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass(3,0)" fullname="Pasjans.Tests.RankingTests.GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass(3,0)" methodname="GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="1203970903" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.015111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1090" name="GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass(2,1)" fullname="Pasjans.Tests.RankingTests.GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass(2,1)" methodname="GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="1347643757" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.013317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1091" name="GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass(1,2)" fullname="Pasjans.Tests.RankingTests.GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass(1,2)" methodname="GrandpaWinRequiresUsingStockAndWasteDuringAnyAllowedPass" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="1474503367" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.011724" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1104" name="InterruptedTempWritePreservesLastGoodRanking" fullname="Pasjans.Tests.RankingTests.InterruptedTempWritePreservesLastGoodRanking" methodname="InterruptedTempWritePreservesLastGoodRanking" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="481731265" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.012935" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1095" name="InvalidMovesAndMenusDoNotCreateResultOrCount" fullname="Pasjans.Tests.RankingTests.InvalidMovesAndMenusDoNotCreateResultOrCount" methodname="InvalidMovesAndMenusDoNotCreateResultOrCount" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="853147996" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000598" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1088" name="LastHiddenTableauCardFreezesCountIncludingItsMoveWhileStockRemains" fullname="Pasjans.Tests.RankingTests.LastHiddenTableauCardFreezesCountIncludingItsMoveWhileStockRemains" methodname="LastHiddenTableauCardFreezesCountIncludingItsMoveWhileStockRemains" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="1120858395" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.001350" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1087" name="MissingRankingIsEmptyAndCreatesNothing" fullname="Pasjans.Tests.RankingTests.MissingRankingIsEmptyAndCreatesNothing" methodname="MissingRankingIsEmptyAndCreatesNothing" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="531304859" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000772" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1105" name="NewGameResetsFrozenCountAndIdentity" fullname="Pasjans.Tests.RankingTests.NewGameResetsFrozenCountAndIdentity" methodname="NewGameResetsFrozenCountAndIdentity" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="509102310" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000505" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1096" name="OnlyTenLowestScoresSurviveReload" fullname="Pasjans.Tests.RankingTests.OnlyTenLowestScoresSurviveReload" methodname="OnlyTenLowestScoresSurviveReload" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="459098660" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.238526" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1101" name="PreviousRankingLoadsAsNoAndMigratesWhenNewScoreIsSaved" fullname="Pasjans.Tests.RankingTests.PreviousRankingLoadsAsNoAndMigratesWhenNewScoreIsSaved" methodname="PreviousRankingLoadsAsNoAndMigratesWhenNewScoreIsSaved" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="497341488" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.022772" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1097" name="SameGameDoesNotDuplicateAfterRestart" fullname="Pasjans.Tests.RankingTests.SameGameDoesNotDuplicateAfterRestart" methodname="SameGameDoesNotDuplicateAfterRestart" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="1374985248" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.012706" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1093" name="VersionThreePrematureWinReturnsToPendingAfterLoad" fullname="Pasjans.Tests.RankingTests.VersionThreePrematureWinReturnsToPendingAfterLoad" methodname="VersionThreePrematureWinReturnsToPendingAfterLoad" classname="Pasjans.Tests.RankingTests" runstate="Runnable" seed="1935954056" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000796" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1106" name="ReverseTableauSelectionTests" fullname="Pasjans.Tests.ReverseTableauSelectionTests" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.006275" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1117" name="BuriedTableauCardCannotBecomeReverseWasteTarget" fullname="Pasjans.Tests.ReverseTableauSelectionTests.BuriedTableauCardCannotBecomeReverseWasteTarget" methodname="BuriedTableauCardCannotBecomeReverseWasteTarget" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="1595517422" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.001190" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1118" name="BuriedWasteCardCannotBeMovedInReverse" fullname="Pasjans.Tests.ReverseTableauSelectionTests.BuriedWasteCardCannotBeMovedInReverse" methodname="BuriedWasteCardCannotBeMovedInReverse" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="390938022" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000266" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1107" name="DifferentTableauColumnsAllowReverseAttempt" fullname="Pasjans.Tests.ReverseTableauSelectionTests.DifferentTableauColumnsAllowReverseAttempt" methodname="DifferentTableauColumnsAllowReverseAttempt" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="4750634" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000150" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1115" name="FreshTableauThenWasteMovesOnlyTopWasteCard" fullname="Pasjans.Tests.ReverseTableauSelectionTests.FreshTableauThenWasteMovesOnlyTopWasteCard" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000852" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1113" name="FreshTableauThenWasteMovesOnlyTopWasteCard(1)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.FreshTableauThenWasteMovesOnlyTopWasteCard(1)" methodname="FreshTableauThenWasteMovesOnlyTopWasteCard" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="152499563" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000371" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1114" name="FreshTableauThenWasteMovesOnlyTopWasteCard(2)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.FreshTableauThenWasteMovesOnlyTopWasteCard(2)" methodname="FreshTableauThenWasteMovesOnlyTopWasteCard" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="510508144" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1121" name="IllegalColorOrRankDoesNotMoveWaste" fullname="Pasjans.Tests.ReverseTableauSelectionTests.IllegalColorOrRankDoesNotMoveWaste" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000815" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1119" name="IllegalColorOrRankDoesNotMoveWaste(Spades,7)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.IllegalColorOrRankDoesNotMoveWaste(Spades,7)" methodname="IllegalColorOrRankDoesNotMoveWaste" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="456975476" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1120" name="IllegalColorOrRankDoesNotMoveWaste(Hearts,6)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.IllegalColorOrRankDoesNotMoveWaste(Hearts,6)" methodname="IllegalColorOrRankDoesNotMoveWaste" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="642506739" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1112" name="ReverseAttemptIsLimitedToTableau" fullname="Pasjans.Tests.ReverseTableauSelectionTests.ReverseAttemptIsLimitedToTableau" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000596" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1109" name="ReverseAttemptIsLimitedToTableau(Waste,Tableau)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.ReverseAttemptIsLimitedToTableau(Waste,Tableau)" methodname="ReverseAttemptIsLimitedToTableau" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="1242487666" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1110" name="ReverseAttemptIsLimitedToTableau(Tableau,Foundation)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.ReverseAttemptIsLimitedToTableau(Tableau,Foundation)" methodname="ReverseAttemptIsLimitedToTableau" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="1135477669" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1111" name="ReverseAttemptIsLimitedToTableau(Foundation,Tableau)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.ReverseAttemptIsLimitedToTableau(Foundation,Tableau)" methodname="ReverseAttemptIsLimitedToTableau" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="815093053" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1124" name="ReverseWasteRuleDoesNotApplyToOtherPiles" fullname="Pasjans.Tests.ReverseTableauSelectionTests.ReverseWasteRuleDoesNotApplyToOtherPiles" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000592" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1122" name="ReverseWasteRuleDoesNotApplyToOtherPiles(Stock)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.ReverseWasteRuleDoesNotApplyToOtherPiles(Stock)" methodname="ReverseWasteRuleDoesNotApplyToOtherPiles" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="1440418283" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1123" name="ReverseWasteRuleDoesNotApplyToOtherPiles(Foundation)" fullname="Pasjans.Tests.ReverseTableauSelectionTests.ReverseWasteRuleDoesNotApplyToOtherPiles(Foundation)" methodname="ReverseWasteRuleDoesNotApplyToOtherPiles" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="375045203" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000094" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1108" name="SameTableauColumnKeepsExistingSelectionRules" fullname="Pasjans.Tests.ReverseTableauSelectionTests.SameTableauColumnKeepsExistingSelectionRules" methodname="SameTableauColumnKeepsExistingSelectionRules" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="218827969" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000115" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1116" name="SelectionFromPreviousActionCannotMoveWaste" fullname="Pasjans.Tests.ReverseTableauSelectionTests.SelectionFromPreviousActionCannotMoveWaste" methodname="SelectionFromPreviousActionCannotMoveWaste" classname="Pasjans.Tests.ReverseTableauSelectionTests" runstate="Runnable" seed="574005563" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000368" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1125" name="ScreenRotationTests" fullname="Pasjans.Tests.ScreenRotationTests" classname="Pasjans.Tests.ScreenRotationTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.001684" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1132" name="AutomaticLandscapeChangesToPortrait" fullname="Pasjans.Tests.ScreenRotationTests.AutomaticLandscapeChangesToPortrait" methodname="AutomaticLandscapeChangesToPortrait" classname="Pasjans.Tests.ScreenRotationTests" runstate="Runnable" seed="680380682" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000259" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1131" name="AutomaticPortraitChangesToLandscape" fullname="Pasjans.Tests.ScreenRotationTests.AutomaticPortraitChangesToLandscape" methodname="AutomaticPortraitChangesToLandscape" classname="Pasjans.Tests.ScreenRotationTests" runstate="Runnable" seed="1484268315" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000104" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1130" name="ForcedOrientationRotatesClockwise" fullname="Pasjans.Tests.ScreenRotationTests.ForcedOrientationRotatesClockwise" classname="Pasjans.Tests.ScreenRotationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000738" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1126" name="ForcedOrientationRotatesClockwise(Portrait,LandscapeLeft)" fullname="Pasjans.Tests.ScreenRotationTests.ForcedOrientationRotatesClockwise(Portrait,LandscapeLeft)" methodname="ForcedOrientationRotatesClockwise" classname="Pasjans.Tests.ScreenRotationTests" runstate="Runnable" seed="1505125189" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1127" name="ForcedOrientationRotatesClockwise(LandscapeLeft,PortraitUpsideDown)" fullname="Pasjans.Tests.ScreenRotationTests.ForcedOrientationRotatesClockwise(LandscapeLeft,PortraitUpsideDown)" methodname="ForcedOrientationRotatesClockwise" classname="Pasjans.Tests.ScreenRotationTests" runstate="Runnable" seed="1398514535" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000057" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1128" name="ForcedOrientationRotatesClockwise(PortraitUpsideDown,LandscapeRight)" fullname="Pasjans.Tests.ScreenRotationTests.ForcedOrientationRotatesClockwise(PortraitUpsideDown,LandscapeRight)" methodname="ForcedOrientationRotatesClockwise" classname="Pasjans.Tests.ScreenRotationTests" runstate="Runnable" seed="745287290" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1129" name="ForcedOrientationRotatesClockwise(LandscapeRight,Portrait)" fullname="Pasjans.Tests.ScreenRotationTests.ForcedOrientationRotatesClockwise(LandscapeRight,Portrait)" methodname="ForcedOrientationRotatesClockwise" classname="Pasjans.Tests.ScreenRotationTests" runstate="Runnable" seed="1087102242" result="Passed" start-time="2026-10-19 10:23:36Z" end-time="2026-10-19 10:23:36Z" duration="0.000049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/Paweł/AppData/LocalLow/PawelKaczmarczyk/Pasjans Dziadka\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

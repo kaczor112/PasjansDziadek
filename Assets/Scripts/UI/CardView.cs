@@ -22,6 +22,7 @@ namespace Pasjans.UI
         readonly Image[] pips = new Image[10];
         readonly CardTapCounter tapCounter = new CardTapCounter();
         bool dragging;
+        int dragPointerId;
 
         public void Initialize(PasjansApp owner)
         {
@@ -102,11 +103,18 @@ namespace Pasjans.UI
 
         public void OnBeginDrag(PointerEventData e)
         {
+            if (dragging) return;
             dragging = e.button == PointerEventData.InputButton.Left && app.BeginCardDrag(this, e);
-            if (dragging) tapCounter.Reset();
+            if (dragging) { dragPointerId = e.pointerId; tapCounter.Reset(); }
         }
-        public void OnDrag(PointerEventData e) { if (dragging) app.DragCards(e); }
-        public void OnEndDrag(PointerEventData e) { if (dragging) app.EndCardDrag(e); dragging = false; }
+        public void OnDrag(PointerEventData e) { if (dragging && dragPointerId == e.pointerId) app.DragCards(e); }
+        public void OnEndDrag(PointerEventData e)
+        {
+            if (!dragging || dragPointerId != e.pointerId) return;
+            app.EndCardDrag(e);
+            dragging = false;
+        }
+        internal void CancelDrag() => dragging = false;
     }
 
     public sealed class CardTapCounter

@@ -9,6 +9,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 namespace Pasjans.Editor
@@ -26,6 +27,8 @@ namespace Pasjans.Editor
         const BindingFlags InstanceFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
         static EditorWindow gameView;
         static string beforeModeChange;
+        static Mouse smokeMouse;
+        static Mouse[] previousMice;
 
         public static void RunModes()
         {
@@ -136,9 +139,14 @@ namespace Pasjans.Editor
                         break;
                     case 8:
                         if (!CaptureComplete("portrait.png", 720, 1280)) return;
+#if PASJANS_RANKING
                         FindApp().SendMessage("ShowRanking", SendMessageOptions.RequireReceiver);
                         SetStage(9);
+#else
+                        Finish(true, "Sprawdzono planszę, okno autora i obie orientacje bez rankingu.");
+#endif
                         break;
+#if PASJANS_RANKING
                     case 9:
                         if (!Ready(720, 1280)) return;
                         Capture("ranking-empty.png", 10);
@@ -157,6 +165,7 @@ namespace Pasjans.Editor
                         if (!CaptureComplete("ranking.png", 720, 1280)) return;
                         Finish(true, "Captured game, About and ranking dialogs in " + SessionState.GetString(Prefix + "Output", ""));
                         break;
+#endif
                 }
             }
             catch (Exception exception)
@@ -201,11 +210,16 @@ namespace Pasjans.Editor
                     break;
                 case 5:
                     if (!CaptureComplete("grandpa-loss.png", 1280, 800)) return;
+#if PASJANS_RANKING
                     PopulateSampleRanking();
                     app.SendMessage("ShowRanking", SendMessageOptions.RequireReceiver);
                     SetGameViewSize(720, 1280);
                     SetStage(6);
+#else
+                    Finish(true, "Sprawdzono zielony i czerwony komunikat Dziadka bez rankingu.");
+#endif
                     break;
+#if PASJANS_RANKING
                 case 6:
                     if (!Ready(720, 1280)) return;
                     var cells = Field<Text[,]>(app, "rankingCells");
@@ -218,12 +232,13 @@ namespace Pasjans.Editor
                     if (!CaptureComplete("ranking-grandpa.png", 720, 1280)) return;
                     Finish(true, "Zweryfikowano zielony i czerwony komunikat oraz priorytet Tak w rankingu.");
                     break;
+#endif
             }
         }
 
         static void LoadGrandpaState(PasjansApp app, bool win, int moves)
         {
-            var state = SampleRankingState(moves, win);
+            var state = SampleGrandpaState(moves, win);
             Check(app.Game.TryLoad(state, out string error), error);
             app.SendMessage("Layout", SendMessageOptions.RequireReceiver);
             app.SendMessage("Refresh", SendMessageOptions.RequireReceiver);
@@ -257,6 +272,7 @@ namespace Pasjans.Editor
                 case 2:
                     if (!Ready(1280, 800)) return;
                     VerifyBoard(app, 5, 4);
+                    DragSmokeChecks.Verify(app);
                     Capture("one-deck-landscape.png", 3);
                     break;
                 case 3:
@@ -268,7 +284,11 @@ namespace Pasjans.Editor
                     ExecuteEvents.Execute(row.gameObject, pointer, ExecuteEvents.pointerClickHandler);
                     Check(!Field<RectTransform>(app, "modePopup").gameObject.activeSelf, "Kliknięcie w Windows nie otwiera podmenu.");
                     Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, row.TransformPoint(row.rect.center));
-                    Mouse.current?.WarpCursorPosition(screenPoint);
+                    // Wirtualny kursor uniezależnia test od myszy i ukrytego okna Unity.
+                    previousMice = InputSystem.devices.OfType<Mouse>().Where(mouse => mouse.enabled).ToArray();
+                    foreach (var mouse in previousMice) InputSystem.DisableDevice(mouse);
+                    smokeMouse = InputSystem.AddDevice<Mouse>();
+                    InputState.Change(smokeMouse.position, screenPoint);
                     ExecuteEvents.Execute(row.gameObject, pointer, ExecuteEvents.pointerEnterHandler);
                     Check(Field<RectTransform>(app, "modePopup").gameObject.activeSelf, "Najechanie musi otworzyć podmenu.");
                     SetStage(4);
@@ -296,6 +316,7 @@ namespace Pasjans.Editor
                 case 6:
                     if (!Ready(1280, 800)) return;
                     VerifyBoard(app, 10, 8);
+                    DragSmokeChecks.Verify(app);
                     Check(!Field<Button>(app, "rotateButton").gameObject.activeSelf, "Przycisk obrotu nie może być widoczny w Windows.");
                     var hidden = app.GetComponentsInChildren<CardView>().Where(c => !c.Card.faceUp).ToArray();
                     Check(hidden.Select(c => c.Card.deckIndex).Distinct().Count() == 2, "Brak dwóch talii na planszy.");
@@ -311,6 +332,7 @@ namespace Pasjans.Editor
                 case 8:
                     if (!Ready(720, 1280)) return;
                     VerifyBoard(app, 10, 8);
+                    DragSmokeChecks.Verify(app);
                     var rotate = Field<Button>(app, "rotateButton");
                     Check(rotate.gameObject.activeSelf, "Brak przycisku obrotu w układzie Androida.");
                     var rotateRect = (RectTransform)rotate.transform;
@@ -344,13 +366,93 @@ namespace Pasjans.Editor
                 case 12:
                     if (!Ready(720, 1280)) return;
                     VerifyBoard(app, 5, 4);
+                    DragSmokeChecks.Verify(app);
                     Capture("one-deck-portrait.png", 13);
                     break;
                 case 13:
                     if (!CaptureComplete("one-deck-portrait.png", 720, 1280)) return;
-                    Finish(true, "Zweryfikowano podmenu, przycisk obrotu, wybór, anulowanie, dwa rewersy oraz oba układy planszy.");
+                    for (int decks = 1; decks <= 2; decks++)
+                    {
+                        VerifyReverseWasteClicks(app, decks);
+                        VerifyTableauWinDialog(app, decks);
+                    }
+                    Finish(true, "Zweryfikowano oba układy, menu, odwrotny ruch ze stosu odkrytego, świeżość zaznaczenia i okno Brawo.");
                     break;
             }
+        }
+
+        static void VerifyReverseWasteClicks(PasjansApp app, int decks)
+        {
+            var state = new GameState
+            {
+                deckCount = decks, selectedDeckCount = decks,
+                tableau = GameState.CreatePiles(5 * decks), foundations = GameState.CreatePiles(4 * decks),
+                // Licznik wyniku już stoi, ale nowa akcja nadal musi unieważnić zaznaczenie.
+                moveCount = 9, finalMoves = 9, completedUtcTicks = DateTime.UtcNow.Ticks
+            };
+            state.tableau[0].cards.Add(new CardData(Suit.Clubs, 8, true));
+            state.waste.Add(new CardData(Suit.Spades, 6, true));
+            state.waste.Add(new CardData(Suit.Hearts, 7, true));
+            var used = state.tableau[0].cards.Concat(state.waste).Select(c => c.id).ToArray();
+            for (int deck = 0; deck < decks; deck++)
+                for (int suit = 0; suit < 4; suit++)
+                    for (int rank = 1; rank <= 13; rank++)
+                    {
+                        var card = new CardData((Suit)suit, rank, false, deck);
+                        if (!used.Contains(card.id)) state.stock.Add(card);
+                    }
+            app.SendMessage("CancelSelection");
+            Check(app.Game.TryLoad(state, out string error), error);
+            app.SendMessage("Layout");
+            app.SendMessage("Refresh");
+            var views = Field<CardView[]>(app, "cards");
+            var target = views[state.tableau[0].cards[0].id];
+            var seven = views[state.waste[1].id];
+            var six = views[state.waste[0].id];
+            app.CardClicked(target, 1);
+            long oldSelection = Field<long>(app, "selectedActionSequence");
+            app.CardClicked(seven, 1);
+            Check(app.Game.State.tableau[0].cards.Count == 2 && app.Game.State.waste.Count == 1,
+                "Kolejność kolumna → stos odkryty nie wykonała legalnego ruchu.");
+            Check(app.Game.MoveCount == 9 && Field<CardView>(app, "selected") == null,
+                "Ruch musi usunąć zaznaczenie także po zatrzymaniu licznika.");
+
+            // Odtwórz stary podświetlony widok po poprzedniej akcji.
+            typeof(PasjansApp).GetField("selected", InstanceFlags).SetValue(app, seven);
+            typeof(PasjansApp).GetField("selectedActionSequence", InstanceFlags).SetValue(app, oldSelection);
+            app.CardClicked(six, 1);
+            Check(app.Game.State.waste.Count == 1 && Field<CardView>(app, "selected") == six,
+                "Stare zaznaczenie uruchomiło odwrotny ruch lub nie zaznaczono ostatniej karty.");
+            app.CardClicked(seven, 1);
+            Check(app.Game.State.tableau[0].cards.Count == 3 && app.Game.State.waste.Count == 0,
+                "Zwykła kolejność stos odkryty → kolumna przestała działać.");
+
+            app.CardClicked(six, 1);
+            app.PileClicked(new PileRef(PileKind.Stock));
+            Check(app.Game.State.waste.Count == 3 && Field<CardView>(app, "selected") == null,
+                "Zakryta talia ma dobierać i usuwać poprzednie zaznaczenie.");
+        }
+
+        static void VerifyTableauWinDialog(PasjansApp app, int decks)
+        {
+            var state = new GameState
+            {
+                deckCount = decks, selectedDeckCount = decks,
+                tableau = GameState.CreatePiles(5 * decks), foundations = GameState.CreatePiles(4 * decks)
+            };
+            for (int deck = 0; deck < decks; deck++)
+                for (int column = 0; column < 4; column++)
+                    for (int rank = 13; rank >= 1; rank--)
+                        state.tableau[deck * 4 + column].cards.Add(
+                            new CardData((Suit)(rank % 2 == 1 ? column : column ^ 1), rank, true, deck));
+            app.SendMessage("CancelSelection");
+            typeof(PasjansApp).GetField("wonShown", InstanceFlags).SetValue(app, false);
+            Check(app.Game.TryLoad(state, out string error), error);
+            app.SendMessage("Refresh");
+            Check(Field<RectTransform>(app, "modal").gameObject.activeSelf && Field<Text>(app, "modalTitle").text == "Brawo!",
+                "Brak okna Brawo po ułożeniu pełnych kolumn król–as.");
+            Field<Button>(app, "modalClose").onClick.Invoke();
+            Check(!Field<RectTransform>(app, "modal").gameObject.activeSelf, "Zamknięte okno Brawo otworzyło się ponownie.");
         }
 
         static T Field<T>(PasjansApp app, string name) => (T)typeof(PasjansApp).GetField(name, InstanceFlags).GetValue(app);
@@ -365,7 +467,12 @@ namespace Pasjans.Editor
 
         static void VerifyBoard(PasjansApp app, int columns, int foundations)
         {
-            Check(!Field<Button>(app, "rankingButton").gameObject.activeSelf, "Przycisk rankingu musi pozostać ukryty.");
+#if PASJANS_RANKING
+            Check(Field<Button>(app, "rankingButton").gameObject.activeSelf, "Po włączeniu rankingu przycisk musi być widoczny.");
+#else
+            Check(!app.GetComponentsInChildren<Button>(true).Any(button =>
+                button.GetComponentInChildren<Text>()?.text == "Ranking"), "Przycisk rankingu musi być wyłączony.");
+#endif
             Check(Field<Text>(app, "versionLabel").text == PasjansApp.DisplayVersion, "Brak prawidłowej wersji na dole ekranu.");
             var targets = app.GetComponentsInChildren<PileTarget>();
             Check(targets.Count(t => t.Pile.kind == PileKind.Tableau) == columns, "Nieprawidłowa liczba kolumn.");
@@ -381,6 +488,7 @@ namespace Pasjans.Editor
             }
         }
 
+#if PASJANS_RANKING
         static void PopulateSampleRanking()
         {
             string[] args = Environment.GetCommandLineArgs();
@@ -389,13 +497,14 @@ namespace Pasjans.Editor
             for (int i = 0; i < 10; i++)
             {
                 bool win = i % 2 == 0;
-                var state = SampleRankingState(72 + i * 9, win);
+                var state = SampleGrandpaState(72 + i * 9, win);
                 state.completedUtcTicks = DateTime.UtcNow.AddHours(-i).Ticks;
                 if (!store.TryRecord(state, out string error)) throw new IOException(error);
             }
         }
+#endif
 
-        static Pasjans.Core.GameState SampleRankingState(int moves, bool win)
+        static Pasjans.Core.GameState SampleGrandpaState(int moves, bool win)
         {
             var state = new Pasjans.Core.GameState
             {
@@ -511,6 +620,11 @@ namespace Pasjans.Editor
 
         static void Finish(bool success, string message)
         {
+            if (smokeMouse != null) InputSystem.RemoveDevice(smokeMouse);
+            if (previousMice != null)
+                foreach (var mouse in previousMice) if (mouse.added) InputSystem.EnableDevice(mouse);
+            smokeMouse = null;
+            previousMice = null;
             SessionState.SetInt(Prefix + "Stage", 0);
             if (success) Debug.Log("Pasjans smoke capture PASSED: " + message);
             else Debug.LogError("Pasjans smoke capture FAILED: " + message);

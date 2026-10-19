@@ -278,6 +278,99 @@ namespace Pasjans.Tests
             AssertValid(game);
         }
 
+        [TestCase(1)]
+        [TestCase(2)]
+        public void KingToAceRunsAreAWinAndSurviveStateReload(int decks)
+        {
+            var game = new KlondikeGame();
+            Assert.That(game.TryLoad(CompletedTableauState(decks), out string error), Is.True, error);
+            Assert.That(game.IsWon, Is.True);
+            Assert.That(game.State.foundations.All(p => p.cards.Count == 0), Is.True);
+            var restored = new KlondikeGame();
+            Assert.That(restored.TryLoad(game.ExportState(), out error), Is.True, error);
+            Assert.That(restored.IsWon, Is.True);
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        public void LastWasteAceCompletesTableauWin(int decks)
+        {
+            var state = CompletedTableauState(decks);
+            var ace = state.tableau[0].cards.Last();
+            state.tableau[0].cards.RemoveAt(12);
+            state.waste.Add(ace);
+            var game = new KlondikeGame();
+            Assert.That(game.TryLoad(state, out string error), Is.True, error);
+            Assert.That(game.IsWon, Is.False);
+            Assert.That(game.TryMove(new PileRef(PileKind.Waste), 0, new PileRef(PileKind.Tableau, 0)), Is.True);
+            Assert.That(game.IsWon, Is.True);
+            Assert.That(KlondikeGame.ValidateState(game.State, out error), Is.True, error);
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        public void RemainingStockPreventsTableauWin(int decks)
+        {
+            var state = CompletedTableauState(decks);
+            var ace = state.tableau[0].cards.Last();
+            state.tableau[0].cards.RemoveAt(12);
+            ace.faceUp = false;
+            state.stock.Add(ace);
+            var game = new KlondikeGame();
+            Assert.That(game.TryLoad(state, out string error), Is.True, error);
+            Assert.That(game.IsWon, Is.False);
+            Assert.That(game.TryDraw(), Is.True);
+            Assert.That(game.IsWon, Is.False);
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        public void SplitFaceUpRunIsNotAWinUntilJoined(int decks)
+        {
+            var state = CompletedTableauState(decks);
+            int spare = 4 * decks;
+            state.tableau[spare].cards.Add(state.tableau[0].cards.Last());
+            state.tableau[0].cards.RemoveAt(12);
+            var game = new KlondikeGame();
+            Assert.That(game.TryLoad(state, out string error), Is.True, error);
+            Assert.That(game.IsWon, Is.False);
+            Assert.That(game.TryMove(new PileRef(PileKind.Tableau, spare), 0, new PileRef(PileKind.Tableau, 0)), Is.True);
+            Assert.That(game.IsWon, Is.True);
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        public void PartialFoundationsDoNotCompleteKingToTwoColumns(int decks)
+        {
+            var state = CompletedTableauState(decks);
+            for (int i = 0; i < 4 * decks; i++)
+            {
+                state.foundations[i].cards.Add(state.tableau[i].cards.Last());
+                state.tableau[i].cards.RemoveAt(12);
+            }
+            var game = new KlondikeGame();
+            Assert.That(game.TryLoad(state, out string error), Is.True, error);
+            Assert.That(game.IsWon, Is.False);
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        public void CompletedFoundationsAndTableauRunsCanWinTogether(int decks)
+        {
+            var state = CompletedTableauState(decks);
+            for (int deck = 0; deck < decks; deck++)
+            {
+                var cards = state.tableau[4 * deck].cards.Concat(state.tableau[4 * deck + 1].cards).ToArray();
+                for (int suit = 0; suit < 2; suit++)
+                    state.foundations[4 * deck + suit].cards.AddRange(cards.Where(c => (int)c.suit == suit).OrderBy(c => c.rank));
+                state.tableau[4 * deck].cards.Clear();
+                state.tableau[4 * deck + 1].cards.Clear();
+            }
+            var game = new KlondikeGame();
+            Assert.That(game.TryLoad(state, out string error), Is.True, error);
+            Assert.That(game.IsWon, Is.True);
+        }
+
         [TestCase(1, 150, 1)]
         [TestCase(3, 151, 1)]
         [TestCase(3, 152, 2)]
@@ -308,6 +401,24 @@ namespace Pasjans.Tests
                 else choices[random.Next(choices.Count)]();
                 AssertValid(game);
             }
+        }
+
+        static GameState CompletedTableauState(int decks)
+        {
+            var state = new GameState
+            {
+                deckCount = decks, selectedDeckCount = decks,
+                tableau = GameState.CreatePiles(5 * decks), foundations = GameState.CreatePiles(4 * decks)
+            };
+            for (int deck = 0; deck < decks; deck++)
+                for (int column = 0; column < 4; column++)
+                    for (int rank = 13; rank >= 1; rank--)
+                    {
+                        // Zamiana par kolorów tworzy pełne talie i naprzemienne sekwencje.
+                        var suit = (Suit)(rank % 2 == 1 ? column : column ^ 1);
+                        state.tableau[deck * 4 + column].cards.Add(new CardData(suit, rank, true, (deck + rank) % decks));
+                    }
+            return state;
         }
 
         internal static GameState EmptyState()
