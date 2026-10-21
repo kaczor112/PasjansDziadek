@@ -15,7 +15,8 @@ namespace Pasjans.UI
         // Schemat: vYYYY.MM.DD_vCC.KK_HASH. Data oznacza dzień zmiany, CC liczbę
         // wypchniętych commitów, a KK kolejną zmianę kodu (od 01 po zmianie CC).
         // HASH jest skrótem ostatniego wypchniętego commita wskazanym dla wydania.
-        public const string DisplayVersion = "v2026.10.19_v06.05_2a372d7";
+        public const string DisplayVersion = "v2026.10.21_v07.03_5a0de33";
+        public const string PrivacyPolicyUrl = "https://pawelkaczmarczyk.pl/polityka-prywatnosci/";
         public static readonly Color Ink = new Color32(10, 17, 20, 255);
         public static readonly Color Red = new Color32(205, 22, 40, 255);
         static readonly Color Cream = new Color32(245, 238, 214, 255);
@@ -46,6 +47,8 @@ namespace Pasjans.UI
 #if UNITY_EDITOR
         // Pozwala sprawdzić dotykowe menu bez zmiany rzeczywistego zapisu gracza.
         public bool SimulateTouchMenu { get; set; }
+        // Test przechwytuje adres bez otwierania przeglądarki podczas scenariusza UI.
+        public Action<string> OpenUrlForTests { get; set; }
 #endif
         KlondikeGame game;
         GameSaveStore store;
@@ -56,9 +59,9 @@ namespace Pasjans.UI
         Font font;
         CanvasScaler scaler;
         RectTransform root, board, modal, modalPanel;
-        Text title, subtitle, stockLabel, wasteLabel, foundationLabel, grandpaBannerText, status, versionLabel;
+        Text title, subtitle, stockLabel, wasteLabel, foundationLabel, grandpaBannerText, status, drawLabel, versionLabel;
         Text modalTitle, modalText;
-        Button menuButton, rotateButton, newButton, aboutButton, quitButton, modalClose, modalAccept, modalCancel;
+        Button menuButton, rotateButton, newButton, aboutButton, privacyButton, quitButton, modalClose, modalAccept, modalCancel;
 #if PASJANS_RANKING
         Button rankingButton;
 #endif
@@ -209,7 +212,8 @@ namespace Pasjans.UI
 #if PASJANS_RANKING
             rankingButton = MakeButton(menuPopup, "Ranking", () => { CloseMenu(); ShowRanking(); });
 #endif
-            aboutButton = MakeButton(menuPopup, "O mnie", () => { CloseMenu(); ShowAbout(); });
+            aboutButton = MakeButton(menuPopup, "O grze", () => { CloseMenu(); ShowAbout(); });
+            privacyButton = MakeButton(menuPopup, "Polityka prywatności", () => { CloseMenu(); OpenPrivacyPolicy(); });
             quitButton = MakeButton(menuPopup, "Zakończ", () => { CloseMenu(); QuitGame(); });
             menuPopup.gameObject.SetActive(false);
             stockLabel = MakeText(root, "Stock label", "TALIA", 17, TextAnchor.MiddleLeft, Muted);
@@ -222,6 +226,7 @@ namespace Pasjans.UI
             Stretch(grandpaBannerText.rectTransform);
             grandpaBanner.gameObject.SetActive(false);
             status = MakeText(root, "Status", "", 18, TextAnchor.MiddleLeft, Cream);
+            drawLabel = MakeText(root, "Dobieranie", "", 18, TextAnchor.MiddleLeft, Cream);
             versionLabel = MakeText(root, "Version", DisplayVersion, 17, TextAnchor.MiddleRight, Muted);
             AddTarget(new PileRef(PileKind.Stock), "↻");
             AddTarget(new PileRef(PileKind.Waste), "");
@@ -357,11 +362,11 @@ namespace Pasjans.UI
             Place(subtitle.rectTransform, mobileMenu ? menuMargin + 2 : menuMargin + menuButtonWidth + 22, 67, 350, 28);
             Place((RectTransform)menuButton.transform, menuButtonX, 21, menuButtonWidth, 57);
             Place((RectTransform)rotateButton.transform, menuButtonX - rotateButtonSize - 12, 21, rotateButtonSize, rotateButtonSize);
-            float popupWidth = 270;
+            float popupWidth = 310;
             float popupX = mobileMenu ? w - menuMargin - popupWidth : menuMargin;
-            int menuRows = 4;
+            int menuRows = 5;
 #if PASJANS_RANKING
-            menuRows = 5;
+            menuRows = 6;
 #endif
             Place(menuPopup, popupX, 86, popupWidth, menuRows * 57 + 24);
             Place((RectTransform)newButton.transform, 12, 12, popupWidth - 24, 57);
@@ -375,10 +380,12 @@ namespace Pasjans.UI
 #if PASJANS_RANKING
             Place((RectTransform)rankingButton.transform, 12, 126, popupWidth - 24, 57);
             Place((RectTransform)aboutButton.transform, 12, 183, popupWidth - 24, 57);
-            Place((RectTransform)quitButton.transform, 12, 240, popupWidth - 24, 57);
+            Place((RectTransform)privacyButton.transform, 12, 240, popupWidth - 24, 57);
+            Place((RectTransform)quitButton.transform, 12, 297, popupWidth - 24, 57);
 #else
             Place((RectTransform)aboutButton.transform, 12, 126, popupWidth - 24, 57);
-            Place((RectTransform)quitButton.transform, 12, 183, popupWidth - 24, 57);
+            Place((RectTransform)privacyButton.transform, 12, 183, popupWidth - 24, 57);
+            Place((RectTransform)quitButton.transform, 12, 240, popupWidth - 24, 57);
 #endif
             stockY = compact ? 226 : 153;
             tableauY = stockY + cardHeight + (portrait ? 70 : 58);
@@ -404,8 +411,10 @@ namespace Pasjans.UI
                 Place(target.label.rectTransform, 0, 0, cardWidth, cardHeight);
             }
             status.fontSize = portrait ? 21 : 18;
-            Place(status.rectTransform, margin, h - 65, w - margin * 2 - (portrait ? 0 : 210), 31);
-            Place(versionLabel.rectTransform, margin, h - (portrait ? 33 : 65), w - margin * 2, 28);
+            Place(status.rectTransform, margin, h - 65, w - margin * 2, 31);
+            drawLabel.fontSize = portrait ? 20 : 18;
+            Place(drawLabel.rectTransform, margin, h - 33, (w - margin * 2) * .45f, 28);
+            Place(versionLabel.rectTransform, margin, h - 33, w - margin * 2, 28);
             float mw = Mathf.Min(640, w - 44), mh = 350;
 #if PASJANS_RANKING
             if (rankingOpen) mh = 650;
@@ -464,7 +473,12 @@ namespace Pasjans.UI
             }
             stockLabel.text = "TALIA · " + state.stock.Count;
             versionLabel.text = DisplayVersion;
+            // Faza dobierania znika dopiero po rozstrzygnięciu zasad Dziadka.
+            bool showDraw = state.grandpaOutcome == GameState.GrandpaPending;
+            drawLabel.text = showDraw ? "Dobieranie po " + state.drawCount : "";
+            drawLabel.gameObject.SetActive(showDraw);
             grandpaBanner.gameObject.SetActive(game.IsGrandpaWin || game.IsGrandpaLoss);
+            grandpaBannerText.color = Cream;
             if (game.IsGrandpaWin)
             {
                 grandpaBanner.color = new Color32(34, 116, 72, 255);
@@ -472,15 +486,18 @@ namespace Pasjans.UI
             }
             else if (game.IsGrandpaLoss)
             {
-                grandpaBanner.color = new Color32(148, 38, 49, 255);
-                grandpaBannerText.text = "Wg Dziadka przegrałeś";
+                // Ukończenie pasjansa nie zmienia wcześniejszej oceny Dziadka.
+                bool completed = game.IsWon;
+                grandpaBanner.color = completed ? new Color32(238, 190, 57, 255) : new Color32(148, 38, 49, 255);
+                grandpaBannerText.color = completed ? Ink : Cream;
+                grandpaBannerText.text = completed ? "Wygrałeś, ale Dziadek by nie uznał :)" : "Wg Dziadka przegrałeś";
             }
-            status.text = notice ?? "Przeciągnij kartę lub dotknij karty i miejsca docelowego.";
+            status.text = notice ?? "";
             modal.SetAsLastSibling();
             if (game.IsWon && !wonShown)
             {
                 wonShown = true;
-                OpenModal("Brawo!", "Wszystkie karty trafiły na swoje miejsce.\nPasjans ułożony w " + game.MoveCount + " ruchach.", StartNewGame, "Nowa gra");
+                OpenModal("Brawo!", "Wszystkie karty trafiły na swoje miejsce.", StartNewGame, "Nowa gra");
             }
         }
 
@@ -580,10 +597,6 @@ namespace Pasjans.UI
             Persist();
 #if PASJANS_RANKING
             RecordResult();
-            if (game.HasResult && game.State.grandpaOutcome == GameState.GrandpaPending)
-                notice = "Wynik: " + game.State.finalMoves + " ruchów. Opróżnij talię przed czwartym przejściem.";
-            else if (game.HasResult && resultRecorded)
-                notice = "Wynik: " + game.State.finalMoves + " ruchów. Możesz dokończyć układanie.";
 #endif
             Layout();
             Refresh();
@@ -749,7 +762,16 @@ namespace Pasjans.UI
             AfterMove();
         }
 
-        void ShowAbout() => OpenModal("O mnie", "Autorem gry jest Paweł Kaczmarczyk", null, null);
+        void ShowAbout() => OpenModal("O grze", "Autorem gry jest Paweł Kaczmarczyk", null, null);
+
+        void OpenPrivacyPolicy()
+        {
+#if UNITY_EDITOR
+            if (OpenUrlForTests != null) { OpenUrlForTests(PrivacyPolicyUrl); return; }
+#endif
+            // System otwiera przeglądarkę, a WebGL nową kartę. Adres nie zawiera danych gry.
+            Application.OpenURL(PrivacyPolicyUrl);
+        }
 
 #if PASJANS_RANKING
         void ShowRanking()

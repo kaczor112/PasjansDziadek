@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Pasjans.Core;
 using Pasjans.UI;
 using UnityEditor;
@@ -181,7 +182,7 @@ namespace Pasjans.Editor
             SessionState.SetFloat(Prefix + "StartTime", (float)EditorApplication.timeSinceStartup);
         }
 
-        // Scenariusz sprawdza oba komunikaty Dziadka i cztery kolumny rankingu.
+        // Scenariusz sprawdza komunikaty Dziadka i ukończenie gry po przegranej.
         static void UpdateGrandpa(int stage)
         {
             var app = FindApp() as PasjansApp;
@@ -210,13 +211,34 @@ namespace Pasjans.Editor
                     break;
                 case 5:
                     if (!CaptureComplete("grandpa-loss.png", 1280, 800)) return;
+                    LoadGrandpaState(app, true, 54, true);
+                    Field<Button>(app, "modalClose").onClick.Invoke();
+                    SetStage(8);
+                    break;
+                case 8:
+                    if (!Ready(1280, 800)) return;
+                    VerifyGrandpaBanner(app, false);
+                    Capture("grandpa-late-win-landscape.png", 9);
+                    break;
+                case 9:
+                    if (!CaptureComplete("grandpa-late-win-landscape.png", 1280, 800)) return;
+                    SetGameViewSize(720, 1280);
+                    SetStage(10);
+                    break;
+                case 10:
+                    if (!Ready(720, 1280)) return;
+                    VerifyGrandpaBanner(app, false);
+                    Capture("grandpa-late-win-portrait.png", 11);
+                    break;
+                case 11:
+                    if (!CaptureComplete("grandpa-late-win-portrait.png", 720, 1280)) return;
 #if PASJANS_RANKING
                     PopulateSampleRanking();
                     app.SendMessage("ShowRanking", SendMessageOptions.RequireReceiver);
                     SetGameViewSize(720, 1280);
                     SetStage(6);
 #else
-                    Finish(true, "Sprawdzono zielony i czerwony komunikat Dziadka bez rankingu.");
+                    Finish(true, "Sprawdzono zieloną i czerwoną belkę oraz żółtą po ukończeniu gry, w obu orientacjach.");
 #endif
                     break;
 #if PASJANS_RANKING
@@ -236,9 +258,17 @@ namespace Pasjans.Editor
             }
         }
 
-        static void LoadGrandpaState(PasjansApp app, bool win, int moves)
+        static void LoadGrandpaState(PasjansApp app, bool win, int moves, bool lateWin = false)
         {
+            if (Field<RectTransform>(app, "modal").gameObject.activeSelf)
+                Field<Button>(app, "modalClose").onClick.Invoke();
             var state = SampleGrandpaState(moves, win);
+            if (lateWin)
+            {
+                state.drawCount = 1;
+                state.stockRecycleCount = 3;
+                state.grandpaOutcome = GameState.GrandpaLoss;
+            }
             Check(app.Game.TryLoad(state, out string error), error);
             app.SendMessage("Layout", SendMessageOptions.RequireReceiver);
             app.SendMessage("Refresh", SendMessageOptions.RequireReceiver);
@@ -248,9 +278,17 @@ namespace Pasjans.Editor
         {
             var banner = Field<Image>(app, "grandpaBanner");
             var label = Field<Text>(app, "grandpaBannerText");
+            bool lateWin = !win && app.Game.IsWon;
             Check(banner.gameObject.activeSelf, "Komunikat Dziadka jest ukryty.");
-            Check(label.text == (win ? "Wg Dziadka wygrałeś" : "Wg Dziadka przegrałeś"), "Niepoprawny tekst komunikatu.");
-            Check(win ? banner.color.g > banner.color.r : banner.color.r > banner.color.g, "Niepoprawny kolor komunikatu.");
+            Check(label.text == (win ? "Wg Dziadka wygrałeś" : lateWin ? "Wygrałeś, ale Dziadek by nie uznał :)" : "Wg Dziadka przegrałeś"),
+                "Niepoprawny tekst komunikatu.");
+            Check(win ? banner.color.g > banner.color.r : lateWin ? banner.color.r > .8f && banner.color.g > .6f && banner.color.b < .3f :
+                banner.color.r > banner.color.g && banner.color.g < .3f, "Niepoprawny kolor komunikatu.");
+            Check(lateWin ? label.color == PasjansApp.Ink : label.color.r > .8f,
+                "Tekst belki ma zbyt niski kontrast.");
+            Check(label.preferredHeight <= label.rectTransform.rect.height, "Tekst nie mieści się w belce.");
+            VerifyDrawLabel(app);
+            VerifyNoScore(app);
         }
 
         // Scenariusz sprawdza przyciski i układ na odizolowanym zapisie testowym.
@@ -296,6 +334,7 @@ namespace Pasjans.Editor
                 case 4:
                     if (!Ready(1280, 800)) return;
                     Check(Field<RectTransform>(app, "modePopup").gameObject.activeSelf, "Podmenu znika pod kursorem.");
+                    VerifyInformationMenu(app);
                     Capture("modes-windows.png", 5);
                     break;
                 case 5:
@@ -353,6 +392,7 @@ namespace Pasjans.Editor
                     break;
                 case 10:
                     if (!Ready(720, 1280)) return;
+                    VerifyInformationMenu(app);
                     Capture("modes-android-portrait.png", 11);
                     break;
                 case 11:
@@ -374,9 +414,11 @@ namespace Pasjans.Editor
                     for (int decks = 1; decks <= 2; decks++)
                     {
                         VerifyReverseWasteClicks(app, decks);
+                        VerifyDrawPhases(app, decks);
                         VerifyTableauWinDialog(app, decks);
+                        VerifyTableauWinDialog(app, decks, true);
                     }
-                    Finish(true, "Zweryfikowano oba układy, menu, odwrotny ruch ze stosu odkrytego, świeżość zaznaczenia i okno Brawo.");
+                    Finish(true, "Zweryfikowano oba układy, menu, przeciąganie, zaznaczenia, fazy dobierania i brak liczbowego wyniku.");
                     break;
             }
         }
@@ -410,10 +452,12 @@ namespace Pasjans.Editor
             var seven = views[state.waste[1].id];
             var six = views[state.waste[0].id];
             app.CardClicked(target, 1);
+            VerifyDrawLabel(app);
             long oldSelection = Field<long>(app, "selectedActionSequence");
             app.CardClicked(seven, 1);
             Check(app.Game.State.tableau[0].cards.Count == 2 && app.Game.State.waste.Count == 1,
                 "Kolejność kolumna → stos odkryty nie wykonała legalnego ruchu.");
+            VerifyDrawLabel(app);
             Check(app.Game.MoveCount == 9 && Field<CardView>(app, "selected") == null,
                 "Ruch musi usunąć zaznaczenie także po zatrzymaniu licznika.");
 
@@ -433,11 +477,44 @@ namespace Pasjans.Editor
                 "Zakryta talia ma dobierać i usuwać poprzednie zaznaczenie.");
         }
 
-        static void VerifyTableauWinDialog(PasjansApp app, int decks)
+        static void VerifyInformationMenu(PasjansApp app)
+        {
+            string before = JsonUtility.ToJson(app.Game.State);
+            var about = Field<Button>(app, "aboutButton");
+            var privacy = Field<Button>(app, "privacyButton");
+            var quit = Field<Button>(app, "quitButton");
+            Check(about.GetComponentInChildren<Text>().text == "O grze", "Nie zmieniono nazwy O grze.");
+            var label = privacy.GetComponentInChildren<Text>();
+            Check(label.text == "Polityka prywatności" && label.preferredWidth <= label.rectTransform.rect.width,
+                "Napis polityki prywatności nie mieści się w jednym wierszu menu.");
+            Check(((RectTransform)about.transform).anchoredPosition.y > ((RectTransform)privacy.transform).anchoredPosition.y &&
+                ((RectTransform)privacy.transform).anchoredPosition.y > ((RectTransform)quit.transform).anchoredPosition.y,
+                "Polityka prywatności musi być między O grze i Zakończ.");
+            about.onClick.Invoke();
+            Check(Field<Text>(app, "modalTitle").text == "O grze" &&
+                Field<Text>(app, "modalText").text == "Autorem gry jest Paweł Kaczmarczyk", "Niepoprawne okno O grze.");
+            Field<Button>(app, "modalClose").onClick.Invoke();
+            app.SendMessage("ToggleMenu");
+            string openedUrl = null;
+            app.OpenUrlForTests = url => openedUrl = url;
+            try { privacy.onClick.Invoke(); }
+            finally { app.OpenUrlForTests = null; }
+            Check(openedUrl == "https://pawelkaczmarczyk.pl/polityka-prywatnosci/", "Otwierany jest inny adres polityki prywatności.");
+            Check(!Field<RectTransform>(app, "menuPopup").gameObject.activeSelf && !Field<RectTransform>(app, "modal").gameObject.activeSelf,
+                "Po otwarciu polityki menu powinno wrócić do gry.");
+            Check(before == JsonUtility.ToJson(app.Game.State), "Pozycje informacyjne zmieniły rozdanie.");
+            app.SendMessage("ToggleMenu");
+            app.ShowGameModes();
+        }
+
+        static void VerifyTableauWinDialog(PasjansApp app, int decks, bool lateWin = false)
         {
             var state = new GameState
             {
                 deckCount = decks, selectedDeckCount = decks,
+                moveCount = 98765, finalMoves = 98765, completedUtcTicks = DateTime.UtcNow.Ticks,
+                drawCount = lateWin ? 1 : 3, stockRecycleCount = lateWin ? 3 : 0,
+                grandpaOutcome = lateWin ? GameState.GrandpaLoss : GameState.GrandpaPending,
                 tableau = GameState.CreatePiles(5 * decks), foundations = GameState.CreatePiles(4 * decks)
             };
             for (int deck = 0; deck < decks; deck++)
@@ -448,11 +525,104 @@ namespace Pasjans.Editor
             app.SendMessage("CancelSelection");
             typeof(PasjansApp).GetField("wonShown", InstanceFlags).SetValue(app, false);
             Check(app.Game.TryLoad(state, out string error), error);
+            app.SendMessage("Layout");
             app.SendMessage("Refresh");
             Check(Field<RectTransform>(app, "modal").gameObject.activeSelf && Field<Text>(app, "modalTitle").text == "Brawo!",
                 "Brak okna Brawo po ułożeniu pełnych kolumn król–as.");
+            Check(Field<Text>(app, "modalText").text == "Wszystkie karty trafiły na swoje miejsce.",
+                "Okno Brawo nie może wyświetlać liczby ruchów.");
+            VerifyDrawLabel(app);
+            VerifyNoScore(app);
             Field<Button>(app, "modalClose").onClick.Invoke();
             Check(!Field<RectTransform>(app, "modal").gameObject.activeSelf, "Zamknięte okno Brawo otworzyło się ponownie.");
+            VerifyGrandpaBanner(app, !lateWin);
+        }
+
+        static void VerifyDrawPhases(PasjansApp app, int decks)
+        {
+            app.SendMessage("CancelSelection");
+            app.Game.NewGame(seed: 317, deckCount: decks);
+            app.SendMessage("Layout");
+            app.SendMessage("Refresh");
+            for (int draw = 3; draw >= 1; draw--)
+            {
+                Check(Field<Text>(app, "drawLabel").text == "Dobieranie po " + draw,
+                    "Stopka nie pokazuje aktualnego dobierania.");
+                Check(app.Game.TryLoad(app.Game.ExportState(), out string error), error);
+                app.SendMessage("Refresh");
+                VerifyDrawLabel(app);
+                while (app.Game.State.stock.Count > 0) Check(app.Game.TryDraw(), "Nie udało się wyczerpać talii testowej.");
+                app.SendMessage("Draw");
+                VerifyDrawLabel(app);
+                VerifyNoScore(app);
+            }
+            Check(app.Game.IsGrandpaLoss, "Czwarte przejście powinno rozstrzygnąć przegraną Dziadka.");
+            VerifyGrandpaBanner(app, false);
+            app.SendMessage("ForceNewGame");
+            Check(Field<Text>(app, "drawLabel").text == "Dobieranie po 3", "Nowa gra nie przywróciła napisu dobierania.");
+
+            var completed = new GameState
+            {
+                deckCount = decks, selectedDeckCount = decks,
+                moveCount = 923, finalMoves = 923, completedUtcTicks = DateTime.UtcNow.Ticks,
+                tableau = GameState.CreatePiles(5 * decks), foundations = GameState.CreatePiles(4 * decks)
+            };
+            for (int deck = 0; deck < decks; deck++)
+                for (int suit = 0; suit < 4; suit++)
+                    for (int rank = 1; rank <= 13; rank++)
+                        completed.foundations[4 * deck + suit].cards.Add(new CardData((Suit)suit, rank, true, deck));
+            for (int draw = 3; draw >= 1; draw--)
+            {
+                completed.drawCount = draw;
+                completed.stockRecycleCount = 3 - draw;
+                Check(app.Game.TryLoad(completed, out string error), error);
+                typeof(PasjansApp).GetField("wonShown", InstanceFlags).SetValue(app, false);
+                app.SendMessage("Refresh");
+                VerifyGrandpaBanner(app, true);
+                Check(Field<Text>(app, "modalText").text == "Wszystkie karty trafiły na swoje miejsce.",
+                    "Okno Brawo pokazuje wynik liczbowy.");
+                Field<Button>(app, "modalClose").onClick.Invoke();
+            }
+
+            // Ostatni legalny ruch zmienia czerwoną belkę w żółtą, także po wznowieniu.
+            completed.drawCount = 1;
+            completed.stockRecycleCount = 3;
+            completed.grandpaOutcome = GameState.GrandpaLoss;
+            var lastPile = completed.foundations[completed.foundations.Length - 1].cards;
+            var lastCard = lastPile[lastPile.Count - 1];
+            lastPile.RemoveAt(lastPile.Count - 1);
+            completed.tableau[0].cards.Add(lastCard);
+            Check(app.Game.TryLoad(completed, out string loadError), loadError);
+            typeof(PasjansApp).GetField("wonShown", InstanceFlags).SetValue(app, false);
+            app.SendMessage("Layout");
+            app.SendMessage("Refresh");
+            Check(!app.Game.IsWon, "Niepełny układ został uznany za wygraną.");
+            VerifyGrandpaBanner(app, false);
+            app.CardClicked(Field<CardView[]>(app, "cards")[lastCard.id], 2);
+            Check(app.Game.IsWon && app.Game.IsGrandpaLoss, "Ukończenie gry zmieniło ocenę Dziadka.");
+            Check(Field<RectTransform>(app, "modal").gameObject.activeSelf && Field<Text>(app, "modalTitle").text == "Brawo!",
+                "Brak okna Brawo po ukończeniu gry mimo przegranej Dziadka.");
+            VerifyGrandpaBanner(app, false);
+            Field<Button>(app, "modalClose").onClick.Invoke();
+            Check(app.Game.TryLoad(JsonUtility.FromJson<GameState>(JsonUtility.ToJson(app.Game.ExportState())), out loadError), loadError);
+            app.SendMessage("Refresh");
+            VerifyGrandpaBanner(app, false);
+            app.SendMessage("ForceNewGame");
+            Check(!Field<Image>(app, "grandpaBanner").gameObject.activeSelf, "Nowa gra zachowała żółtą belkę.");
+        }
+
+        static void VerifyDrawLabel(PasjansApp app)
+        {
+            var label = Field<Text>(app, "drawLabel");
+            bool pending = app.Game.State.grandpaOutcome == GameState.GrandpaPending;
+            Check(label.gameObject.activeSelf == pending && label.text == (pending ? "Dobieranie po " + app.Game.State.drawCount : ""),
+                "Napis dobierania jest niezgodny z fazą gry lub rozstrzygnięciem Dziadka.");
+        }
+
+        static void VerifyNoScore(PasjansApp app)
+        {
+            Check(!app.GetComponentsInChildren<Text>().Any(label => Regex.IsMatch(label.text, @"(?i)(wynik\s*:|\d+\s+ruch)")),
+                "Interfejs nie może wyświetlać wyniku ani liczby ruchów.");
         }
 
         static T Field<T>(PasjansApp app, string name) => (T)typeof(PasjansApp).GetField(name, InstanceFlags).GetValue(app);
@@ -474,6 +644,8 @@ namespace Pasjans.Editor
                 button.GetComponentInChildren<Text>()?.text == "Ranking"), "Przycisk rankingu musi być wyłączony.");
 #endif
             Check(Field<Text>(app, "versionLabel").text == PasjansApp.DisplayVersion, "Brak prawidłowej wersji na dole ekranu.");
+            VerifyDrawLabel(app);
+            VerifyNoScore(app);
             var targets = app.GetComponentsInChildren<PileTarget>();
             Check(targets.Count(t => t.Pile.kind == PileKind.Tableau) == columns, "Nieprawidłowa liczba kolumn.");
             Check(targets.Count(t => t.Pile.kind == PileKind.Foundation) == foundations, "Nieprawidłowa liczba baz.");
