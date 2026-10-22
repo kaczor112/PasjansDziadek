@@ -20,7 +20,7 @@ Gra jest przeznaczona do bezpłatnego udostępniania graczom. Nie zawiera reklam
 - Zmiana trybu jest zapamiętywana, ale nie rusza kart. **Nowa gra** wymaga potwierdzenia i dopiero wtedy tasuje wybraną liczbę pełnych talii. Anulowanie zachowuje bieżące rozdanie. Rozdanie nie jest gwarantowane jako wygrywalne.
 - **Ranking jest czasowo wyłączony.** Gra nie odczytuje ani nie zapisuje plików rankingu. Kod pozostał za symbolem kompilacji `PASJANS_RANKING`; jego ponowne włączenie wymaga dodania tego symbolu w ustawieniach Unity i przebudowania gry.
 - Gra nie pokazuje wyniku liczbowego ani liczby ruchów, także w oknie **Brawo!**. Do rozstrzygnięcia zasad Dziadka stopka pokazuje **Dobieranie po 3**, **Dobieranie po 2** albo **Dobieranie po 1**. Po wygranej lub przegranej wg Dziadka ten napis znika.
-- Ukończenie pasjansa po przegranej wg Dziadka zmienia czerwoną belkę na żółtą z napisem **Wygrałeś, ale Dziadek by nie uznał :)**. Wznowienie gry zachowuje ten komunikat.
+- Po przegranej wg Dziadka opróżnienie talii i stosu odkrytego przy wszystkich kartach kolumn odkrytych zmienia czerwoną belkę na żółtą z napisem **Wygrałeś, ale Dziadek by nie uznał :)**. Nie trzeba jeszcze kończyć wszystkich baz ani kolumn król–as. Wznowienie gry zachowuje ten komunikat; okno **Brawo!** nadal czeka na pełne ułożenie pasjansa.
 - **O grze** wyświetla tekst „Autorem gry jest Paweł Kaczmarczyk”; okno zamyka **X**.
 - **Polityka prywatności**, pod „O grze”, otwiera [stronę polityki](https://pawelkaczmarczyk.pl/polityka-prywatnosci/) w domyślnej przeglądarce Androida/Windows lub nowej karcie wersji WWW. Rozdanie pozostaje bez zmian.
 - **Zakończ** zamyka aplikację. W edytorze Unity kończy tryb Play, a w przeglądarce zatrzymuje grę na bieżącej stronie; odświeżenie ją wznawia.

@@ -15,7 +15,7 @@ namespace Pasjans.UI
         // Schemat: vYYYY.MM.DD_vCC.KK_HASH. Data oznacza dzień zmiany, CC liczbę
         // wypchniętych commitów, a KK kolejną zmianę kodu (od 01 po zmianie CC).
         // HASH jest skrótem ostatniego wypchniętego commita wskazanym dla wydania.
-        public const string DisplayVersion = "v2026.10.21_v07.03_5a0de33";
+        public const string DisplayVersion = "v2026.10.22_v08.03_7814aab";
         public const string PrivacyPolicyUrl = "https://pawelkaczmarczyk.pl/polityka-prywatnosci/";
         public static readonly Color Ink = new Color32(10, 17, 20, 255);
         public static readonly Color Red = new Color32(205, 22, 40, 255);
@@ -455,7 +455,9 @@ namespace Pasjans.UI
             for (int f = 0; f < state.foundations.Length; f++)
             {
                 var pile = state.foundations[f].cards;
-                if (pile.Count > 0) ShowCard(pile[pile.Count - 1], new PileRef(PileKind.Foundation, f), pile.Count - 1, X(3 + f), stockY);
+                // Karta pod wierzchem pozostaje na bazie, gdy wierzchnia jest przeciągana.
+                for (int i = Mathf.Max(0, pile.Count - 2); i < pile.Count; i++)
+                    ShowCard(pile[i], new PileRef(PileKind.Foundation, f), i, X(3 + f), stockY);
             }
             for (int t = 0; t < state.tableau.Length; t++)
             {
@@ -486,11 +488,11 @@ namespace Pasjans.UI
             }
             else if (game.IsGrandpaLoss)
             {
-                // Ukończenie pasjansa nie zmienia wcześniejszej oceny Dziadka.
-                bool completed = game.IsWon;
-                grandpaBanner.color = completed ? new Color32(238, 190, 57, 255) : new Color32(148, 38, 49, 255);
-                grandpaBannerText.color = completed ? Ink : Cream;
-                grandpaBannerText.text = completed ? "Wygrałeś, ale Dziadek by nie uznał :)" : "Wg Dziadka przegrałeś";
+                // Żółta belka nie wymaga odkładania wszystkich kart na ukończone stosy.
+                bool lateWin = game.IsLateGrandpaWin;
+                grandpaBanner.color = lateWin ? new Color32(238, 190, 57, 255) : new Color32(148, 38, 49, 255);
+                grandpaBannerText.color = lateWin ? Ink : Cream;
+                grandpaBannerText.text = lateWin ? "Wygrałeś, ale Dziadek by nie uznał :)" : "Wg Dziadka przegrałeś";
             }
             status.text = notice ?? "";
             modal.SetAsLastSibling();

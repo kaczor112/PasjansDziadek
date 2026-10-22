@@ -62,6 +62,11 @@ namespace Pasjans.Editor
                     VerifyLowColumnDrop(app, original.DeckCount, pointer, 3);
                     VerifyRejectedDrop(app, original.DeckCount, pointer, false);
                     VerifyRejectedDrop(app, original.DeckCount, pointer, true);
+                    for (int count = 1; count <= 3; count++)
+                    {
+                        VerifyFoundationDrag(app, original.DeckCount, pointer, count, false);
+                        VerifyFoundationDrag(app, original.DeckCount, pointer, count, true);
+                    }
 
                     Load(app, SampleState(original.DeckCount));
                     source = View(app, app.Game.State.waste.Last());
@@ -79,7 +84,7 @@ namespace Pasjans.Editor
                         "Upuszczenie przy krawędzi bazy nie przeniosło pasującej karty.");
                 }
                 Debug.Log("Pasjans drag checks PASSED: " + original.DeckCount + " talie, " + Screen.width + "x" + Screen.height +
-                    ", mysz i dotyk, punkt złapania, grupa, marginesy, puste kolumny, bazy i odrzucanie błędnych celów.");
+                    ", mysz i dotyk, punkt złapania, grupa, marginesy, puste kolumny, bazy, karta pod przeciąganą bazą i odrzucanie błędnych celów.");
             }
             finally
             {
@@ -117,6 +122,50 @@ namespace Pasjans.Editor
             Check((source.Rect.position - origin).sqrMagnitude < .01f && source.GetComponent<Image>().raycastTarget &&
                 Field<CardView>(app, "selected") == null && !Field<bool>(app, "dragging"),
                 "Anulowane przeciąganie nie przywróciło kart i ich obsługi.");
+        }
+
+        static void VerifyFoundationDrag(PasjansApp app, int decks, int pointer, int count, bool reject)
+        {
+            var state = SampleState(decks);
+            for (int rank = 2; rank <= count; rank++)
+            {
+                var card = rank == 2 ? state.waste.Last() : state.stock.Single(c => c.suit == Suit.Hearts && c.rank == rank && c.deckIndex == 0);
+                if (rank == 2) state.waste.Remove(card); else state.stock.Remove(card);
+                card.faceUp = true;
+                state.foundations[0].cards.Add(card);
+            }
+            Load(app, state);
+            string before = JsonUtility.ToJson(app.Game.State);
+            var pile = new PileRef(PileKind.Foundation, 0);
+            var source = View(app, app.Game.State.foundations[0].cards.Last());
+            Vector3 origin = source.Rect.position;
+            var drag = Begin(source, new Vector2(6, -6), pointer);
+            drag.position += new Vector2(80, -100);
+            source.OnDrag(drag);
+            Check(JsonUtility.ToJson(app.Game.State) == before, "Samo uniesienie karty zmieniło rozdanie.");
+            if (count > 1)
+            {
+                var underneath = View(app, app.Game.State.foundations[0].cards[count - 2]);
+                Check(underneath.gameObject.activeInHierarchy && (underneath.Rect.position - origin).sqrMagnitude < .01f &&
+                    underneath.transform.GetSiblingIndex() < source.transform.GetSiblingIndex(),
+                    "Pod kartą przeciąganą z bazy nie widać poprzedniej karty na jej miejscu.");
+            }
+
+            var target = Target(app, PileKind.Tableau, 3);
+            drag.position = reject ? new Vector2(-20, Screen.height + 20) : ScreenPoint(target, target.rect.center);
+            source.OnEndDrag(drag);
+            if (reject)
+                Check(JsonUtility.ToJson(app.Game.State) == before && (source.Rect.position - origin).sqrMagnitude < .01f,
+                    "Odrzucony ruch z bazy nie odtworzył pierwotnego stosu.");
+            else
+            {
+                Check(app.Game.State.foundations[0].cards.Count == count - 1 && source.Pile.Equals(new PileRef(PileKind.Tableau, 3)),
+                    "Upuszczenie karty z bazy na pustą kolumnę nie wykonało ruchu.");
+                Check(Field<CardView[]>(app, "cards").Any(c => c.gameObject.activeInHierarchy && c.Pile.Equals(pile)) == (count > 1),
+                    "Widok bazy po ruchu nie zgadza się z liczbą pozostałych kart.");
+            }
+            Check(!Field<bool>(app, "dragging") && source.GetComponent<Image>().raycastTarget,
+                "Koniec przeciągania z bazy nie przywrócił obsługi kart.");
         }
 
         static PointerEventData Begin(CardView source, Vector2 grip, int pointer)

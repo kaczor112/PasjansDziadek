@@ -403,6 +403,75 @@ namespace Pasjans.Tests
             }
         }
 
+        [TestCase(1, false)]
+        [TestCase(1, true)]
+        [TestCase(2, false)]
+        [TestCase(2, true)]
+        public void LastWasteCardGivesLateGrandpaWinBeforeAllPilesAreCompleted(int decks, bool toFoundation)
+        {
+            var game = new KlondikeGame();
+            Assert.That(game.TryLoad(LateGrandpaState(decks), out string error), Is.True, error);
+            Assert.That(game.IsLateGrandpaWin, Is.False);
+            Assert.That(game.TryMove(Waste, 0, Foundation(1)), Is.False);
+            Assert.That(game.IsLateGrandpaWin, Is.False, "Odrzucony ruch nie może rozstrzygać wyniku.");
+            Assert.That(game.TryMove(Waste, 0, toFoundation ? Foundation(0) : Tableau(0)), Is.True);
+            Assert.That(game.IsWon, Is.False, "Ten układ nie zawiera samych pełnych stosów.");
+            Assert.That(game.IsGrandpaLoss, Is.True);
+            Assert.That(game.IsLateGrandpaWin, Is.True);
+            AssertValid(game);
+
+            var restored = new KlondikeGame();
+            Assert.That(restored.TryLoad(game.ExportState(), out error), Is.True, error);
+            Assert.That(restored.IsLateGrandpaWin, Is.True);
+            Assert.That(restored.IsGrandpaLoss, Is.True);
+        }
+
+        [TestCase(1, PileKind.Stock)]
+        [TestCase(1, PileKind.Waste)]
+        [TestCase(1, PileKind.Tableau)]
+        [TestCase(2, PileKind.Stock)]
+        [TestCase(2, PileKind.Waste)]
+        [TestCase(2, PileKind.Tableau)]
+        public void LateGrandpaWinWaitsForStockWasteAndHiddenTableauCards(int decks, PileKind remaining)
+        {
+            var state = LateGrandpaState(decks);
+            if (remaining != PileKind.Waste)
+            {
+                var ace = state.waste[0];
+                state.waste.Clear();
+                if (remaining == PileKind.Stock)
+                {
+                    ace.faceUp = false;
+                    state.stock.Add(ace);
+                }
+                else
+                {
+                    state.foundations[0].cards.Add(ace);
+                    state.tableau[1].cards[0].faceUp = false;
+                }
+            }
+            var game = new KlondikeGame();
+            Assert.That(game.TryLoad(state, out string error), Is.True, error);
+            Assert.That(game.IsGrandpaLoss, Is.True);
+            Assert.That(game.IsLateGrandpaWin, Is.False);
+            AssertValid(game);
+        }
+
+        static GameState LateGrandpaState(int decks)
+        {
+            var state = CompletedTableauState(decks);
+            state.drawCount = 1;
+            state.stockRecycleCount = 3;
+            state.grandpaOutcome = GameState.GrandpaLoss;
+            for (int i = 0; i < 4 * decks; i++)
+            {
+                var ace = state.tableau[i].cards.Last();
+                state.tableau[i].cards.RemoveAt(12);
+                if (i == 0) state.waste.Add(ace); else state.foundations[i].cards.Add(ace);
+            }
+            return state;
+        }
+
         static GameState CompletedTableauState(int decks)
         {
             var state = new GameState

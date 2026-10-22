@@ -18,6 +18,19 @@ namespace Pasjans.Core
         public bool HasRankableResult { get { return HasResult && State.grandpaOutcome != GameState.GrandpaPending; } }
         public bool IsGrandpaWin { get { return State.grandpaOutcome == GameState.GrandpaWin; } }
         public bool IsGrandpaLoss { get { return State.grandpaOutcome == GameState.GrandpaLoss; } }
+        // Spóźnione spełnienie warunków Dziadka nie zmienia wcześniejszej przegranej.
+        public bool IsLateGrandpaWin
+        {
+            get
+            {
+                if (!IsGrandpaLoss || State.stock.Count != 0 || State.waste.Count != 0)
+                    return false;
+                for (int p = 0; p < State.tableau.Length; p++)
+                    for (int i = 0; i < State.tableau[p].cards.Count; i++)
+                        if (!State.tableau[p].cards[i].faceUp) return false;
+                return true;
+            }
+        }
         public int SelectedDeckCount => State.selectedDeckCount;
 
         public bool IsWon

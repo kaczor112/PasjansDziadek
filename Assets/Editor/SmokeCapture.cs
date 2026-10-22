@@ -211,8 +211,7 @@ namespace Pasjans.Editor
                     break;
                 case 5:
                     if (!CaptureComplete("grandpa-loss.png", 1280, 800)) return;
-                    LoadGrandpaState(app, true, 54, true);
-                    Field<Button>(app, "modalClose").onClick.Invoke();
+                    VerifyLastWasteLateWin(app, 1, false, true);
                     SetStage(8);
                     break;
                 case 8:
@@ -238,7 +237,7 @@ namespace Pasjans.Editor
                     SetGameViewSize(720, 1280);
                     SetStage(6);
 #else
-                    Finish(true, "Sprawdzono zieloną i czerwoną belkę oraz żółtą po ukończeniu gry, w obu orientacjach.");
+                    Finish(true, "Sprawdzono zieloną i czerwoną belkę oraz żółtą po ostatniej karcie stosu odkrytego, w obu orientacjach.");
 #endif
                     break;
 #if PASJANS_RANKING
@@ -278,7 +277,7 @@ namespace Pasjans.Editor
         {
             var banner = Field<Image>(app, "grandpaBanner");
             var label = Field<Text>(app, "grandpaBannerText");
-            bool lateWin = !win && app.Game.IsWon;
+            bool lateWin = !win && app.Game.IsLateGrandpaWin;
             Check(banner.gameObject.activeSelf, "Komunikat Dziadka jest ukryty.");
             Check(label.text == (win ? "Wg Dziadka wygrałeś" : lateWin ? "Wygrałeś, ale Dziadek by nie uznał :)" : "Wg Dziadka przegrałeś"),
                 "Niepoprawny tekst komunikatu.");
@@ -415,6 +414,9 @@ namespace Pasjans.Editor
                     {
                         VerifyReverseWasteClicks(app, decks);
                         VerifyDrawPhases(app, decks);
+                        foreach (bool toFoundation in new[] { false, true })
+                            foreach (bool drag in new[] { false, true })
+                                VerifyLastWasteLateWin(app, decks, toFoundation, drag);
                         VerifyTableauWinDialog(app, decks);
                         VerifyTableauWinDialog(app, decks, true);
                     }
@@ -584,7 +586,7 @@ namespace Pasjans.Editor
                 Field<Button>(app, "modalClose").onClick.Invoke();
             }
 
-            // Ostatni legalny ruch zmienia czerwoną belkę w żółtą, także po wznowieniu.
+            // Pełne ukończenie pasjansa zachowuje żółtą belkę, także po wznowieniu.
             completed.drawCount = 1;
             completed.stockRecycleCount = 3;
             completed.grandpaOutcome = GameState.GrandpaLoss;
@@ -609,6 +611,63 @@ namespace Pasjans.Editor
             VerifyGrandpaBanner(app, false);
             app.SendMessage("ForceNewGame");
             Check(!Field<Image>(app, "grandpaBanner").gameObject.activeSelf, "Nowa gra zachowała żółtą belkę.");
+        }
+
+        static void VerifyLastWasteLateWin(PasjansApp app, int decks, bool toFoundation, bool drag)
+        {
+            if (Field<RectTransform>(app, "modal").gameObject.activeSelf)
+                Field<Button>(app, "modalClose").onClick.Invoke();
+            app.SendMessage("CancelSelection");
+            var state = new GameState
+            {
+                deckCount = decks, selectedDeckCount = decks,
+                drawCount = 1, stockRecycleCount = 3, grandpaOutcome = GameState.GrandpaLoss,
+                moveCount = 923, finalMoves = 923, completedUtcTicks = DateTime.UtcNow.Ticks,
+                tableau = GameState.CreatePiles(5 * decks), foundations = GameState.CreatePiles(4 * decks)
+            };
+            for (int deck = 0; deck < decks; deck++)
+                for (int column = 0; column < 4; column++)
+                {
+                    for (int rank = 13; rank >= 2; rank--)
+                        state.tableau[4 * deck + column].cards.Add(
+                            new CardData((Suit)(rank % 2 == 1 ? column : column ^ 1), rank, true, deck));
+                    var ace = new CardData((Suit)column, 1, true, deck);
+                    if (deck == 0 && column == 0) state.waste.Add(ace);
+                    else state.foundations[4 * deck + column].cards.Add(ace);
+                }
+            typeof(PasjansApp).GetField("wonShown", InstanceFlags).SetValue(app, false);
+            Check(app.Game.TryLoad(state, out string error), error);
+            app.SendMessage("Layout");
+            app.SendMessage("Refresh");
+            VerifyGrandpaBanner(app, false);
+
+            var source = Field<CardView[]>(app, "cards")[state.waste[0].id];
+            var destination = new PileRef(toFoundation ? PileKind.Foundation : PileKind.Tableau, 0);
+            if (drag)
+            {
+                Vector2 start = RectTransformUtility.WorldToScreenPoint(null, source.Rect.TransformPoint(source.Rect.rect.center));
+                var pointer = new PointerEventData(EventSystem.current)
+                {
+                    pointerId = toFoundation ? -1 : 17, button = PointerEventData.InputButton.Left,
+                    pressPosition = start, position = start + new Vector2(23, -17)
+                };
+                source.OnBeginDrag(pointer);
+                var target = (RectTransform)app.GetComponentsInChildren<PileTarget>().First(t => t.Pile.Equals(destination)).transform;
+                pointer.position = RectTransformUtility.WorldToScreenPoint(null, target.TransformPoint(target.rect.center));
+                source.OnEndDrag(pointer);
+            }
+            else if (toFoundation) app.CardClicked(source, 2);
+            else { app.CardClicked(source, 1); app.PileClicked(destination); }
+
+            Check(app.Game.State.waste.Count == 0 && app.Game.IsLateGrandpaWin && app.Game.IsGrandpaLoss && !app.Game.IsWon,
+                "Ostatnia karta stosu odkrytego nie rozstrzygnęła spóźnionej wygranej przed ukończeniem stosów.");
+            Check(!Field<RectTransform>(app, "modal").gameObject.activeSelf, "Żółta belka przed pełnym ułożeniem otworzyła okno Brawo.");
+            VerifyGrandpaBanner(app, false);
+            Check(app.Game.TryLoad(JsonUtility.FromJson<GameState>(JsonUtility.ToJson(app.Game.ExportState())), out error), error);
+            app.SendMessage("Refresh");
+            VerifyGrandpaBanner(app, false);
+            Check(app.Game.MoveCount == 923 && app.Game.IsGrandpaLoss && app.Game.IsLateGrandpaWin,
+                "Wznowienie żółtej belki zmieniło zapisany wynik Dziadka.");
         }
 
         static void VerifyDrawLabel(PasjansApp app)
